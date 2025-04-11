@@ -1,0 +1,71 @@
+@import 'tailwindcss';
+
+* {
+    border: none;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+a:hover,
+button:hover,
+input[type='checkbox']:hover,
+input[type='button']:hover {
+    @apply cursor-pointer;
+}
+
+button:disabled,
+input:disabled,
+input[type='checkbox']:disabled,
+input[type='button']:disabled {
+    @apply cursor-not-allowed;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+    @apply outline-2 outline-red-400;
+}
+
+input[type='checkbox'] {
+    @apply appearance-none grid place-content-center w-4 h-4 bg-stone-100 rounded-sm;
+}
+
+input[type='checkbox']:hover {
+    @apply bg-red-100;
+}
+
+input[type='checkbox']:disabled {
+    @apply bg-stone-400/50;
+}
+
+input[type='checkbox']::before {
+    @apply w-4 h-4 opacity-100 bg-red-500/80 transition-opacity duration-250 ease-in-out rounded-sm;
+    content: '';
+}
+
+input[type='checkbox']:disabled::before {
+    @apply opacity-30;
+}
+
+input[type='checkbox']:not(:checked)::before {
+    @apply opacity-0;
+}
+
+.text-very-small {
+    @apply text-xs;
+}
+
+.text-small {
+    @apply text-xs md:text-sm;
+}
+
+.text-normal {
+    @apply text-sm md:text-base;
+}
+
+.text-large {
+    @apply text-base md:text-lg;
+}
+
+.text-extra-large {
+    @apply text-lg sm:text-xl md:text-2xl;
+}
