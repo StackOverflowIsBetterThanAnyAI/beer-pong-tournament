@@ -48,7 +48,7 @@ const Login = () => {
     )
     const userNameRef = useRef<HTMLInputElement>(null)
 
-    const [apiError, setApiError] = useState<boolean>(false)
+    const [apiError, setApiError] = useState<string>('')
     const [password, setPassword] = useState<string>('')
     const [isPasswordHidden, setIsPasswordHidden] = useState<boolean>(true)
     const [confirmPassword, setConfirmPassword] = useState<string>('')
@@ -97,7 +97,7 @@ const Login = () => {
     })
 
     const handleUserNameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setApiError(false)
+        setApiError('')
         setUserName(e.target.value)
         setItemInStorage('username', e.target.value)
     }
@@ -109,7 +109,7 @@ const Login = () => {
     }
 
     const handlePasswordInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setApiError(false)
+        setApiError('')
         setPassword(e.target.value)
         setConfirmPassword('')
     }
@@ -121,7 +121,7 @@ const Login = () => {
     }
 
     const handleSwitch = () => {
-        setApiError(false)
+        setApiError('')
         setIsSigningUp((prev) => !prev)
         setPassword('')
         setConfirmPassword('')
@@ -136,7 +136,7 @@ const Login = () => {
             | React.KeyboardEvent<HTMLInputElement>
     ) => {
         e.preventDefault()
-        setApiError(false)
+        setApiError('')
         setSendingRequest(true)
         setSubmitDisabled(true)
 
@@ -164,7 +164,12 @@ const Login = () => {
                 console.error('Error:', errorData)
                 setIsLoggedIn(false)
                 setItemInStorage('isloggedin', false)
-                setApiError(true)
+                setApiError(
+                    errorData?.detail ||
+                        `Currently, you are unable to ${
+                            isSigningUp ? 'signup.' : 'login.'
+                        }`
+                )
                 return
             }
 
@@ -192,7 +197,11 @@ const Login = () => {
                     console.error('Error:', errorData)
                     setIsLoggedIn(false)
                     setItemInStorage('isloggedin', false)
-                    setApiError(true)
+                    setApiError(
+                        `Currently, you are unable to ${
+                            isSigningUp ? 'signup.' : 'login.'
+                        }`
+                    )
                     return
                 }
 
@@ -201,12 +210,12 @@ const Login = () => {
                 setItemInStorage('isloggedin', true)
                 setItemInStorage('access', token.access)
                 setItemInStorage('refresh', token.refresh)
-            } catch (error) {
-                setApiError(true)
+            } catch (error: any) {
+                setApiError(error)
                 console.error(error)
             }
-        } catch (error) {
-            setApiError(true)
+        } catch (error: any) {
+            setApiError(error)
             console.error(error)
         } finally {
             setSendingRequest(false)
@@ -272,11 +281,7 @@ const Login = () => {
                         value={password}
                     />
                     {!isSigningUp && apiError ? (
-                        <FormError
-                            error={`Currently, you are unable to ${
-                                isSigningUp ? 'signup.' : 'login.'
-                            }`}
-                        />
+                        <FormError error={apiError} />
                     ) : (
                         <FormError error={errorPassword} />
                     )}
