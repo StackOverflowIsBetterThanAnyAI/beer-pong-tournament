@@ -118,7 +118,7 @@ const RegisterTeam = () => {
         }
 
         try {
-            const response = await fetch(`${SERVER_ADDRESS}/api/v1/notes/`, {
+            const response = await fetch(`${SERVER_ADDRESS}/api/v1/teams/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
