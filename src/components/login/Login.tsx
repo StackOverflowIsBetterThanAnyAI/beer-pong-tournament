@@ -12,6 +12,7 @@ import {
 import { ContextPasswordVisibility } from '../../context/ContextPasswordVisibility'
 import { SERVER_ADDRESS } from '../../constants/constants'
 import { getStoredData } from '../../utils/getStoredData'
+import { getValueFromError } from '../../utils/getValueFromError'
 import { setItemInStorage } from '../../utils/setItemInStorage'
 import { useAutoFocus } from '../../hooks/useAutoFocus'
 import {
@@ -165,7 +166,7 @@ const Login = () => {
                 setIsLoggedIn(false)
                 setItemInStorage('isloggedin', false)
                 setApiError(
-                    errorData?.detail ||
+                    getValueFromError(errorData) ||
                         `Currently, you are unable to ${
                             isSigningUp ? 'signup.' : 'login.'
                         }`
@@ -198,9 +199,10 @@ const Login = () => {
                     setIsLoggedIn(false)
                     setItemInStorage('isloggedin', false)
                     setApiError(
-                        `Currently, you are unable to ${
-                            isSigningUp ? 'signup.' : 'login.'
-                        }`
+                        getValueFromError(errorData) ||
+                            `Currently, you are unable to ${
+                                isSigningUp ? 'signup.' : 'login.'
+                            }`
                     )
                     return
                 }
@@ -307,11 +309,7 @@ const Login = () => {
                                 value={confirmPassword}
                             />
                             {apiError ? (
-                                <FormError
-                                    error={`Currently, you are unable to ${
-                                        isSigningUp ? 'signup.' : 'login.'
-                                    }`}
-                                />
+                                <FormError error={apiError} />
                             ) : (
                                 <FormError error={errorConfirmPassword} />
                             )}
