@@ -6,12 +6,11 @@ type FormHeaderProps = {
 }
 
 const FormHeader: FC<FormHeaderProps> = ({ header, subHeader }) => {
-    const subHeaderStyle = 'text-center text-large px-1'
     const subHeaderElement = (() => {
         switch (subHeader) {
             case 'required':
                 return (
-                    <h2 className={subHeaderStyle}>
+                    <h2 className="text-center text-large px-1">
                         All fields marked with{' '}
                         <span className="text-red-800">*</span> are required.
                     </h2>
