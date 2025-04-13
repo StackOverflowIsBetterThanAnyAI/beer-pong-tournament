@@ -132,7 +132,6 @@ const RegisterTeam = () => {
 
             if (!response.ok) {
                 const errorData = await response.json()
-                console.error('Error:', errorData)
                 setApiError(errorData.error.join(''))
                 return
             }
@@ -141,7 +140,6 @@ const RegisterTeam = () => {
             console.log(token)
         } catch (error: any) {
             setApiError(error)
-            console.error(error)
         } finally {
             setSendingRequest(false)
             setSubmitDisabled(false)

@@ -162,7 +162,6 @@ const Login = () => {
 
             if (!response.ok) {
                 const errorData = await response.json()
-                console.error('Error:', errorData)
                 setIsLoggedIn(false)
                 setItemInStorage('isloggedin', false)
                 setApiError(
@@ -195,7 +194,6 @@ const Login = () => {
 
                 if (!response.ok) {
                     const errorData = await response.json()
-                    console.error('Error:', errorData)
                     setIsLoggedIn(false)
                     setItemInStorage('isloggedin', false)
                     setApiError(
@@ -214,11 +212,9 @@ const Login = () => {
                 setItemInStorage('refresh', token.refresh)
             } catch (error: any) {
                 setApiError(error)
-                console.error(error)
             }
         } catch (error: any) {
             setApiError(error)
-            console.error(error)
         } finally {
             setSendingRequest(false)
             setSubmitDisabled(false)

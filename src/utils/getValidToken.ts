@@ -20,7 +20,6 @@ const refreshToken = async (refresh: string) => {
             throw new Error('Error refreshing the Token.')
         }
     } catch (error) {
-        console.error(error)
         return ''
     }
 }
