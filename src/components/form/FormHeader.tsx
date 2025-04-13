@@ -11,10 +11,10 @@ const FormHeader: FC<FormHeaderProps> = ({ header, subHeader }) => {
         switch (subHeader) {
             case 'required':
                 return (
-                    <h3 className={subHeaderStyle}>
+                    <h2 className={subHeaderStyle}>
                         All fields marked with{' '}
                         <span className="text-red-800">*</span> are required.
-                    </h3>
+                    </h2>
                 )
             default:
                 return null
@@ -23,9 +23,9 @@ const FormHeader: FC<FormHeaderProps> = ({ header, subHeader }) => {
 
     return (
         <>
-            <h2 className="text-center font-semibold text-extra-large">
+            <h1 className="text-center font-semibold text-extra-large">
                 {header}
-            </h2>
+            </h1>
             {subHeaderElement}
         </>
     )
