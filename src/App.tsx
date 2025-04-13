@@ -1,15 +1,17 @@
 import { useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router'
 import Footer from './components/footer/Footer'
+import FourOhFour from './404/FourOhFour'
 import Login from './components/login/Login'
 import Navigation from './components/navigation/Navigation'
+import RegisterTeam from './components/registerTeam/RegisterTeam'
+import Teams from './components/teams/Teams'
 import {
     ContextIsLoggedIn,
     ContextLoggedInUser,
     LoggedInUserProps,
 } from './context/LoginContext'
 import { useFocusTrap } from './hooks/useFocusTrap'
-import RegisterTeam from './components/registerTeam/RegisterTeam'
 
 const App = () => {
     const storedData = localStorage.getItem('beer-pong-tournament')
@@ -38,10 +40,19 @@ const App = () => {
                         <Routes>
                             <Route
                                 path="/"
+                                element={isLoggedIn ? <Teams /> : <Login />}
+                            />
+                            <Route
+                                path="/register"
                                 element={
-                                    isLoggedIn ? <RegisterTeam /> : <Login />
+                                    isLoggedIn ? (
+                                        <RegisterTeam />
+                                    ) : (
+                                        <FourOhFour />
+                                    )
                                 }
                             />
+                            <Route path="*" element={<FourOhFour />} />
                         </Routes>
                         <Footer />
                     </BrowserRouter>
