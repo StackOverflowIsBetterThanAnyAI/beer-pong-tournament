@@ -49,38 +49,36 @@ const RegisterTeam = () => {
     const [errorMemberTwo, setErrorMemberTwo] = useState<string>('')
     const [errorSameMember, setErrorSameMember] = useState<string>('')
 
-    const teamNamePattern = useMemo<RegExp>(() => /^[a-z0-9]{5,20}$/i, [])
-    const memberPattern = useMemo<RegExp>(() => /^[a-z0-9]{5,20}$/i, [])
+    const teamPattern = useMemo<RegExp>(() => /^[a-z0-9]{5,20}$/i, [])
 
     useAutoFocus(teamNameRef)
 
     useSubmitDisabledRegister({
         memberOne,
         memberTwo,
-        memberPattern,
         setSubmitDisabled,
         teamName,
-        teamNamePattern,
+        teamPattern,
     })
 
     useErrorName({
         setErrorName: setErrorTeamName,
         name: teamName,
-        namePattern: teamNamePattern,
+        namePattern: teamPattern,
         type: 'team',
     })
 
     useErrorName({
         setErrorName: setErrorMemberOne,
         name: memberOne,
-        namePattern: memberPattern,
+        namePattern: teamPattern,
         type: 'player',
     })
 
     useErrorName({
         setErrorName: setErrorMemberTwo,
         name: memberTwo,
-        namePattern: memberPattern,
+        namePattern: teamPattern,
         type: 'player',
     })
 

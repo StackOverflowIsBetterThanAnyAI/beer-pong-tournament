@@ -13,10 +13,9 @@ type useSubmitDisabledLoginProps = {
 type useSubmitDisabledRegisterProps = {
     memberOne: string
     memberTwo: string
-    memberPattern: RegExp
     setSubmitDisabled: React.Dispatch<React.SetStateAction<boolean>>
     teamName: string
-    teamNamePattern: RegExp
+    teamPattern: RegExp
 }
 
 export const useSubmitDisabledLogin = ({
@@ -56,28 +55,20 @@ export const useSubmitDisabledLogin = ({
 export const useSubmitDisabledRegister = ({
     memberOne,
     memberTwo,
-    memberPattern,
     setSubmitDisabled,
     teamName,
-    teamNamePattern,
+    teamPattern,
 }: useSubmitDisabledRegisterProps) => {
     useEffect(() => {
         if (
-            memberPattern.test(memberOne) &&
-            memberPattern.test(memberTwo) &&
-            teamNamePattern.test(teamName) &&
+            teamPattern.test(memberOne) &&
+            teamPattern.test(memberTwo) &&
+            teamPattern.test(teamName) &&
             memberOne !== memberTwo
         ) {
             setSubmitDisabled(false)
         } else {
             setSubmitDisabled(true)
         }
-    }, [
-        memberOne,
-        memberTwo,
-        memberPattern,
-        setSubmitDisabled,
-        teamName,
-        teamNamePattern,
-    ])
+    }, [memberOne, memberTwo, setSubmitDisabled, teamName, teamPattern])
 }
