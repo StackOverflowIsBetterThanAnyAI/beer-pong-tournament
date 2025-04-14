@@ -2,17 +2,22 @@ import { useEffect } from 'react'
 import { SERVER_ADDRESS } from '../constants/constants'
 import { getValidToken } from '../utils/getValidToken'
 import { setItemInStorage } from '../utils/setItemInStorage'
+import { RegisteredTeamsProps } from '../types/tpyes'
 
 type useRegisteredTeamsProps = {
     accessToken: string
     refreshToken: string
     setApiError: (value: React.SetStateAction<string>) => void
+    setRegisteredTeams: React.Dispatch<
+        React.SetStateAction<RegisteredTeamsProps>
+    >
 }
 
 export const useRegisteredTeams = ({
     accessToken,
     refreshToken,
     setApiError,
+    setRegisteredTeams,
 }: useRegisteredTeamsProps) => {
     useEffect(() => {
         const fetchRegisteredTeams = async () => {
@@ -36,6 +41,7 @@ export const useRegisteredTeams = ({
                 }
 
                 const result = await response.json()
+                setRegisteredTeams(result)
                 setItemInStorage('registeredteams', result)
             } catch (error: any) {
                 setApiError(error)

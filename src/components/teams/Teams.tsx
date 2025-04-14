@@ -13,7 +13,7 @@ export const Teams = () => {
             'Form must be used within a ContextRegisteredTeams.Provider'
         )
     }
-    const [registeredTeams, _setRegisteredTeams] = contextRegisteredTeams
+    const [registeredTeams, setRegisteredTeams] = contextRegisteredTeams
 
     const [accessToken, _setAccessToken] = useState<string>(
         parsedStorageData?.access || ''
@@ -24,7 +24,12 @@ export const Teams = () => {
 
     const [apiError, setApiError] = useState<string>('')
 
-    useRegisteredTeams({ accessToken, refreshToken, setApiError })
+    useRegisteredTeams({
+        accessToken,
+        refreshToken,
+        setApiError,
+        setRegisteredTeams,
+    })
 
     const teams = registeredTeams.map((item) => {
         return (
