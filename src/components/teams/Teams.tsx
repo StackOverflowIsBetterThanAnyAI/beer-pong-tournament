@@ -1,4 +1,5 @@
 import { useContext, useState } from 'react'
+import TeamsError from './TeamsError'
 import { ContextRegisteredTeams } from '../../context/ContextRegisteredTeams'
 import { getStoredData } from '../../utils/getStoredData'
 import { useRegisteredTeams } from '../../hooks/useRegisteredTeams'
@@ -29,7 +30,7 @@ export const Teams = () => {
         return (
             <li
                 key={item.name}
-                className="flex flex-col max-w-96 bg-stone-400 my-2 px-2 py-1 m-auto rounded-sm"
+                className="flex flex-col max-w-80 bg-stone-400 my-2 px-4 py-2 m-auto rounded-sm"
             >
                 <div className="text-large font-bold text-ellipsis overflow-hidden">
                     {item.name}
@@ -47,7 +48,9 @@ export const Teams = () => {
             <h1 className="text-center font-semibold text-extra-large">
                 Team Overview
             </h1>
-            {registeredTeams.length ? (
+            {apiError ? (
+                <TeamsError error={apiError} />
+            ) : registeredTeams.length ? (
                 <>
                     <h2 className="text-center text-large px-1">
                         Currently registered Teams:
