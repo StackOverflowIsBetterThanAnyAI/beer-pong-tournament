@@ -30,7 +30,9 @@ const Navigation = () => {
                         alt="Back to the Homepage"
                         className="rounded-lg"
                     />
-                    Beer Pong Tournament
+                    <span className="max-[280px]:hidden">
+                        Beer Pong Tournament
+                    </span>
                 </a>
                 {isLoggedIn ? (
                     <button
