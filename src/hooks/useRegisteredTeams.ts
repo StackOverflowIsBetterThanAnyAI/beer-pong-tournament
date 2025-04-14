@@ -29,8 +29,9 @@ export const useRegisteredTeams = ({
                 })
 
                 if (!response.ok) {
-                    const errorData = await response.json()
-                    setApiError(errorData.error.join(''))
+                    setApiError(
+                        'An error occurred while fetching the registered teams.'
+                    )
                     return
                 }
 
@@ -41,5 +42,5 @@ export const useRegisteredTeams = ({
             }
         }
         fetchRegisteredTeams()
-    }, [])
+    }, [accessToken, refreshToken, setApiError])
 }
