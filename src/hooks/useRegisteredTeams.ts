@@ -36,8 +36,8 @@ export const useRegisteredTeams = ({
 
                 const result = await response.json()
                 setItemInStorage('registeredteams', result)
-            } catch (error) {
-                console.error(error)
+            } catch (error: any) {
+                setApiError(error)
             }
         }
         fetchRegisteredTeams()
