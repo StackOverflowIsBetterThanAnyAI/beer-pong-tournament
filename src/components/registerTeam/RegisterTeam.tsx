@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from 'react'
+import { useContext, useMemo, useRef, useState } from 'react'
 import FormError from './../form/FormError'
 import FormHeader from './../form/FormHeader'
 import FormInput from './../form/FormInput'
@@ -10,9 +10,18 @@ import { setItemInStorage } from '../../utils/setItemInStorage'
 import { useAutoFocus } from '../../hooks/useAutoFocus'
 import { useErrorName, useErrorSameMember } from '../../hooks/useError'
 import { useSubmitDisabledRegister } from '../../hooks/useSubmitDisabled'
+import { ContextRegisteredTeams } from '../../context/ContextRegisteredTeams'
 
 const RegisterTeam = () => {
     const parsedStorageData = getStoredData()
+
+    const contextRegisteredTeams = useContext(ContextRegisteredTeams)
+    if (!contextRegisteredTeams) {
+        throw new Error(
+            'Form must be used within a ContextRegisteredTeams.Provider'
+        )
+    }
+    const [registeredTeams, setRegisteredTeams] = contextRegisteredTeams
 
     const [accessToken, _setAccessToken] = useState<string>(
         parsedStorageData?.access || ''
@@ -24,7 +33,7 @@ const RegisterTeam = () => {
         parsedStorageData?.teamname || ''
     )
     const [memberOne, setMemberOne] = useState<string>(
-        parsedStorageData?.memberone || ''
+        parsedStorageData?.memberone || parsedStorageData?.username || ''
     )
     const [memberTwo, setMemberTwo] = useState<string>(
         parsedStorageData?.membertwo || ''
@@ -136,8 +145,18 @@ const RegisterTeam = () => {
                 return
             }
 
-            const token = await response.json()
-            console.log(token)
+            const result = await response.json()
+            console.log(result)
+            const updatedTeams = [
+                ...registeredTeams,
+                {
+                    name: teamName,
+                    member_one: memberOne,
+                    member_two: memberTwo,
+                },
+            ]
+            setRegisteredTeams(updatedTeams)
+            setItemInStorage('registeredteams', updatedTeams)
         } catch (error: any) {
             setApiError(error)
         } finally {
