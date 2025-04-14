@@ -7,7 +7,9 @@ import { setLogout } from '../../utils/setLogout'
 const Navigation = () => {
     const contextIsLoggedIn = useContext(ContextIsLoggedIn)
     if (!contextIsLoggedIn) {
-        throw new Error('Form must be used within a ContextIsLoggedIn.Provider')
+        throw new Error(
+            'Navigation must be used within a ContextIsLoggedIn.Provider'
+        )
     }
     const [isLoggedIn, setIsLoggedIn] = contextIsLoggedIn
 

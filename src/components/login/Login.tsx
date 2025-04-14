@@ -25,7 +25,9 @@ import { useSubmitDisabledLogin } from '../../hooks/useSubmitDisabled'
 const Login = () => {
     const contextIsLoggedIn = useContext(ContextIsLoggedIn)
     if (!contextIsLoggedIn) {
-        throw new Error('Form must be used within a ContextIsLoggedIn.Provider')
+        throw new Error(
+            'Login must be used within a ContextIsLoggedIn.Provider'
+        )
     }
     // eslint-disable-next-line
     const [_isLoggedIn, setIsLoggedIn] = contextIsLoggedIn
@@ -33,7 +35,7 @@ const Login = () => {
     const contextLoggedInUser = useContext(ContextLoggedInUser)
     if (!contextLoggedInUser) {
         throw new Error(
-            'Form must be used within a ContextLoggedInUser.Provider'
+            'Login must be used within a ContextLoggedInUser.Provider'
         )
     }
     // eslint-disable-next-line

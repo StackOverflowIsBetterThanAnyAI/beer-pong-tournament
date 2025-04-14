@@ -18,7 +18,7 @@ const RegisterTeam = () => {
     const contextRegisteredTeams = useContext(ContextRegisteredTeams)
     if (!contextRegisteredTeams) {
         throw new Error(
-            'Form must be used within a ContextRegisteredTeams.Provider'
+            'RegisterTeam must be used within a ContextRegisteredTeams.Provider'
         )
     }
     const [registeredTeams, setRegisteredTeams] = contextRegisteredTeams
