@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import logo from './../../assets/logo.png'
 import Breadcrumbs from '../breadcrumbs/Breadcrumbs'
-import { ContextIsLoggedIn } from '../../context/LoginContext'
+import { ContextIsLoggedIn } from '../../context/ContextLogin'
 import { setLogout } from '../../utils/setLogout'
 
 const Navigation = () => {

@@ -8,7 +8,7 @@ import FormSwitch from './../form/FormSwitch'
 import {
     ContextIsLoggedIn,
     ContextLoggedInUser,
-} from '../../context/LoginContext'
+} from '../../context/ContextLogin'
 import { ContextPasswordVisibility } from '../../context/ContextPasswordVisibility'
 import { SERVER_ADDRESS } from '../../constants/constants'
 import { getStoredData } from '../../utils/getStoredData'

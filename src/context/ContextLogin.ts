@@ -1,9 +1,5 @@
 import { createContext } from 'react'
-
-export type LoggedInUserProps = {
-    user: string
-    token: string
-}
+import { LoggedInUserProps } from '../types/tpyes'
 
 export const ContextIsLoggedIn = createContext<
     | [
