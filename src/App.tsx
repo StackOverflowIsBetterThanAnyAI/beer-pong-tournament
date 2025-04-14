@@ -6,16 +6,14 @@ import Login from './components/login/Login'
 import Navigation from './components/navigation/Navigation'
 import RegisterTeam from './components/registerTeam/RegisterTeam'
 import Teams from './components/teams/Teams'
-import {
-    ContextIsLoggedIn,
-    ContextLoggedInUser,
-    LoggedInUserProps,
-} from './context/LoginContext'
+import { ContextIsLoggedIn, ContextLoggedInUser } from './context/ContextLogin'
+import { ContextRegisteredTeams } from './context/ContextRegisteredTeams'
+import { LoggedInUserProps, RegisteredTeamsProps } from './types/tpyes'
+import { getStoredData } from './utils/getStoredData'
 import { useFocusTrap } from './hooks/useFocusTrap'
 
 const App = () => {
-    const storedData = localStorage.getItem('beer-pong-tournament')
-    const parsedStorageData = storedData ? JSON.parse(storedData) : {}
+    const parsedStorageData = getStoredData()
 
     const [isLoggedIn, setIsLoggedIn] = useState<boolean | undefined>(
         parsedStorageData?.isloggedin || false
@@ -26,6 +24,8 @@ const App = () => {
         user: parsedStorageData?.username || '',
         token: parsedStorageData?.token || '',
     })
+    const [registeredTeams, setRegisteredTeams] =
+        useState<RegisteredTeamsProps>(parsedStorageData?.registeredteams || [])
 
     useFocusTrap()
 
@@ -35,27 +35,31 @@ const App = () => {
                 <ContextLoggedInUser.Provider
                     value={[loggedInUser, setLoggedInUser]}
                 >
-                    <BrowserRouter>
-                        <Navigation />
-                        <Routes>
-                            <Route
-                                path="/"
-                                element={isLoggedIn ? <Teams /> : <Login />}
-                            />
-                            <Route
-                                path="/register"
-                                element={
-                                    isLoggedIn ? (
-                                        <RegisterTeam />
-                                    ) : (
-                                        <FourOhFour />
-                                    )
-                                }
-                            />
-                            <Route path="*" element={<FourOhFour />} />
-                        </Routes>
-                        <Footer />
-                    </BrowserRouter>
+                    <ContextRegisteredTeams.Provider
+                        value={[registeredTeams, setRegisteredTeams]}
+                    >
+                        <BrowserRouter>
+                            <Navigation />
+                            <Routes>
+                                <Route
+                                    path="/"
+                                    element={isLoggedIn ? <Teams /> : <Login />}
+                                />
+                                <Route
+                                    path="/register"
+                                    element={
+                                        isLoggedIn ? (
+                                            <RegisterTeam />
+                                        ) : (
+                                            <FourOhFour />
+                                        )
+                                    }
+                                />
+                                <Route path="*" element={<FourOhFour />} />
+                            </Routes>
+                            <Footer />
+                        </BrowserRouter>
+                    </ContextRegisteredTeams.Provider>
                 </ContextLoggedInUser.Provider>
             </ContextIsLoggedIn.Provider>
         </div>
