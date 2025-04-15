@@ -7,6 +7,7 @@ import { getStoredData } from '../../utils/getStoredData'
 import { getValidToken } from '../../utils/getValidToken'
 import { getValueFromError } from '../../utils/getValueFromError'
 import { setItemInStorage } from '../../utils/setItemInStorage'
+import { useItemsPerPage } from '../../hooks/useItemsPerPage'
 import { useRegisteredTeams } from '../../hooks/useRegisteredTeams'
 import { RegisteredTeamProps } from '../../types/tpyes'
 
@@ -21,6 +22,8 @@ export const Teams = () => {
     }
     const [registeredTeams, setRegisteredTeams] = contextRegisteredTeams
 
+    const MAX_ITEMS_PER_PAGE = useItemsPerPage()
+
     const [accessToken, _setAccessToken] = useState<string>(
         parsedStorageData?.access || ''
     )
@@ -29,6 +32,7 @@ export const Teams = () => {
     )
 
     const [apiError, setApiError] = useState<string>('')
+    const [page, setPage] = useState<number>(1)
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
     useRegisteredTeams({
@@ -68,6 +72,14 @@ export const Teams = () => {
         } catch (error: any) {
             setApiError('An unexpected error occurred while deleting a team.')
         }
+    }
+
+    const previousPage = () => {
+        setPage((prev) => prev - 1)
+    }
+
+    const nextPage = () => {
+        setPage((prev) => prev + 1)
     }
 
     const teams = registeredTeams.map((item) => {
@@ -110,7 +122,40 @@ export const Teams = () => {
                 <h2 className="text-center text-large px-1">
                     Currently registered Teams:
                 </h2>
-                <ul>{teams}</ul>
+                <ul>
+                    {teams.filter((item, index) => {
+                        if (
+                            index >= (page - 1) * MAX_ITEMS_PER_PAGE &&
+                            index < page * MAX_ITEMS_PER_PAGE
+                        )
+                            return item
+                    })}
+                </ul>
+                <div className="grid min-[216px]:grid-cols-3 text-center max-w-80 m-auto pt-2">
+                    <button
+                        className="text-normal outline outline-stone-500 disabled:outline-stone-400 disabled:bg-stone-400/20 px-2 py-0.5 rounded-md
+                        hover:bg-stone-400/40 active:bg-stone-400/70"
+                        aria-label="Go to the previous page."
+                        onClick={previousPage}
+                        disabled={page <= 1}
+                        title="Previous Page."
+                    >
+                        Previous
+                    </button>
+                    <span className="text-large">{page}</span>
+                    <button
+                        className="text-normal outline outline-stone-500 disabled:outline-stone-400 disabled:bg-stone-400/20 px-2 py-0.5 rounded-md
+                        hover:bg-stone-400/40 active:bg-stone-400/70"
+                        aria-label="Go to the next page."
+                        onClick={nextPage}
+                        disabled={
+                            page >= registeredTeams.length / MAX_ITEMS_PER_PAGE
+                        }
+                        title="Next Page."
+                    >
+                        Next
+                    </button>
+                </div>
             </>
         )
     } else {
@@ -124,7 +169,7 @@ export const Teams = () => {
     return (
         <main className="w-full bg-stone-300 text-stone-950 sm:w-80 md:w-112 sm:rounded-lg p-3 sm:p-4 md:p-6">
             <h1 className="text-center font-semibold text-extra-large">
-                Team Overview
+                Registered Teams
             </h1>
             {content}
         </main>
