@@ -43,7 +43,13 @@ const App = () => {
                             <Routes>
                                 <Route
                                     path="/"
-                                    element={isLoggedIn ? <Teams /> : <Login />}
+                                    element={isLoggedIn ? null : <Login />}
+                                />
+                                <Route
+                                    path="/teams"
+                                    element={
+                                        isLoggedIn ? <Teams /> : <FourOhFour />
+                                    }
                                 />
                                 <Route
                                     path="/register"
