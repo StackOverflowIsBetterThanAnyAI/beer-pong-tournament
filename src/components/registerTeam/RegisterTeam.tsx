@@ -146,7 +146,6 @@ const RegisterTeam = () => {
             }
 
             const result = await response.json()
-            console.log(result)
             const updatedTeams = [
                 ...registeredTeams,
                 {
