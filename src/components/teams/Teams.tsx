@@ -86,7 +86,7 @@ export const Teams = () => {
         return (
             <li
                 key={item.name}
-                className="flex flex-col max-w-80 bg-stone-400 my-2 px-4 py-2 m-auto rounded-sm"
+                className="flex flex-col max-w-80 bg-stone-400 drop-shadow-stone-600/60 drop-shadow-md my-4 px-4 py-2 m-auto rounded-sm"
             >
                 <div className="text-large font-bold text-ellipsis overflow-hidden">
                     {item.name}

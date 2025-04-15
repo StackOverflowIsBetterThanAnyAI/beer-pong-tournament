@@ -9,7 +9,7 @@ a:hover,
 button:hover,
 input[type='checkbox']:hover,
 input[type='button']:hover {
-    @apply cursor-pointer;
+    @apply cursor-pointer drop-shadow-stone-600/25 drop-shadow-xs;
 }
 
 button:disabled,
