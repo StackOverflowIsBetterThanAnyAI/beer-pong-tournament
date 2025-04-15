@@ -1,9 +1,14 @@
 import { useContext, useState } from 'react'
 import { FetchLoading } from 'fetch-loading'
 import TeamsError from './TeamsError'
+import { SERVER_ADDRESS } from '../../constants/constants'
 import { ContextRegisteredTeams } from '../../context/ContextRegisteredTeams'
 import { getStoredData } from '../../utils/getStoredData'
+import { getValidToken } from '../../utils/getValidToken'
+import { getValueFromError } from '../../utils/getValueFromError'
+import { setItemInStorage } from '../../utils/setItemInStorage'
 import { useRegisteredTeams } from '../../hooks/useRegisteredTeams'
+import { RegisteredTeamProps } from '../../types/tpyes'
 
 export const Teams = () => {
     const parsedStorageData = getStoredData()
@@ -34,6 +39,37 @@ export const Teams = () => {
         setRegisteredTeams,
     })
 
+    const handleDelete = async (item: RegisteredTeamProps) => {
+        try {
+            const response = await fetch(
+                `${SERVER_ADDRESS}/api/v1/teams/delete/${item.id}/`,
+                {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${await getValidToken(
+                            accessToken,
+                            refreshToken
+                        )}`,
+                    },
+                }
+            )
+
+            if (!response.ok) {
+                const errorData = await response.json()
+                setApiError(getValueFromError(errorData))
+                return
+            }
+            const updatedTeams = registeredTeams.filter(
+                (team) => team.id !== item.id
+            )
+            setRegisteredTeams(updatedTeams)
+            setItemInStorage('registeredteams', updatedTeams)
+        } catch (error: any) {
+            setApiError('An unexpected error occurred while deleting a team.')
+        }
+    }
+
     const teams = registeredTeams.map((item) => {
         return (
             <li
@@ -47,6 +83,13 @@ export const Teams = () => {
                     <div className="text-normal">{item.member_one}</div>
                     <div className="text-normal">{item.member_two}</div>
                 </div>
+                <button
+                    className="text-normal bg-stone-300 outline-2 outline-red-500 mt-2 py-0.5 rounded-md
+                hover:bg-stone-300/60 active:bg-stone-300/30"
+                    onClick={() => handleDelete(item)}
+                >
+                    Delete
+                </button>
             </li>
         )
     })
