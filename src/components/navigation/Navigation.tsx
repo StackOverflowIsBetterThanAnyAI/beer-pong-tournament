@@ -31,6 +31,7 @@ const Navigation = () => {
                         height="48px"
                         alt="Back to the Homepage"
                         className="rounded-lg"
+                        loading="lazy"
                     />
                     <span className="max-[280px]:hidden">
                         Beer Pong Tournament
