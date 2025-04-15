@@ -4,13 +4,14 @@ import FormHeader from './../form/FormHeader'
 import FormInput from './../form/FormInput'
 import FormSubmit from './../form/FormSubmit'
 import { SERVER_ADDRESS } from '../../constants/constants'
+import { ContextRegisteredTeams } from '../../context/ContextRegisteredTeams'
 import { getStoredData } from '../../utils/getStoredData'
 import { getValidToken } from '../../utils/getValidToken'
+import { getValueFromError } from '../../utils/getValueFromError'
 import { setItemInStorage } from '../../utils/setItemInStorage'
 import { useAutoFocus } from '../../hooks/useAutoFocus'
 import { useErrorName, useErrorSameMember } from '../../hooks/useError'
 import { useSubmitDisabledRegister } from '../../hooks/useSubmitDisabled'
-import { ContextRegisteredTeams } from '../../context/ContextRegisteredTeams'
 
 const RegisterTeam = () => {
     const parsedStorageData = getStoredData()
@@ -139,7 +140,7 @@ const RegisterTeam = () => {
 
             if (!response.ok) {
                 const errorData = await response.json()
-                setApiError(errorData.error.join(''))
+                setApiError(getValueFromError(errorData))
                 return
             }
 
