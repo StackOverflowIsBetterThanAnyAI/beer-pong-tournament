@@ -2,7 +2,7 @@ import { FC } from 'react'
 
 type FormHeaderProps = {
     header: string
-    subHeader: string
+    subHeader?: string
 }
 
 const FormHeader: FC<FormHeaderProps> = ({ header, subHeader }) => {
