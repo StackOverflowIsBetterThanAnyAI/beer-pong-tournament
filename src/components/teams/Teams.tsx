@@ -1,4 +1,5 @@
 import { useContext, useState } from 'react'
+import { FetchLoading } from 'fetch-loading'
 import TeamsError from './TeamsError'
 import { ContextRegisteredTeams } from '../../context/ContextRegisteredTeams'
 import { getStoredData } from '../../utils/getStoredData'
@@ -23,11 +24,13 @@ export const Teams = () => {
     )
 
     const [apiError, setApiError] = useState<string>('')
+    const [isLoading, setIsLoading] = useState<boolean>(false)
 
     useRegisteredTeams({
         accessToken,
         refreshToken,
         setApiError,
+        setIsLoading,
         setRegisteredTeams,
     })
 
@@ -48,25 +51,39 @@ export const Teams = () => {
         )
     })
 
+    let content
+
+    if (isLoading) {
+        content = (
+            <div className="flex justify-center pt-8 pb-4">
+                <FetchLoading theme="#44403c" />
+            </div>
+        )
+    } else if (apiError) {
+        content = <TeamsError error={apiError} />
+    } else if (registeredTeams?.length > 0) {
+        content = (
+            <>
+                <h2 className="text-center text-large px-1">
+                    Currently registered Teams:
+                </h2>
+                <ul>{teams}</ul>
+            </>
+        )
+    } else {
+        content = (
+            <h2 className="text-center text-large px-1">
+                Currently, no Teams have registered yet.
+            </h2>
+        )
+    }
+
     return (
         <main className="w-full bg-stone-300 text-stone-950 sm:w-80 md:w-112 sm:rounded-lg p-3 sm:p-4 md:p-6">
             <h1 className="text-center font-semibold text-extra-large">
                 Team Overview
             </h1>
-            {apiError ? (
-                <TeamsError error={apiError} />
-            ) : registeredTeams.length ? (
-                <>
-                    <h2 className="text-center text-large px-1">
-                        Currently registered Teams:
-                    </h2>
-                    <ul>{teams}</ul>
-                </>
-            ) : (
-                <h2 className="text-center text-large px-1">
-                    Currently, no Teams have registered yet.
-                </h2>
-            )}
+            {content}
         </main>
     )
 }
