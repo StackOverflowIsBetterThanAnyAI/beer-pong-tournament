@@ -8,6 +8,7 @@ type useRegisteredTeamsProps = {
     accessToken: string
     refreshToken: string
     setApiError: (value: React.SetStateAction<string>) => void
+    setIsLoading: (value: React.SetStateAction<boolean>) => void
     setRegisteredTeams: React.Dispatch<
         React.SetStateAction<RegisteredTeamsProps>
     >
@@ -17,10 +18,12 @@ export const useRegisteredTeams = ({
     accessToken,
     refreshToken,
     setApiError,
+    setIsLoading,
     setRegisteredTeams,
 }: useRegisteredTeamsProps) => {
     useEffect(() => {
         const fetchRegisteredTeams = async () => {
+            setIsLoading(true)
             try {
                 const response = await fetch(`${SERVER_ADDRESS}/api/v1/teams`, {
                     method: 'GET',
@@ -45,6 +48,8 @@ export const useRegisteredTeams = ({
                 setItemInStorage('registeredteams', result)
             } catch (error: any) {
                 setApiError(error)
+            } finally {
+                setIsLoading(false)
             }
         }
         fetchRegisteredTeams()
