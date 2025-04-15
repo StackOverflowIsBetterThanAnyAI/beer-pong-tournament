@@ -84,8 +84,8 @@ export const Teams = () => {
                     <div className="text-normal">{item.member_two}</div>
                 </div>
                 <button
-                    className="text-normal bg-stone-300 outline-2 outline-red-500 mt-2 py-0.5 rounded-md
-                hover:bg-stone-300/60 active:bg-stone-300/30"
+                    className="text-normal bg-stone-300 outline outline-red-500 mt-2 py-0.5 rounded-md
+                hover:bg-stone-300/60 active:bg-stone-300/30 focus-visible:bg-stone-100"
                     onClick={() => handleDelete(item)}
                 >
                     Delete
