@@ -1,5 +1,6 @@
 import { jwtDecode } from 'jwt-decode'
 import { SERVER_ADDRESS } from '../constants/constants'
+import { setItemInStorage } from './setItemInStorage'
 
 const refreshToken = async (refresh: string) => {
     try {
@@ -15,6 +16,7 @@ const refreshToken = async (refresh: string) => {
         })
         if (res.status === 200) {
             const data = await res.json()
+            setItemInStorage('access', data.access)
             return data.access as string
         } else {
             throw new Error('Error refreshing the Token.')
