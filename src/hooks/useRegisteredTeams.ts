@@ -47,7 +47,9 @@ export const useRegisteredTeams = ({
                 setRegisteredTeams(result)
                 setItemInStorage('registeredteams', result)
             } catch (error: any) {
-                setApiError(error)
+                setApiError(
+                    'An error occurred while fetching the registered teams.'
+                )
             } finally {
                 setIsLoading(false)
             }

@@ -157,7 +157,7 @@ const RegisterTeam = () => {
             setRegisteredTeams(updatedTeams)
             setItemInStorage('registeredteams', updatedTeams)
         } catch (error: any) {
-            setApiError(error)
+            setApiError('An unexpected error occurred while adding your team.')
         } finally {
             setSendingRequest(false)
             setSubmitDisabled(false)

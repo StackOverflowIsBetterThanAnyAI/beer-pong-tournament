@@ -213,10 +213,16 @@ const Login = () => {
                 setItemInStorage('access', token.access)
                 setItemInStorage('refresh', token.refresh)
             } catch (error: any) {
-                setApiError(error)
+                setApiError(
+                    'An unexpected error occurred while trying to login.'
+                )
             }
         } catch (error: any) {
-            setApiError(error)
+            setApiError(
+                `An unexpected error occurred while trying to ${
+                    isSigningUp ? 'signup' : 'login'
+                }.`
+            )
         } finally {
             setSendingRequest(false)
             setSubmitDisabled(false)
