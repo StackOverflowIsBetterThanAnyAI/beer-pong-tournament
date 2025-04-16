@@ -47,19 +47,19 @@ const App = () => {
                                     element={isLoggedIn ? null : <Login />}
                                 />
                                 <Route
-                                    path="/teams"
-                                    element={
-                                        isLoggedIn ? <Teams /> : <FourOhFour />
-                                    }
-                                />
-                                <Route
-                                    path="/start"
+                                    path="/groups"
                                     element={
                                         isLoggedIn ? (
                                             <StartTournament />
                                         ) : (
                                             <FourOhFour />
                                         )
+                                    }
+                                />
+                                <Route
+                                    path="/teams"
+                                    element={
+                                        isLoggedIn ? <Teams /> : <FourOhFour />
                                     }
                                 />
                                 <Route
