@@ -69,6 +69,12 @@ export const Teams = () => {
             )
             setRegisteredTeams(updatedTeams)
             setItemInStorage('registeredteams', updatedTeams)
+            if (
+                updatedTeams.length > 0 &&
+                updatedTeams.length % MAX_ITEMS_PER_PAGE === 0
+            ) {
+                previousPage()
+            }
         } catch (error: any) {
             setApiError('An unexpected error occurred while deleting a team.')
         }
