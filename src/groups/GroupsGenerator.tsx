@@ -1,6 +1,11 @@
 import { useContext, useEffect, useState } from 'react'
 import { ContextRegisteredTeams } from '../context/ContextRegisteredTeams'
-import { MAX_TEAMS, SERVER_ADDRESS } from '../constants/constants'
+import {
+    MAX_TEAMS,
+    MIN_TEAMS,
+    SERVER_ADDRESS,
+    TEAMS_PER_GROUP,
+} from '../constants/constants'
 import FormError from '../components/form/FormError'
 import FormHeader from '../components/form/FormHeader'
 import Groups from './Groups'
@@ -76,9 +81,9 @@ export const GroupsGenerator = () => {
     useEffect(() => {
         setIsStartDisabled(
             !(
-                registeredTeams.length >= 8 &&
-                registeredTeams.length % 4 === 0 &&
-                registeredTeams.length <= 32
+                registeredTeams.length >= MIN_TEAMS &&
+                registeredTeams.length % TEAMS_PER_GROUP === 0 &&
+                registeredTeams.length <= MAX_TEAMS
             )
         )
     }, [registeredTeams])
@@ -161,9 +166,9 @@ export const GroupsGenerator = () => {
                 <div className="text-center pt-4">
                     <FormError error={apiError} />
                 </div>
-            ) : (
+            ) : groups.length ? (
                 <Groups groups={groups} />
-            )}
+            ) : null}
         </main>
     )
 }
