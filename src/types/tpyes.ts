@@ -11,3 +11,9 @@ export type RegisteredTeamProps = {
 }
 
 export type RegisteredTeamsProps = RegisteredTeamProps[]
+
+export type TournamentGroupsProps = {
+    id: number
+    name: string
+    teams: RegisteredTeamsProps
+}[]
