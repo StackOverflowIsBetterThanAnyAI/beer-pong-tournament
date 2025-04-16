@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react'
+import { MAX_ITEMS_MOBILE, MAX_ITEMS_DESKTOP } from '../constants/constants'
 
-export const useItemsPerPage = (): 4 | 8 => {
-    const [itemsPerPage, setItemsPerPage] = useState<4 | 8>(4)
+export const useItemsPerPage = (): number => {
+    const [itemsPerPage, setItemsPerPage] = useState<number>(MAX_ITEMS_MOBILE)
 
     useEffect(() => {
         const handleItemsPerPage = () => {
             if (window.innerWidth < 640) {
-                setItemsPerPage(4)
-            } else setItemsPerPage(8)
+                setItemsPerPage(MAX_ITEMS_MOBILE)
+            } else setItemsPerPage(MAX_ITEMS_DESKTOP)
         }
         window.addEventListener('resize', handleItemsPerPage)
         handleItemsPerPage()
