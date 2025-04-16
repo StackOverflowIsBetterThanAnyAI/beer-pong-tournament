@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react'
 import { ContextRegisteredTeams } from '../context/ContextRegisteredTeams'
 import { MAX_TEAMS, SERVER_ADDRESS } from '../constants/constants'
+import FormError from '../components/form/FormError'
 import FormHeader from '../components/form/FormHeader'
 import Groups from './Groups'
 import { getStoredData } from '../utils/getStoredData'
@@ -156,7 +157,13 @@ export const GroupsGenerator = () => {
                     'Generate Groups'
                 )}
             </button>
-            <Groups groups={groups} />
+            {apiError ? (
+                <div className="text-center pt-4">
+                    <FormError error={apiError} />
+                </div>
+            ) : (
+                <Groups groups={groups} />
+            )}
         </main>
     )
 }
