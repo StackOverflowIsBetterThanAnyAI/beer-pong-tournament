@@ -2,10 +2,10 @@ import { useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router'
 import Footer from './components/footer/Footer'
 import FourOhFour from './404/FourOhFour'
+import GroupsGenerator from './groups/GroupsGenerator'
 import Login from './components/login/Login'
 import Navigation from './components/navigation/Navigation'
 import RegisterTeam from './components/registerTeam/RegisterTeam'
-import StartTournament from './startTournament/StartTournament'
 import Teams from './components/teams/Teams'
 import { ContextIsLoggedIn, ContextLoggedInUser } from './context/ContextLogin'
 import { ContextRegisteredTeams } from './context/ContextRegisteredTeams'
@@ -50,7 +50,7 @@ const App = () => {
                                     path="/groups"
                                     element={
                                         isLoggedIn ? (
-                                            <StartTournament />
+                                            <GroupsGenerator />
                                         ) : (
                                             <FourOhFour />
                                         )
