@@ -6,9 +6,9 @@
 }
 
 a:hover,
-button:hover,
-input[type='checkbox']:hover,
-input[type='button']:hover {
+button:not(:disabled):hover,
+input[type='checkbox']:not(:disabled):hover,
+input[type='button']:not(:disabled):hover {
     @apply cursor-pointer drop-shadow-stone-600/25 drop-shadow-xs;
 }
 
