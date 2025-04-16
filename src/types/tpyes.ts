@@ -4,7 +4,7 @@ export type LoggedInUserProps = {
 }
 
 export type RegisteredTeamProps = {
-    id?: string
+    id: number
     name: string
     member_one: string
     member_two: string
