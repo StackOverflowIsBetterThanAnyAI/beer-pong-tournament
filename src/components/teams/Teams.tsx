@@ -4,6 +4,7 @@ import Team from './Team'
 import TeamPageNavigation from './TeamPageNavigation'
 import TeamsError from './TeamsError'
 import { SERVER_ADDRESS } from '../../constants/constants'
+import { ContextGroups } from '../../context/ContextGroups'
 import { ContextRegisteredTeams } from '../../context/ContextRegisteredTeams'
 import { getStoredData } from '../../utils/getStoredData'
 import { getValidToken } from '../../utils/getValidToken'
@@ -15,6 +16,14 @@ import { RegisteredTeamProps } from '../../types/tpyes'
 
 export const Teams = () => {
     const parsedStorageData = getStoredData()
+
+    const contextGroups = useContext(ContextGroups)
+    if (!contextGroups) {
+        throw new Error(
+            'GroupGenerator must be used within a ContextGroups.Provider'
+        )
+    }
+    const [_groups, setGroups] = contextGroups
 
     const contextRegisteredTeams = useContext(ContextRegisteredTeams)
     if (!contextRegisteredTeams) {
@@ -71,11 +80,41 @@ export const Teams = () => {
             )
             setRegisteredTeams(updatedTeams)
             setItemInStorage('registeredteams', updatedTeams)
+
             if (
                 updatedTeams.length > 0 &&
                 updatedTeams.length % MAX_ITEMS_PER_PAGE === 0
             ) {
                 previousPage()
+            }
+
+            try {
+                const response = await fetch(
+                    `${SERVER_ADDRESS}/api/v1/groups/delete/`,
+                    {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            Authorization: `Bearer ${await getValidToken(
+                                accessToken,
+                                refreshToken
+                            )}`,
+                        },
+                    }
+                )
+
+                if (!response.ok) {
+                    const errorData = await response.json()
+                    setApiError(getValueFromError(errorData))
+                    return
+                }
+
+                setItemInStorage('groups', [])
+                setGroups([])
+            } catch (error: any) {
+                setApiError(
+                    'An unexpected error occurred while deleting the current groups.'
+                )
             }
         } catch (error: any) {
             setApiError('An unexpected error occurred while deleting a team.')

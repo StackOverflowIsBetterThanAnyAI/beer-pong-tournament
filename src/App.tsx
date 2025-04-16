@@ -9,13 +9,21 @@ import RegisterTeam from './components/registerTeam/RegisterTeam'
 import Teams from './components/teams/Teams'
 import { ContextIsLoggedIn, ContextLoggedInUser } from './context/ContextLogin'
 import { ContextRegisteredTeams } from './context/ContextRegisteredTeams'
-import { LoggedInUserProps, RegisteredTeamsProps } from './types/tpyes'
+import {
+    LoggedInUserProps,
+    RegisteredTeamsProps,
+    TournamentGroupsProps,
+} from './types/tpyes'
 import { getStoredData } from './utils/getStoredData'
 import { useFocusTrap } from './hooks/useFocusTrap'
+import { ContextGroups } from './context/ContextGroups'
 
 const App = () => {
     const parsedStorageData = getStoredData()
 
+    const [groups, setGroups] = useState<TournamentGroupsProps>(
+        parsedStorageData?.groups || []
+    )
     const [isLoggedIn, setIsLoggedIn] = useState<boolean | undefined>(
         parsedStorageData?.isloggedin || false
     )
@@ -32,53 +40,59 @@ const App = () => {
 
     return (
         <div className="min-h-svh flex flex-col items-center justify-start bg-gradient-to-b from-stone-700 to-stone-800">
-            <ContextIsLoggedIn.Provider value={[isLoggedIn, setIsLoggedIn]}>
-                <ContextLoggedInUser.Provider
-                    value={[loggedInUser, setLoggedInUser]}
-                >
-                    <ContextRegisteredTeams.Provider
-                        value={[registeredTeams, setRegisteredTeams]}
+            <ContextGroups.Provider value={[groups, setGroups]}>
+                <ContextIsLoggedIn.Provider value={[isLoggedIn, setIsLoggedIn]}>
+                    <ContextLoggedInUser.Provider
+                        value={[loggedInUser, setLoggedInUser]}
                     >
-                        <BrowserRouter>
-                            <Navigation />
-                            <Routes>
-                                <Route
-                                    path="/"
-                                    element={isLoggedIn ? null : <Login />}
-                                />
-                                <Route
-                                    path="/groups"
-                                    element={
-                                        isLoggedIn ? (
-                                            <GroupsGenerator />
-                                        ) : (
-                                            <FourOhFour />
-                                        )
-                                    }
-                                />
-                                <Route
-                                    path="/teams"
-                                    element={
-                                        isLoggedIn ? <Teams /> : <FourOhFour />
-                                    }
-                                />
-                                <Route
-                                    path="/register"
-                                    element={
-                                        isLoggedIn ? (
-                                            <RegisterTeam />
-                                        ) : (
-                                            <FourOhFour />
-                                        )
-                                    }
-                                />
-                                <Route path="*" element={<FourOhFour />} />
-                            </Routes>
-                            <Footer />
-                        </BrowserRouter>
-                    </ContextRegisteredTeams.Provider>
-                </ContextLoggedInUser.Provider>
-            </ContextIsLoggedIn.Provider>
+                        <ContextRegisteredTeams.Provider
+                            value={[registeredTeams, setRegisteredTeams]}
+                        >
+                            <BrowserRouter>
+                                <Navigation />
+                                <Routes>
+                                    <Route
+                                        path="/"
+                                        element={isLoggedIn ? null : <Login />}
+                                    />
+                                    <Route
+                                        path="/groups"
+                                        element={
+                                            isLoggedIn ? (
+                                                <GroupsGenerator />
+                                            ) : (
+                                                <FourOhFour />
+                                            )
+                                        }
+                                    />
+                                    <Route
+                                        path="/teams"
+                                        element={
+                                            isLoggedIn ? (
+                                                <Teams />
+                                            ) : (
+                                                <FourOhFour />
+                                            )
+                                        }
+                                    />
+                                    <Route
+                                        path="/register"
+                                        element={
+                                            isLoggedIn ? (
+                                                <RegisterTeam />
+                                            ) : (
+                                                <FourOhFour />
+                                            )
+                                        }
+                                    />
+                                    <Route path="*" element={<FourOhFour />} />
+                                </Routes>
+                                <Footer />
+                            </BrowserRouter>
+                        </ContextRegisteredTeams.Provider>
+                    </ContextLoggedInUser.Provider>
+                </ContextIsLoggedIn.Provider>
+            </ContextGroups.Provider>
         </div>
     )
 }

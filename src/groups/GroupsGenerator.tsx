@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
+import { ContextGroups } from '../context/ContextGroups'
 import { ContextRegisteredTeams } from '../context/ContextRegisteredTeams'
 import {
     MAX_TEAMS,
@@ -19,10 +20,18 @@ import { FetchLoading } from 'fetch-loading'
 export const GroupsGenerator = () => {
     const parsedStorageData = getStoredData()
 
+    const contextGroups = useContext(ContextGroups)
+    if (!contextGroups) {
+        throw new Error(
+            'GroupGenerator must be used within a ContextGroups.Provider'
+        )
+    }
+    const [groups, setGroups] = contextGroups
+
     const contextRegisteredTeams = useContext(ContextRegisteredTeams)
     if (!contextRegisteredTeams) {
         throw new Error(
-            'StartTournament must be used within a ContextRegisteredTeams.Provider'
+            'GroupGenerator must be used within a ContextRegisteredTeams.Provider'
         )
     }
     const [registeredTeams, _setRegisteredTeams] = contextRegisteredTeams
@@ -36,10 +45,6 @@ export const GroupsGenerator = () => {
 
     const [isStartDisabled, setIsStartDisabled] = useState<boolean>(true)
     const [isSubmitDisabled, setIsSubmitDisabled] = useState<boolean>(false)
-
-    const [groups, setGroups] = useState<TournamentGroupsProps>(
-        parsedStorageData?.groups || []
-    )
 
     const [apiError, setApiError] = useState<string>('')
 
@@ -64,7 +69,7 @@ export const GroupsGenerator = () => {
                 return
             }
 
-            const groups = await response.json()
+            const groups: TournamentGroupsProps = await response.json()
             setGroups(groups)
             setItemInStorage('groups', groups)
         } catch (error: any) {

@@ -4,6 +4,7 @@ import FormHeader from './../form/FormHeader'
 import FormInput from './../form/FormInput'
 import FormSubmit from './../form/FormSubmit'
 import { SERVER_ADDRESS } from '../../constants/constants'
+import { ContextGroups } from '../../context/ContextGroups'
 import { ContextRegisteredTeams } from '../../context/ContextRegisteredTeams'
 import { getStoredData } from '../../utils/getStoredData'
 import { getValidToken } from '../../utils/getValidToken'
@@ -15,6 +16,14 @@ import { useSubmitDisabledRegister } from '../../hooks/useSubmitDisabled'
 
 const RegisterTeam = () => {
     const parsedStorageData = getStoredData()
+
+    const contextGroups = useContext(ContextGroups)
+    if (!contextGroups) {
+        throw new Error(
+            'GroupGenerator must be used within a ContextGroups.Provider'
+        )
+    }
+    const [_groups, setGroups] = contextGroups
 
     const contextRegisteredTeams = useContext(ContextRegisteredTeams)
     if (!contextRegisteredTeams) {
@@ -156,6 +165,34 @@ const RegisterTeam = () => {
             ]
             setRegisteredTeams(updatedTeams)
             setItemInStorage('registeredteams', updatedTeams)
+            try {
+                const response = await fetch(
+                    `${SERVER_ADDRESS}/api/v1/groups/delete/`,
+                    {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            Authorization: `Bearer ${await getValidToken(
+                                accessToken,
+                                refreshToken
+                            )}`,
+                        },
+                    }
+                )
+
+                if (!response.ok) {
+                    const errorData = await response.json()
+                    setApiError(getValueFromError(errorData))
+                    return
+                }
+
+                setItemInStorage('groups', [])
+                setGroups([])
+            } catch (error: any) {
+                setApiError(
+                    'An unexpected error occurred while deleting the current groups.'
+                )
+            }
         } catch (error: any) {
             setApiError('An unexpected error occurred while adding your team.')
         } finally {
