@@ -1,5 +1,7 @@
 import { useContext, useState } from 'react'
 import { FetchLoading } from 'fetch-loading'
+import Team from './Team'
+import TeamPageNavigation from './TeamPageNavigation'
 import TeamsError from './TeamsError'
 import { SERVER_ADDRESS } from '../../constants/constants'
 import { ContextRegisteredTeams } from '../../context/ContextRegisteredTeams'
@@ -10,7 +12,6 @@ import { setItemInStorage } from '../../utils/setItemInStorage'
 import { useItemsPerPage } from '../../hooks/useItemsPerPage'
 import { useRegisteredTeams } from '../../hooks/useRegisteredTeams'
 import { RegisteredTeamProps } from '../../types/tpyes'
-import Team from './Team'
 
 export const Teams = () => {
     const parsedStorageData = getStoredData()
@@ -118,31 +119,13 @@ export const Teams = () => {
                             return item
                     })}
                 </ul>
-                <div className="grid min-[216px]:grid-cols-3 text-center max-w-80 m-auto pt-2">
-                    <button
-                        className="text-normal outline outline-stone-500 disabled:outline-stone-400 disabled:bg-stone-400/20 px-2 py-0.5 rounded-md
-                        hover:bg-stone-400/40 active:bg-stone-400/70"
-                        aria-label="Go to the previous page."
-                        onClick={previousPage}
-                        disabled={page <= 1}
-                        title="Previous Page."
-                    >
-                        Previous
-                    </button>
-                    <span className="text-large">{page}</span>
-                    <button
-                        className="text-normal outline outline-stone-500 disabled:outline-stone-400 disabled:bg-stone-400/20 px-2 py-0.5 rounded-md
-                        hover:bg-stone-400/40 active:bg-stone-400/70"
-                        aria-label="Go to the next page."
-                        onClick={nextPage}
-                        disabled={
-                            page >= registeredTeams.length / MAX_ITEMS_PER_PAGE
-                        }
-                        title="Next Page."
-                    >
-                        Next
-                    </button>
-                </div>
+                <TeamPageNavigation
+                    MAX_ITEMS_PER_PAGE={MAX_ITEMS_PER_PAGE}
+                    nextPage={nextPage}
+                    page={page}
+                    previousPage={previousPage}
+                    registeredTeams={registeredTeams}
+                />
             </>
         )
     } else {
