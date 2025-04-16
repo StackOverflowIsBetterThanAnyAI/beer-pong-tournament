@@ -1,10 +1,8 @@
-import { FC } from 'react'
-
 type TeamsErrorProps = {
     error: string
 }
 
-const TeamsError: FC<TeamsErrorProps> = ({ error }) => {
+const TeamsError = ({ error }: TeamsErrorProps) => {
     return (
         <>
             {error ? (

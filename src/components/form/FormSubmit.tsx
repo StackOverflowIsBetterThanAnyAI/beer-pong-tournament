@@ -1,4 +1,3 @@
-import { FC } from 'react'
 import { FetchLoading } from 'fetch-loading'
 
 type FormSubmitProps = {
@@ -8,12 +7,12 @@ type FormSubmitProps = {
     value: string
 }
 
-const FormSubmit: FC<FormSubmitProps> = ({
+const FormSubmit = ({
     disabled,
     handleClick,
     sendingRequest,
     value,
-}) => {
+}: FormSubmitProps) => {
     return !sendingRequest ? (
         <input
             type="button"

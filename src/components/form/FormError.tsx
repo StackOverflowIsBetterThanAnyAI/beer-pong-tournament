@@ -1,10 +1,8 @@
-import { FC } from 'react'
-
 type FormErrorProps = {
     error: string
 }
 
-const FormError: FC<FormErrorProps> = ({ error }) => {
+const FormError = ({ error }: FormErrorProps) => {
     return (
         <>
             {error ? (

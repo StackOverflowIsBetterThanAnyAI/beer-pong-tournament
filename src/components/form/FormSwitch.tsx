@@ -1,11 +1,9 @@
-import { FC } from 'react'
-
 type FormSwitchProps = {
     isSigningUp: boolean
     handleClick: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
 
-const FormSwitch: FC<FormSwitchProps> = ({ isSigningUp, handleClick }) => {
+const FormSwitch = ({ isSigningUp, handleClick }: FormSwitchProps) => {
     const loginStyle = isSigningUp
         ? 'bg-stone-500/40 hover:bg-stone-400/40 active:bg-red-200'
         : 'bg-red-500'

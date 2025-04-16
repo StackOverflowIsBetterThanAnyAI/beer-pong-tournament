@@ -1,11 +1,9 @@
-import { FC } from 'react'
-
 type FormHeaderProps = {
     header: string
     subHeader?: string
 }
 
-const FormHeader: FC<FormHeaderProps> = ({ header, subHeader }) => {
+const FormHeader = ({ header, subHeader }: FormHeaderProps) => {
     const subHeaderElement = (() => {
         switch (subHeader) {
             case 'required':

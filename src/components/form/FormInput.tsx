@@ -1,4 +1,4 @@
-import { FC, HTMLInputAutoCompleteAttribute } from 'react'
+import { HTMLInputAutoCompleteAttribute } from 'react'
 
 type FormInputProps = {
     autoComplete: HTMLInputAutoCompleteAttribute
@@ -17,7 +17,7 @@ type FormInputProps = {
     value: string
 }
 
-const FormInput: FC<FormInputProps> = ({
+const FormInput = ({
     autoComplete,
     error,
     id,
@@ -32,7 +32,7 @@ const FormInput: FC<FormInputProps> = ({
     title,
     type,
     value,
-}) => {
+}: FormInputProps) => {
     const marginBottom = error ? 'mb-1' : 'mb-5 md:mb-6'
 
     return (
