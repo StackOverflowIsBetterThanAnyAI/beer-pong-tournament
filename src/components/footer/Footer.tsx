@@ -8,7 +8,10 @@ const Footer = () => {
                 Copyright &#169; {year} Michael Münzenhofer. All Rights
                 Reserved.
             </span>
-            <a href="/" className="w-fit px-4 py-1 rounded-sm m-auto underline">
+            <a
+                href="/"
+                className="w-fit px-4 py-1 rounded-sm m-auto underline hover:bg-stone-700 active:bg-stone-600"
+            >
                 GitHub Repository
             </a>
         </footer>
