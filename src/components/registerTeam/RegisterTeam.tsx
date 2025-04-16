@@ -12,7 +12,6 @@ import { setItemInStorage } from '../../utils/setItemInStorage'
 import { useAutoFocus } from '../../hooks/useAutoFocus'
 import { useErrorName, useErrorSameMember } from '../../hooks/useError'
 import { useSubmitDisabledRegister } from '../../hooks/useSubmitDisabled'
-import { RegisteredTeamProps } from '../../types/tpyes'
 
 const RegisterTeam = () => {
     const parsedStorageData = getStoredData()
@@ -120,7 +119,7 @@ const RegisterTeam = () => {
         setSendingRequest(true)
         setSubmitDisabled(true)
 
-        const registerTeamData: RegisteredTeamProps = {
+        const registerTeamData = {
             name: teamName,
             member_one: memberOne,
             member_two: memberTwo,
