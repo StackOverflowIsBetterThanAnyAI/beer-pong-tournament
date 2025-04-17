@@ -10,9 +10,9 @@ import {
     ContextLoggedInUser,
 } from '../../context/ContextLogin'
 import { ContextPasswordVisibility } from '../../context/ContextPasswordVisibility'
-import { SERVER_ADDRESS } from '../../constants/constants'
 import { getStoredData } from '../../utils/getStoredData'
-import { getValueFromError } from '../../utils/getValueFromError'
+import { handleLogin } from '../../api/handleLogin'
+import { handleRegister } from '../../api/handleRegister'
 import { setItemInStorage } from '../../utils/setItemInStorage'
 import { useAutoFocus } from '../../hooks/useAutoFocus'
 import {
@@ -29,7 +29,6 @@ const Login = () => {
             'Login must be used within a ContextIsLoggedIn.Provider'
         )
     }
-    // eslint-disable-next-line
     const [_isLoggedIn, setIsLoggedIn] = contextIsLoggedIn
 
     const contextLoggedInUser = useContext(ContextLoggedInUser)
@@ -38,7 +37,6 @@ const Login = () => {
             'Login must be used within a ContextLoggedInUser.Provider'
         )
     }
-    // eslint-disable-next-line
     const [_loggedInUser, setLoggedInUser] = contextLoggedInUser
 
     const parsedStorageData = getStoredData()
@@ -148,84 +146,23 @@ const Login = () => {
             password: password,
         }
 
-        try {
-            const response = await fetch(
-                `${SERVER_ADDRESS}/api/v1/${
-                    isSigningUp ? 'user/register/' : 'token/'
-                }`,
-                {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(userData),
-                }
-            )
-
-            if (!response.ok) {
-                const errorData = await response.json()
-                setIsLoggedIn(false)
-                setItemInStorage('isloggedin', false)
-                setApiError(
-                    getValueFromError(errorData) ||
-                        `Currently, you are unable to ${
-                            isSigningUp ? 'signup.' : 'login.'
-                        }`
-                )
-                return
-            }
-
-            const token = await response.json()
-
-            setLoggedInUser({
-                user: token.username,
-                token: password,
+        if (isSigningUp) {
+            handleRegister({
+                setApiError,
+                setIsLoggedIn,
+                setItemInStorage,
+                setLoggedInUser,
+                setSendingRequest,
+                setSubmitDisabled,
+                userData,
             })
-
-            try {
-                const response = await fetch(
-                    `${SERVER_ADDRESS}/api/v1/token/`,
-                    {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(userData),
-                    }
-                )
-
-                if (!response.ok) {
-                    const errorData = await response.json()
-                    setIsLoggedIn(false)
-                    setItemInStorage('isloggedin', false)
-                    setApiError(
-                        getValueFromError(errorData) ||
-                            `Currently, you are unable to ${
-                                isSigningUp ? 'signup.' : 'login.'
-                            }`
-                    )
-                    return
-                }
-
-                const token = await response.json()
-                setIsLoggedIn(true)
-                setItemInStorage('isloggedin', true)
-                setItemInStorage('access', token.access)
-                setItemInStorage('refresh', token.refresh)
-            } catch (error: any) {
-                setApiError(
-                    'An unexpected error occurred while trying to login.'
-                )
-            }
-        } catch (error: any) {
-            setApiError(
-                `An unexpected error occurred while trying to ${
-                    isSigningUp ? 'signup' : 'login'
-                }.`
-            )
-        } finally {
-            setSendingRequest(false)
-            setSubmitDisabled(false)
+        } else {
+            handleLogin({
+                setApiError,
+                setIsLoggedIn,
+                setItemInStorage,
+                userData,
+            })
         }
     }
 
