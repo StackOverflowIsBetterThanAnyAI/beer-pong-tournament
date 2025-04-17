@@ -1,21 +1,15 @@
 import { useContext, useEffect, useState } from 'react'
+import { FetchLoading } from 'fetch-loading'
 import { ContextGroups } from '../context/ContextGroups'
 import { ContextRegisteredTeams } from '../context/ContextRegisteredTeams'
-import {
-    MAX_TEAMS,
-    MIN_TEAMS,
-    SERVER_ADDRESS,
-    TEAMS_PER_GROUP,
-} from '../constants/constants'
+import { MAX_TEAMS, MIN_TEAMS, TEAMS_PER_GROUP } from '../constants/constants'
 import FormError from '../components/form/FormError'
 import FormHeader from '../components/form/FormHeader'
 import Groups from './Groups'
 import { getStoredData } from '../utils/getStoredData'
-import { getValueFromError } from '../utils/getValueFromError'
-import { getValidToken } from '../utils/getValidToken'
+import { handleGenerateGroups } from '../api/handleGenerateGroups'
+import { handleLoadGroups } from '../api/handleLoadGroups'
 import { setItemInStorage } from '../utils/setItemInStorage'
-import { TournamentGroupsProps } from '../types/tpyes'
-import { FetchLoading } from 'fetch-loading'
 
 export const GroupsGenerator = () => {
     const parsedStorageData = getStoredData()
@@ -49,34 +43,13 @@ export const GroupsGenerator = () => {
     const [apiError, setApiError] = useState<string>('')
 
     const loadGroups = async () => {
-        setApiError('')
-
-        try {
-            const response = await fetch(`${SERVER_ADDRESS}/api/v1/groups/`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${await getValidToken(
-                        accessToken,
-                        refreshToken
-                    )}`,
-                },
-            })
-
-            if (!response.ok) {
-                const errorData = await response.json()
-                setApiError(getValueFromError(errorData))
-                return
-            }
-
-            const groups: TournamentGroupsProps = await response.json()
-            setGroups(groups)
-            setItemInStorage('groups', groups)
-        } catch (error: any) {
-            setApiError(
-                'An unexpected error occurred while loading the groups.'
-            )
-        }
+        handleLoadGroups({
+            accessToken,
+            refreshToken,
+            setApiError,
+            setGroups,
+            setItemInStorage,
+        })
     }
 
     useEffect(() => {
@@ -110,36 +83,14 @@ export const GroupsGenerator = () => {
         setIsSubmitDisabled(true)
         setApiError('')
 
-        try {
-            const response = await fetch(
-                `${SERVER_ADDRESS}/api/v1/groups/bulk/`,
-                {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: `Bearer ${await getValidToken(
-                            accessToken,
-                            refreshToken
-                        )}`,
-                    },
-                    body: JSON.stringify({ groups }),
-                }
-            )
-
-            if (!response.ok) {
-                const errorData = await response.json()
-                setApiError(getValueFromError(errorData))
-                return
-            }
-
-            loadGroups()
-        } catch (error: any) {
-            setApiError(
-                'An unexpected error occurred while starting the tournament.'
-            )
-        } finally {
-            setIsSubmitDisabled(false)
-        }
+        handleGenerateGroups({
+            accessToken,
+            groups,
+            loadGroups,
+            refreshToken,
+            setApiError,
+            setIsSubmitDisabled,
+        })
     }
 
     return (
