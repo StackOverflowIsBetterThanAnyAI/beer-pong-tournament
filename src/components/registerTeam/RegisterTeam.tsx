@@ -20,7 +20,7 @@ const RegisterTeam = () => {
     const contextGroups = useContext(ContextGroups)
     if (!contextGroups) {
         throw new Error(
-            'GroupGenerator must be used within a ContextGroups.Provider'
+            'RegisterTeam must be used within a ContextGroups.Provider'
         )
     }
     const [_groups, setGroups] = contextGroups
