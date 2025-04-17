@@ -12,6 +12,7 @@ type handleDeleteTeamProps = {
     accessToken: string
     item: RegisteredTeamProps
     MAX_ITEMS_PER_PAGE: number
+    page: number
     previousPage: () => void
     refreshToken: string
     registeredTeams: RegisteredTeamsProps
@@ -27,6 +28,7 @@ export const handleDeleteTeam = async ({
     accessToken,
     item,
     MAX_ITEMS_PER_PAGE,
+    page,
     previousPage,
     refreshToken,
     registeredTeams,
@@ -62,7 +64,7 @@ export const handleDeleteTeam = async ({
         setItemInStorage('registeredteams', updatedTeams)
 
         if (
-            updatedTeams.length > 0 &&
+            page === updatedTeams.length / 4 + 1 &&
             updatedTeams.length % MAX_ITEMS_PER_PAGE === 0
         ) {
             previousPage()

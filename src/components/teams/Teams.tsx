@@ -57,6 +57,7 @@ export const Teams = () => {
             accessToken,
             item,
             MAX_ITEMS_PER_PAGE,
+            page,
             previousPage,
             refreshToken,
             registeredTeams,
