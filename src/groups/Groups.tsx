@@ -30,12 +30,16 @@ const Groups = ({ groups }: GroupsProps) => {
                                         } `}
                                     >
                                         <div className="flex flex-col">
-                                            <div className="font-bold">
+                                            <div className="font-bold text-ellipsis overflow-hidden">
                                                 {i.name}
                                             </div>
                                             <div className="flex justify-between">
-                                                <div>{i.member_one}</div>
-                                                <div>{i.member_two}</div>
+                                                <div className="text-ellipsis overflow-hidden">
+                                                    {i.member_one}
+                                                </div>
+                                                <div className="text-ellipsis overflow-hidden">
+                                                    {i.member_two}
+                                                </div>
                                             </div>
                                         </div>
                                     </li>
