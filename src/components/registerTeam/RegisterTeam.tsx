@@ -3,12 +3,10 @@ import FormError from './../form/FormError'
 import FormHeader from './../form/FormHeader'
 import FormInput from './../form/FormInput'
 import FormSubmit from './../form/FormSubmit'
-import { SERVER_ADDRESS } from '../../constants/constants'
 import { ContextGroups } from '../../context/ContextGroups'
 import { ContextRegisteredTeams } from '../../context/ContextRegisteredTeams'
 import { getStoredData } from '../../utils/getStoredData'
-import { getValidToken } from '../../utils/getValidToken'
-import { getValueFromError } from '../../utils/getValueFromError'
+import { handleRegisterTeam } from '../../api/handleRegisterTeam'
 import { setItemInStorage } from '../../utils/setItemInStorage'
 import { useAutoFocus } from '../../hooks/useAutoFocus'
 import { useErrorName, useErrorSameMember } from '../../hooks/useError'
@@ -134,71 +132,18 @@ const RegisterTeam = () => {
             member_two: memberTwo,
         }
 
-        try {
-            const response = await fetch(`${SERVER_ADDRESS}/api/v1/teams/`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${await getValidToken(
-                        accessToken,
-                        refreshToken
-                    )}`,
-                },
-                body: JSON.stringify(registerTeamData),
-            })
-
-            if (!response.ok) {
-                const errorData = await response.json()
-                setApiError(getValueFromError(errorData))
-                return
-            }
-
-            const result = await response.json()
-            const updatedTeams = [
-                ...registeredTeams,
-                {
-                    id: result.id,
-                    name: teamName,
-                    member_one: memberOne,
-                    member_two: memberTwo,
-                },
-            ]
-            setRegisteredTeams(updatedTeams)
-            setItemInStorage('registeredteams', updatedTeams)
-            try {
-                const response = await fetch(
-                    `${SERVER_ADDRESS}/api/v1/groups/delete/`,
-                    {
-                        method: 'DELETE',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            Authorization: `Bearer ${await getValidToken(
-                                accessToken,
-                                refreshToken
-                            )}`,
-                        },
-                    }
-                )
-
-                if (!response.ok) {
-                    const errorData = await response.json()
-                    setApiError(getValueFromError(errorData))
-                    return
-                }
-
-                setItemInStorage('groups', [])
-                setGroups([])
-            } catch (error: any) {
-                setApiError(
-                    'An unexpected error occurred while deleting the current groups.'
-                )
-            }
-        } catch (error: any) {
-            setApiError('An unexpected error occurred while adding your team.')
-        } finally {
-            setSendingRequest(false)
-            setSubmitDisabled(false)
-        }
+        handleRegisterTeam({
+            accessToken,
+            refreshToken,
+            registerTeamData,
+            registeredTeams,
+            setApiError,
+            setGroups,
+            setItemInStorage,
+            setRegisteredTeams,
+            setSendingRequest,
+            setSubmitDisabled,
+        })
     }
 
     return (
