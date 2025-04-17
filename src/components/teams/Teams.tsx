@@ -3,12 +3,10 @@ import { FetchLoading } from 'fetch-loading'
 import Team from './Team'
 import TeamPageNavigation from './TeamPageNavigation'
 import TeamsError from './TeamsError'
-import { SERVER_ADDRESS } from '../../constants/constants'
 import { ContextGroups } from '../../context/ContextGroups'
 import { ContextRegisteredTeams } from '../../context/ContextRegisteredTeams'
 import { getStoredData } from '../../utils/getStoredData'
-import { getValidToken } from '../../utils/getValidToken'
-import { getValueFromError } from '../../utils/getValueFromError'
+import { handleDeleteTeam } from '../../api/handleDeleteTeam'
 import { setItemInStorage } from '../../utils/setItemInStorage'
 import { useItemsPerPage } from '../../hooks/useItemsPerPage'
 import { useRegisteredTeams } from '../../hooks/useRegisteredTeams'
@@ -55,70 +53,18 @@ export const Teams = () => {
     })
 
     const handleDelete = async (item: RegisteredTeamProps) => {
-        try {
-            const response = await fetch(
-                `${SERVER_ADDRESS}/api/v1/teams/delete/${item.id}/`,
-                {
-                    method: 'DELETE',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: `Bearer ${await getValidToken(
-                            accessToken,
-                            refreshToken
-                        )}`,
-                    },
-                }
-            )
-
-            if (!response.ok) {
-                const errorData = await response.json()
-                setApiError(getValueFromError(errorData))
-                return
-            }
-            const updatedTeams = registeredTeams.filter(
-                (team) => team.id !== item.id
-            )
-            setRegisteredTeams(updatedTeams)
-            setItemInStorage('registeredteams', updatedTeams)
-
-            if (
-                updatedTeams.length > 0 &&
-                updatedTeams.length % MAX_ITEMS_PER_PAGE === 0
-            ) {
-                previousPage()
-            }
-
-            try {
-                const response = await fetch(
-                    `${SERVER_ADDRESS}/api/v1/groups/delete/`,
-                    {
-                        method: 'DELETE',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            Authorization: `Bearer ${await getValidToken(
-                                accessToken,
-                                refreshToken
-                            )}`,
-                        },
-                    }
-                )
-
-                if (!response.ok) {
-                    const errorData = await response.json()
-                    setApiError(getValueFromError(errorData))
-                    return
-                }
-
-                setItemInStorage('groups', [])
-                setGroups([])
-            } catch (error: any) {
-                setApiError(
-                    'An unexpected error occurred while deleting the current groups.'
-                )
-            }
-        } catch (error: any) {
-            setApiError('An unexpected error occurred while deleting a team.')
-        }
+        handleDeleteTeam({
+            accessToken,
+            item,
+            MAX_ITEMS_PER_PAGE,
+            previousPage,
+            refreshToken,
+            registeredTeams,
+            setApiError,
+            setItemInStorage,
+            setGroups,
+            setRegisteredTeams,
+        })
     }
 
     const previousPage = () => {
