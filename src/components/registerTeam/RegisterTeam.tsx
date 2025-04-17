@@ -96,18 +96,21 @@ const RegisterTeam = () => {
         setApiError('')
         setTeamName(e.target.value)
         setItemInStorage('teamname', e.target.value)
+        setSubmitDisabled(false)
     }
 
     const handleMemberOneInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         setApiError('')
         setMemberOne(e.target.value)
         setItemInStorage('memberone', e.target.value)
+        setSubmitDisabled(false)
     }
 
     const handleMemberTwoInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         setApiError('')
         setMemberTwo(e.target.value)
         setItemInStorage('membertwo', e.target.value)
+        setSubmitDisabled(false)
     }
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
