@@ -1,13 +1,20 @@
 import { useState } from 'react'
 import { ROUTES } from '../../constants/constants'
+import { getStoredData } from '../../utils/getStoredData'
 import { getValidHref } from '../../utils/getValidHref'
+import { setItemInStorage } from '../../utils/setItemInStorage'
 
 const NavigationLinks = () => {
-    const [isNavigationExpanded, setIsNavigationExpanded] =
-        useState<boolean>(true)
+    const parsedStorageData = getStoredData()
+
+    const [isNavigationExpanded, setIsNavigationExpanded] = useState<boolean>(
+        parsedStorageData?.navigationexpanded ?? true
+    )
 
     const handleClick = () => {
-        setIsNavigationExpanded((prev) => !prev)
+        const navigationExpanded = !isNavigationExpanded
+        setIsNavigationExpanded(navigationExpanded)
+        setItemInStorage('navigationexpanded', navigationExpanded)
     }
 
     const routes = ROUTES.filter((item: string) => item !== 'home').map((i) => {
@@ -15,7 +22,7 @@ const NavigationLinks = () => {
             <a
                 key={i}
                 href={getValidHref(i)}
-                className="underline rounded-md px-2 py-0.5 focus-visible:bg-stone-100/50 hover:bg-red-300/50 active:bg-red-300"
+                className="underline rounded-md text-normal px-2 py-0.5 focus-visible:bg-stone-100/50 hover:bg-red-300/50 active:bg-red-300"
             >
                 {i
                     .split(' ')
@@ -32,7 +39,7 @@ const NavigationLinks = () => {
             {isNavigationExpanded ? routes : null}
             <button
                 onClick={handleClick}
-                className="bg-stone-100/90 outline outline-red-400 rounded-md mt-2 focus-visible:bg-stone-50 hover:bg-red-100 active:bg-red-200"
+                className="bg-stone-100/90 outline outline-red-400 text-normal rounded-md mt-2 focus-visible:bg-stone-50 hover:bg-red-100 active:bg-red-200"
             >
                 {isNavigationExpanded ? 'Close' : 'Open'} Navigation
             </button>
