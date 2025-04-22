@@ -1,4 +1,5 @@
 import React from 'react'
+import { getValidHref } from '../../utils/getValidHref'
 import { getValidPathname } from '../../utils/getValidPathname'
 import { ROUTES } from '../../constants/constants'
 
@@ -42,7 +43,11 @@ const Breadcrumbs = () => {
                             })
                             .join(' ')
 
-                        if (ROUTES.includes(route.replace(/^\//, ''))) {
+                        if (
+                            ROUTES.map((item) => getValidHref(item)).includes(
+                                route.replace(/^\//, '')
+                            )
+                        ) {
                             const handleKeyDown = (
                                 e: React.KeyboardEvent<HTMLAnchorElement>
                             ) => {

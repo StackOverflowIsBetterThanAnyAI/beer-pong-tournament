@@ -8,6 +8,6 @@ export const MIN_TEAMS = 8
 
 export const TEAMS_PER_GROUP = 4
 
-export const ROUTES = ['home', 'groups', 'teams', 'register']
+export const ROUTES = ['home', 'register team', 'teams', 'groups']
 
 export const SERVER_ADDRESS = 'http://localhost:8000'
