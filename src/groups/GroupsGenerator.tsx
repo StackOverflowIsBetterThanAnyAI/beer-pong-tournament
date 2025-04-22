@@ -37,6 +37,8 @@ export const GroupsGenerator = () => {
         parsedStorageData?.refresh || ''
     )
 
+    const [page, setPage] = useState<number>(parsedStorageData?.grouppage || 1)
+
     const [isStartDisabled, setIsStartDisabled] = useState<boolean>(true)
     const [isSubmitDisabled, setIsSubmitDisabled] = useState<boolean>(false)
 
@@ -49,6 +51,7 @@ export const GroupsGenerator = () => {
             setApiError,
             setGroups,
             setItemInStorage,
+            setPage,
         })
     }
 
@@ -121,7 +124,7 @@ export const GroupsGenerator = () => {
                     <FormError error={apiError} />
                 </div>
             ) : groups.length ? (
-                <Groups groups={groups} />
+                <Groups groups={groups} page={page} setPage={setPage} />
             ) : null}
         </main>
     )

@@ -9,6 +9,7 @@ type handleLoadGroupsProps = {
     setApiError: (value: React.SetStateAction<string>) => void
     setGroups: (value: React.SetStateAction<TournamentGroupsProps>) => void
     setItemInStorage(key: string, value: any): void
+    setPage: React.Dispatch<React.SetStateAction<number>>
 }
 
 export const handleLoadGroups = async ({
@@ -17,6 +18,7 @@ export const handleLoadGroups = async ({
     setApiError,
     setGroups,
     setItemInStorage,
+    setPage,
 }: handleLoadGroupsProps) => {
     setApiError('')
 
@@ -41,6 +43,8 @@ export const handleLoadGroups = async ({
         const groups: TournamentGroupsProps = await response.json()
         setGroups(groups)
         setItemInStorage('groups', groups)
+        setItemInStorage('grouppage', 1)
+        setPage(1)
     } catch (error: any) {
         setApiError('An unexpected error occurred while loading the groups.')
     }
