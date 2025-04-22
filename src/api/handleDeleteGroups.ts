@@ -40,6 +40,7 @@ export const handleDeleteGroups = async ({
         }
 
         setItemInStorage('groups', [])
+        setItemInStorage('grouppage', 1)
         setGroups([])
     } catch (error: any) {
         setApiError(
