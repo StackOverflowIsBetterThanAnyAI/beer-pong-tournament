@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 import Breadcrumbs from '../breadcrumbs/Breadcrumbs'
+import NavigationLinks from './NavigationLinks'
 import NavigationLogo from './NavigationLogo'
 import { ContextIsLoggedIn } from '../../context/ContextLogin'
 import { setLogout } from '../../utils/setLogout'
@@ -31,6 +32,7 @@ const Navigation = () => {
                     </button>
                 ) : null}
             </nav>
+            <NavigationLinks />
             <Breadcrumbs />
         </>
     )
