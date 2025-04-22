@@ -106,8 +106,6 @@ export const GroupsGenerator = () => {
                 title={`${
                     isStartDisabled
                         ? 'The amount of teams has to be divisible by 4, and must be at least 8.'
-                        : isSubmitDisabled
-                        ? 'Re-generate Groups.'
                         : 'Generate Groups.'
                 }`}
                 disabled={isStartDisabled || isSubmitDisabled}
