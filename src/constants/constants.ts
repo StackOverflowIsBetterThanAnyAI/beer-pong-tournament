@@ -2,6 +2,10 @@ export const MAX_ITEMS_MOBILE = 4
 
 export const MAX_ITEMS_DESKTOP = 8
 
+export const MAX_GROUPS_MOBILE = 1
+
+export const MAX_GROUPS_DESKTOP = 2
+
 export const MAX_TEAMS = 32
 
 export const MIN_TEAMS = 8
