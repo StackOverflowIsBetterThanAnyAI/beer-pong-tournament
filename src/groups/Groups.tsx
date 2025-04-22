@@ -13,8 +13,10 @@ const Groups = ({ groups, page, setPage }: GroupsProps) => {
     const MAX_ITEMS_PER_PAGE = useTeamsPerPage()
 
     const previousPage = () => {
-        setPage((prev) => prev - 1)
-        setItemInStorage('grouppage', page - 1)
+        if (page > 1) {
+            setPage((prev) => prev - 1)
+            setItemInStorage('grouppage', page - 1)
+        }
     }
 
     const nextPage = () => {
