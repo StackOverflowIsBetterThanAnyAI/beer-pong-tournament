@@ -69,8 +69,10 @@ export const Teams = () => {
     }
 
     const previousPage = () => {
-        setPage((prev) => prev - 1)
-        setItemInStorage('teampage', page - 1)
+        if (page > 1) {
+            setPage((prev) => prev - 1)
+            setItemInStorage('teampage', page - 1)
+        }
     }
 
     const nextPage = () => {
