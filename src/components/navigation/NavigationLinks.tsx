@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { ROUTES } from '../../constants/constants'
+import { ContextIsLoggedIn } from '../../context/ContextLogin'
 import { getStoredData } from '../../utils/getStoredData'
 import { getValidHref } from '../../utils/getValidHref'
 import { setItemInStorage } from '../../utils/setItemInStorage'
@@ -7,9 +8,24 @@ import { setItemInStorage } from '../../utils/setItemInStorage'
 const NavigationLinks = () => {
     const parsedStorageData = getStoredData()
 
-    const [isNavigationExpanded, setIsNavigationExpanded] = useState<boolean>(
-        parsedStorageData?.navigationexpanded ?? true
-    )
+    const contextIsLoggedIn = useContext(ContextIsLoggedIn)
+    if (!contextIsLoggedIn) {
+        throw new Error(
+            'Navigation must be used within a ContextIsLoggedIn.Provider'
+        )
+    }
+    const [isLoggedIn, _setIsLoggedIn] = contextIsLoggedIn
+
+    const [isNavigationExpanded, setIsNavigationExpanded] = useState<
+        boolean | undefined
+    >(parsedStorageData?.navigationexpanded ?? undefined)
+
+    useEffect(() => {
+        if (isLoggedIn === true && isNavigationExpanded === undefined) {
+            setIsNavigationExpanded(true)
+            setItemInStorage('navigationexpanded', true)
+        }
+    }, [isLoggedIn])
 
     const handleClick = () => {
         const navigationExpanded = !isNavigationExpanded
