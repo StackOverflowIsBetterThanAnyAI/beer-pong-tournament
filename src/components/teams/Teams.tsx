@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react'
 import { FetchLoading } from 'fetch-loading'
+import PageNavigation from '../../page/PageNavigation'
 import Team from './Team'
-import TeamPageNavigation from './TeamPageNavigation'
 import TeamsError from './TeamsError'
 import { ContextGroups } from '../../context/ContextGroups'
 import { ContextRegisteredTeams } from '../../context/ContextRegisteredTeams'
@@ -41,7 +41,7 @@ export const Teams = () => {
     )
 
     const [apiError, setApiError] = useState<string>('')
-    const [page, setPage] = useState<number>(1)
+    const [page, setPage] = useState<number>(parsedStorageData?.teampage || 1)
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
     useRegisteredTeams({
@@ -70,10 +70,12 @@ export const Teams = () => {
 
     const previousPage = () => {
         setPage((prev) => prev - 1)
+        setItemInStorage('teampage', page - 1)
     }
 
     const nextPage = () => {
         setPage((prev) => prev + 1)
+        setItemInStorage('teampage', page + 1)
     }
 
     const teams = registeredTeams.map((item) => {
@@ -105,7 +107,7 @@ export const Teams = () => {
                             return item
                     })}
                 </ul>
-                <TeamPageNavigation
+                <PageNavigation
                     MAX_ITEMS_PER_PAGE={MAX_ITEMS_PER_PAGE}
                     nextPage={nextPage}
                     page={page}

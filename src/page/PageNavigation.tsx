@@ -1,20 +1,20 @@
-import { RegisteredTeamsProps } from '../../types/tpyes'
+import { RegisteredTeamsProps, TournamentGroupsProps } from './../types/tpyes'
 
-type TeamPageNavigationProps = {
+type PageNavigationProps = {
     nextPage: () => void
     MAX_ITEMS_PER_PAGE: number
     page: number
     previousPage: () => void
-    registeredTeams: RegisteredTeamsProps
+    registeredTeams: RegisteredTeamsProps | TournamentGroupsProps
 }
 
-const TeamPageNavigation = ({
+const PageNavigation = ({
     nextPage,
     MAX_ITEMS_PER_PAGE,
     page,
     previousPage,
     registeredTeams,
-}: TeamPageNavigationProps) => {
+}: PageNavigationProps) => {
     return (
         <div className="grid min-[216px]:grid-cols-3 text-center max-w-80 m-auto pt-2">
             <button
@@ -42,4 +42,4 @@ const TeamPageNavigation = ({
     )
 }
 
-export default TeamPageNavigation
+export default PageNavigation
