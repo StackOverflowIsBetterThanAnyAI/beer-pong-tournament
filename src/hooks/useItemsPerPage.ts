@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { MAX_ITEMS_MOBILE, MAX_ITEMS_DESKTOP } from '../constants/constants'
+import { MAX_ITEMS_DESKTOP, MAX_ITEMS_MOBILE } from '../constants/constants'
 
 export const useItemsPerPage = (): number => {
     const [itemsPerPage, setItemsPerPage] = useState<number>(MAX_ITEMS_MOBILE)
