@@ -55,5 +55,11 @@ export const useRegisteredTeams = ({
             }
         }
         fetchRegisteredTeams()
-    }, [accessToken, refreshToken, setApiError])
+    }, [
+        accessToken,
+        refreshToken,
+        setApiError,
+        setIsLoading,
+        setRegisteredTeams,
+    ])
 }
