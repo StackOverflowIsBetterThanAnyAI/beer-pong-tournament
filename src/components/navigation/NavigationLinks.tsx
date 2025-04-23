@@ -55,7 +55,7 @@ const NavigationLinks = () => {
             {isNavigationExpanded ? routes : null}
             <button
                 onClick={handleClick}
-                className="bg-stone-100/90 outline outline-red-400 text-normal rounded-md mt-2 focus-visible:bg-stone-50 hover:bg-red-100 active:bg-red-200"
+                className="bg-stone-100/90 outline outline-red-400 text-normal rounded-md mt-2 p-0.5 focus-visible:bg-stone-50 hover:bg-red-100 active:bg-red-200"
             >
                 {isNavigationExpanded ? 'Close' : 'Open'} Navigation
             </button>
