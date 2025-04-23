@@ -46,12 +46,16 @@ const Groups = ({ groups, page, setPage }: GroupsProps) => {
                                 <h2 className="text-large font-bold underline">
                                     {i.name}
                                 </h2>
-                                <ul className="flex flex-col gap-2 pt-1">
-                                    {i.teams.map((t) => {
+                                <ul className="flex flex-col gap-2 pt-2">
+                                    {i.teams.map((t, tx) => {
                                         return (
                                             <li
                                                 key={t.id}
-                                                className={`text-normal font-normal border-b-2 ${
+                                                className={`text-normal font-normal ${
+                                                    (tx + 1) % 4
+                                                        ? 'pb-2 border-b-2'
+                                                        : ''
+                                                } ${
                                                     x % 2
                                                         ? 'border-red-500'
                                                         : 'border-stone-600'
