@@ -1,5 +1,6 @@
 import {
     RegisteredTeamsProps,
+    ScheduleProps,
     TournamentGroupsProps,
 } from './../../types/types'
 
@@ -8,7 +9,10 @@ type PageNavigationProps = {
     MAX_ITEMS_PER_PAGE: number
     page: number
     previousPage: () => void
-    registeredTeams: RegisteredTeamsProps | TournamentGroupsProps
+    registeredTeams:
+        | RegisteredTeamsProps
+        | TournamentGroupsProps
+        | ScheduleProps
 }
 
 const PageNavigation = ({
