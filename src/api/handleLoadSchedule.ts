@@ -10,7 +10,7 @@ type handleLoadScheduleProps = {
     setSchedule: (value: React.SetStateAction<ScheduleProps>) => void
     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
     setItemInStorage(key: string, value: any): void
-    setPage: React.Dispatch<React.SetStateAction<number>>
+    setPage?: React.Dispatch<React.SetStateAction<number>>
 }
 
 export const handleLoadSchedule = async ({
@@ -44,11 +44,10 @@ export const handleLoadSchedule = async ({
         }
 
         const schedule: ScheduleProps = await response.json()
-        console.log(schedule)
         setSchedule(schedule)
         setItemInStorage('schedule', schedule)
         setItemInStorage('schedulepage', 1)
-        setPage(1)
+        setPage ? setPage(1) : null
     } catch (error: any) {
         setApiError('An unexpected error occurred while loading the schedule.')
     } finally {

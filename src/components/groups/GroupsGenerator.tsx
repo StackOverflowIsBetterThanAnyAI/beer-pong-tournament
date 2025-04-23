@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from 'react'
 import { FetchLoading } from 'fetch-loading'
 import { ContextGroups } from '../../context/ContextGroups'
 import { ContextRegisteredTeams } from '../../context/ContextRegisteredTeams'
+import { ContextSchedule } from '../../context/ContextSchedule'
 import {
     MAX_TEAMS,
     MIN_TEAMS,
@@ -34,6 +35,14 @@ export const GroupsGenerator = () => {
         )
     }
     const [registeredTeams, setRegisteredTeams] = contextRegisteredTeams
+
+    const contextSchedule = useContext(ContextSchedule)
+    if (!contextSchedule) {
+        throw new Error(
+            'GroupGenerator must be used within a ContextSchedule.Provider'
+        )
+    }
+    const [_schedule, setSchedule] = contextSchedule
 
     const [accessToken, _setAccessToken] = useState<string>(
         parsedStorageData?.access || ''
@@ -106,6 +115,8 @@ export const GroupsGenerator = () => {
             loadGroups,
             refreshToken,
             setApiError,
+            setSchedule,
+            setIsLoading,
             setIsSubmitDisabled,
         })
     }

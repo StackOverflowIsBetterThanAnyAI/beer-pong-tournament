@@ -1,6 +1,9 @@
 import { SERVER_ADDRESS } from '../constants/constants'
 import { getValidToken } from '../utils/getValidToken'
 import { getValueFromError } from '../utils/getValueFromError'
+import { handleLoadSchedule } from './handleLoadSchedule'
+import { setItemInStorage } from '../utils/setItemInStorage'
+import { ScheduleProps } from '../types/types'
 
 type handleGenerateGroupsProps = {
     accessToken: string
@@ -8,7 +11,10 @@ type handleGenerateGroupsProps = {
     loadGroups: () => Promise<void>
     refreshToken: string
     setApiError: (value: React.SetStateAction<string>) => void
+    setSchedule: (value: React.SetStateAction<ScheduleProps>) => void
+    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
     setIsSubmitDisabled: (value: React.SetStateAction<boolean>) => void
+    setPage?: React.Dispatch<React.SetStateAction<number>>
 }
 
 export const handleGenerateGroups = async ({
@@ -17,7 +23,10 @@ export const handleGenerateGroups = async ({
     loadGroups,
     refreshToken,
     setApiError,
+    setSchedule,
+    setIsLoading,
     setIsSubmitDisabled,
+    setPage,
 }: handleGenerateGroupsProps) => {
     try {
         const response = await fetch(`${SERVER_ADDRESS}/api/v1/groups/bulk/`, {
@@ -39,6 +48,16 @@ export const handleGenerateGroups = async ({
         }
 
         loadGroups()
+
+        handleLoadSchedule({
+            accessToken,
+            refreshToken,
+            setApiError,
+            setIsLoading,
+            setItemInStorage,
+            setPage,
+            setSchedule,
+        })
     } catch (error: any) {
         setApiError(
             'An unexpected error occurred while starting the tournament.'
