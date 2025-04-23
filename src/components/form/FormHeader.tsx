@@ -13,6 +13,12 @@ const FormHeader = ({ header, subHeader }: FormHeaderProps) => {
                         <span className="text-red-800">*</span> are required.
                     </h2>
                 )
+            case 'schedule':
+                return (
+                    <h2 className="text-center text-large px-1">
+                        The Tournament has not started yet.
+                    </h2>
+                )
             default:
                 return null
         }
