@@ -1,7 +1,7 @@
 import PageNavigation from '../page/PageNavigation'
-import { TournamentGroupsProps } from '../types/tpyes'
-import { useTeamsPerPage } from '../hooks/useTeamsPerPage'
-import { setItemInStorage } from '../utils/setItemInStorage'
+import { TournamentGroupsProps } from '../../types/tpyes'
+import { useTeamsPerPage } from '../../hooks/useTeamsPerPage'
+import { setItemInStorage } from '../../utils/setItemInStorage'
 
 type GroupsProps = {
     groups: TournamentGroupsProps

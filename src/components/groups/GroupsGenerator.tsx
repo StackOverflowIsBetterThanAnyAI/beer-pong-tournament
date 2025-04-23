@@ -1,16 +1,20 @@
 import { useContext, useEffect, useState } from 'react'
 import { FetchLoading } from 'fetch-loading'
-import { ContextGroups } from '../context/ContextGroups'
-import { ContextRegisteredTeams } from '../context/ContextRegisteredTeams'
-import { MAX_TEAMS, MIN_TEAMS, TEAMS_PER_GROUP } from '../constants/constants'
-import FormError from '../components/form/FormError'
-import FormHeader from '../components/form/FormHeader'
+import { ContextGroups } from '../../context/ContextGroups'
+import { ContextRegisteredTeams } from '../../context/ContextRegisteredTeams'
+import {
+    MAX_TEAMS,
+    MIN_TEAMS,
+    TEAMS_PER_GROUP,
+} from '../../constants/constants'
+import FormError from '../form/FormError'
+import FormHeader from '../form/FormHeader'
 import Groups from './Groups'
-import { getStoredData } from '../utils/getStoredData'
-import { handleGenerateGroups } from '../api/handleGenerateGroups'
-import { handleLoadGroups } from '../api/handleLoadGroups'
-import { setItemInStorage } from '../utils/setItemInStorage'
-import { useRegisteredTeams } from '../hooks/useRegisteredTeams'
+import { getStoredData } from '../../utils/getStoredData'
+import { handleGenerateGroups } from '../../api/handleGenerateGroups'
+import { handleLoadGroups } from '../../api/handleLoadGroups'
+import { setItemInStorage } from '../../utils/setItemInStorage'
+import { useRegisteredTeams } from '../../hooks/useRegisteredTeams'
 
 export const GroupsGenerator = () => {
     const parsedStorageData = getStoredData()
