@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react'
 import { FetchLoading } from 'fetch-loading'
-import PageNavigation from '../../page/PageNavigation'
+import PageNavigation from '../page/PageNavigation'
 import Team from './Team'
 import TeamsError from './TeamsError'
 import { ContextGroups } from '../../context/ContextGroups'
