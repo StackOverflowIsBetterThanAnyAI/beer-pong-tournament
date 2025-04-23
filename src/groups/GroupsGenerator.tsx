@@ -10,6 +10,7 @@ import { getStoredData } from '../utils/getStoredData'
 import { handleGenerateGroups } from '../api/handleGenerateGroups'
 import { handleLoadGroups } from '../api/handleLoadGroups'
 import { setItemInStorage } from '../utils/setItemInStorage'
+import { useRegisteredTeams } from '../hooks/useRegisteredTeams'
 
 export const GroupsGenerator = () => {
     const parsedStorageData = getStoredData()
@@ -28,7 +29,7 @@ export const GroupsGenerator = () => {
             'GroupGenerator must be used within a ContextRegisteredTeams.Provider'
         )
     }
-    const [registeredTeams, _setRegisteredTeams] = contextRegisteredTeams
+    const [registeredTeams, setRegisteredTeams] = contextRegisteredTeams
 
     const [accessToken, _setAccessToken] = useState<string>(
         parsedStorageData?.access || ''
@@ -43,6 +44,15 @@ export const GroupsGenerator = () => {
     const [isSubmitDisabled, setIsSubmitDisabled] = useState<boolean>(false)
 
     const [apiError, setApiError] = useState<string>('')
+    const [isLoading, setIsLoading] = useState<boolean>(false)
+
+    useRegisteredTeams({
+        accessToken,
+        refreshToken,
+        setApiError,
+        setIsLoading,
+        setRegisteredTeams,
+    })
 
     const loadGroups = async () => {
         handleLoadGroups({
@@ -99,9 +109,15 @@ export const GroupsGenerator = () => {
     return (
         <main className="w-full flex flex-col bg-stone-300 text-stone-950 sm:w-80 md:w-112 sm:rounded-lg p-3 sm:p-4 md:p-6 drop-shadow-stone-900 drop-shadow-sm">
             <FormHeader header="Tournament" />
-            <div className="text-center text-large">
-                {registeredTeams.length} / {MAX_TEAMS} Teams
-            </div>
+            {isLoading ? (
+                <div className="flex justify-center">
+                    <FetchLoading theme="#44403c" />
+                </div>
+            ) : (
+                <div className="text-center text-large">
+                    {registeredTeams.length} / {MAX_TEAMS} Teams
+                </div>
+            )}
             <button
                 className="text-normal outline outline-stone-500 disabled:outline-stone-400 disabled:bg-stone-400/20 h-7 w-fit m-auto px-8 py-0.5 mt-2 rounded-md
                         not-[:disabled]:hover:bg-stone-400/40 not-[:disabled]:active:bg-stone-400/70"
