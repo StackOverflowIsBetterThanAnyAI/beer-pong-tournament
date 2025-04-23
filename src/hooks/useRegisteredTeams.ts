@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { SERVER_ADDRESS } from '../constants/constants'
 import { getValidToken } from '../utils/getValidToken'
 import { setItemInStorage } from '../utils/setItemInStorage'
-import { RegisteredTeamsProps } from '../types/tpyes'
+import { RegisteredTeamsProps } from '../types/types'
 
 type useRegisteredTeamsProps = {
     accessToken: string

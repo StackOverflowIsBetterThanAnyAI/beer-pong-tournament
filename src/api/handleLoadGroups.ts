@@ -1,5 +1,5 @@
 import { SERVER_ADDRESS } from '../constants/constants'
-import { TournamentGroupsProps } from '../types/tpyes'
+import { TournamentGroupsProps } from '../types/types'
 import { getValidToken } from '../utils/getValidToken'
 import { getValueFromError } from '../utils/getValueFromError'
 

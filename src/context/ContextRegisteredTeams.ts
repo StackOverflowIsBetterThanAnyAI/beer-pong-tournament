@@ -1,5 +1,5 @@
 import { createContext } from 'react'
-import { RegisteredTeamsProps } from '../types/tpyes'
+import { RegisteredTeamsProps } from '../types/types'
 
 export const ContextRegisteredTeams = createContext<
     | [

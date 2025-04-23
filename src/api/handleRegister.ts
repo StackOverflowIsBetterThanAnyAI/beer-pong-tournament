@@ -1,5 +1,5 @@
 import { SERVER_ADDRESS } from '../constants/constants'
-import { LoggedInUserProps } from '../types/tpyes'
+import { LoggedInUserProps } from '../types/types'
 import { getValueFromError } from '../utils/getValueFromError'
 import { handleLogin } from './handleLogin'
 

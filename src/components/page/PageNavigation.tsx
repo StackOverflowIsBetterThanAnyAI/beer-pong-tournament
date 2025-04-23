@@ -1,7 +1,7 @@
 import {
     RegisteredTeamsProps,
     TournamentGroupsProps,
-} from './../../types/tpyes'
+} from './../../types/types'
 
 type PageNavigationProps = {
     nextPage: () => void

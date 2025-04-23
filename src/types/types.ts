@@ -12,6 +12,16 @@ export type RegisteredTeamProps = {
 
 export type RegisteredTeamsProps = RegisteredTeamProps[]
 
+export type ScheduleProps = {
+    id: number
+    group: number
+    team1: number
+    team2: number
+    score_team1: number | null
+    score_team2: number | null
+    played: boolean
+}[]
+
 export type TournamentGroupsProps = {
     id: number
     name: string

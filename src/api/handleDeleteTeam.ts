@@ -3,7 +3,7 @@ import {
     RegisteredTeamProps,
     RegisteredTeamsProps,
     TournamentGroupsProps,
-} from '../types/tpyes'
+} from '../types/types'
 import { getValidToken } from '../utils/getValidToken'
 import { getValueFromError } from '../utils/getValueFromError'
 import { handleDeleteGroups } from './handleDeleteGroups'

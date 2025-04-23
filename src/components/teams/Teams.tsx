@@ -10,7 +10,7 @@ import { handleDeleteTeam } from '../../api/handleDeleteTeam'
 import { setItemInStorage } from '../../utils/setItemInStorage'
 import { useItemsPerPage } from '../../hooks/useItemsPerPage'
 import { useRegisteredTeams } from '../../hooks/useRegisteredTeams'
-import { RegisteredTeamProps } from '../../types/tpyes'
+import { RegisteredTeamProps } from '../../types/types'
 
 export const Teams = () => {
     const parsedStorageData = getStoredData()

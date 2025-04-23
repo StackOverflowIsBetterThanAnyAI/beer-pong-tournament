@@ -1,5 +1,5 @@
 import { createContext } from 'react'
-import { TournamentGroupsProps } from '../types/tpyes'
+import { TournamentGroupsProps } from '../types/types'
 
 export const ContextGroups = createContext<
     | [

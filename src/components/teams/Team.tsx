@@ -1,4 +1,4 @@
-import { RegisteredTeamProps } from '../../types/tpyes'
+import { RegisteredTeamProps } from '../../types/types'
 
 type TeamProps = {
     item: RegisteredTeamProps
