@@ -8,6 +8,7 @@ export const ContextIsLoggedIn = createContext<
       ]
     | undefined
 >(undefined)
+
 export const ContextLoggedInUser = createContext<
     | [
           LoggedInUserProps | undefined,

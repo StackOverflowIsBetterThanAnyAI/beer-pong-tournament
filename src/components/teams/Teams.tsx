@@ -17,16 +17,14 @@ export const Teams = () => {
 
     const contextGroups = useContext(ContextGroups)
     if (!contextGroups) {
-        throw new Error(
-            'GroupGenerator must be used within a ContextGroups.Provider'
-        )
+        throw new Error('Teams must be used within a ContextGroups.Provider')
     }
     const [_groups, setGroups] = contextGroups
 
     const contextRegisteredTeams = useContext(ContextRegisteredTeams)
     if (!contextRegisteredTeams) {
         throw new Error(
-            'Form must be used within a ContextRegisteredTeams.Provider'
+            'Teams must be used within a ContextRegisteredTeams.Provider'
         )
     }
     const [registeredTeams, setRegisteredTeams] = contextRegisteredTeams

@@ -11,7 +11,7 @@ const NavigationLinks = () => {
     const contextIsLoggedIn = useContext(ContextIsLoggedIn)
     if (!contextIsLoggedIn) {
         throw new Error(
-            'Navigation must be used within a ContextIsLoggedIn.Provider'
+            'NavigationLinks must be used within a ContextIsLoggedIn.Provider'
         )
     }
     const [isLoggedIn, _setIsLoggedIn] = contextIsLoggedIn
