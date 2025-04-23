@@ -1,5 +1,5 @@
 import { SERVER_ADDRESS } from '../constants/constants'
-import { TournamentGroupsProps } from '../types/types'
+import { ScheduleProps, TournamentGroupsProps } from '../types/types'
 import { getValidToken } from '../utils/getValidToken'
 import { getValueFromError } from '../utils/getValueFromError'
 
@@ -9,6 +9,7 @@ type handleDeleteGroupsProps = {
     setApiError: (value: React.SetStateAction<string>) => void
     setGroups: (value: React.SetStateAction<TournamentGroupsProps>) => void
     setItemInStorage(key: string, value: any): void
+    setSchedule: React.Dispatch<React.SetStateAction<ScheduleProps>>
 }
 
 export const handleDeleteGroups = async ({
@@ -17,6 +18,7 @@ export const handleDeleteGroups = async ({
     setApiError,
     setGroups,
     setItemInStorage,
+    setSchedule,
 }: handleDeleteGroupsProps) => {
     try {
         const response = await fetch(
@@ -42,6 +44,10 @@ export const handleDeleteGroups = async ({
         setItemInStorage('groups', [])
         setItemInStorage('grouppage', 1)
         setGroups([])
+
+        setItemInStorage('schedule', [])
+        setItemInStorage('schedulepage', 1)
+        setSchedule([])
     } catch (error: any) {
         setApiError(
             'An unexpected error occurred while deleting the current groups.'

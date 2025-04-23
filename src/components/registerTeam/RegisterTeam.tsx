@@ -5,6 +5,7 @@ import FormInput from './../form/FormInput'
 import FormSubmit from './../form/FormSubmit'
 import { ContextGroups } from '../../context/ContextGroups'
 import { ContextRegisteredTeams } from '../../context/ContextRegisteredTeams'
+import { ContextSchedule } from '../../context/ContextSchedule'
 import { getStoredData } from '../../utils/getStoredData'
 import { handleRegisterTeam } from '../../api/handleRegisterTeam'
 import { setItemInStorage } from '../../utils/setItemInStorage'
@@ -30,6 +31,14 @@ const RegisterTeam = () => {
         )
     }
     const [registeredTeams, setRegisteredTeams] = contextRegisteredTeams
+
+    const contextSchedule = useContext(ContextSchedule)
+    if (!contextSchedule) {
+        throw new Error(
+            'RegisterTeam must be used within a ContextSchedule.Provider'
+        )
+    }
+    const [_schedule, setSchedule] = contextSchedule
 
     const [accessToken, _setAccessToken] = useState<string>(
         parsedStorageData?.access || ''
@@ -144,6 +153,7 @@ const RegisterTeam = () => {
             setGroups,
             setItemInStorage,
             setRegisteredTeams,
+            setSchedule,
             setSendingRequest,
             setSubmitDisabled,
         })

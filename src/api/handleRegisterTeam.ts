@@ -1,5 +1,9 @@
 import { SERVER_ADDRESS } from '../constants/constants'
-import { RegisteredTeamsProps, TournamentGroupsProps } from '../types/types'
+import {
+    RegisteredTeamsProps,
+    ScheduleProps,
+    TournamentGroupsProps,
+} from '../types/types'
 import { getValidToken } from '../utils/getValidToken'
 import { getValueFromError } from '../utils/getValueFromError'
 import { handleDeleteGroups } from './handleDeleteGroups'
@@ -19,6 +23,7 @@ type handleRegisterTeamProps = {
     setRegisteredTeams: (
         value: React.SetStateAction<RegisteredTeamsProps>
     ) => void
+    setSchedule: React.Dispatch<React.SetStateAction<ScheduleProps>>
     setSendingRequest: (value: React.SetStateAction<boolean>) => void
     setSubmitDisabled: (value: React.SetStateAction<boolean>) => void
 }
@@ -32,6 +37,7 @@ export const handleRegisterTeam = async ({
     setGroups,
     setItemInStorage,
     setRegisteredTeams,
+    setSchedule,
     setSendingRequest,
     setSubmitDisabled,
 }: handleRegisterTeamProps) => {
@@ -73,6 +79,7 @@ export const handleRegisterTeam = async ({
             setApiError,
             setGroups,
             setItemInStorage,
+            setSchedule,
         })
 
         setSubmitDisabled(true)

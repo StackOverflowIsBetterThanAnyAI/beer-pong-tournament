@@ -2,6 +2,7 @@ import { SERVER_ADDRESS } from '../constants/constants'
 import {
     RegisteredTeamProps,
     RegisteredTeamsProps,
+    ScheduleProps,
     TournamentGroupsProps,
 } from '../types/types'
 import { getValidToken } from '../utils/getValidToken'
@@ -22,6 +23,7 @@ type handleDeleteTeamProps = {
     setRegisteredTeams: (
         value: React.SetStateAction<RegisteredTeamsProps>
     ) => void
+    setSchedule: React.Dispatch<React.SetStateAction<ScheduleProps>>
 }
 
 export const handleDeleteTeam = async ({
@@ -36,6 +38,7 @@ export const handleDeleteTeam = async ({
     setItemInStorage,
     setGroups,
     setRegisteredTeams,
+    setSchedule,
 }: handleDeleteTeamProps) => {
     try {
         const response = await fetch(
@@ -76,6 +79,7 @@ export const handleDeleteTeam = async ({
             setApiError,
             setGroups,
             setItemInStorage,
+            setSchedule,
         })
     } catch (error: any) {
         setApiError('An unexpected error occurred while deleting a team.')

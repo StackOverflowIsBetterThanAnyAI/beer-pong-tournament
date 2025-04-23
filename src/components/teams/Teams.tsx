@@ -5,6 +5,7 @@ import Team from './Team'
 import TeamsError from './TeamsError'
 import { ContextGroups } from '../../context/ContextGroups'
 import { ContextRegisteredTeams } from '../../context/ContextRegisteredTeams'
+import { ContextSchedule } from '../../context/ContextSchedule'
 import { getStoredData } from '../../utils/getStoredData'
 import { handleDeleteTeam } from '../../api/handleDeleteTeam'
 import { setItemInStorage } from '../../utils/setItemInStorage'
@@ -28,6 +29,12 @@ export const Teams = () => {
         )
     }
     const [registeredTeams, setRegisteredTeams] = contextRegisteredTeams
+
+    const contextSchedule = useContext(ContextSchedule)
+    if (!contextSchedule) {
+        throw new Error('Teams must be used within a ContextSchedule.Provider')
+    }
+    const [_schedule, setSchedule] = contextSchedule
 
     const MAX_ITEMS_PER_PAGE = useItemsPerPage()
 
@@ -61,6 +68,7 @@ export const Teams = () => {
             registeredTeams,
             setApiError,
             setItemInStorage,
+            setSchedule,
             setGroups,
             setRegisteredTeams,
         })
