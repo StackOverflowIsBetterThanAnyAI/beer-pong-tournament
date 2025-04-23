@@ -5,6 +5,7 @@ type handleLoginProps = {
     setApiError: (value: React.SetStateAction<string>) => void
     setIsLoggedIn: (value: React.SetStateAction<boolean | undefined>) => void
     setItemInStorage(key: string, value: any): void
+    setSendingRequest: (value: React.SetStateAction<boolean>) => void
     userData: {
         username: string
         password: string
@@ -15,6 +16,7 @@ export const handleLogin = async ({
     setApiError,
     setIsLoggedIn,
     setItemInStorage,
+    setSendingRequest,
     userData,
 }: handleLoginProps) => {
     try {
@@ -44,5 +46,7 @@ export const handleLogin = async ({
         setItemInStorage('refresh', token.refresh)
     } catch (error: any) {
         setApiError('An unexpected error occurred while trying to login.')
+    } finally {
+        setSendingRequest(false)
     }
 }

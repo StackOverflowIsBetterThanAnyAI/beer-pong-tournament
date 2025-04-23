@@ -61,6 +61,7 @@ export const handleRegister = async ({
             setApiError,
             setIsLoggedIn,
             setItemInStorage,
+            setSendingRequest,
             userData,
         })
     } catch (error: any) {
