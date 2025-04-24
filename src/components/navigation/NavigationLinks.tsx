@@ -52,15 +52,15 @@ const NavigationLinks = () => {
 
     return (
         <nav
-            className={`flex flex-col gap-1 bg-red-200 text-stone-950 w-full p-4 transition-all duration-300 ${
+            className={`flex flex-col gap-1 bg-red-200 text-stone-950 w-full p-4 transition-[padding] duration-300 ${
                 isNavigationExpanded ? 'pt-6' : 'py-2'
             }`}
         >
             {isNavigationExpanded ? routes : null}
             <button
                 onClick={handleClick}
-                className={`bg-stone-100/90 outline outline-red-400 text-normal rounded-md p-0.5 focus-visible:bg-stone-50 hover:bg-red-100 active:bg-red-200
-                    transition-all duration-300 ${
+                className={`bg-stone-100 outline outline-red-400/90 text-normal rounded-md p-0.5 focus-visible:bg-stone-50 hover:bg-red-100 active:bg-red-200
+                    transition-[margin] duration-300 ${
                         isNavigationExpanded ? 'mt-2' : 'mt-0'
                     }`}
                 aria-label={`${
