@@ -63,6 +63,9 @@ const NavigationLinks = () => {
                     transition-all duration-300 ${
                         isNavigationExpanded ? 'mt-2' : 'mt-0'
                     }`}
+                aria-label={`${
+                    isNavigationExpanded ? 'Close' : 'Open'
+                } Navigation`}
             >
                 {isNavigationExpanded ? 'Close' : 'Open'} Navigation
             </button>
