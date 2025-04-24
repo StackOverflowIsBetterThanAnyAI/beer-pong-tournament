@@ -26,6 +26,7 @@ const Navigation = () => {
                     <button
                         className="px-4 py-2 rounded-lg hover:bg-stone-700 active:bg-stone-600"
                         title="Logout"
+                        aria-label="Logout"
                         onClick={handleLogout}
                     >
                         Logout

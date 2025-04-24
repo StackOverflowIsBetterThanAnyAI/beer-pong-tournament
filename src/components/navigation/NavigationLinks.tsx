@@ -66,6 +66,7 @@ const NavigationLinks = () => {
                 aria-label={`${
                     isNavigationExpanded ? 'Close' : 'Open'
                 } Navigation`}
+                title={`${isNavigationExpanded ? 'Close' : 'Open'} Navigation`}
             >
                 {isNavigationExpanded ? 'Close' : 'Open'} Navigation
             </button>

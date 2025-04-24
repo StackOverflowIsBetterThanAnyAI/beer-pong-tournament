@@ -137,6 +137,11 @@ export const GroupsGenerator = () => {
                 className="text-normal outline outline-stone-500 disabled:outline-stone-400 disabled:bg-stone-400/20 h-7 w-fit m-auto px-8 py-0.5 mt-2 rounded-md
                         not-[:disabled]:hover:bg-stone-400/40 not-[:disabled]:active:bg-stone-400/70"
                 onClick={handleStartTournament}
+                aria-label={`${
+                    isStartDisabled
+                        ? 'The amount of teams has to be divisible by 4, and must be at least 8.'
+                        : 'Generate Groups.'
+                }`}
                 title={`${
                     isStartDisabled
                         ? 'The amount of teams has to be divisible by 4, and must be at least 8.'

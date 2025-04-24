@@ -99,6 +99,8 @@ const ScheduleItem = ({
                                                             ? 'outline-red-400 hover:bg-red-100 active:bg-red-200'
                                                             : 'outline-stone-500 hover:bg-stone-200/80 active:bg-stone-300'
                                                     }`}
+                                                aria-label="Save Score"
+                                                title="Save Score"
                                             >
                                                 Save Score
                                             </button>
