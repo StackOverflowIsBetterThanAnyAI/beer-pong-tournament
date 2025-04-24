@@ -33,7 +33,7 @@ const Navigation = () => {
                     </button>
                 ) : null}
             </nav>
-            <NavigationLinks />
+            {isLoggedIn ? <NavigationLinks /> : null}
             <Breadcrumbs />
         </>
     )
