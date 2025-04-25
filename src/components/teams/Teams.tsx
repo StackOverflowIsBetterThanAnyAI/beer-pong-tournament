@@ -3,6 +3,7 @@ import { FetchLoading } from 'fetch-loading'
 import PageNavigation from '../page/PageNavigation'
 import Team from './Team'
 import TeamsError from './TeamsError'
+import TeamsErrorOpacity from './TeamsErrorOpacity'
 import { ContextGroups } from '../../context/ContextGroups'
 import { ContextRegisteredTeams } from '../../context/ContextRegisteredTeams'
 import { ContextSchedule } from '../../context/ContextSchedule'
@@ -45,14 +46,15 @@ export const Teams = () => {
         parsedStorageData?.refresh || ''
     )
 
-    const [apiError, setApiError] = useState<string>('')
+    const [apiErrorLoad, setApiErrorLoad] = useState<string>('')
+    const [apiErrorDelete, setApiErrorDelete] = useState<string>('')
     const [page, setPage] = useState<number>(parsedStorageData?.teampage || 1)
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
     useRegisteredTeams({
         accessToken,
         refreshToken,
-        setApiError,
+        setApiError: setApiErrorLoad,
         setIsLoading,
         setRegisteredTeams,
     })
@@ -66,7 +68,7 @@ export const Teams = () => {
             previousPage,
             refreshToken,
             registeredTeams,
-            setApiError,
+            setApiError: setApiErrorDelete,
             setSchedule,
             setGroups,
             setRegisteredTeams,
@@ -75,14 +77,14 @@ export const Teams = () => {
 
     const previousPage = () => {
         if (page > 1) {
-            setApiError('')
+            setApiErrorDelete('')
             setPage((prev) => prev - 1)
             setItemInStorage('teampage', page - 1)
         }
     }
 
     const nextPage = () => {
-        setApiError('')
+        setApiErrorDelete('')
         setPage((prev) => prev + 1)
         setItemInStorage('teampage', page + 1)
     }
@@ -99,6 +101,8 @@ export const Teams = () => {
                 <FetchLoading theme="#44403c" />
             </div>
         )
+    } else if (apiErrorLoad) {
+        content = <TeamsError error={apiErrorLoad} />
     } else if (registeredTeams?.length > 0) {
         content = (
             <>
@@ -114,7 +118,9 @@ export const Teams = () => {
                             return item
                     })}
                 </ul>
-                {apiError ? <TeamsError error={apiError} /> : null}
+                {apiErrorDelete ? (
+                    <TeamsErrorOpacity error={apiErrorDelete} />
+                ) : null}
                 <PageNavigation
                     MAX_ITEMS_PER_PAGE={MAX_ITEMS_PER_PAGE}
                     nextPage={nextPage}

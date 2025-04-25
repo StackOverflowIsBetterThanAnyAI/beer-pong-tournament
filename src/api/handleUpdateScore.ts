@@ -61,7 +61,8 @@ export const handleUpdateScore = async ({
             setSchedule,
         })
     } catch (error: any) {
-        setApiError('An unexpected error happened while updating the Score.')
+        setApiError('An error occurred while updating the Score.')
+        setTimeout(() => setApiError(''), 4000)
     } finally {
         setIsLoading(false)
     }

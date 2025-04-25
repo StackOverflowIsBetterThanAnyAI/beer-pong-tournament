@@ -67,8 +67,7 @@ const Schedule = () => {
                 <div className="text-center pt-4">
                     <FormError error={apiError} />
                 </div>
-            ) : null}
-            {isLoading ? (
+            ) : isLoading ? (
                 <div className="flex justify-center">
                     <FetchLoading theme="#44403c" />
                 </div>

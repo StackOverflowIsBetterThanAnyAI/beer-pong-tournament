@@ -84,6 +84,7 @@ export const handleRegisterTeam = async ({
     } catch (error: any) {
         setApiError('An unexpected error occurred while adding your team.')
         setSubmitDisabled(false)
+        setTimeout(() => setApiError(''), 4000)
     } finally {
         setSendingRequest(false)
     }

@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react'
 import { GameProps } from '../../types/types'
 import FormError from '../form/FormError'
+import FormErrorOpacity from '../form/FormErrorOpacity'
 import ScheduleItemButton from './ScheduleItemButton'
 import { ContextSchedule } from '../../context/ContextSchedule'
 import { getStoredData } from '../../utils/getStoredData'
@@ -33,7 +34,8 @@ export const ScheduleItemScore = ({ i, x }: ScheduleItemScoreProps) => {
     const [scoreTeam2, setScoreTeam2] = useState<string | null>(null)
 
     const [isLoading, setIsLoading] = useState<boolean>(false)
-    const [inputError, setInputError] = useState<string>('')
+    const [inputErrorTeam1, setInputErrorTeam1] = useState<string>('')
+    const [inputErrorTeam2, setInputErrorTeam2] = useState<string>('')
     const [apiError, setApiError] = useState<string>('')
 
     const inputRegex = /^([0-9]|10)$/
@@ -44,11 +46,13 @@ export const ScheduleItemScore = ({ i, x }: ScheduleItemScoreProps) => {
         !scoreTeam2 ||
         (parseInt(scoreTeam1) < 10 && parseInt(scoreTeam2) < 10) ||
         apiError.length > 0 ||
-        inputError.length > 0
+        inputErrorTeam1.length > 0 ||
+        inputErrorTeam2.length > 0
 
     const handleInput = (
         e: React.ChangeEvent<HTMLInputElement>,
-        setState: (value: React.SetStateAction<string | null>) => void
+        setState: (value: React.SetStateAction<string | null>) => void,
+        setInputError: React.Dispatch<React.SetStateAction<string>>
     ) => {
         setApiError('')
         setInputError('')
@@ -87,7 +91,8 @@ export const ScheduleItemScore = ({ i, x }: ScheduleItemScoreProps) => {
         }
     }
 
-    const marginBottom = apiError || inputError ? 'mb-1' : 'mb-5 md:mb-6'
+    const marginBottom =
+        apiError || inputErrorTeam1 || inputErrorTeam2 ? 'mb-1' : 'mb-5 md:mb-6'
 
     return (
         <>
@@ -99,7 +104,7 @@ export const ScheduleItemScore = ({ i, x }: ScheduleItemScoreProps) => {
                 >
                     {i.team1}
                 </label>
-                <span>
+                <span className="m-1">
                     {i.score_team1 ?? (
                         <input
                             id={`input${i.team1}vs${i.team2}`}
@@ -107,7 +112,13 @@ export const ScheduleItemScore = ({ i, x }: ScheduleItemScoreProps) => {
                             type="text"
                             min={0}
                             max={10}
-                            onChange={(e) => handleInput(e, setScoreTeam1)}
+                            onChange={(e) =>
+                                handleInput(
+                                    e,
+                                    setScoreTeam1,
+                                    setInputErrorTeam1
+                                )
+                            }
                             onKeyDown={(e) => handleKeyDown(e, i.id)}
                             value={scoreTeam1 ?? ''}
                             aria-label="Score between 0 and 10."
@@ -136,7 +147,7 @@ export const ScheduleItemScore = ({ i, x }: ScheduleItemScoreProps) => {
                 >
                     {i.team2}
                 </label>
-                <span>
+                <span className="m-1">
                     {i.score_team2 ?? (
                         <input
                             id={`input${i.team2}vs${i.team1}`}
@@ -144,7 +155,13 @@ export const ScheduleItemScore = ({ i, x }: ScheduleItemScoreProps) => {
                             type="text"
                             min={0}
                             max={10}
-                            onChange={(e) => handleInput(e, setScoreTeam2)}
+                            onChange={(e) =>
+                                handleInput(
+                                    e,
+                                    setScoreTeam2,
+                                    setInputErrorTeam2
+                                )
+                            }
                             onKeyDown={(e) => handleKeyDown(e, i.id)}
                             value={scoreTeam2 ?? ''}
                             aria-label="Score between 0 and 10."
@@ -158,7 +175,10 @@ export const ScheduleItemScore = ({ i, x }: ScheduleItemScoreProps) => {
                     )}
                 </span>
             </div>
-            <FormError error={apiError || inputError} />
+            {inputErrorTeam1 || inputErrorTeam2 ? (
+                <FormError error={inputErrorTeam1 || inputErrorTeam2} />
+            ) : null}
+            {apiError ? <FormErrorOpacity error={apiError} /> : null}
             <ScheduleItemButton
                 disabled={disabled}
                 handleClick={handleClick}

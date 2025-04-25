@@ -1,5 +1,6 @@
 import { useContext, useMemo, useRef, useState } from 'react'
 import FormError from './../form/FormError'
+import FormErrorOpacity from '../form/FormErrorOpacity'
 import FormHeader from './../form/FormHeader'
 import FormInput from './../form/FormInput'
 import FormSubmit from './../form/FormSubmit'
@@ -217,7 +218,7 @@ const RegisterTeam = () => {
                 {errorSameMember ? (
                     <FormError error="Please choose two different player names." />
                 ) : apiError ? (
-                    <FormError
+                    <FormErrorOpacity
                         error={
                             apiError ||
                             'Currently, you are unable to register your team.'

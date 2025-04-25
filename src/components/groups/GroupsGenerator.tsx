@@ -55,13 +55,14 @@ export const GroupsGenerator = () => {
     const [isStartDisabled, setIsStartDisabled] = useState<boolean>(true)
     const [isSubmitDisabled, setIsSubmitDisabled] = useState<boolean>(false)
 
-    const [apiError, setApiError] = useState<string>('')
+    const [apiErrorGenerate, setApiErrorGenerate] = useState<string>('')
+    const [apiErrorLoad, setApiErrorLoad] = useState<string>('')
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
     useRegisteredTeams({
         accessToken,
         refreshToken,
-        setApiError,
+        setApiError: setApiErrorLoad,
         setIsLoading,
         setRegisteredTeams,
     })
@@ -70,7 +71,7 @@ export const GroupsGenerator = () => {
         handleLoadGroups({
             accessToken,
             refreshToken,
-            setApiError,
+            setApiError: setApiErrorLoad,
             setGroups,
         })
     }
@@ -104,14 +105,14 @@ export const GroupsGenerator = () => {
         }
 
         setIsSubmitDisabled(true)
-        setApiError('')
+        setApiErrorGenerate('')
 
         handleGenerateGroups({
             accessToken,
             groups,
             loadGroups,
             refreshToken,
-            setApiError,
+            setApiError: setApiErrorGenerate,
             setSchedule,
             setIsLoading,
             setIsSubmitDisabled,
@@ -152,11 +153,15 @@ export const GroupsGenerator = () => {
                     'Generate Groups'
                 )}
             </button>
-            {groups.length ? (
+            {apiErrorLoad ? (
+                <div className="text-center pt-4">
+                    <FormError error={apiErrorLoad} />
+                </div>
+            ) : groups.length ? (
                 <>
-                    {apiError ? (
+                    {apiErrorGenerate ? (
                         <div className="text-center pt-4">
-                            <FormError error={apiError} />
+                            <FormError error={apiErrorGenerate} />
                         </div>
                     ) : null}
                     <div className="w-full">
