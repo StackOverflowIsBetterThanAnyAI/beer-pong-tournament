@@ -2,6 +2,7 @@ import { SERVER_ADDRESS } from '../constants/constants'
 import { ScheduleProps } from '../types/types'
 import { getValidToken } from '../utils/getValidToken'
 import { getValueFromError } from '../utils/getValueFromError'
+import { setItemInStorage } from '../utils/setItemInStorage'
 
 type handleLoadScheduleProps = {
     accessToken: string
@@ -9,7 +10,6 @@ type handleLoadScheduleProps = {
     setApiError: (value: React.SetStateAction<string>) => void
     setSchedule: (value: React.SetStateAction<ScheduleProps>) => void
     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
-    setItemInStorage(key: string, value: any): void
     setPage?: React.Dispatch<React.SetStateAction<number>>
 }
 
@@ -19,7 +19,6 @@ export const handleLoadSchedule = async ({
     setApiError,
     setSchedule,
     setIsLoading,
-    setItemInStorage,
     setPage,
 }: handleLoadScheduleProps) => {
     setApiError('')

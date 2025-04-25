@@ -2,11 +2,11 @@ import { SERVER_ADDRESS } from '../constants/constants'
 import { LoggedInUserProps } from '../types/types'
 import { getValueFromError } from '../utils/getValueFromError'
 import { handleLogin } from './handleLogin'
+import { setItemInStorage } from '../utils/setItemInStorage'
 
 type handleRegisterProps = {
     setApiError: (value: React.SetStateAction<string>) => void
     setIsLoggedIn: (value: React.SetStateAction<boolean | undefined>) => void
-    setItemInStorage(key: string, value: any): void
     setLoggedInUser: (
         value: React.SetStateAction<LoggedInUserProps | undefined>
     ) => void
@@ -21,7 +21,6 @@ type handleRegisterProps = {
 export const handleRegister = async ({
     setApiError,
     setIsLoggedIn,
-    setItemInStorage,
     setLoggedInUser,
     setSendingRequest,
     setSubmitDisabled,
@@ -60,7 +59,6 @@ export const handleRegister = async ({
         handleLogin({
             setApiError,
             setIsLoggedIn,
-            setItemInStorage,
             setSendingRequest,
             userData,
         })

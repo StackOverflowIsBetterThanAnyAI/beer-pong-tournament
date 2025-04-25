@@ -1,9 +1,8 @@
 import { SERVER_ADDRESS } from '../constants/constants'
+import { ScheduleProps } from '../types/types'
 import { getValidToken } from '../utils/getValidToken'
 import { getValueFromError } from '../utils/getValueFromError'
 import { handleLoadSchedule } from './handleLoadSchedule'
-import { setItemInStorage } from '../utils/setItemInStorage'
-import { ScheduleProps } from '../types/types'
 
 type handleGenerateGroupsProps = {
     accessToken: string
@@ -54,7 +53,6 @@ export const handleGenerateGroups = async ({
             refreshToken,
             setApiError,
             setIsLoading,
-            setItemInStorage,
             setPage,
             setSchedule,
         })

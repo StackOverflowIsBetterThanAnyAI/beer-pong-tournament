@@ -6,6 +6,7 @@ import {
 } from '../types/types'
 import { getValidToken } from '../utils/getValidToken'
 import { getValueFromError } from '../utils/getValueFromError'
+import { setItemInStorage } from '../utils/setItemInStorage'
 import { handleDeleteGroups } from './handleDeleteGroups'
 
 type handleRegisterTeamProps = {
@@ -19,7 +20,6 @@ type handleRegisterTeamProps = {
     registeredTeams: RegisteredTeamsProps
     setApiError: (value: React.SetStateAction<string>) => void
     setGroups: (value: React.SetStateAction<TournamentGroupsProps>) => void
-    setItemInStorage(key: string, value: any): void
     setRegisteredTeams: (
         value: React.SetStateAction<RegisteredTeamsProps>
     ) => void
@@ -35,7 +35,6 @@ export const handleRegisterTeam = async ({
     registeredTeams,
     setApiError,
     setGroups,
-    setItemInStorage,
     setRegisteredTeams,
     setSchedule,
     setSendingRequest,
@@ -78,7 +77,6 @@ export const handleRegisterTeam = async ({
             refreshToken,
             setApiError,
             setGroups,
-            setItemInStorage,
             setSchedule,
         })
 

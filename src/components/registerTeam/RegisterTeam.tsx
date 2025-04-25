@@ -151,7 +151,6 @@ const RegisterTeam = () => {
             registeredTeams,
             setApiError,
             setGroups,
-            setItemInStorage,
             setRegisteredTeams,
             setSchedule,
             setSendingRequest,

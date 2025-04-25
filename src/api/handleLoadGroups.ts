@@ -2,13 +2,13 @@ import { SERVER_ADDRESS } from '../constants/constants'
 import { TournamentGroupsProps } from '../types/types'
 import { getValidToken } from '../utils/getValidToken'
 import { getValueFromError } from '../utils/getValueFromError'
+import { setItemInStorage } from '../utils/setItemInStorage'
 
 type handleLoadGroupsProps = {
     accessToken: string
     refreshToken: string
     setApiError: (value: React.SetStateAction<string>) => void
     setGroups: (value: React.SetStateAction<TournamentGroupsProps>) => void
-    setItemInStorage(key: string, value: any): void
     setPage: React.Dispatch<React.SetStateAction<number>>
 }
 
@@ -17,7 +17,6 @@ export const handleLoadGroups = async ({
     refreshToken,
     setApiError,
     setGroups,
-    setItemInStorage,
     setPage,
 }: handleLoadGroupsProps) => {
     setApiError('')

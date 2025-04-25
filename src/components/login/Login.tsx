@@ -150,7 +150,6 @@ const Login = () => {
             handleRegister({
                 setApiError,
                 setIsLoggedIn,
-                setItemInStorage,
                 setLoggedInUser,
                 setSendingRequest,
                 setSubmitDisabled,
@@ -160,7 +159,6 @@ const Login = () => {
             handleLogin({
                 setApiError,
                 setIsLoggedIn,
-                setItemInStorage,
                 setSendingRequest,
                 userData,
             })

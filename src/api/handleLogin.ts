@@ -1,10 +1,10 @@
 import { SERVER_ADDRESS } from '../constants/constants'
 import { getValueFromError } from '../utils/getValueFromError'
+import { setItemInStorage } from '../utils/setItemInStorage'
 
 type handleLoginProps = {
     setApiError: (value: React.SetStateAction<string>) => void
     setIsLoggedIn: (value: React.SetStateAction<boolean | undefined>) => void
-    setItemInStorage(key: string, value: any): void
     setSendingRequest: (value: React.SetStateAction<boolean>) => void
     userData: {
         username: string
@@ -15,7 +15,6 @@ type handleLoginProps = {
 export const handleLogin = async ({
     setApiError,
     setIsLoggedIn,
-    setItemInStorage,
     setSendingRequest,
     userData,
 }: handleLoginProps) => {

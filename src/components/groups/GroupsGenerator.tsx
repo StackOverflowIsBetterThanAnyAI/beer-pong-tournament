@@ -14,7 +14,6 @@ import Groups from './Groups'
 import { getStoredData } from '../../utils/getStoredData'
 import { handleGenerateGroups } from '../../api/handleGenerateGroups'
 import { handleLoadGroups } from '../../api/handleLoadGroups'
-import { setItemInStorage } from '../../utils/setItemInStorage'
 import { useRegisteredTeams } from '../../hooks/useRegisteredTeams'
 
 export const GroupsGenerator = () => {
@@ -73,7 +72,6 @@ export const GroupsGenerator = () => {
             refreshToken,
             setApiError,
             setGroups,
-            setItemInStorage,
             setPage,
         })
     }

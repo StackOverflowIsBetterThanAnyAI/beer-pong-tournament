@@ -2,13 +2,13 @@ import { SERVER_ADDRESS } from '../constants/constants'
 import { ScheduleProps, TournamentGroupsProps } from '../types/types'
 import { getValidToken } from '../utils/getValidToken'
 import { getValueFromError } from '../utils/getValueFromError'
+import { setItemInStorage } from '../utils/setItemInStorage'
 
 type handleDeleteGroupsProps = {
     accessToken: string
     refreshToken: string
     setApiError: (value: React.SetStateAction<string>) => void
     setGroups: (value: React.SetStateAction<TournamentGroupsProps>) => void
-    setItemInStorage(key: string, value: any): void
     setSchedule: React.Dispatch<React.SetStateAction<ScheduleProps>>
 }
 
@@ -17,7 +17,6 @@ export const handleDeleteGroups = async ({
     refreshToken,
     setApiError,
     setGroups,
-    setItemInStorage,
     setSchedule,
 }: handleDeleteGroupsProps) => {
     try {
