@@ -24,6 +24,12 @@ input:focus-visible {
     @apply outline-2 outline-red-400;
 }
 
+html {
+    scrollbar-gutter: stable;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
 input[type='checkbox'] {
     @apply appearance-none grid place-content-center w-4 h-4 bg-stone-100 rounded-sm;
 }
@@ -67,4 +73,24 @@ input[type='checkbox']:not(:checked)::before {
 
 .text-extra-large {
     @apply text-lg sm:text-xl md:text-2xl;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    @apply bg-stone-800;
+}
+
+::-webkit-scrollbar-thumb {
+    @apply bg-stone-400 rounded-md;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    @apply bg-stone-300/50 rounded-md;
+}
+
+::-webkit-scrollbar-thumb:active {
+    @apply bg-stone-400/50 rounded-md;
 }
