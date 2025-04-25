@@ -12,7 +12,7 @@ export type RegisteredTeamProps = {
 
 export type RegisteredTeamsProps = RegisteredTeamProps[]
 
-export type ScheduleProps = {
+export type GameProps = {
     id: number
     group: string
     team1: string
@@ -20,7 +20,9 @@ export type ScheduleProps = {
     score_team1: number | null
     score_team2: number | null
     played: boolean
-}[]
+}
+
+export type ScheduleProps = GameProps[]
 
 export type TournamentGroupsProps = {
     id: number
