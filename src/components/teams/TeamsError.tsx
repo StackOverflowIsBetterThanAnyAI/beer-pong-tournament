@@ -1,22 +1,12 @@
-import { useEffect, useState } from 'react'
-
 type TeamsErrorProps = {
     error: string
 }
 
 const TeamsError = ({ error }: TeamsErrorProps) => {
-    const [opacity, setOpacity] = useState<string>('opacity-100')
-
-    useEffect(() => {
-        setTimeout(() => setOpacity('opacity-0'), 3000)
-    }, [])
-
     return (
         <>
             {error ? (
-                <div
-                    className={`text-red-800 text-center text-normal text-pretty py-2 transition-opacity duration-1000 ${opacity}`}
-                >
+                <div className="text-red-800 text-center text-small text-pretty py-2 transition-opacity duration-1000">
                     {error}
                 </div>
             ) : undefined}
