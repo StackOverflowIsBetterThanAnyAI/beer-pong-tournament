@@ -121,6 +121,11 @@ export const ScheduleItemScore = ({ i, x }: ScheduleItemScoreProps) => {
                     )}
                 </span>
             </div>
+            <hr
+                className={`border-t-2 ${
+                    x % 2 ? 'border-red-500/50' : 'border-stone-500/50'
+                }`}
+            />
             <div
                 className={`flex flex-wrap items-center max-[280px]:flex-col justify-between gap-x-2 font-bold text-ellipsis overflow-hidden ${marginBottom}`}
             >
