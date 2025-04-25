@@ -97,13 +97,13 @@ export const ScheduleItemScore = ({ i, x }: ScheduleItemScoreProps) => {
     return (
         <>
             <div className="flex flex-wrap items-center max-[280px]:flex-col justify-between gap-x-2 font-bold text-ellipsis overflow-hidden pb-1">
-                <label
-                    htmlFor={
-                        i.played ? undefined : `input${i.team1}vs${i.team2}`
-                    }
-                >
-                    {i.team1}
-                </label>
+                {i.played ? (
+                    <span>{i.team1}</span>
+                ) : (
+                    <label htmlFor={`input${i.team1}vs${i.team2}`}>
+                        {i.team1}
+                    </label>
+                )}
                 <span className="m-1">
                     {i.score_team1 ?? (
                         <input
@@ -140,13 +140,13 @@ export const ScheduleItemScore = ({ i, x }: ScheduleItemScoreProps) => {
             <div
                 className={`flex flex-wrap items-center max-[280px]:flex-col justify-between gap-x-2 font-bold text-ellipsis overflow-hidden ${marginBottom}`}
             >
-                <label
-                    htmlFor={
-                        i.played ? undefined : `input${i.team2}vs${i.team1}`
-                    }
-                >
-                    {i.team2}
-                </label>
+                {i.played ? (
+                    <span>{i.team2}</span>
+                ) : (
+                    <label htmlFor={`input${i.team2}vs${i.team1}`}>
+                        {i.team2}
+                    </label>
+                )}
                 <span className="m-1">
                     {i.score_team2 ?? (
                         <input
