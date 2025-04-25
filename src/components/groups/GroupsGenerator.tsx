@@ -72,7 +72,6 @@ export const GroupsGenerator = () => {
             refreshToken,
             setApiError,
             setGroups,
-            setPage,
         })
     }
 
@@ -158,7 +157,9 @@ export const GroupsGenerator = () => {
                     <FormError error={apiError} />
                 </div>
             ) : groups.length ? (
-                <Groups groups={groups} page={page} setPage={setPage} />
+                <div className="w-full">
+                    <Groups groups={groups} page={page} setPage={setPage} />
+                </div>
             ) : null}
         </main>
     )
