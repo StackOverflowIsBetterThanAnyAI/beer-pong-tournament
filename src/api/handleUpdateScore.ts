@@ -49,7 +49,10 @@ export const handleUpdateScore = async ({
 
         if (!response.ok) {
             const errorData = await response.json()
-            setApiError(getValueFromError(errorData))
+            setApiError(
+                getValueFromError(errorData) ||
+                    'An error occurred while updating the Score.'
+            )
             return
         }
 

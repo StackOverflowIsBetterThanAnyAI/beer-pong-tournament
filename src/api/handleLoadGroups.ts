@@ -33,7 +33,10 @@ export const handleLoadGroups = async ({
 
         if (!response.ok) {
             const errorData = await response.json()
-            setApiError(getValueFromError(errorData))
+            setApiError(
+                getValueFromError(errorData) ||
+                    'An unexpected error occurred while loading the groups.'
+            )
             return
         }
 

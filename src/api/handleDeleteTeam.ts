@@ -56,7 +56,10 @@ export const handleDeleteTeam = async ({
 
         if (!response.ok) {
             const errorData = await response.json()
-            setApiError(getValueFromError(errorData))
+            setApiError(
+                getValueFromError(errorData) ||
+                    'An unexpected error occurred while deleting a team.'
+            )
             return
         }
         const updatedTeams = registeredTeams.filter(

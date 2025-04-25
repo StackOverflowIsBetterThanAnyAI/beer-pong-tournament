@@ -1,8 +1,9 @@
 import { useEffect } from 'react'
 import { SERVER_ADDRESS } from '../constants/constants'
-import { getValidToken } from '../utils/getValidToken'
-import { setItemInStorage } from '../utils/setItemInStorage'
 import { RegisteredTeamsProps } from '../types/types'
+import { getValidToken } from '../utils/getValidToken'
+import { getValueFromError } from '../utils/getValueFromError'
+import { setItemInStorage } from '../utils/setItemInStorage'
 
 type useRegisteredTeamsProps = {
     accessToken: string
@@ -40,8 +41,10 @@ export const useRegisteredTeams = ({
                 )
 
                 if (!response.ok) {
+                    const errorData = await response.json()
                     setApiError(
-                        'An error occurred while fetching the registered teams.'
+                        getValueFromError(errorData) ||
+                            'An error occurred while fetching the registered teams.'
                     )
                     return
                 }

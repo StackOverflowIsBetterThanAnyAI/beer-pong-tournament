@@ -55,7 +55,10 @@ export const handleRegisterTeam = async ({
 
         if (!response.ok) {
             const errorData = await response.json()
-            setApiError(getValueFromError(errorData))
+            setApiError(
+                getValueFromError(errorData) ||
+                    'An unexpected error occurred while adding your team.'
+            )
             return
         }
 
