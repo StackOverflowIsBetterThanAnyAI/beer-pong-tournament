@@ -2,7 +2,7 @@ import { FetchLoading } from 'fetch-loading'
 import { GameProps } from '../../types/types'
 
 type ScheduleItemButtonProps = {
-    error: string
+    disabled: boolean
     handleClick: (id: number, score_team1: string, score_team2: string) => void
     i: GameProps
     isLoading: boolean
@@ -12,7 +12,7 @@ type ScheduleItemButtonProps = {
 }
 
 const ScheduleItemButton = ({
-    error,
+    disabled,
     handleClick,
     i,
     isLoading,
@@ -20,13 +20,6 @@ const ScheduleItemButton = ({
     scoreTeam2,
     x,
 }: ScheduleItemButtonProps) => {
-    const disabled: boolean =
-        i.played ||
-        !scoreTeam1 ||
-        !scoreTeam2 ||
-        (parseInt(scoreTeam1) < 10 && parseInt(scoreTeam2) < 10) ||
-        error.length > 0
-
     return (
         <button
             className={`flex justify-center bg-stone-100/90 outline text-normal rounded-md mt-2 p-0.5 focus-visible:bg-stone-50 

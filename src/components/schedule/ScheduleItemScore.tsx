@@ -38,7 +38,17 @@ export const ScheduleItemScore = ({ i, x }: ScheduleItemScoreProps) => {
 
     const inputRegex = /^([0-9]|10)$/
 
+    const disabled: boolean =
+        i.played ||
+        !scoreTeam1 ||
+        !scoreTeam2 ||
+        (parseInt(scoreTeam1) < 10 && parseInt(scoreTeam2) < 10) ||
+        apiError.length > 0 ||
+        inputError.length > 0
+
     const handleInputTeam1 = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setApiError('')
+        setInputError('')
         const score = e.target.value.replace(/[^\d]/g, '')
         setScoreTeam1(score)
         setInputError(
@@ -49,6 +59,8 @@ export const ScheduleItemScore = ({ i, x }: ScheduleItemScoreProps) => {
     }
 
     const handleInputTeam2 = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setApiError('')
+        setInputError('')
         const score = e.target.value.replace(/[^\d]/g, '')
         setScoreTeam2(score)
         setInputError(
@@ -75,6 +87,15 @@ export const ScheduleItemScore = ({ i, x }: ScheduleItemScoreProps) => {
         })
     }
 
+    const handleKeyDown = (
+        e: React.KeyboardEvent<HTMLInputElement>,
+        id: number
+    ) => {
+        if (!disabled && e.key === 'Enter') {
+            handleClick(id, scoreTeam1!, scoreTeam2!)
+        }
+    }
+
     const marginBottom = apiError || inputError ? 'mb-1' : 'mb-5 md:mb-6'
 
     return (
@@ -96,6 +117,7 @@ export const ScheduleItemScore = ({ i, x }: ScheduleItemScoreProps) => {
                             min={0}
                             max={10}
                             onChange={(e) => handleInputTeam1(e)}
+                            onKeyDown={(e) => handleKeyDown(e, i.id)}
                             value={scoreTeam1 ?? ''}
                             aria-label="Score between 0 and 10."
                             title="Score between 0 and 10."
@@ -127,6 +149,7 @@ export const ScheduleItemScore = ({ i, x }: ScheduleItemScoreProps) => {
                             min={0}
                             max={10}
                             onChange={(e) => handleInputTeam2(e)}
+                            onKeyDown={(e) => handleKeyDown(e, i.id)}
                             value={scoreTeam2 ?? ''}
                             aria-label="Score between 0 and 10."
                             title="Score between 0 and 10."
@@ -141,7 +164,7 @@ export const ScheduleItemScore = ({ i, x }: ScheduleItemScoreProps) => {
             </div>
             <FormError error={apiError || inputError} />
             <ScheduleItemButton
-                error={apiError || inputError}
+                disabled={disabled}
                 handleClick={handleClick}
                 i={i}
                 isLoading={isLoading}
