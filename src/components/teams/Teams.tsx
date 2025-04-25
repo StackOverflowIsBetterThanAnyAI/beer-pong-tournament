@@ -75,12 +75,14 @@ export const Teams = () => {
 
     const previousPage = () => {
         if (page > 1) {
+            setApiError('')
             setPage((prev) => prev - 1)
             setItemInStorage('teampage', page - 1)
         }
     }
 
     const nextPage = () => {
+        setApiError('')
         setPage((prev) => prev + 1)
         setItemInStorage('teampage', page + 1)
     }
@@ -97,8 +99,6 @@ export const Teams = () => {
                 <FetchLoading theme="#44403c" />
             </div>
         )
-    } else if (apiError) {
-        content = <TeamsError error={apiError} />
     } else if (registeredTeams?.length > 0) {
         content = (
             <>
@@ -114,6 +114,7 @@ export const Teams = () => {
                             return item
                     })}
                 </ul>
+                {apiError ? <TeamsError error={apiError} /> : null}
                 <PageNavigation
                     MAX_ITEMS_PER_PAGE={MAX_ITEMS_PER_PAGE}
                     nextPage={nextPage}

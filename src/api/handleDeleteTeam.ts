@@ -81,5 +81,6 @@ export const handleDeleteTeam = async ({
         })
     } catch (error: any) {
         setApiError('An unexpected error occurred while deleting a team.')
+        setTimeout(() => setApiError(''), 4000)
     }
 }
