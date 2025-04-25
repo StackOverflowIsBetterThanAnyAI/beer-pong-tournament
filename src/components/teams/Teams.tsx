@@ -6,12 +6,12 @@ import TeamsError from './TeamsError'
 import { ContextGroups } from '../../context/ContextGroups'
 import { ContextRegisteredTeams } from '../../context/ContextRegisteredTeams'
 import { ContextSchedule } from '../../context/ContextSchedule'
+import { RegisteredTeamProps } from '../../types/types'
 import { getStoredData } from '../../utils/getStoredData'
 import { handleDeleteTeam } from '../../api/handleDeleteTeam'
 import { setItemInStorage } from '../../utils/setItemInStorage'
 import { useItemsPerPage } from '../../hooks/useItemsPerPage'
 import { useRegisteredTeams } from '../../hooks/useRegisteredTeams'
-import { RegisteredTeamProps } from '../../types/types'
 
 export const Teams = () => {
     const parsedStorageData = getStoredData()
@@ -67,7 +67,6 @@ export const Teams = () => {
             refreshToken,
             registeredTeams,
             setApiError,
-            setItemInStorage,
             setSchedule,
             setGroups,
             setRegisteredTeams,

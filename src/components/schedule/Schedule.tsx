@@ -2,11 +2,11 @@ import { useContext, useEffect, useState } from 'react'
 import FormError from '../form/FormError'
 import FormHeader from '../form/FormHeader'
 import ScheduleItem from './ScheduleItem'
+import { ContextSchedule } from '../../context/ContextSchedule'
+import { FetchLoading } from 'fetch-loading'
 import { getStoredData } from '../../utils/getStoredData'
 import { setItemInStorage } from '../../utils/setItemInStorage'
 import { handleLoadSchedule } from '../../api/handleLoadSchedule'
-import { ContextSchedule } from '../../context/ContextSchedule'
-import { FetchLoading } from 'fetch-loading'
 import { useTeamsPerPage } from '../../hooks/useTeamsPerPage'
 
 const Schedule = () => {
@@ -42,7 +42,6 @@ const Schedule = () => {
             setApiError,
             setSchedule,
             setIsLoading,
-            setItemInStorage,
             setPage,
         })
     }, [])
@@ -80,7 +79,6 @@ const Schedule = () => {
                     nextPage={nextPage}
                     page={page}
                     previousPage={previousPage}
-                    schedule={schedule}
                 />
             ) : null}
         </main>
