@@ -26,7 +26,7 @@ const FormHeader = ({ header, subHeader }: FormHeaderProps) => {
 
     return (
         <>
-            <h1 className="text-center font-semibold text-extra-large">
+            <h1 className="text-center font-semibold text-extra-large pt-2">
                 {header}
             </h1>
             {subHeaderElement}
