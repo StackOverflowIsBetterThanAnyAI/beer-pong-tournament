@@ -46,23 +46,14 @@ export const ScheduleItemScore = ({ i, x }: ScheduleItemScoreProps) => {
         apiError.length > 0 ||
         inputError.length > 0
 
-    const handleInputTeam1 = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleInput = (
+        e: React.ChangeEvent<HTMLInputElement>,
+        setState: (value: React.SetStateAction<string | null>) => void
+    ) => {
         setApiError('')
         setInputError('')
         const score = e.target.value.replace(/[^\d]/g, '')
-        setScoreTeam1(score)
-        setInputError(
-            !inputRegex.test(score) && score.length
-                ? 'Please use an integer between 0 and 10.'
-                : ''
-        )
-    }
-
-    const handleInputTeam2 = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setApiError('')
-        setInputError('')
-        const score = e.target.value.replace(/[^\d]/g, '')
-        setScoreTeam2(score)
+        setState(score)
         setInputError(
             !inputRegex.test(score) && score.length
                 ? 'Please use an integer between 0 and 10.'
@@ -116,7 +107,7 @@ export const ScheduleItemScore = ({ i, x }: ScheduleItemScoreProps) => {
                             type="text"
                             min={0}
                             max={10}
-                            onChange={(e) => handleInputTeam1(e)}
+                            onChange={(e) => handleInput(e, setScoreTeam1)}
                             onKeyDown={(e) => handleKeyDown(e, i.id)}
                             value={scoreTeam1 ?? ''}
                             aria-label="Score between 0 and 10."
@@ -148,7 +139,7 @@ export const ScheduleItemScore = ({ i, x }: ScheduleItemScoreProps) => {
                             type="text"
                             min={0}
                             max={10}
-                            onChange={(e) => handleInputTeam2(e)}
+                            onChange={(e) => handleInput(e, setScoreTeam2)}
                             onKeyDown={(e) => handleKeyDown(e, i.id)}
                             value={scoreTeam2 ?? ''}
                             aria-label="Score between 0 and 10."
