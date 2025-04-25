@@ -141,6 +141,7 @@ export const ScheduleItemScore = ({ i, x }: ScheduleItemScoreProps) => {
             </div>
             <FormError error={apiError || inputError} />
             <ScheduleItemButton
+                error={apiError || inputError}
                 handleClick={handleClick}
                 i={i}
                 isLoading={isLoading}
