@@ -152,14 +152,17 @@ export const GroupsGenerator = () => {
                     'Generate Groups'
                 )}
             </button>
-            {apiError ? (
-                <div className="text-center pt-4">
-                    <FormError error={apiError} />
-                </div>
-            ) : groups.length ? (
-                <div className="w-full">
-                    <Groups groups={groups} page={page} setPage={setPage} />
-                </div>
+            {groups.length ? (
+                <>
+                    {apiError ? (
+                        <div className="text-center pt-4">
+                            <FormError error={apiError} />
+                        </div>
+                    ) : null}
+                    <div className="w-full">
+                        <Groups groups={groups} page={page} setPage={setPage} />
+                    </div>
+                </>
             ) : null}
         </main>
     )
