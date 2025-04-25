@@ -42,7 +42,6 @@ const Schedule = () => {
             setApiError,
             setSchedule,
             setIsLoading,
-            setPage,
         })
     }, [])
 
