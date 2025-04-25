@@ -25,16 +25,19 @@ export const useRegisteredTeams = ({
         const fetchRegisteredTeams = async () => {
             setIsLoading(true)
             try {
-                const response = await fetch(`${SERVER_ADDRESS}/api/v1/teams`, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: `Bearer ${await getValidToken(
-                            accessToken,
-                            refreshToken
-                        )}`,
-                    },
-                })
+                const response = await fetch(
+                    `${SERVER_ADDRESS}/api/v1/teams/`,
+                    {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            Authorization: `Bearer ${await getValidToken(
+                                accessToken,
+                                refreshToken
+                            )}`,
+                        },
+                    }
+                )
 
                 if (!response.ok) {
                     setApiError(
