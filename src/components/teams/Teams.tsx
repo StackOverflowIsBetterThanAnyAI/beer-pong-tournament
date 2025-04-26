@@ -111,7 +111,7 @@ export const Teams = () => {
                 <h2 className="text-center text-large px-1">
                     Currently registered Teams:
                 </h2>
-                <ul role="group">
+                <ul role="menu">
                     {teams.filter((item, index) => {
                         if (
                             index >= (page - 1) * MAX_ITEMS_PER_PAGE &&

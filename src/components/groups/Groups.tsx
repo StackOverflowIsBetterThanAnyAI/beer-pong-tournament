@@ -28,7 +28,7 @@ const Groups = ({ groups, page, setPage }: GroupsProps) => {
         <>
             <ul
                 className="flex flex-col gap-2 w-full max-w-80 bg-stone-400 drop-shadow-stone-600/60 drop-shadow-md my-4 p-2 m-auto rounded-sm"
-                role="group"
+                role="menu"
             >
                 {groups
                     .filter((item, index) => {
@@ -52,7 +52,7 @@ const Groups = ({ groups, page, setPage }: GroupsProps) => {
                                 </h2>
                                 <ul
                                     className="flex flex-col gap-2 pt-2"
-                                    role="group"
+                                    role="menu"
                                 >
                                     {i.teams.map((t, tx) => {
                                         return (
