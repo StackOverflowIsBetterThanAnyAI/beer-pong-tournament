@@ -27,7 +27,10 @@ const ScheduleItem = ({
 
     return (
         <>
-            <ul className="flex flex-col gap-2 w-full max-w-80 bg-stone-400 drop-shadow-stone-600/60 drop-shadow-md my-4 p-2 m-auto rounded-sm">
+            <ul
+                className="flex flex-col gap-2 w-full max-w-80 bg-stone-400 drop-shadow-stone-600/60 drop-shadow-md my-4 p-2 m-auto rounded-sm"
+                role="group"
+            >
                 {schedule
                     .filter((item, index) => {
                         if (
@@ -47,14 +50,21 @@ const ScheduleItem = ({
                                 className={`p-2 rounded-sm ${
                                     x % 2 ? 'bg-red-100' : 'bg-stone-200'
                                 }`}
+                                role="menuitem"
                             >
                                 {x % MATCHES_PER_GROUP ? null : (
                                     <h2 className="text-large font-bold underline">
                                         {i.group}
                                     </h2>
                                 )}
-                                <ul className="flex flex-col gap-2 pt-1">
-                                    <li className="text-normal font-normal">
+                                <ul
+                                    className="flex flex-col gap-2 pt-1"
+                                    role="group"
+                                >
+                                    <li
+                                        className="text-normal font-normal"
+                                        role="menuitem"
+                                    >
                                         <div className="flex flex-col">
                                             <ScheduleItemScore i={i} x={x} />
                                         </div>
