@@ -1,7 +1,7 @@
 import PageNavigation from '../page/PageNavigation'
 import { TournamentGroupsProps } from '../../types/types'
 import { useTeamsPerPage } from '../../hooks/useTeamsPerPage'
-import { setItemInStorage } from '../../utils/setItemInStorage'
+import { setItemInSessionStorage } from '../../utils/setItemInSessionStorage'
 
 type GroupsProps = {
     groups: TournamentGroupsProps
@@ -15,13 +15,13 @@ const Groups = ({ groups, page, setPage }: GroupsProps) => {
     const previousPage = () => {
         if (page > 1) {
             setPage((prev) => prev - 1)
-            setItemInStorage('grouppage', page - 1)
+            setItemInSessionStorage('grouppage', page - 1)
         }
     }
 
     const nextPage = () => {
         setPage((prev) => prev + 1)
-        setItemInStorage('grouppage', page + 1)
+        setItemInSessionStorage('grouppage', page + 1)
     }
 
     return (

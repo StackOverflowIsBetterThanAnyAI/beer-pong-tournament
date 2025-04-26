@@ -9,13 +9,15 @@ import { ContextRegisteredTeams } from '../../context/ContextRegisteredTeams'
 import { ContextSchedule } from '../../context/ContextSchedule'
 import { RegisteredTeamProps } from '../../types/types'
 import { getStoredData } from '../../utils/getStoredData'
+import { getStoredSessionData } from '../../utils/getStoredSessionData'
+import { setItemInSessionStorage } from '../../utils/setItemInSessionStorage'
 import { handleDeleteTeam } from '../../api/handleDeleteTeam'
-import { setItemInStorage } from '../../utils/setItemInStorage'
 import { useItemsPerPage } from '../../hooks/useItemsPerPage'
 import { useRegisteredTeams } from '../../hooks/useRegisteredTeams'
 
 export const Teams = () => {
     const parsedStorageData = getStoredData()
+    const parsedSessionData = getStoredSessionData()
 
     const contextGroups = useContext(ContextGroups)
     if (!contextGroups) {
@@ -48,7 +50,7 @@ export const Teams = () => {
 
     const [apiErrorLoad, setApiErrorLoad] = useState<string>('')
     const [apiErrorDelete, setApiErrorDelete] = useState<string>('')
-    const [page, setPage] = useState<number>(parsedStorageData?.teampage || 1)
+    const [page, setPage] = useState<number>(parsedSessionData?.teampage || 1)
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
     useRegisteredTeams({
@@ -79,14 +81,14 @@ export const Teams = () => {
         if (page > 1) {
             setApiErrorDelete('')
             setPage((prev) => prev - 1)
-            setItemInStorage('teampage', page - 1)
+            setItemInSessionStorage('teampage', page - 1)
         }
     }
 
     const nextPage = () => {
         setApiErrorDelete('')
         setPage((prev) => prev + 1)
-        setItemInStorage('teampage', page + 1)
+        setItemInSessionStorage('teampage', page + 1)
     }
 
     const teams = registeredTeams.map((item) => {

@@ -2,6 +2,7 @@ import { SERVER_ADDRESS } from '../constants/constants'
 import { ScheduleProps, TournamentGroupsProps } from '../types/types'
 import { getValidToken } from '../utils/getValidToken'
 import { getValueFromError } from '../utils/getValueFromError'
+import { setItemInSessionStorage } from '../utils/setItemInSessionStorage'
 import { setItemInStorage } from '../utils/setItemInStorage'
 
 type handleDeleteGroupsProps = {
@@ -44,11 +45,11 @@ export const handleDeleteGroups = async ({
         }
 
         setItemInStorage('groups', [])
-        setItemInStorage('grouppage', 1)
+        setItemInSessionStorage('grouppage', 1)
         setGroups([])
 
         setItemInStorage('schedule', [])
-        setItemInStorage('schedulepage', 1)
+        setItemInSessionStorage('schedulepage', 1)
         setSchedule([])
     } catch (error: any) {
         setApiError(

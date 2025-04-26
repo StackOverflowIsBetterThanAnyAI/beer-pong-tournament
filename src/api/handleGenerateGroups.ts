@@ -2,7 +2,7 @@ import { SERVER_ADDRESS } from '../constants/constants'
 import { ScheduleProps } from '../types/types'
 import { getValidToken } from '../utils/getValidToken'
 import { getValueFromError } from '../utils/getValueFromError'
-import { setItemInStorage } from '../utils/setItemInStorage'
+import { setItemInSessionStorage } from '../utils/setItemInSessionStorage'
 import { handleLoadSchedule } from './handleLoadSchedule'
 
 type handleGenerateGroupsProps = {
@@ -58,8 +58,8 @@ export const handleGenerateGroups = async ({
             setSchedule,
         })
 
-        setItemInStorage('grouppage', 1)
-        setItemInStorage('schedulepage', 1)
+        setItemInSessionStorage('grouppage', 1)
+        setItemInSessionStorage('schedulepage', 1)
     } catch (error: any) {
         setApiError(
             'An unexpected error occurred while starting the tournament.'

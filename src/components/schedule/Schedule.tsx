@@ -5,7 +5,8 @@ import ScheduleItem from './ScheduleItem'
 import { ContextSchedule } from '../../context/ContextSchedule'
 import { FetchLoading } from 'fetch-loading'
 import { getStoredData } from '../../utils/getStoredData'
-import { setItemInStorage } from '../../utils/setItemInStorage'
+import { getStoredSessionData } from '../../utils/getStoredSessionData'
+import { setItemInSessionStorage } from '../../utils/setItemInSessionStorage'
 import { handleLoadSchedule } from '../../api/handleLoadSchedule'
 import { useTeamsPerPage } from '../../hooks/useTeamsPerPage'
 
@@ -13,6 +14,7 @@ const Schedule = () => {
     const MAX_ITEMS_PER_PAGE = useTeamsPerPage()
 
     const parsedStorageData = getStoredData()
+    const parsedSessionData = getStoredSessionData()
 
     const contextSchedule = useContext(ContextSchedule)
     if (!contextSchedule) {
@@ -32,7 +34,7 @@ const Schedule = () => {
     const [apiError, setApiError] = useState<string>('')
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [page, setPage] = useState<number>(
-        parsedStorageData?.schedulepage || 1
+        parsedSessionData?.schedulepage || 1
     )
 
     useEffect(() => {
@@ -48,13 +50,13 @@ const Schedule = () => {
     const previousPage = () => {
         if (page > 1) {
             setPage((prev) => prev - 1)
-            setItemInStorage('schedulepage', page - 1)
+            setItemInSessionStorage('schedulepage', page - 1)
         }
     }
 
     const nextPage = () => {
         setPage((prev) => prev + 1)
-        setItemInStorage('schedulepage', page + 1)
+        setItemInSessionStorage('schedulepage', page + 1)
     }
 
     return (

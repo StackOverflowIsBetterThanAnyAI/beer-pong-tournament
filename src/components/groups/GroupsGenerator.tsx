@@ -12,12 +12,14 @@ import FormError from '../form/FormError'
 import FormHeader from '../form/FormHeader'
 import Groups from './Groups'
 import { getStoredData } from '../../utils/getStoredData'
+import { getStoredSessionData } from '../../utils/getStoredSessionData'
 import { handleGenerateGroups } from '../../api/handleGenerateGroups'
 import { handleLoadGroups } from '../../api/handleLoadGroups'
 import { useRegisteredTeams } from '../../hooks/useRegisteredTeams'
 
 export const GroupsGenerator = () => {
     const parsedStorageData = getStoredData()
+    const parsedSessionData = getStoredSessionData()
 
     const contextGroups = useContext(ContextGroups)
     if (!contextGroups) {
@@ -50,7 +52,7 @@ export const GroupsGenerator = () => {
         parsedStorageData?.refresh || ''
     )
 
-    const [page, setPage] = useState<number>(parsedStorageData?.grouppage || 1)
+    const [page, setPage] = useState<number>(parsedSessionData?.grouppage || 1)
 
     const [isStartDisabled, setIsStartDisabled] = useState<boolean>(true)
     const [isSubmitDisabled, setIsSubmitDisabled] = useState<boolean>(false)
