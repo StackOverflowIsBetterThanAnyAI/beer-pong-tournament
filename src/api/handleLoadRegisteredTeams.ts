@@ -5,7 +5,7 @@ import { getValidToken } from '../utils/getValidToken'
 import { getValueFromError } from '../utils/getValueFromError'
 import { setItemInStorage } from '../utils/setItemInStorage'
 
-type useRegisteredTeamsProps = {
+type handleLoadRegisteredTeamsProps = {
     accessToken: string
     refreshToken: string
     setApiError: (value: React.SetStateAction<string>) => void
@@ -15,13 +15,13 @@ type useRegisteredTeamsProps = {
     >
 }
 
-export const useRegisteredTeams = ({
+export const handleLoadRegisteredTeams = ({
     accessToken,
     refreshToken,
     setApiError,
     setIsLoading,
     setRegisteredTeams,
-}: useRegisteredTeamsProps) => {
+}: handleLoadRegisteredTeamsProps) => {
     useEffect(() => {
         const fetchRegisteredTeams = async () => {
             setIsLoading(true)

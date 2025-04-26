@@ -15,7 +15,7 @@ import { getStoredData } from '../../utils/getStoredData'
 import { getStoredSessionData } from '../../utils/getStoredSessionData'
 import { handleGenerateGroups } from '../../api/handleGenerateGroups'
 import { handleLoadGroups } from '../../api/handleLoadGroups'
-import { useRegisteredTeams } from '../../hooks/useRegisteredTeams'
+import { handleLoadRegisteredTeams } from '../../api/handleLoadRegisteredTeams'
 
 export const GroupsGenerator = () => {
     const parsedStorageData = getStoredData()
@@ -61,7 +61,7 @@ export const GroupsGenerator = () => {
     const [apiErrorLoad, setApiErrorLoad] = useState<string>('')
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
-    useRegisteredTeams({
+    handleLoadRegisteredTeams({
         accessToken,
         refreshToken,
         setApiError: setApiErrorLoad,

@@ -12,8 +12,8 @@ import { getStoredData } from '../../utils/getStoredData'
 import { getStoredSessionData } from '../../utils/getStoredSessionData'
 import { setItemInSessionStorage } from '../../utils/setItemInSessionStorage'
 import { handleDeleteTeam } from '../../api/handleDeleteTeam'
+import { handleLoadRegisteredTeams } from '../../api/handleLoadRegisteredTeams'
 import { useItemsPerPage } from '../../hooks/useItemsPerPage'
-import { useRegisteredTeams } from '../../hooks/useRegisteredTeams'
 
 export const Teams = () => {
     const parsedStorageData = getStoredData()
@@ -53,7 +53,7 @@ export const Teams = () => {
     const [page, setPage] = useState<number>(parsedSessionData?.teampage || 1)
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
-    useRegisteredTeams({
+    handleLoadRegisteredTeams({
         accessToken,
         refreshToken,
         setApiError: setApiErrorLoad,
