@@ -6,10 +6,10 @@ type FormSwitchProps = {
 const FormSwitch = ({ isSigningUp, handleClick }: FormSwitchProps) => {
     const loginStyle = isSigningUp
         ? 'bg-stone-500/40 hover:bg-stone-400/40 active:bg-red-200'
-        : 'bg-red-500'
+        : 'bg-red-500/80'
 
     const signupStyle = isSigningUp
-        ? 'bg-red-500'
+        ? 'bg-red-500/80'
         : 'bg-stone-500/40 hover:bg-stone-400/40 active:bg-red-200'
 
     return (
@@ -24,7 +24,6 @@ const FormSwitch = ({ isSigningUp, handleClick }: FormSwitchProps) => {
                 title={`Switch to ${
                     isSigningUp ? 'Login' : 'Signup'
                 }. Currently, ${isSigningUp ? 'Signup' : 'Login'} is selected.`}
-                role="switch"
             >
                 <div
                     className={`${loginStyle} w-16 md:w-20 rounded-l-lg transition duration-500 ease-in-out pl-4 pr-2 py-1`}
