@@ -15,7 +15,7 @@ const NavigationLogo = () => {
                 className="rounded-lg"
                 loading="lazy"
             />
-            <span className="max-[280px]:hidden text-normal">
+            <span className="max-[280px]:hidden text-large">
                 Beer Pong Tournament
             </span>
         </a>
