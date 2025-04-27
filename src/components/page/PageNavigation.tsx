@@ -1,6 +1,7 @@
 import {
     RegisteredTeamsProps,
     ScheduleProps,
+    StandingsProps,
     TournamentGroupsProps,
 } from './../../types/types'
 
@@ -11,8 +12,9 @@ type PageNavigationProps = {
     previousPage: () => void
     registeredTeams:
         | RegisteredTeamsProps
-        | TournamentGroupsProps
         | ScheduleProps
+        | StandingsProps
+        | TournamentGroupsProps
 }
 
 const PageNavigation = ({
