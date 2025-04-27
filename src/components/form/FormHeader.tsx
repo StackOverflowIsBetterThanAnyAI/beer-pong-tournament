@@ -1,5 +1,5 @@
 type FormHeaderProps = {
-    header: string
+    header?: string
     subHeader?: string
 }
 
@@ -26,9 +26,11 @@ const FormHeader = ({ header, subHeader }: FormHeaderProps) => {
 
     return (
         <>
-            <h1 className="text-center font-semibold text-extra-large pt-2">
-                {header}
-            </h1>
+            {header ? (
+                <h1 className="text-center font-semibold text-extra-large pt-2">
+                    {header}
+                </h1>
+            ) : null}
             {subHeaderElement}
         </>
     )
