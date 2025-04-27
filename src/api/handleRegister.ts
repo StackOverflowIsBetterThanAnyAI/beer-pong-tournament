@@ -49,7 +49,7 @@ export const handleRegister = async ({
             return
         }
 
-        const token = await response.json()
+        const token: { id: number; username: string } = await response.json()
 
         setLoggedInUser({
             user: token.username,

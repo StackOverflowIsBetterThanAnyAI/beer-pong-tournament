@@ -1,5 +1,6 @@
 import { SERVER_ADDRESS } from '../constants/constants'
 import {
+    RegisteredTeamProps,
     RegisteredTeamsProps,
     ScheduleProps,
     TournamentGroupsProps,
@@ -63,7 +64,7 @@ export const handleRegisterTeam = async ({
             return
         }
 
-        const result = await response.json()
+        const result: RegisteredTeamProps = await response.json()
         const updatedTeams = [
             ...registeredTeams,
             {

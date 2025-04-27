@@ -48,7 +48,7 @@ export const handleLoadStandings = async ({
             return
         }
 
-        const standings = await response.json()
+        const standings: StandingsProps = await response.json()
         setItemInStorage('standings', standings)
         setStandings(standings)
     } catch (error: any) {
