@@ -1,31 +1,29 @@
 import { SERVER_ADDRESS } from '../constants/constants'
+import { getValidToken } from '../utils/getValidToken'
 import { getValueFromError } from '../utils/getValueFromError'
 import { setItemInStorage } from '../utils/setItemInStorage'
-import { handleAdmin } from './handleAdmin'
 
-type handleLoginProps = {
+type handleAdminProps = {
     setApiError: (value: React.SetStateAction<string>) => void
     setIsLoggedIn: (value: React.SetStateAction<boolean | undefined>) => void
-    setSendingRequest: (value: React.SetStateAction<boolean>) => void
-    userData: {
-        username: string
-        password: string
-    }
+    token: { access: string; refresh: string }
 }
 
-export const handleLogin = async ({
+export const handleAdmin = async ({
     setApiError,
     setIsLoggedIn,
-    setSendingRequest,
-    userData,
-}: handleLoginProps) => {
+    token,
+}: handleAdminProps) => {
     try {
-        const response = await fetch(`${SERVER_ADDRESS}/api/v1/token/`, {
-            method: 'POST',
+        const response = await fetch(`${SERVER_ADDRESS}/api/v1/me/`, {
+            method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
+                Authorization: `Bearer ${await getValidToken(
+                    token.access,
+                    token.refresh
+                )}`,
             },
-            body: JSON.stringify(userData),
         })
 
         if (!response.ok) {
@@ -39,12 +37,14 @@ export const handleLogin = async ({
             return
         }
 
-        const token: { access: string; refresh: string } = await response.json()
+        const admin: { is_staff: boolean } = await response.json()
+        setItemInStorage('isadmin', admin.is_staff)
 
-        handleAdmin({ setApiError, setIsLoggedIn, token })
+        setIsLoggedIn(true)
+        setItemInStorage('isloggedin', true)
+        setItemInStorage('access', token.access)
+        setItemInStorage('refresh', token.refresh)
     } catch (error: any) {
         setApiError('An error occurred while trying to login.')
-    } finally {
-        setSendingRequest(false)
     }
 }
