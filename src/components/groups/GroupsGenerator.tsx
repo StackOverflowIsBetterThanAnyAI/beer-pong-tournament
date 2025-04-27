@@ -16,6 +16,7 @@ import { getStoredSessionData } from '../../utils/getStoredSessionData'
 import { handleGenerateGroups } from '../../api/handleGenerateGroups'
 import { handleLoadGroups } from '../../api/handleLoadGroups'
 import { handleLoadRegisteredTeams } from '../../api/handleLoadRegisteredTeams'
+import TeamsError from '../teams/TeamsError'
 
 export const GroupsGenerator = () => {
     const parsedStorageData = getStoredData()
@@ -123,7 +124,7 @@ export const GroupsGenerator = () => {
 
     return (
         <main className="w-full flex flex-col bg-stone-300 text-stone-950 sm:w-80 md:w-112 sm:rounded-lg p-3 sm:p-4 md:p-6 drop-shadow-stone-900 drop-shadow-sm">
-            <FormHeader header="Tournament" />
+            <FormHeader header="Groups" />
             {isLoading ? (
                 <div className="flex justify-center">
                     <FetchLoading theme="#44403c" />
@@ -139,20 +140,20 @@ export const GroupsGenerator = () => {
                 onClick={handleStartTournament}
                 aria-label={`${
                     isStartDisabled
-                        ? 'The amount of teams has to be divisible by 4, and must be at least 8.'
-                        : 'Generate Groups.'
+                        ? 'Start Disabled. The amount of teams has to be divisible by 4, and must be at least 8.'
+                        : 'Generate Groups and start Tournament.'
                 }`}
                 title={`${
                     isStartDisabled
                         ? 'The amount of teams has to be divisible by 4, and must be at least 8.'
-                        : 'Generate Groups.'
+                        : 'Generate Groups and start Tournament.'
                 }`}
                 disabled={isStartDisabled || isSubmitDisabled}
             >
                 {isSubmitDisabled ? (
                     <FetchLoading theme="#44403c" />
                 ) : (
-                    'Generate Groups'
+                    'Start Tournament'
                 )}
             </button>
             {apiErrorLoad ? (
@@ -170,7 +171,15 @@ export const GroupsGenerator = () => {
                         <Groups groups={groups} page={page} setPage={setPage} />
                     </div>
                 </>
-            ) : null}
+            ) : (
+                <div className="pt-2">
+                    {isStartDisabled ? (
+                        <TeamsError error="The amount of teams has to be divisible by 4, and must be at least 8." />
+                    ) : (
+                        <FormHeader subHeader="no content" />
+                    )}
+                </div>
+            )}
         </main>
     )
 }
