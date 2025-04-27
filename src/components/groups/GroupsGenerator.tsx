@@ -9,14 +9,15 @@ import {
     TEAMS_PER_GROUP,
 } from '../../constants/constants'
 import FormError from '../form/FormError'
+import FormErrorOpacity from '../form/FormErrorOpacity'
 import FormHeader from '../form/FormHeader'
 import Groups from './Groups'
+import TeamsError from '../teams/TeamsError'
 import { getStoredData } from '../../utils/getStoredData'
 import { getStoredSessionData } from '../../utils/getStoredSessionData'
 import { handleGenerateGroups } from '../../api/handleGenerateGroups'
 import { handleLoadGroups } from '../../api/handleLoadGroups'
 import { handleLoadRegisteredTeams } from '../../api/handleLoadRegisteredTeams'
-import TeamsError from '../teams/TeamsError'
 
 export const GroupsGenerator = () => {
     const parsedStorageData = getStoredData()
@@ -135,7 +136,7 @@ export const GroupsGenerator = () => {
                 </div>
             )}
             <button
-                className="text-normal outline outline-stone-500 disabled:outline-stone-400 disabled:bg-stone-400/20 h-7 w-fit m-auto px-8 py-0.5 mt-2 rounded-md
+                className="text-normal outline outline-stone-500 disabled:outline-stone-400 disabled:bg-stone-400/20 min-h-7 w-fit m-auto px-8 py-0.5 mt-2 rounded-md
                         not-[:disabled]:hover:bg-stone-400/40 not-[:disabled]:active:bg-stone-400/70"
                 onClick={handleStartTournament}
                 aria-label={`${
@@ -156,17 +157,17 @@ export const GroupsGenerator = () => {
                     'Start Tournament'
                 )}
             </button>
+            {apiErrorGenerate ? (
+                <div className="text-center pt-4">
+                    <FormErrorOpacity error={apiErrorGenerate} />
+                </div>
+            ) : null}
             {apiErrorLoad ? (
                 <div className="text-center pt-4">
                     <FormError error={apiErrorLoad} />
                 </div>
             ) : groups.length ? (
                 <>
-                    {apiErrorGenerate ? (
-                        <div className="text-center pt-4">
-                            <FormError error={apiErrorGenerate} />
-                        </div>
-                    ) : null}
                     <div className="w-full">
                         <Groups groups={groups} page={page} setPage={setPage} />
                     </div>
