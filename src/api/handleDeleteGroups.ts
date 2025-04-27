@@ -39,7 +39,7 @@ export const handleDeleteGroups = async ({
             const errorData = await response.json()
             setApiError(
                 getValueFromError(errorData) ||
-                    'An unexpected error occurred while deleting the current groups.'
+                    'An error occurred while deleting the current groups.'
             )
             return
         }
@@ -52,8 +52,6 @@ export const handleDeleteGroups = async ({
         setItemInSessionStorage('schedulepage', 1)
         setSchedule([])
     } catch (error: any) {
-        setApiError(
-            'An unexpected error occurred while deleting the current groups.'
-        )
+        setApiError('An error occurred while deleting the current groups.')
     }
 }

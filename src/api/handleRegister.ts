@@ -63,7 +63,7 @@ export const handleRegister = async ({
             userData,
         })
     } catch (error: any) {
-        setApiError('An unexpected error occurred while trying to signup.')
+        setApiError('An error occurred while trying to signup.')
     } finally {
         setSendingRequest(false)
         setSubmitDisabled(false)

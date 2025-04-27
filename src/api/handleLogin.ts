@@ -44,7 +44,7 @@ export const handleLogin = async ({
         setItemInStorage('access', token.access)
         setItemInStorage('refresh', token.refresh)
     } catch (error: any) {
-        setApiError('An unexpected error occurred while trying to login.')
+        setApiError('An error occurred while trying to login.')
     } finally {
         setSendingRequest(false)
     }

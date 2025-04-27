@@ -43,7 +43,7 @@ export const handleGenerateGroups = async ({
             const errorData = await response.json()
             setApiError(
                 getValueFromError(errorData) ||
-                    'An unexpected error occurred while starting the tournament.'
+                    'An error occurred while starting the tournament.'
             )
             return
         }
@@ -61,9 +61,7 @@ export const handleGenerateGroups = async ({
         setItemInSessionStorage('grouppage', 1)
         setItemInSessionStorage('schedulepage', 1)
     } catch (error: any) {
-        setApiError(
-            'An unexpected error occurred while starting the tournament.'
-        )
+        setApiError('An error occurred while starting the tournament.')
     } finally {
         setIsSubmitDisabled(false)
     }

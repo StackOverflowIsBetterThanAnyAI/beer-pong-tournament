@@ -57,7 +57,7 @@ export const handleRegisterTeam = async ({
             const errorData = await response.json()
             setApiError(
                 getValueFromError(errorData) ||
-                    'An unexpected error occurred while adding your team.'
+                    'An error occurred while adding your team.'
             )
             return
         }
@@ -85,7 +85,7 @@ export const handleRegisterTeam = async ({
 
         setSubmitDisabled(true)
     } catch (error: any) {
-        setApiError('An unexpected error occurred while adding your team.')
+        setApiError('An error occurred while adding your team.')
         setSubmitDisabled(false)
         setTimeout(() => setApiError(''), 4000)
     } finally {

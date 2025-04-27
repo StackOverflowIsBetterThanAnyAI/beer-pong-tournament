@@ -38,7 +38,7 @@ export const handleLoadSchedule = async ({
             const errorData = await response.json()
             setApiError(
                 getValueFromError(errorData) ||
-                    'An unexpected error occurred while loading the schedule.'
+                    'An error occurred while loading the schedule.'
             )
             return
         }
@@ -47,7 +47,7 @@ export const handleLoadSchedule = async ({
         setSchedule(schedule)
         setItemInStorage('schedule', schedule)
     } catch (error: any) {
-        setApiError('An unexpected error occurred while loading the schedule.')
+        setApiError('An error occurred while loading the schedule.')
     } finally {
         setIsLoading(false)
     }

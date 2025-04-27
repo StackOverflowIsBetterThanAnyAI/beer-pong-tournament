@@ -58,7 +58,7 @@ export const handleDeleteTeam = async ({
             const errorData = await response.json()
             setApiError(
                 getValueFromError(errorData) ||
-                    'An unexpected error occurred while deleting a team.'
+                    'An error occurred while deleting a team.'
             )
             return
         }
@@ -83,7 +83,7 @@ export const handleDeleteTeam = async ({
             setSchedule,
         })
     } catch (error: any) {
-        setApiError('An unexpected error occurred while deleting a team.')
+        setApiError('An error occurred while deleting a team.')
         setTimeout(() => setApiError(''), 4000)
     }
 }

@@ -35,7 +35,7 @@ export const handleLoadGroups = async ({
             const errorData = await response.json()
             setApiError(
                 getValueFromError(errorData) ||
-                    'An unexpected error occurred while loading the groups.'
+                    'An error occurred while loading the groups.'
             )
             return
         }
@@ -44,6 +44,6 @@ export const handleLoadGroups = async ({
         setGroups(groups)
         setItemInStorage('groups', groups)
     } catch (error: any) {
-        setApiError('An unexpected error occurred while loading the groups.')
+        setApiError('An error occurred while loading the groups.')
     }
 }
