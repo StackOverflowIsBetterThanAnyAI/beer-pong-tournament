@@ -1,18 +1,19 @@
 import { useContext, useEffect, useState } from 'react'
 import { FetchLoading } from 'fetch-loading'
-import { ContextGroups } from '../../context/ContextGroups'
-import { ContextRegisteredTeams } from '../../context/ContextRegisteredTeams'
-import { ContextSchedule } from '../../context/ContextSchedule'
-import {
-    MAX_TEAMS,
-    MIN_TEAMS,
-    TEAMS_PER_GROUP,
-} from '../../constants/constants'
 import FormError from '../form/FormError'
 import FormErrorOpacity from '../form/FormErrorOpacity'
 import FormHeader from '../form/FormHeader'
 import Groups from './Groups'
 import TeamsError from '../teams/TeamsError'
+import {
+    MAX_TEAMS,
+    MIN_TEAMS,
+    TEAMS_PER_GROUP,
+} from '../../constants/constants'
+import { ContextAdmin } from '../../context/ContextAdmin'
+import { ContextGroups } from '../../context/ContextGroups'
+import { ContextRegisteredTeams } from '../../context/ContextRegisteredTeams'
+import { ContextSchedule } from '../../context/ContextSchedule'
 import { getStoredData } from '../../utils/getStoredData'
 import { getStoredSessionData } from '../../utils/getStoredSessionData'
 import { handleGenerateGroups } from '../../api/handleGenerateGroups'
@@ -22,6 +23,14 @@ import { handleLoadRegisteredTeams } from '../../api/handleLoadRegisteredTeams'
 export const GroupsGenerator = () => {
     const parsedStorageData = getStoredData()
     const parsedSessionData = getStoredSessionData()
+
+    const contextAdmin = useContext(ContextAdmin)
+    if (!contextAdmin) {
+        throw new Error(
+            'GroupsGenerator must be used within a ContextAdmin.Provider'
+        )
+    }
+    const [isAdmin, _setIsAdmin] = contextAdmin
 
     const contextGroups = useContext(ContextGroups)
     if (!contextGroups) {
@@ -135,28 +144,30 @@ export const GroupsGenerator = () => {
                     {registeredTeams.length} / {MAX_TEAMS} Teams
                 </div>
             )}
-            <button
-                className="text-normal outline outline-stone-500 disabled:outline-stone-400 disabled:bg-stone-400/20 min-h-7 w-fit m-auto px-8 py-0.5 mt-2 rounded-md
+            {isAdmin ? (
+                <button
+                    className="text-normal outline outline-stone-500 disabled:outline-stone-400 disabled:bg-stone-400/20 min-h-7 w-fit m-auto px-8 py-0.5 mt-2 rounded-md
                         not-[:disabled]:hover:bg-stone-400/40 not-[:disabled]:active:bg-stone-400/70"
-                onClick={handleStartTournament}
-                aria-label={`${
-                    isStartDisabled
-                        ? 'Start Disabled. The amount of teams has to be divisible by 4, and must be at least 8.'
-                        : 'Generate Groups and start Tournament.'
-                }`}
-                title={`${
-                    isStartDisabled
-                        ? 'The amount of teams has to be divisible by 4, and must be at least 8.'
-                        : 'Generate Groups and start Tournament.'
-                }`}
-                disabled={isStartDisabled || isSubmitDisabled}
-            >
-                {isSubmitDisabled ? (
-                    <FetchLoading theme="#44403c" />
-                ) : (
-                    'Start Tournament'
-                )}
-            </button>
+                    onClick={handleStartTournament}
+                    aria-label={`${
+                        isStartDisabled
+                            ? 'Start Disabled. The amount of teams has to be divisible by 4, and must be at least 8.'
+                            : 'Generate Groups and start Tournament.'
+                    }`}
+                    title={`${
+                        isStartDisabled
+                            ? 'The amount of teams has to be divisible by 4, and must be at least 8.'
+                            : 'Generate Groups and start Tournament.'
+                    }`}
+                    disabled={isStartDisabled || isSubmitDisabled}
+                >
+                    {isSubmitDisabled ? (
+                        <FetchLoading theme="#44403c" />
+                    ) : (
+                        'Start Tournament'
+                    )}
+                </button>
+            ) : null}
             {apiErrorGenerate ? (
                 <div className="text-center pt-4">
                     <FormErrorOpacity error={apiErrorGenerate} />
@@ -174,7 +185,9 @@ export const GroupsGenerator = () => {
                 </>
             ) : (
                 <div className="pt-2">
-                    {isStartDisabled ? (
+                    {!isAdmin ? (
+                        <FormHeader subHeader="no content" />
+                    ) : isStartDisabled ? (
                         <TeamsError error="The amount of teams has to be divisible by 4, and must be at least 8." />
                     ) : (
                         <FormHeader subHeader="no content" />
