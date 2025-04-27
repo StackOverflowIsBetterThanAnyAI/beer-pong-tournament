@@ -3,6 +3,7 @@ import { GameProps } from '../../types/types'
 import FormError from '../form/FormError'
 import FormErrorOpacity from '../form/FormErrorOpacity'
 import ScheduleItemButton from './ScheduleItemButton'
+import { ContextAdmin } from '../../context/ContextAdmin'
 import { ContextSchedule } from '../../context/ContextSchedule'
 import { getStoredData } from '../../utils/getStoredData'
 import { handleUpdateScore } from '../../api/handleUpdateScore'
@@ -14,6 +15,14 @@ type ScheduleItemScoreProps = {
 
 export const ScheduleItemScore = ({ i, x }: ScheduleItemScoreProps) => {
     const parsedStorageData = getStoredData()
+
+    const contextAdmin = useContext(ContextAdmin)
+    if (!contextAdmin) {
+        throw new Error(
+            'ScheduleItemScore must be used within a ContextAdmin.Provider'
+        )
+    }
+    const [isAdmin, _setIsAdmin] = contextAdmin
 
     const contextSchedule = useContext(ContextSchedule)
     if (!contextSchedule) {
@@ -91,8 +100,11 @@ export const ScheduleItemScore = ({ i, x }: ScheduleItemScoreProps) => {
         }
     }
 
-    const marginBottom =
-        apiError || inputErrorTeam1 || inputErrorTeam2 ? 'mb-1' : 'mb-5 md:mb-6'
+    const marginBottom = !isAdmin
+        ? 'mb-1'
+        : apiError || inputErrorTeam1 || inputErrorTeam2
+        ? 'mb-1'
+        : 'mb-5 md:mb-6'
 
     return (
         <>
@@ -105,7 +117,7 @@ export const ScheduleItemScore = ({ i, x }: ScheduleItemScoreProps) => {
                     </label>
                 )}
                 <span className="m-1">
-                    {i.score_team1 ?? (
+                    {i.score_team1 ?? isAdmin ? (
                         <input
                             id={`input${i.team1}vs${i.team2}`}
                             inputMode="numeric"
@@ -129,6 +141,8 @@ export const ScheduleItemScore = ({ i, x }: ScheduleItemScoreProps) => {
                                     : 'bg-stone-400/70 !outline-stone-500'
                             } w-16 pl-1 rounded-sm`}
                         />
+                    ) : (
+                        '-'
                     )}
                 </span>
             </div>
@@ -148,7 +162,7 @@ export const ScheduleItemScore = ({ i, x }: ScheduleItemScoreProps) => {
                     </label>
                 )}
                 <span className="m-1">
-                    {i.score_team2 ?? (
+                    {i.score_team2 ?? isAdmin ? (
                         <input
                             id={`input${i.team2}vs${i.team1}`}
                             inputMode="numeric"
@@ -172,6 +186,8 @@ export const ScheduleItemScore = ({ i, x }: ScheduleItemScoreProps) => {
                                     : 'bg-stone-400/70 !outline-stone-500'
                             } w-16 pl-1 rounded-sm`}
                         />
+                    ) : (
+                        '-'
                     )}
                 </span>
             </div>
@@ -179,15 +195,17 @@ export const ScheduleItemScore = ({ i, x }: ScheduleItemScoreProps) => {
                 <FormError error={inputErrorTeam1 || inputErrorTeam2} />
             ) : null}
             {apiError ? <FormErrorOpacity error={apiError} /> : null}
-            <ScheduleItemButton
-                disabled={disabled}
-                handleClick={handleClick}
-                i={i}
-                isLoading={isLoading}
-                scoreTeam1={scoreTeam1}
-                scoreTeam2={scoreTeam2}
-                x={x}
-            />
+            {isAdmin ? (
+                <ScheduleItemButton
+                    disabled={disabled}
+                    handleClick={handleClick}
+                    i={i}
+                    isLoading={isLoading}
+                    scoreTeam1={scoreTeam1}
+                    scoreTeam2={scoreTeam2}
+                    x={x}
+                />
+            ) : null}
         </>
     )
 }
