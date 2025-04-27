@@ -14,6 +14,13 @@ export const MATCHES_PER_GROUP = 6
 
 export const TEAMS_PER_GROUP = 4
 
-export const ROUTES = ['home', 'register team', 'teams', 'groups', 'schedule']
+export const ROUTES = [
+    'home',
+    'register team',
+    'teams',
+    'groups',
+    'schedule',
+    'standings',
+]
 
 export const SERVER_ADDRESS = 'http://localhost:8000'
