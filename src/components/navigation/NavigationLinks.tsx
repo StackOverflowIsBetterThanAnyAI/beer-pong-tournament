@@ -18,19 +18,19 @@ const NavigationLinks = () => {
 
     const [isNavigationExpanded, setIsNavigationExpanded] = useState<
         boolean | undefined
-    >(parsedStorageData?.navigationexpanded ?? undefined)
+    >(parsedStorageData?.isnavigationexpanded ?? undefined)
 
     useEffect(() => {
         if (isLoggedIn === true && isNavigationExpanded === undefined) {
             setIsNavigationExpanded(true)
-            setItemInStorage('navigationexpanded', true)
+            setItemInStorage('isnavigationexpanded', true)
         }
     }, [isLoggedIn])
 
     const handleClick = () => {
         const navigationExpanded = !isNavigationExpanded
         setIsNavigationExpanded(navigationExpanded)
-        setItemInStorage('navigationexpanded', navigationExpanded)
+        setItemInStorage('isnavigationexpanded', navigationExpanded)
     }
 
     const routes = ROUTES.filter((item: string) => item !== 'home').map((i) => {
