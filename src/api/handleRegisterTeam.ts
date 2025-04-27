@@ -59,6 +59,7 @@ export const handleRegisterTeam = async ({
                 getValueFromError(errorData) ||
                     'An error occurred while adding your team.'
             )
+            setTimeout(() => setApiError(''), 4000)
             return
         }
 

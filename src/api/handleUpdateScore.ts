@@ -53,6 +53,7 @@ export const handleUpdateScore = async ({
                 getValueFromError(errorData) ||
                     'An error occurred while updating the Score.'
             )
+            setTimeout(() => setApiError(''), 4000)
             return
         }
 

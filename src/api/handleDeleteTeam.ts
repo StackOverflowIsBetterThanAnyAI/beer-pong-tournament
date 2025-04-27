@@ -60,6 +60,7 @@ export const handleDeleteTeam = async ({
                 getValueFromError(errorData) ||
                     'An error occurred while deleting a team.'
             )
+            setTimeout(() => setApiError(''), 4000)
             return
         }
         const updatedTeams = registeredTeams.filter(
