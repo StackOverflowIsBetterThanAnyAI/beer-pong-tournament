@@ -24,6 +24,18 @@ export type GameProps = {
 
 export type ScheduleProps = GameProps[]
 
+export type StandingsProps = {
+    group: string
+    standings: {
+        team: string
+        cup_difference: string
+        cups_conceded: number
+        cups_scored: number
+        played: number
+        points: number
+    }[]
+}[]
+
 export type TournamentGroupsProps = {
     id: number
     name: string
