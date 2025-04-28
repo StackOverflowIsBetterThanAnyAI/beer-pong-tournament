@@ -152,17 +152,23 @@ export const GroupsGenerator = () => {
                     aria-label={`${
                         isStartDisabled
                             ? 'Start Disabled. The amount of teams has to be divisible by 4, and must be at least 8.'
+                            : groups.length
+                            ? 'Regenerate Groups and restart Tournament. All Process will be lost.'
                             : 'Generate Groups and start Tournament.'
                     }`}
                     title={`${
                         isStartDisabled
                             ? 'The amount of teams has to be divisible by 4, and must be at least 8.'
+                            : groups.length
+                            ? 'Regenerate Groups and restart Tournament. All Process will be lost.'
                             : 'Generate Groups and start Tournament.'
                     }`}
                     disabled={isStartDisabled || isSubmitDisabled}
                 >
                     {isSubmitDisabled ? (
                         <FetchLoading theme="#44403c" />
+                    ) : groups.length ? (
+                        'Restart Tournament'
                     ) : (
                         'Start Tournament'
                     )}
