@@ -95,7 +95,7 @@ const App = () => {
                                                     }
                                                 />
                                                 <Route
-                                                    path="/register"
+                                                    path="/register-team"
                                                     element={
                                                         isLoggedIn ? (
                                                             <RegisterTeam />
@@ -129,16 +129,6 @@ const App = () => {
                                                     element={
                                                         isLoggedIn ? (
                                                             <Teams />
-                                                        ) : (
-                                                            <FourOhFour />
-                                                        )
-                                                    }
-                                                />
-                                                <Route
-                                                    path="/register"
-                                                    element={
-                                                        isLoggedIn ? (
-                                                            <RegisterTeam />
                                                         ) : (
                                                             <FourOhFour />
                                                         )
