@@ -3,11 +3,12 @@ import { RegisteredTeamProps } from '../../types/types'
 import { ContextAdmin } from '../../context/ContextAdmin'
 
 type TeamProps = {
+    index: number
     item: RegisteredTeamProps
     handleDelete: (item: RegisteredTeamProps) => Promise<void>
 }
 
-const Team = ({ item, handleDelete }: TeamProps) => {
+const Team = ({ index, item, handleDelete }: TeamProps) => {
     const contextAdmin = useContext(ContextAdmin)
     if (!contextAdmin) {
         throw new Error('Teams must be used within a ContextAdmin.Provider')
@@ -17,7 +18,9 @@ const Team = ({ item, handleDelete }: TeamProps) => {
     return (
         <li
             key={item.name}
-            className="flex flex-col max-w-80 bg-stone-400 my-4 px-4 py-2 m-auto rounded-sm outline-2 outline-zinc-200"
+            className={`flex flex-col w-full max-w-80 px-4 py-2 m-auto rounded-sm ${
+                index % 2 ? 'bg-red-100' : 'bg-stone-200'
+            }`}
             role="menuitem"
         >
             <div className="text-large font-bold underline text-ellipsis overflow-hidden">

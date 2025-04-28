@@ -91,8 +91,15 @@ export const Teams = () => {
         setItemInSessionStorage('teampage', page + 1)
     }
 
-    const teams = registeredTeams.map((item) => {
-        return <Team handleDelete={handleDelete} item={item} key={item.id} />
+    const teams = registeredTeams.map((item, index) => {
+        return (
+            <Team
+                handleDelete={handleDelete}
+                index={index}
+                item={item}
+                key={item.id}
+            />
+        )
     })
 
     let content
@@ -111,7 +118,10 @@ export const Teams = () => {
                 <h2 className="text-center text-large px-1">
                     Currently registered Teams:
                 </h2>
-                <ul role="menu">
+                <ul
+                    className="flex flex-col gap-2 w-full max-w-80 bg-stone-400 drop-shadow-stone-600/60 drop-shadow-md my-4 p-2 m-auto rounded-sm"
+                    role="menu"
+                >
                     {teams.filter((item, index) => {
                         if (
                             index >= (page - 1) * MAX_ITEMS_PER_PAGE &&
