@@ -7,7 +7,7 @@ const FourOhFour = () => {
             </h2>
             <a
                 href="/"
-                className="mt-2 px-4 py-2 rounded-lg bg-stone-400 hover:bg-stone-500 active:bg-stone-600"
+                className="mt-2 px-4 py-2 rounded-lg bg-stone-400 hover:bg-stone-500/60 active:bg-stone-500"
                 aria-label="Back to the Homepage."
             >
                 Homepage
