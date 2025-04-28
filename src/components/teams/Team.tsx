@@ -18,7 +18,7 @@ const Team = ({ index, item, handleDelete }: TeamProps) => {
     return (
         <li
             key={item.name}
-            className={`flex flex-col w-full max-w-80 px-4 py-2 m-auto rounded-sm ${
+            className={`flex flex-col w-full max-w-80 p-2 m-auto rounded-sm ${
                 index % 2 ? 'bg-red-100' : 'bg-stone-200'
             }`}
             role="menuitem"
