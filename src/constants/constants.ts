@@ -16,11 +16,12 @@ export const TEAMS_PER_GROUP = 4
 
 export const ROUTES = [
     'home',
-    'register team',
+    'register-team',
     'teams',
     'groups',
     'schedule',
     'standings',
+    'knockout-stage',
 ]
 
 export const SERVER_ADDRESS = 'http://localhost:8000'
