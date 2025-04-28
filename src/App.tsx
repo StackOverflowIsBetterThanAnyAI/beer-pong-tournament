@@ -23,6 +23,7 @@ import {
     TournamentGroupsProps,
 } from './types/types'
 import { getStoredData } from './utils/getStoredData'
+import { useDocumentTitle } from './hooks/useDocumentTitle'
 import { useFocusTrap } from './hooks/useFocusTrap'
 
 const App = () => {
@@ -52,6 +53,7 @@ const App = () => {
         parsedStorageData?.standings || []
     )
 
+    useDocumentTitle()
     useFocusTrap()
 
     return (
