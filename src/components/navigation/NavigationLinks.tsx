@@ -41,7 +41,7 @@ const NavigationLinks = () => {
                 className="underline rounded-md text-normal px-2 py-0.5 focus-visible:bg-stone-100/50 hover:bg-red-300/50 active:bg-red-300"
             >
                 {i
-                    .split(' ')
+                    .split('-')
                     .map(
                         (x) =>
                             x.substring(0, 1).toUpperCase() +
