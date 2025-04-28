@@ -17,7 +17,7 @@ const Team = ({ item, handleDelete }: TeamProps) => {
     return (
         <li
             key={item.name}
-            className="flex flex-col max-w-80 bg-stone-400 drop-shadow-stone-600/60 drop-shadow-md my-4 px-4 py-2 m-auto rounded-sm"
+            className="flex flex-col max-w-80 bg-stone-400 my-4 px-4 py-2 m-auto rounded-sm outline-2 outline-zinc-200"
             role="menuitem"
         >
             <div className="text-large font-bold underline text-ellipsis overflow-hidden">
