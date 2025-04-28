@@ -32,8 +32,8 @@ const Team = ({ index, item, handleDelete }: TeamProps) => {
             </div>
             {isAdmin ? (
                 <button
-                    className="text-normal bg-stone-300 outline outline-red-500 mt-2 py-0.5 rounded-md
-                hover:bg-stone-300/60 active:bg-stone-300/30 focus-visible:bg-stone-100"
+                    className="text-normal bg-stone-100 outline outline-red-500 mt-2 py-0.5 rounded-md
+                hover:bg-red-100 active:bg-red-200 focus-visible:bg-stone-50"
                     onClick={() => handleDelete(item)}
                     aria-label="Delete Team"
                     title="Delete Team"
