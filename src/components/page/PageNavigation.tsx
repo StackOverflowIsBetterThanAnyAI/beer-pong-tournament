@@ -29,11 +29,19 @@ const PageNavigation = ({
             <button
                 className="text-normal outline outline-stone-500 disabled:outline-stone-400 disabled:bg-stone-400/20 px-2 py-0.5 rounded-md
                 hover:bg-stone-400/40 active:bg-stone-400/70"
-                aria-label="Go to the previous page."
+                aria-label={`${
+                    page <= 1
+                        ? 'You are already at the first page.'
+                        : 'Go to the previous page'
+                }`}
                 onClick={previousPage}
                 aria-disabled={page <= 1}
                 disabled={page <= 1}
-                title="Previous Page."
+                title={`${
+                    page <= 1
+                        ? 'You are already at the first page.'
+                        : 'Go to previous page'
+                }`}
             >
                 Previous
             </button>
@@ -41,13 +49,21 @@ const PageNavigation = ({
             <button
                 className="text-normal outline outline-stone-500 disabled:outline-stone-400 disabled:bg-stone-400/20 px-2 py-0.5 rounded-md
                 hover:bg-stone-400/40 active:bg-stone-400/70"
-                aria-label="Go to the next page."
+                aria-label={`${
+                    page >= registeredTeams.length / MAX_ITEMS_PER_PAGE
+                        ? 'You are already at the last page.'
+                        : 'Go to the next page'
+                }`}
                 onClick={nextPage}
                 aria-disabled={
                     page >= registeredTeams.length / MAX_ITEMS_PER_PAGE
                 }
                 disabled={page >= registeredTeams.length / MAX_ITEMS_PER_PAGE}
-                title="Next Page."
+                title={`${
+                    page >= registeredTeams.length / MAX_ITEMS_PER_PAGE
+                        ? 'You are already at the last page.'
+                        : 'Go to next page'
+                }`}
             >
                 Next
             </button>

@@ -34,20 +34,24 @@ const NavigationLinks = () => {
     }
 
     const routes = ROUTES.filter((item: string) => item !== 'home').map((i) => {
+        const formattedRoute = i
+            .split('-')
+            .map(
+                (x) =>
+                    x.substring(0, 1).toUpperCase() +
+                    x.substring(1).toLowerCase()
+            )
+            .join(' ')
+
         return (
             <a
                 key={i}
                 href={getValidHref(i)}
                 className="underline rounded-md text-normal px-2 py-0.5 focus-visible:bg-stone-100/50 hover:bg-red-300/50 active:bg-red-300"
+                aria-label={formattedRoute}
+                title={formattedRoute}
             >
-                {i
-                    .split('-')
-                    .map(
-                        (x) =>
-                            x.substring(0, 1).toUpperCase() +
-                            x.substring(1).toLowerCase()
-                    )
-                    .join(' ')}
+                {formattedRoute}
             </a>
         )
     })
@@ -67,8 +71,10 @@ const NavigationLinks = () => {
                     }`}
                 aria-label={`${
                     isNavigationExpanded ? 'Close' : 'Open'
-                } Navigation`}
-                title={`${isNavigationExpanded ? 'Close' : 'Open'} Navigation`}
+                } Navigation Menu`}
+                title={`${
+                    isNavigationExpanded ? 'Close' : 'Open'
+                } Navigation Menu`}
             >
                 {isNavigationExpanded ? 'Close' : 'Open'} Navigation
             </button>

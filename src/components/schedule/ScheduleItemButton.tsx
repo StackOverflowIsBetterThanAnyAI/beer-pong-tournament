@@ -29,10 +29,18 @@ const ScheduleItemButton = ({
                     : 'outline-stone-500 not-[:disabled]:hover:bg-stone-200/80 active:bg-stone-300 disabled:bg-stone-50/20'
             }`}
             aria-label={
-                i.played ? 'Match Over. Score has been saved.' : 'Save Score.'
+                i.played
+                    ? 'Match Over. Score has been saved.'
+                    : disabled
+                    ? 'Enter a valid Score.'
+                    : 'Save Score.'
             }
             title={
-                i.played ? 'Match Over. Score has been saved.' : 'Save Score.'
+                i.played
+                    ? 'Match Over. Score has been saved.'
+                    : disabled
+                    ? 'Enter a valid Score.'
+                    : 'Save Score.'
             }
             onClick={() => handleClick(i.id, scoreTeam1!, scoreTeam2!)}
             aria-disabled={disabled}
