@@ -43,7 +43,9 @@ const NavigationLinks = () => {
                 {i
                     .split(' ')
                     .map(
-                        (x) => x.substring(0, 1).toUpperCase() + x.substring(1)
+                        (x) =>
+                            x.substring(0, 1).toUpperCase() +
+                            x.substring(1).toLowerCase()
                     )
                     .join(' ')}
             </a>
