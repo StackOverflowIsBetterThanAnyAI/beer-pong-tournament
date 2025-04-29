@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 type SuccessProps = { label: string }
 
-const Taost = ({ label }: SuccessProps) => {
+const Toast = ({ label }: SuccessProps) => {
     const [isTriggered, setIsTriggered] = useState<boolean>(true)
 
     const opacity = isTriggered ? 'opacity-90' : 'opacity-0'
@@ -23,4 +23,4 @@ const Taost = ({ label }: SuccessProps) => {
     )
 }
 
-export default Taost
+export default Toast
