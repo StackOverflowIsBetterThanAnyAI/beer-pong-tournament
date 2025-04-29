@@ -1,14 +1,17 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import { ROUTES } from '../../constants/constants'
 import { getValidHref } from '../../utils/getValidHref'
 import { getValidPathname } from '../../utils/getValidPathname'
-import { ROUTES } from '../../constants/constants'
 
 const Breadcrumbs = () => {
     const pathname = getValidPathname()
 
+    const navigate = useNavigate()
+
     const handleKeyDownHome = (e: React.KeyboardEvent<HTMLAnchorElement>) => {
         if (e.key === ' ') {
-            window.location.href = '/'
+            navigate('/')
         }
     }
 
@@ -52,6 +55,7 @@ const Breadcrumbs = () => {
                                 e: React.KeyboardEvent<HTMLAnchorElement>
                             ) => {
                                 if (e.key === ' ') {
+                                    e.preventDefault()
                                     window.location.href = route
                                 }
                             }
