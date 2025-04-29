@@ -22,7 +22,6 @@ type handleRegisterTeamProps = {
     setApiError: (value: React.SetStateAction<string>) => void
     setGroups: (value: React.SetStateAction<TournamentGroupsProps>) => void
     setIsSuccess: (value: React.SetStateAction<boolean>) => void
-    setIsTriggered: (value: React.SetStateAction<boolean>) => void
     setRegisteredTeams: (
         value: React.SetStateAction<RegisteredTeamsProps>
     ) => void
@@ -39,14 +38,12 @@ export const handleRegisterTeam = async ({
     setApiError,
     setGroups,
     setIsSuccess,
-    setIsTriggered,
     setRegisteredTeams,
     setSchedule,
     setSendingRequest,
     setSubmitDisabled,
 }: handleRegisterTeamProps) => {
     setIsSuccess(false)
-    setIsTriggered(false)
 
     try {
         const response = await fetch(`${SERVER_ADDRESS}/api/v1/teams/`, {
@@ -94,9 +91,7 @@ export const handleRegisterTeam = async ({
 
         setSubmitDisabled(true)
         setIsSuccess(true)
-        setIsTriggered(true)
         setTimeout(() => setIsSuccess(false), 3750)
-        setTimeout(() => setIsTriggered(false), 3000)
     } catch (error: any) {
         setApiError('An error occurred while adding your team.')
         setSubmitDisabled(false)

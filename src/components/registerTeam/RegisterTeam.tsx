@@ -4,7 +4,7 @@ import FormErrorOpacity from '../form/FormErrorOpacity'
 import FormHeader from './../form/FormHeader'
 import FormInput from './../form/FormInput'
 import FormSubmit from './../form/FormSubmit'
-import Success from '../success/Success'
+import Toast from './../toast/Toast'
 import { ContextGroups } from '../../context/ContextGroups'
 import { ContextRegisteredTeams } from '../../context/ContextRegisteredTeams'
 import { ContextSchedule } from '../../context/ContextSchedule'
@@ -61,7 +61,6 @@ const RegisterTeam = () => {
 
     const [apiError, setApiError] = useState<string>('')
     const [isSuccess, setIsSuccess] = useState<boolean>(false)
-    const [isTriggered, setIsTriggered] = useState<boolean>(false)
     const [sendingRequest, setSendingRequest] = useState<boolean>(false)
     const [submitDisabled, setSubmitDisabled] = useState<boolean>(true)
 
@@ -156,7 +155,6 @@ const RegisterTeam = () => {
             setApiError,
             setGroups,
             setIsSuccess,
-            setIsTriggered,
             setRegisteredTeams,
             setSchedule,
             setSendingRequest,
@@ -241,7 +239,7 @@ const RegisterTeam = () => {
                     />
                 </form>
             </main>
-            {isSuccess ? <Success triggered={isTriggered} /> : null}
+            {isSuccess ? <Toast label="Successfully registered Team!" /> : null}
         </>
     )
 }
