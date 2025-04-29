@@ -15,7 +15,7 @@ const Navigation = () => {
     const [isLoggedIn, setIsLoggedIn] = contextIsLoggedIn
 
     const handleLogout = () => {
-        setIsLoggedIn(setLogout())
+        setIsLoggedIn(setLogout({ sessionExpired: false }))
     }
 
     return (
