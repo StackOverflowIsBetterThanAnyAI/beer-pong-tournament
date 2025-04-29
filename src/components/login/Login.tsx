@@ -5,10 +5,7 @@ import FormInput from './../form/FormInput'
 import FormInputPassword from './../form/FormInputPassword'
 import FormSubmit from './../form/FormSubmit'
 import FormSwitch from './../form/FormSwitch'
-import {
-    ContextIsLoggedIn,
-    ContextLoggedInUser,
-} from '../../context/ContextLogin'
+import { ContextIsLoggedIn } from '../../context/ContextLogin'
 import { ContextPasswordVisibility } from '../../context/ContextPasswordVisibility'
 import { getStoredData } from '../../utils/getStoredData'
 import { handleLogin } from '../../api/handleLogin'
@@ -30,14 +27,6 @@ const Login = () => {
         )
     }
     const [_isLoggedIn, setIsLoggedIn] = contextIsLoggedIn
-
-    const contextLoggedInUser = useContext(ContextLoggedInUser)
-    if (!contextLoggedInUser) {
-        throw new Error(
-            'Login must be used within a ContextLoggedInUser.Provider'
-        )
-    }
-    const [_loggedInUser, setLoggedInUser] = contextLoggedInUser
 
     const parsedStorageData = getStoredData()
 
@@ -150,7 +139,6 @@ const Login = () => {
             handleRegister({
                 setApiError,
                 setIsLoggedIn,
-                setLoggedInUser,
                 setSendingRequest,
                 setSubmitDisabled,
                 userData,

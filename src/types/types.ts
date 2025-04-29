@@ -1,8 +1,3 @@
-export type LoggedInUserProps = {
-    user: string
-    token: string
-}
-
 export type RegisteredTeamProps = {
     id: number
     name: string

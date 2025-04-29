@@ -1,5 +1,4 @@
 import { SERVER_ADDRESS } from '../constants/constants'
-import { LoggedInUserProps } from '../types/types'
 import { getValueFromError } from '../utils/getValueFromError'
 import { handleLogin } from './handleLogin'
 import { setItemInStorage } from '../utils/setItemInStorage'
@@ -7,9 +6,6 @@ import { setItemInStorage } from '../utils/setItemInStorage'
 type handleRegisterProps = {
     setApiError: (value: React.SetStateAction<string>) => void
     setIsLoggedIn: (value: React.SetStateAction<boolean | undefined>) => void
-    setLoggedInUser: (
-        value: React.SetStateAction<LoggedInUserProps | undefined>
-    ) => void
     setSendingRequest: (value: React.SetStateAction<boolean>) => void
     setSubmitDisabled: (value: React.SetStateAction<boolean>) => void
     userData: {
@@ -21,7 +17,6 @@ type handleRegisterProps = {
 export const handleRegister = async ({
     setApiError,
     setIsLoggedIn,
-    setLoggedInUser,
     setSendingRequest,
     setSubmitDisabled,
     userData,
@@ -48,13 +43,6 @@ export const handleRegister = async ({
             )
             return
         }
-
-        const token: { id: number; username: string } = await response.json()
-
-        setLoggedInUser({
-            user: token.username,
-            token: userData.password,
-        })
 
         handleLogin({
             setApiError,
