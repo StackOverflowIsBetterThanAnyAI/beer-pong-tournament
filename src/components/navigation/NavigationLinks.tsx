@@ -46,7 +46,7 @@ const NavigationLinks = () => {
         return (
             <a
                 key={i}
-                href={getValidHref(i)}
+                href={`/${getValidHref(i)}`}
                 className="underline rounded-md text-normal px-2 py-0.5 focus-visible:bg-stone-100/50 hover:bg-red-300/50 active:bg-red-300"
                 aria-label={formattedRoute}
                 title={formattedRoute}
