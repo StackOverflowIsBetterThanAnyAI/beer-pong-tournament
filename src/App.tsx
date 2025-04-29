@@ -14,11 +14,9 @@ import { ContextGroups } from './context/ContextGroups'
 import { ContextIsLoggedIn } from './context/ContextLogin'
 import { ContextRegisteredTeams } from './context/ContextRegisteredTeams'
 import { ContextSchedule } from './context/ContextSchedule'
-import { ContextStandings } from './context/ContextStandings'
 import {
     RegisteredTeamsProps,
     ScheduleProps,
-    StandingsProps,
     TournamentGroupsProps,
 } from './types/types'
 import { getStoredData } from './utils/getStoredData'
@@ -42,9 +40,6 @@ const App = () => {
     const [schedule, setSchedule] = useState<ScheduleProps>(
         parsedStorageData?.schedule || []
     )
-    const [standings, setStandings] = useState<StandingsProps>(
-        parsedStorageData?.standings || []
-    )
 
     useDocumentTitle()
     useFocusTrap()
@@ -62,78 +57,72 @@ const App = () => {
                             <ContextSchedule.Provider
                                 value={[schedule, setSchedule]}
                             >
-                                <ContextStandings.Provider
-                                    value={[standings, setStandings]}
-                                >
-                                    <BrowserRouter>
-                                        <Navigation />
-                                        <Routes>
-                                            <Route
-                                                path="/"
-                                                element={
-                                                    isLoggedIn ? null : (
-                                                        <Login />
-                                                    )
-                                                }
-                                            />
-                                            <Route
-                                                path="/groups"
-                                                element={
-                                                    isLoggedIn ? (
-                                                        <GroupsGenerator />
-                                                    ) : (
-                                                        <FourOhFour />
-                                                    )
-                                                }
-                                            />
-                                            <Route
-                                                path="/register-team"
-                                                element={
-                                                    isLoggedIn ? (
-                                                        <RegisterTeam />
-                                                    ) : (
-                                                        <FourOhFour />
-                                                    )
-                                                }
-                                            />
-                                            <Route
-                                                path="/schedule"
-                                                element={
-                                                    isLoggedIn ? (
-                                                        <Schedule />
-                                                    ) : (
-                                                        <FourOhFour />
-                                                    )
-                                                }
-                                            />
-                                            <Route
-                                                path="/standings"
-                                                element={
-                                                    isLoggedIn ? (
-                                                        <Standings />
-                                                    ) : (
-                                                        <FourOhFour />
-                                                    )
-                                                }
-                                            />
-                                            <Route
-                                                path="/teams"
-                                                element={
-                                                    isLoggedIn ? (
-                                                        <Teams />
-                                                    ) : (
-                                                        <FourOhFour />
-                                                    )
-                                                }
-                                            />
-                                            <Route
-                                                path="*"
-                                                element={<FourOhFour />}
-                                            />
-                                        </Routes>
-                                        <Footer />
-                                    </BrowserRouter>
-                                </ContextStandings.Provider>
+                                <BrowserRouter>
+                                    <Navigation />
+                                    <Routes>
+                                        <Route
+                                            path="/"
+                                            element={
+                                                isLoggedIn ? null : <Login />
+                                            }
+                                        />
+                                        <Route
+                                            path="/groups"
+                                            element={
+                                                isLoggedIn ? (
+                                                    <GroupsGenerator />
+                                                ) : (
+                                                    <FourOhFour />
+                                                )
+                                            }
+                                        />
+                                        <Route
+                                            path="/register-team"
+                                            element={
+                                                isLoggedIn ? (
+                                                    <RegisterTeam />
+                                                ) : (
+                                                    <FourOhFour />
+                                                )
+                                            }
+                                        />
+                                        <Route
+                                            path="/schedule"
+                                            element={
+                                                isLoggedIn ? (
+                                                    <Schedule />
+                                                ) : (
+                                                    <FourOhFour />
+                                                )
+                                            }
+                                        />
+                                        <Route
+                                            path="/standings"
+                                            element={
+                                                isLoggedIn ? (
+                                                    <Standings />
+                                                ) : (
+                                                    <FourOhFour />
+                                                )
+                                            }
+                                        />
+                                        <Route
+                                            path="/teams"
+                                            element={
+                                                isLoggedIn ? (
+                                                    <Teams />
+                                                ) : (
+                                                    <FourOhFour />
+                                                )
+                                            }
+                                        />
+                                        <Route
+                                            path="*"
+                                            element={<FourOhFour />}
+                                        />
+                                    </Routes>
+                                    <Footer />
+                                </BrowserRouter>
                             </ContextSchedule.Provider>
                         </ContextRegisteredTeams.Provider>
                     </ContextIsLoggedIn.Provider>

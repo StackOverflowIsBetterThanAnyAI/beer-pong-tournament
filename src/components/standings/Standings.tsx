@@ -1,33 +1,29 @@
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FetchLoading } from 'fetch-loading'
 import FormHeader from '../form/FormHeader'
 import PageNavigation from '../page/PageNavigation'
 import StandingsItem from './StandingsItem'
 import TeamsError from '../teams/TeamsError'
-import { ContextStandings } from '../../context/ContextStandings'
 import { getStoredData } from '../../utils/getStoredData'
 import { setItemInSessionStorage } from '../../utils/setItemInSessionStorage'
 import { handleLoadStandings } from '../../api/handleLoadStandings'
 import { useTeamsPerPage } from '../../hooks/useTeamsPerPage'
+import { StandingsProps } from '../../types/types'
 
 const Standings = () => {
     const MAX_ITEMS_PER_PAGE = useTeamsPerPage()
 
     const parsedStorageData = getStoredData()
 
-    const contextStandings = useContext(ContextStandings)
-    if (!contextStandings) {
-        throw new Error(
-            'Standings must be used within a ContextStandings.Provider'
-        )
-    }
-    const [standings, setStandings] = contextStandings
-
     const [accessToken, _setAccessToken] = useState<string>(
         parsedStorageData?.access || ''
     )
     const [refreshToken, _setRefreshToken] = useState<string>(
         parsedStorageData?.refresh || ''
+    )
+
+    const [standings, setStandings] = useState<StandingsProps>(
+        parsedStorageData?.standings || []
     )
 
     const [apiError, setApiError] = useState<string>('')
