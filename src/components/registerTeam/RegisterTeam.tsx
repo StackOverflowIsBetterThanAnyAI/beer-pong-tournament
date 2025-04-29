@@ -4,12 +4,13 @@ import FormErrorOpacity from '../form/FormErrorOpacity'
 import FormHeader from './../form/FormHeader'
 import FormInput from './../form/FormInput'
 import FormSubmit from './../form/FormSubmit'
+import Success from '../success/Success'
 import { ContextGroups } from '../../context/ContextGroups'
 import { ContextRegisteredTeams } from '../../context/ContextRegisteredTeams'
 import { ContextSchedule } from '../../context/ContextSchedule'
 import { getStoredData } from '../../utils/getStoredData'
-import { handleRegisterTeam } from '../../api/handleRegisterTeam'
 import { setItemInStorage } from '../../utils/setItemInStorage'
+import { handleRegisterTeam } from '../../api/handleRegisterTeam'
 import { useAutoFocus } from '../../hooks/useAutoFocus'
 import { useErrorName, useErrorSameMember } from '../../hooks/useError'
 import { useSubmitDisabledRegister } from '../../hooks/useSubmitDisabled'
@@ -59,6 +60,8 @@ const RegisterTeam = () => {
     const teamNameRef = useRef<HTMLInputElement>(null)
 
     const [apiError, setApiError] = useState<string>('')
+    const [isSuccess, setIsSuccess] = useState<boolean>(false)
+    const [isTriggered, setIsTriggered] = useState<boolean>(false)
     const [sendingRequest, setSendingRequest] = useState<boolean>(false)
     const [submitDisabled, setSubmitDisabled] = useState<boolean>(true)
 
@@ -152,6 +155,8 @@ const RegisterTeam = () => {
             registeredTeams,
             setApiError,
             setGroups,
+            setIsSuccess,
+            setIsTriggered,
             setRegisteredTeams,
             setSchedule,
             setSendingRequest,
@@ -160,81 +165,84 @@ const RegisterTeam = () => {
     }
 
     return (
-        <main className="w-full bg-stone-300 text-stone-950 sm:w-80 md:w-112 sm:rounded-lg p-3 sm:p-4 md:p-6 drop-shadow-stone-900 drop-shadow-sm">
-            <FormHeader header="Register Team" subHeader="required" />
-            <form
-                className="flex flex-col"
-                autoComplete="on"
-                aria-label="Register Team"
-                name="registerteam"
-                method="post"
-                target="_self"
-            >
-                <FormInput
+        <>
+            <main className="w-full bg-stone-300 text-stone-950 sm:w-80 md:w-112 sm:rounded-lg p-3 sm:p-4 md:p-6 drop-shadow-stone-900 drop-shadow-sm">
+                <FormHeader header="Register Team" subHeader="required" />
+                <form
+                    className="flex flex-col"
                     autoComplete="on"
-                    error={errorTeamName}
-                    id="registerTeamName"
-                    label="Team Name"
-                    maxLength={20}
-                    minLength={5}
-                    onInput={handleTeamNameInput}
-                    onKeyDown={handleKeyDown}
-                    placeholder="TeamJohnDoe1337"
-                    ref={teamNameRef}
-                    title="Enter your team name."
-                    type="text"
-                    value={teamName}
-                />
-                <FormError error={errorTeamName} />
-                <FormInput
-                    autoComplete="on"
-                    error={errorMemberOne}
-                    id="registerMemberOne"
-                    label="First Team Member"
-                    maxLength={20}
-                    minLength={5}
-                    onInput={handleMemberOneInput}
-                    onKeyDown={handleKeyDown}
-                    placeholder="JohnDoe1337"
-                    title="Enter the first team member."
-                    type="text"
-                    value={memberOne}
-                />
-                <FormError error={errorMemberOne} />
-                <FormInput
-                    autoComplete="on"
-                    error={errorSameMember || apiError || errorMemberTwo}
-                    id="registerMemberTwo"
-                    label="Second Team Member"
-                    maxLength={20}
-                    minLength={5}
-                    onInput={handleMemberTwoInput}
-                    onKeyDown={handleKeyDown}
-                    placeholder="JaneDoe420"
-                    title="Enter the second team member."
-                    type="text"
-                    value={memberTwo}
-                />
-                {errorSameMember ? (
-                    <FormError error="Please choose two different player names." />
-                ) : apiError ? (
-                    <FormErrorOpacity
-                        error={
-                            apiError ||
-                            'Currently, you are unable to register your team.'
-                        }
+                    aria-label="Register Team"
+                    name="registerteam"
+                    method="post"
+                    target="_self"
+                >
+                    <FormInput
+                        autoComplete="on"
+                        error={errorTeamName}
+                        id="registerTeamName"
+                        label="Team Name"
+                        maxLength={20}
+                        minLength={5}
+                        onInput={handleTeamNameInput}
+                        onKeyDown={handleKeyDown}
+                        placeholder="TeamJohnDoe1337"
+                        ref={teamNameRef}
+                        title="Enter your team name."
+                        type="text"
+                        value={teamName}
                     />
-                ) : (
-                    <FormError error={errorMemberTwo} />
-                )}
-                <FormSubmit
-                    disabled={submitDisabled}
-                    handleClick={handleClickRegisterTeam}
-                    sendingRequest={sendingRequest}
-                    value="Register Team"
-                />
-            </form>
-        </main>
+                    <FormError error={errorTeamName} />
+                    <FormInput
+                        autoComplete="on"
+                        error={errorMemberOne}
+                        id="registerMemberOne"
+                        label="First Team Member"
+                        maxLength={20}
+                        minLength={5}
+                        onInput={handleMemberOneInput}
+                        onKeyDown={handleKeyDown}
+                        placeholder="JohnDoe1337"
+                        title="Enter the first team member."
+                        type="text"
+                        value={memberOne}
+                    />
+                    <FormError error={errorMemberOne} />
+                    <FormInput
+                        autoComplete="on"
+                        error={errorSameMember || apiError || errorMemberTwo}
+                        id="registerMemberTwo"
+                        label="Second Team Member"
+                        maxLength={20}
+                        minLength={5}
+                        onInput={handleMemberTwoInput}
+                        onKeyDown={handleKeyDown}
+                        placeholder="JaneDoe420"
+                        title="Enter the second team member."
+                        type="text"
+                        value={memberTwo}
+                    />
+                    {errorSameMember ? (
+                        <FormError error="Please choose two different player names." />
+                    ) : apiError ? (
+                        <FormErrorOpacity
+                            error={
+                                apiError ||
+                                'Currently, you are unable to register your team.'
+                            }
+                        />
+                    ) : (
+                        <FormError error={errorMemberTwo} />
+                    )}
+                    <FormSubmit
+                        disabled={submitDisabled}
+                        handleClick={handleClickRegisterTeam}
+                        sendingRequest={sendingRequest}
+                        value="Register Team"
+                    />
+                </form>
+            </main>
+            {isSuccess ? <Success triggered={isTriggered} /> : null}
+        </>
     )
 }
 
