@@ -4,9 +4,12 @@ import { ContextIsLoggedIn } from '../../context/ContextLogin'
 import { getStoredData } from '../../utils/getStoredData'
 import { getValidHref } from '../../utils/getValidHref'
 import { setItemInStorage } from '../../utils/setItemInStorage'
+import { useNavigate } from 'react-router-dom'
 
 const NavigationLinks = () => {
     const parsedStorageData = getStoredData()
+
+    const navigate = useNavigate()
 
     const contextIsLoggedIn = useContext(ContextIsLoggedIn)
     if (!contextIsLoggedIn) {
@@ -33,6 +36,16 @@ const NavigationLinks = () => {
         setItemInStorage('isnavigationexpanded', navigationExpanded)
     }
 
+    const handleKeyDown = (
+        e: React.KeyboardEvent<HTMLAnchorElement>,
+        i: string
+    ) => {
+        if (e.key === ' ' || e.key === 'Enter') {
+            e.preventDefault()
+            navigate(i)
+        }
+    }
+
     const routes = ROUTES.filter((item: string) => item !== 'home').map((i) => {
         const formattedRoute = i
             .split('-')
@@ -46,6 +59,7 @@ const NavigationLinks = () => {
         return (
             <a
                 key={i}
+                onKeyDown={(e) => handleKeyDown(e, i)}
                 href={`/${getValidHref(i)}`}
                 className="underline rounded-md text-normal px-2 py-0.5 focus-visible:bg-stone-100/50 hover:bg-red-300/50 active:bg-red-300"
                 aria-label={formattedRoute}
