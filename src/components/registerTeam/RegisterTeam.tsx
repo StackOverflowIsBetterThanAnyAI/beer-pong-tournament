@@ -239,7 +239,9 @@ const RegisterTeam = () => {
                     />
                 </form>
             </main>
-            {isSuccess ? <Toast label="Successfully registered Team!" /> : null}
+            {isSuccess ? (
+                <Toast label="Successfully registered Team!" success />
+            ) : null}
         </>
     )
 }

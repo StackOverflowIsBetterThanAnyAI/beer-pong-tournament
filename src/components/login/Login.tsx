@@ -280,7 +280,9 @@ const Login = () => {
                     </form>
                 </ContextPasswordVisibility.Provider>
             </main>
-            {isSessionExpired ? <Toast label="Session has expired!" /> : null}
+            {isSessionExpired ? (
+                <Toast label="Session has expired!" success={false} />
+            ) : null}
         </>
     )
 }
