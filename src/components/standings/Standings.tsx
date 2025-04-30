@@ -55,7 +55,7 @@ const Standings = () => {
     }, [])
 
     return (
-        <main className="w-full bg-stone-300 text-stone-950 sm:w-80 md:w-112 sm:rounded-lg p-3 sm:p-4 md:p-6 drop-shadow-stone-900 drop-shadow-sm">
+        <main className="w-full relative isolate bg-stone-300 text-stone-950 sm:w-80 md:w-112 sm:rounded-lg p-3 sm:p-4 md:p-6 drop-shadow-stone-900 drop-shadow-sm">
             <FormHeader
                 header="Standings"
                 subHeader={`${!standings.length ? 'no content' : ''}`}

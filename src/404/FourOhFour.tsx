@@ -11,7 +11,7 @@ const FourOhFour = () => {
     }
 
     return (
-        <div className="w-full flex flex-col gap-1 text-center bg-stone-300 text-stone-950 sm:w-80 md:w-112 sm:rounded-lg px-8 py-6 sm:p-10">
+        <main className="w-full relative isolate flex flex-col gap-1 text-center bg-stone-300 text-stone-950 sm:w-80 md:w-112 sm:rounded-lg px-8 py-6 sm:p-10">
             <h1 className="text-extra-large font-bold">Oops!</h1>
             <h2 className="text-large">
                 It looks like this site does not exist ...
@@ -24,7 +24,7 @@ const FourOhFour = () => {
             >
                 Homepage
             </a>
-        </div>
+        </main>
     )
 }
 

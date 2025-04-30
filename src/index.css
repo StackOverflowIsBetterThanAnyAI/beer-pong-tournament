@@ -55,6 +55,19 @@ input[type='checkbox']:not(:checked)::before {
     @apply opacity-0;
 }
 
+main::after {
+    background-image: url('./assets/background_banner.webp');
+    background-position: top;
+    background-repeat: repeat;
+    content: '';
+    filter: blur(2px);
+    filter: saturate(80%);
+    inset: 0;
+    opacity: 0.04;
+    position: absolute;
+    z-index: -1;
+}
+
 .text-very-small {
     @apply text-xs;
 }
