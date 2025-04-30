@@ -25,10 +25,10 @@ const PageNavigation = ({
     registeredTeams,
 }: PageNavigationProps) => {
     return (
-        <div className="grid min-[216px]:grid-cols-3 text-center max-w-80 m-auto pt-2">
+        <div className="bg-stone-300 grid min-[216px]:grid-cols-3 text-center max-w-80 m-auto mt-2 p-1 rounded-lg">
             <button
-                className="text-normal outline outline-stone-500 disabled:outline-stone-400 disabled:bg-stone-400/20 px-2 py-0.5 rounded-md
-                hover:bg-stone-400/40 active:bg-stone-400/70"
+                className="text-normal bg-stone-300 outline outline-stone-500 disabled:outline-stone-400 disabled:bg-stone-400/20 px-2 py-0.5 rounded-md
+                hover:bg-stone-400/30 active:bg-stone-400/60"
                 aria-label={`${
                     page <= 1
                         ? 'You are already at the first page.'
@@ -47,8 +47,8 @@ const PageNavigation = ({
             </button>
             <span className="text-large">{page}</span>
             <button
-                className="text-normal outline outline-stone-500 disabled:outline-stone-400 disabled:bg-stone-400/20 px-2 py-0.5 rounded-md
-                hover:bg-stone-400/40 active:bg-stone-400/70"
+                className="text-normal bg-stone-300 outline outline-stone-500 disabled:outline-stone-400 disabled:bg-stone-400/20 px-2 py-0.5 rounded-md
+                hover:bg-stone-400/30 active:bg-stone-400/60"
                 aria-label={`${
                     page >= registeredTeams.length / MAX_ITEMS_PER_PAGE
                         ? 'You are already at the last page.'
