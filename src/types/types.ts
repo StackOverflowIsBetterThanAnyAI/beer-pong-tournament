@@ -17,6 +17,21 @@ export type GameProps = {
     played: boolean
 }
 
+export type KOMatchProps = {
+    id: number
+    played: boolean
+    round: string
+    round_display: string
+    score_team1: number | null
+    score_team2: number | null
+    team1: number
+    team1_name: string
+    team2: number
+    team2_name: string
+}
+
+export type KOStageProps = KOMatchProps[]
+
 export type ScheduleProps = GameProps[]
 
 export type StandingsProps = {
