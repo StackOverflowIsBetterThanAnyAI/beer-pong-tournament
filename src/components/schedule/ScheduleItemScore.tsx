@@ -108,16 +108,26 @@ export const ScheduleItemScore = ({ i, x }: ScheduleItemScoreProps) => {
 
     return (
         <>
-            <div className="flex flex-wrap items-center max-[280px]:flex-col justify-between gap-x-2 font-bold text-ellipsis overflow-hidden pb-1">
+            <div className="flex flex-wrap items-center max-[280px]:flex-col justify-between gap-x-2 text-ellipsis overflow-hidden pb-1">
                 {i.played ? (
-                    <span>{i.team1}</span>
+                    <span
+                        className={`${i.score_team1 === 10 ? 'font-bold' : ''}`}
+                    >
+                        {i.team1}
+                    </span>
                 ) : (
                     <label htmlFor={`input${i.team1}vs${i.team2}`}>
                         {i.team1}
                     </label>
                 )}
-                <span className="m-1">
-                    {i.score_team1 ?? isAdmin ? (
+                <span
+                    className={`!m-1 ${
+                        i.score_team1 === 10 ? 'font-bold' : ''
+                    }`}
+                >
+                    {typeof i.score_team1 === 'number' && i.score_team1 >= 0 ? (
+                        i.score_team1
+                    ) : isAdmin ? (
                         <input
                             id={`input${i.team1}vs${i.team2}`}
                             inputMode="numeric"
@@ -152,17 +162,27 @@ export const ScheduleItemScore = ({ i, x }: ScheduleItemScoreProps) => {
                 }`}
             />
             <div
-                className={`flex flex-wrap items-center max-[280px]:flex-col justify-between gap-x-2 font-bold text-ellipsis overflow-hidden ${marginBottom}`}
+                className={`flex flex-wrap items-center max-[280px]:flex-col justify-between gap-x-2 text-ellipsis overflow-hidden ${marginBottom}`}
             >
                 {i.played ? (
-                    <span>{i.team2}</span>
+                    <span
+                        className={`${i.score_team2 === 10 ? 'font-bold' : ''}`}
+                    >
+                        {i.team2}
+                    </span>
                 ) : (
                     <label htmlFor={`input${i.team2}vs${i.team1}`}>
                         {i.team2}
                     </label>
                 )}
-                <span className="m-1">
-                    {i.score_team2 ?? isAdmin ? (
+                <span
+                    className={`!m-1 ${
+                        i.score_team2 === 10 ? 'font-bold' : ''
+                    }`}
+                >
+                    {typeof i.score_team2 === 'number' && i.score_team2 >= 0 ? (
+                        i.score_team2
+                    ) : isAdmin ? (
                         <input
                             id={`input${i.team2}vs${i.team1}`}
                             inputMode="numeric"
