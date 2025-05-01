@@ -58,6 +58,12 @@ export const ScheduleItemScore = ({ i, x }: ScheduleItemScoreProps) => {
         inputErrorTeam1.length > 0 ||
         inputErrorTeam2.length > 0
 
+    const marginBottom = !isAdmin
+        ? 'mb-1'
+        : apiError || inputErrorTeam1 || inputErrorTeam2
+        ? 'mb-1'
+        : 'mb-5 md:mb-6'
+
     const handleInput = (
         e: React.ChangeEvent<HTMLInputElement>,
         setState: (value: React.SetStateAction<string | null>) => void,
@@ -99,12 +105,6 @@ export const ScheduleItemScore = ({ i, x }: ScheduleItemScoreProps) => {
             handleClick(id, scoreTeam1!, scoreTeam2!)
         }
     }
-
-    const marginBottom = !isAdmin
-        ? 'mb-1'
-        : apiError || inputErrorTeam1 || inputErrorTeam2
-        ? 'mb-1'
-        : 'mb-5 md:mb-6'
 
     return (
         <>
