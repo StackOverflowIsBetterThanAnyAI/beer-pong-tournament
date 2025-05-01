@@ -8,16 +8,18 @@ type handleLoadScheduleProps = {
     accessToken: string
     refreshToken: string
     setApiError: (value: React.SetStateAction<string>) => void
-    setSchedule: (value: React.SetStateAction<ScheduleProps>) => void
+    setIsGroupstageOver?: React.Dispatch<React.SetStateAction<boolean>>
     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
+    setSchedule: (value: React.SetStateAction<ScheduleProps>) => void
 }
 
 export const handleLoadSchedule = async ({
     accessToken,
     refreshToken,
     setApiError,
-    setSchedule,
+    setIsGroupstageOver,
     setIsLoading,
+    setSchedule,
 }: handleLoadScheduleProps) => {
     setApiError('')
     setIsLoading(true)
@@ -46,6 +48,12 @@ export const handleLoadSchedule = async ({
         const schedule: ScheduleProps = await response.json()
         setSchedule(schedule)
         setItemInStorage('schedule', schedule)
+
+        const allMatchesPlayed = !schedule.filter((item) => !item.played).length
+        if (allMatchesPlayed) {
+            setItemInStorage('isgroupstageover', true)
+            setIsGroupstageOver ? setIsGroupstageOver(true) : null
+        }
     } catch (error: any) {
         setApiError('An error occurred while loading the schedule.')
     } finally {
