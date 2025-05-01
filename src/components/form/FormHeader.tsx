@@ -12,6 +12,12 @@ const FormHeader = ({ header, subHeader }: FormHeaderProps) => {
                         The Tournament has not started yet.
                     </h2>
                 )
+            case 'no content ko':
+                return (
+                    <h2 className="text-center text-large px-1">
+                        The Knockout Stage has not started yet.
+                    </h2>
+                )
             case 'schedule':
                 return (
                     <h2 className="text-center text-large px-1">
