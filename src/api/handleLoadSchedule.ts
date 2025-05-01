@@ -49,7 +49,8 @@ export const handleLoadSchedule = async ({
         setSchedule(schedule)
         setItemInStorage('schedule', schedule)
 
-        const allMatchesPlayed = !schedule.filter((item) => !item.played).length
+        const allMatchesPlayed =
+            !!schedule.length && !schedule.filter((item) => !item.played).length
         if (allMatchesPlayed) {
             setItemInStorage('isgroupstageover', true)
             setIsGroupstageOver ? setIsGroupstageOver(true) : null
