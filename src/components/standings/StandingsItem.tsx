@@ -83,16 +83,20 @@ const StandingsItem = ({
                                         >
                                             <tr
                                                 className={`flex flex-wrap max-[320px]:flex-col justify-between gap-y-1 w-full text-normal px-2 py-1 ${
-                                                    sx < 2
-                                                        ? 'bg-green-700/30'
-                                                        : 'bg-red-600/30'
+                                                    s.played
+                                                        ? sx < 2
+                                                            ? 'bg-green-700/30'
+                                                            : 'bg-red-600/30'
+                                                        : ''
                                                 }`}
                                             >
                                                 <td
-                                                    className={`font-bold text-ellipsis overflow-hidden underline decoration-2 ${
-                                                        sx < 2
-                                                            ? 'decoration-green-700'
-                                                            : 'decoration-red-600'
+                                                    className={`font-bold text-ellipsis overflow-hidden ${
+                                                        s.played
+                                                            ? sx < 2
+                                                                ? 'underline decoration-2 decoration-green-700'
+                                                                : 'underline decoration-2 decoration-red-600'
+                                                            : ''
                                                     }`}
                                                     aria-label={s.team}
                                                     title={s.team}
