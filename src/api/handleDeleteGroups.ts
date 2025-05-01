@@ -52,7 +52,10 @@ export const handleDeleteGroups = async ({
         setItemInSessionStorage('schedulepage', 1)
         setSchedule([])
 
+        setItemInStorage('standings', [])
+
         setItemInStorage('isgroupstageover', false)
+        setItemInStorage('kostage', [])
     } catch (error: any) {
         setApiError('An error occurred while deleting the current groups.')
     }
