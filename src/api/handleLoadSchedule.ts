@@ -55,6 +55,7 @@ export const handleLoadSchedule = async ({
             setIsGroupstageOver ? setIsGroupstageOver(true) : null
         } else {
             setItemInStorage('isgroupstageover', false)
+            setItemInStorage('kostage', [])
             setIsGroupstageOver ? setIsGroupstageOver(false) : null
         }
     } catch (error: any) {
