@@ -53,6 +53,9 @@ export const handleLoadSchedule = async ({
         if (allMatchesPlayed) {
             setItemInStorage('isgroupstageover', true)
             setIsGroupstageOver ? setIsGroupstageOver(true) : null
+        } else {
+            setItemInStorage('isgroupstageover', false)
+            setIsGroupstageOver ? setIsGroupstageOver(false) : null
         }
     } catch (error: any) {
         setApiError('An error occurred while loading the schedule.')
