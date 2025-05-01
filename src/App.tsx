@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router'
 import Footer from './components/footer/Footer'
 import FourOhFour from './404/FourOhFour'
 import GroupsGenerator from './components/groups/GroupsGenerator'
+import Knockout from './components/knockout/Knockout'
 import Login from './components/login/Login'
 import Navigation from './components/navigation/Navigation'
 import RegisterTeam from './components/registerTeam/RegisterTeam'
@@ -71,6 +72,16 @@ const App = () => {
                                             element={
                                                 isLoggedIn ? (
                                                     <GroupsGenerator />
+                                                ) : (
+                                                    <FourOhFour />
+                                                )
+                                            }
+                                        />
+                                        <Route
+                                            path="/knockout-stage"
+                                            element={
+                                                isLoggedIn ? (
+                                                    <Knockout />
                                                 ) : (
                                                     <FourOhFour />
                                                 )
