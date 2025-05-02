@@ -88,6 +88,41 @@ main::after {
     @apply text-lg sm:text-xl md:text-2xl;
 }
 
+@property --angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+
+.winner::after,
+.winner::before {
+    @apply absolute rounded -z-10;
+    content: '';
+    background-image: conic-gradient(
+        from var(--angle),
+        transparent 15%,
+        #eab308
+    );
+    top: -4px;
+    bottom: -4px;
+    left: -4px;
+    right: -4px;
+    animation: 2s winneranimation linear infinite;
+}
+
+.winner::before {
+    @apply blur-xs opacity-75;
+}
+
+@keyframes winneranimation {
+    from {
+        --angle: 0deg;
+    }
+    to {
+        --angle: 360deg;
+    }
+}
+
 ::-webkit-scrollbar {
     width: 10px;
 }
