@@ -27,7 +27,7 @@ const KnockoutMatch = ({ koStage, setKOStage }: KnockoutMatchProps) => {
                         role="menuitem"
                     >
                         {isFirstOfStage ? (
-                            <h2 className="text-large font-bold underline">
+                            <h2 className="text-large font-bold underline pb-2">
                                 {i.round_display}
                             </h2>
                         ) : null}
