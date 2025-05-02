@@ -13,9 +13,8 @@ const KnockoutMatch = ({ koStage, setKOStage }: KnockoutMatchProps) => {
             role="menu"
         >
             {koStage.map((i, x) => {
-                const isFirstOfStage = [0, 2, 6, 14].includes(
-                    koStage.length - x - 1
-                )
+                const isFirstOfStage =
+                    koStage.findIndex((item) => item.round === i.round) === x
                 return (
                     <li
                         key={i.id}
