@@ -20,7 +20,7 @@ export type GameProps = {
 export type KOMatchProps = {
     id: number
     played: boolean
-    round: string
+    round: 'R16' | 'QF' | 'SF' | 'F'
     round_display: string
     score_team1: number | null
     score_team2: number | null
