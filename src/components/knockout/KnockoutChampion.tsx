@@ -2,12 +2,21 @@ import { useContext, useState } from 'react'
 import { FetchLoading } from 'fetch-loading'
 import FormHeader from '../form/FormHeader'
 import TeamsErrorOpacity from '../teams/TeamsErrorOpacity'
+import { ContextAdmin } from '../../context/ContextAdmin'
 import { ContextTournamentWinner } from '../../context/ContextTournamentWinner'
 import { getStoredData } from '../../utils/getStoredData'
 import { handleResetTournament } from '../../api/handleResetTournament'
 
 const KnockoutChampion = () => {
     const parsedStorageData = getStoredData()
+
+    const contextAdmin = useContext(ContextAdmin)
+    if (!contextAdmin) {
+        throw new Error(
+            'GroupsGenerator must be used within a ContextAdmin.Provider'
+        )
+    }
+    const [isAdmin, _setIsAdmin] = contextAdmin
 
     const contextTournamentWinner = useContext(ContextTournamentWinner)
     if (!contextTournamentWinner) {
@@ -41,22 +50,26 @@ const KnockoutChampion = () => {
                 <FormHeader header="Tournament Winner" />
                 <span className="text-center">{tournamentWinner}</span>
             </div>
-            <button
-                className="flex justify-center bg-stone-100 outline text-normal rounded-md mt-2 p-0.5 text-large min-h-7 w-full focus-visible:bg-stone-50 outline-stone-500
+            {isAdmin ? (
+                <>
+                    <button
+                        className="flex justify-center bg-stone-100 outline text-normal rounded-md mt-2 p-0.5 text-large min-h-7 w-full focus-visible:bg-stone-50 outline-stone-500
                         not-[:disabled]:hover:bg-stone-300 not-[:disabled]:active:bg-stone-400/40 disabled:outline-stone-400 disabled:bg-stone-400/20"
-                aria-label="Start new Tournament."
-                title="Start new Tournament."
-                disabled={isDisabled}
-                aria-disabled={isDisabled}
-                onClick={handleClick}
-            >
-                {isDisabled ? (
-                    <FetchLoading theme="#44403c" />
-                ) : (
-                    'New Tournament'
-                )}
-            </button>
-            {apiError ? <TeamsErrorOpacity error={apiError} /> : null}
+                        aria-label="Start new Tournament."
+                        title="Start new Tournament."
+                        disabled={isDisabled}
+                        aria-disabled={isDisabled}
+                        onClick={handleClick}
+                    >
+                        {isDisabled ? (
+                            <FetchLoading theme="#44403c" />
+                        ) : (
+                            'New Tournament'
+                        )}
+                    </button>
+                    {apiError ? <TeamsErrorOpacity error={apiError} /> : null}
+                </>
+            ) : null}
         </div>
     )
 }
