@@ -1,5 +1,6 @@
 import { SERVER_ADDRESS } from '../constants/constants'
 import {
+    KOStageProps,
     RegisteredTeamProps,
     RegisteredTeamsProps,
     ScheduleProps,
@@ -22,6 +23,7 @@ type handleRegisterTeamProps = {
     setApiError: (value: React.SetStateAction<string>) => void
     setGroups: (value: React.SetStateAction<TournamentGroupsProps>) => void
     setIsSuccess: (value: React.SetStateAction<boolean>) => void
+    setKOStage: React.Dispatch<React.SetStateAction<KOStageProps>>
     setRegisteredTeams: (
         value: React.SetStateAction<RegisteredTeamsProps>
     ) => void
@@ -38,6 +40,7 @@ export const handleRegisterTeam = async ({
     setApiError,
     setGroups,
     setIsSuccess,
+    setKOStage,
     setRegisteredTeams,
     setSchedule,
     setSendingRequest,
@@ -86,6 +89,7 @@ export const handleRegisterTeam = async ({
             refreshToken,
             setApiError,
             setGroups,
+            setKOStage,
             setSchedule,
         })
 

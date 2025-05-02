@@ -1,15 +1,21 @@
 import { SERVER_ADDRESS } from '../constants/constants'
-import { ScheduleProps, TournamentGroupsProps } from '../types/types'
+import {
+    KOStageProps,
+    ScheduleProps,
+    TournamentGroupsProps,
+} from '../types/types'
 import { getValidToken } from '../utils/getValidToken'
 import { getValueFromError } from '../utils/getValueFromError'
 import { setItemInSessionStorage } from '../utils/setItemInSessionStorage'
 import { setItemInStorage } from '../utils/setItemInStorage'
+import { handleDeleteKOStage } from './handleDeleteKOStage'
 
 type handleDeleteGroupsProps = {
     accessToken: string
     refreshToken: string
     setApiError: (value: React.SetStateAction<string>) => void
     setGroups: (value: React.SetStateAction<TournamentGroupsProps>) => void
+    setKOStage: React.Dispatch<React.SetStateAction<KOStageProps>>
     setSchedule: React.Dispatch<React.SetStateAction<ScheduleProps>>
 }
 
@@ -18,6 +24,7 @@ export const handleDeleteGroups = async ({
     refreshToken,
     setApiError,
     setGroups,
+    setKOStage,
     setSchedule,
 }: handleDeleteGroupsProps) => {
     try {
@@ -54,8 +61,12 @@ export const handleDeleteGroups = async ({
 
         setItemInStorage('standings', [])
 
-        setItemInStorage('isgroupstageover', false)
-        setItemInStorage('kostage', [])
+        handleDeleteKOStage({
+            accessToken,
+            refreshToken,
+            setApiError,
+            setKOStage,
+        })
     } catch (error: any) {
         setApiError('An error occurred while deleting the current groups.')
     }
