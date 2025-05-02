@@ -111,7 +111,7 @@ main::after {
 }
 
 .winner::before {
-    @apply blur-xs opacity-75;
+    @apply blur-sm opacity-75;
 }
 
 @keyframes winneranimation {
