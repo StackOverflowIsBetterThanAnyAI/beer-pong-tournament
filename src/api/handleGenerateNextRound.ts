@@ -11,6 +11,7 @@ type handleGenerateNextRoundProps = {
     refreshToken: string
     setApiError: (value: React.SetStateAction<string>) => void
     setKOStage: React.Dispatch<React.SetStateAction<KOStageProps>>
+    setTournamentWinner: React.Dispatch<React.SetStateAction<string>>
 }
 
 export const handleGenerateNextRound = async ({
@@ -20,6 +21,7 @@ export const handleGenerateNextRound = async ({
     refreshToken,
     setApiError,
     setKOStage,
+    setTournamentWinner,
 }: handleGenerateNextRoundProps) => {
     const roundData = {
         current_round: currentRound,
@@ -55,6 +57,7 @@ export const handleGenerateNextRound = async ({
             refreshToken,
             setApiError,
             setKOStage,
+            setTournamentWinner,
         })
     } catch (error: any) {
         setApiError(

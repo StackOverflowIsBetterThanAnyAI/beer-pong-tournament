@@ -13,6 +13,7 @@ type handleUpdateKOStageScoreProps = {
     setApiError: (value: React.SetStateAction<string>) => void
     setIsLoading: (value: React.SetStateAction<boolean>) => void
     setKOStage: React.Dispatch<React.SetStateAction<KOStageProps>>
+    setTournamentWinner: React.Dispatch<React.SetStateAction<string>>
 }
 
 export const handleUpdateKOStageScore = async ({
@@ -24,6 +25,7 @@ export const handleUpdateKOStageScore = async ({
     setApiError,
     setIsLoading,
     setKOStage,
+    setTournamentWinner,
 }: handleUpdateKOStageScoreProps) => {
     const scoreData = {
         score_team1: score_team1,
@@ -65,6 +67,7 @@ export const handleUpdateKOStageScore = async ({
             refreshToken,
             setApiError,
             setKOStage,
+            setTournamentWinner,
         })
     } catch (error: any) {
         setApiError('An error occurred while updating the Score.')

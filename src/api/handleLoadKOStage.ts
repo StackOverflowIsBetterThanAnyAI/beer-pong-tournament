@@ -9,6 +9,7 @@ type handleLoadKOStageProps = {
     accessToken: string
     refreshToken: string
     setApiError: (value: React.SetStateAction<string>) => void
+    setTournamentWinner: React.Dispatch<React.SetStateAction<string>>
     setKOStage: React.Dispatch<React.SetStateAction<KOStageProps>>
 }
 
@@ -16,6 +17,7 @@ export const handleLoadKOStage = async ({
     accessToken,
     refreshToken,
     setApiError,
+    setTournamentWinner,
     setKOStage,
 }: handleLoadKOStageProps) => {
     try {
@@ -68,7 +70,16 @@ export const handleLoadKOStage = async ({
                     refreshToken,
                     setApiError,
                     setKOStage,
+                    setTournamentWinner,
                 })
+                setTournamentWinner('')
+            } else if (currentRound === 'F') {
+                const winner =
+                    koStage[koStage.length - 1].score_team1! >
+                    koStage[koStage.length - 1].score_team2!
+                        ? koStage[koStage.length - 1].team1_name
+                        : koStage[koStage.length - 1].team2_name
+                setTournamentWinner(winner)
             }
         }
     } catch (error: any) {

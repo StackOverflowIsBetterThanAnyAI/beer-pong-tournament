@@ -10,6 +10,7 @@ type handleGenerateKOStageProps = {
     setApiError: (value: React.SetStateAction<string>) => void
     setIsSubmitDisabled: React.Dispatch<React.SetStateAction<boolean>>
     setKOStage: React.Dispatch<React.SetStateAction<KOStageProps>>
+    setTournamentWinner: React.Dispatch<React.SetStateAction<string>>
 }
 
 export const handleGenerateKOStage = async ({
@@ -18,6 +19,7 @@ export const handleGenerateKOStage = async ({
     setApiError,
     setIsSubmitDisabled,
     setKOStage,
+    setTournamentWinner,
 }: handleGenerateKOStageProps) => {
     setIsSubmitDisabled(true)
 
@@ -50,6 +52,7 @@ export const handleGenerateKOStage = async ({
             refreshToken,
             setApiError,
             setKOStage,
+            setTournamentWinner,
         })
     } catch (error: any) {
         setApiError('An error occurred while generating the Knockout Stage.')

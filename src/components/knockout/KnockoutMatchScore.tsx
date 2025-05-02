@@ -3,6 +3,7 @@ import FormError from '../form/FormError'
 import KnockoutMatchButton from './KnockoutMatchButton'
 import { KOMatchProps, KOStageProps } from '../../types/types'
 import { ContextAdmin } from '../../context/ContextAdmin'
+import { ContextTournamentWinner } from '../../context/ContextTournamentWinner'
 import { getStoredData } from '../../utils/getStoredData'
 import { handleUpdateKOStageScore } from '../../api/handleUpdateKOStageScore'
 
@@ -21,6 +22,14 @@ const KnockoutMatchScore = ({ i, setKOStage }: KnockoutMatchScoreProps) => {
         )
     }
     const [isAdmin, _setIsAdmin] = contextAdmin
+
+    const contextTournamentWinner = useContext(ContextTournamentWinner)
+    if (!contextTournamentWinner) {
+        throw new Error(
+            'KnockoutMatchScore must be used within a ContextTournamentWinner.Provider'
+        )
+    }
+    const [_tournamentWinner, setTournamentWinner] = contextTournamentWinner
 
     const [accessToken, _setAccessToken] = useState<string>(
         parsedStorageData?.access || ''
@@ -85,6 +94,7 @@ const KnockoutMatchScore = ({ i, setKOStage }: KnockoutMatchScoreProps) => {
             setApiError,
             setIsLoading,
             setKOStage,
+            setTournamentWinner,
         })
     }
 
