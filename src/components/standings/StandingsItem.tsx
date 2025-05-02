@@ -76,6 +76,10 @@ const StandingsItem = ({
                                                     ? 'pb-2 border-b-2'
                                                     : ''
                                             } ${
+                                                sx === 0
+                                                    ? 'pt-2 border-t-2'
+                                                    : ''
+                                            } ${
                                                 x % 2
                                                     ? 'border-red-500'
                                                     : 'border-stone-600'
