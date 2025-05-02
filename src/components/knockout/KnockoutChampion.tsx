@@ -1,0 +1,59 @@
+import { useContext, useState } from 'react'
+import FormHeader from '../form/FormHeader'
+import TeamsErrorOpacity from '../teams/TeamsErrorOpacity'
+import { ContextTournamentWinner } from '../../context/ContextTournamentWinner'
+import { getStoredData } from '../../utils/getStoredData'
+import { handleResetTournament } from '../../api/handleResetTournament'
+
+const KnockoutChampion = () => {
+    const parsedStorageData = getStoredData()
+
+    const contextTournamentWinner = useContext(ContextTournamentWinner)
+    if (!contextTournamentWinner) {
+        throw new Error(
+            'KnockoutMatchScore must be used within a ContextTournamentWinner.Provider'
+        )
+    }
+    const [tournamentWinner, _setTournamentWinner] = contextTournamentWinner
+
+    const [accessToken, _setAccessToken] = useState<string>(
+        parsedStorageData?.access || ''
+    )
+    const [refreshToken, _setRefreshToken] = useState<string>(
+        parsedStorageData?.refresh || ''
+    )
+    const [apiError, setApiError] = useState<string>('')
+    const [isDisabled, setIsDisabled] = useState<boolean>(false)
+
+    const handleClick = () => {
+        handleResetTournament({
+            accessToken,
+            refreshToken,
+            setApiError,
+            setIsDisabled,
+        })
+    }
+
+    return (
+        <div className="flex flex-col gap-2 justify-center w-full max-w-80 text-normal bg-stone-200 drop-shadow-stone-600/60 drop-shadow-md my-4 p-2 m-auto rounded-sm">
+            <div className="winner relative flex flex-col justify-center w-full bg-amber-300 rounded-sm pb-2">
+                <FormHeader header="Tournament Winner" />
+                <span className="text-center">{tournamentWinner}</span>
+            </div>
+            <button
+                className="bg-stone-100 outline text-normal rounded-md mt-2 p-0.5 text-large focus-visible:bg-stone-50 outline-stone-500
+                        not-[:disabled]:hover:bg-stone-300 not-[:disabled]:active:bg-stone-400/40 disabled:outline-stone-400 disabled:bg-stone-400/20"
+                aria-label="Start new Tournament."
+                title="Start new Tournament."
+                disabled={isDisabled}
+                aria-disabled={isDisabled}
+                onClick={handleClick}
+            >
+                New Tournament
+            </button>
+            {apiError ? <TeamsErrorOpacity error={apiError} /> : null}
+        </div>
+    )
+}
+
+export default KnockoutChampion
