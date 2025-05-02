@@ -12,6 +12,7 @@ import {
 } from '../../constants/constants'
 import { ContextAdmin } from '../../context/ContextAdmin'
 import { ContextGroups } from '../../context/ContextGroups'
+import { ContextKOStage } from '../../context/ContextKOStage'
 import { ContextRegisteredTeams } from '../../context/ContextRegisteredTeams'
 import { ContextSchedule } from '../../context/ContextSchedule'
 import { getStoredData } from '../../utils/getStoredData'
@@ -39,6 +40,14 @@ export const GroupsGenerator = () => {
         )
     }
     const [groups, setGroups] = contextGroups
+
+    const contextKOStage = useContext(ContextKOStage)
+    if (!contextKOStage) {
+        throw new Error(
+            'GroupsGenerator must be used within a ContextKOStage.Provider'
+        )
+    }
+    const [_koStage, setKOStage] = contextKOStage
 
     const contextRegisteredTeams = useContext(ContextRegisteredTeams)
     if (!contextRegisteredTeams) {
@@ -126,6 +135,7 @@ export const GroupsGenerator = () => {
             loadGroups,
             refreshToken,
             setApiError: setApiErrorGenerate,
+            setKOStage,
             setSchedule,
             setIsLoading,
             setIsSubmitDisabled,

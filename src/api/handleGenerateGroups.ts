@@ -1,8 +1,9 @@
 import { SERVER_ADDRESS } from '../constants/constants'
-import { ScheduleProps } from '../types/types'
+import { KOStageProps, ScheduleProps } from '../types/types'
 import { getValidToken } from '../utils/getValidToken'
 import { getValueFromError } from '../utils/getValueFromError'
 import { setItemInSessionStorage } from '../utils/setItemInSessionStorage'
+import { handleDeleteKOStage } from './handleDeleteKOStage'
 import { handleLoadSchedule } from './handleLoadSchedule'
 
 type handleGenerateGroupsProps = {
@@ -11,6 +12,7 @@ type handleGenerateGroupsProps = {
     loadGroups: () => Promise<void>
     refreshToken: string
     setApiError: (value: React.SetStateAction<string>) => void
+    setKOStage: (value: React.SetStateAction<KOStageProps>) => void
     setSchedule: (value: React.SetStateAction<ScheduleProps>) => void
     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
     setIsSubmitDisabled: (value: React.SetStateAction<boolean>) => void
@@ -22,6 +24,7 @@ export const handleGenerateGroups = async ({
     loadGroups,
     refreshToken,
     setApiError,
+    setKOStage,
     setSchedule,
     setIsLoading,
     setIsSubmitDisabled,
@@ -57,6 +60,13 @@ export const handleGenerateGroups = async ({
             setApiError,
             setIsLoading,
             setSchedule,
+        })
+
+        handleDeleteKOStage({
+            accessToken,
+            refreshToken,
+            setApiError,
+            setKOStage,
         })
 
         setItemInSessionStorage('grouppage', 1)
