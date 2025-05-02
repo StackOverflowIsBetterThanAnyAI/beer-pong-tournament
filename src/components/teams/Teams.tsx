@@ -5,6 +5,7 @@ import Team from './Team'
 import TeamsError from './TeamsError'
 import TeamsErrorOpacity from './TeamsErrorOpacity'
 import { ContextGroups } from '../../context/ContextGroups'
+import { ContextKOStage } from '../../context/ContextKOStage'
 import { ContextRegisteredTeams } from '../../context/ContextRegisteredTeams'
 import { ContextSchedule } from '../../context/ContextSchedule'
 import { RegisteredTeamProps } from '../../types/types'
@@ -24,6 +25,12 @@ export const Teams = () => {
         throw new Error('Teams must be used within a ContextGroups.Provider')
     }
     const [_groups, setGroups] = contextGroups
+
+    const contextKOStage = useContext(ContextKOStage)
+    if (!contextKOStage) {
+        throw new Error('Teams must be used within a ContextKOStage.Provider')
+    }
+    const [_koStage, setKOStage] = contextKOStage
 
     const contextRegisteredTeams = useContext(ContextRegisteredTeams)
     if (!contextRegisteredTeams) {
@@ -71,6 +78,7 @@ export const Teams = () => {
             refreshToken,
             registeredTeams,
             setApiError: setApiErrorDelete,
+            setKOStage,
             setSchedule,
             setGroups,
             setRegisteredTeams,

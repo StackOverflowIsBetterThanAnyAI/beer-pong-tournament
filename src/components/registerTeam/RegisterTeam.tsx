@@ -6,6 +6,7 @@ import FormInput from './../form/FormInput'
 import FormSubmit from './../form/FormSubmit'
 import Toast from './../toast/Toast'
 import { ContextGroups } from '../../context/ContextGroups'
+import { ContextKOStage } from '../../context/ContextKOStage'
 import { ContextRegisteredTeams } from '../../context/ContextRegisteredTeams'
 import { ContextSchedule } from '../../context/ContextSchedule'
 import { getStoredData } from '../../utils/getStoredData'
@@ -25,6 +26,14 @@ const RegisterTeam = () => {
         )
     }
     const [_groups, setGroups] = contextGroups
+
+    const contextKOStage = useContext(ContextKOStage)
+    if (!contextKOStage) {
+        throw new Error(
+            'RegisterTeam must be used within a ContextKOStage.Provider'
+        )
+    }
+    const [_koStage, setKOStage] = contextKOStage
 
     const contextRegisteredTeams = useContext(ContextRegisteredTeams)
     if (!contextRegisteredTeams) {
@@ -155,6 +164,7 @@ const RegisterTeam = () => {
             setApiError,
             setGroups,
             setIsSuccess,
+            setKOStage,
             setRegisteredTeams,
             setSchedule,
             setSendingRequest,
