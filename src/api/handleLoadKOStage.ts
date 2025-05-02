@@ -3,6 +3,7 @@ import { KOStageProps } from '../types/types'
 import { getValidToken } from '../utils/getValidToken'
 import { getValueFromError } from '../utils/getValueFromError'
 import { setItemInStorage } from '../utils/setItemInStorage'
+import { handleGenerateNextRound } from './handleGenerateNextRound'
 
 type handleLoadKOStageProps = {
     accessToken: string
@@ -41,7 +42,35 @@ export const handleLoadKOStage = async ({
         const koStage: KOStageProps = await response.json()
         setItemInStorage('kostage', koStage)
         setKOStage(koStage)
-        console.log(koStage)
+
+        const allMatchesPlayed =
+            !!koStage.length && !koStage.filter((item) => !item.played).length
+
+        if (allMatchesPlayed) {
+            const currentRound = koStage[koStage.length - 1].round
+            const nextRound = (() => {
+                switch (currentRound) {
+                    case 'R16':
+                        return 'QF'
+                    case 'QF':
+                        return 'SF'
+                    case 'SF':
+                        return 'F'
+                    default:
+                        return ''
+                }
+            })()
+            if (currentRound && currentRound !== 'F') {
+                handleGenerateNextRound({
+                    accessToken,
+                    currentRound,
+                    nextRound,
+                    refreshToken,
+                    setApiError,
+                    setKOStage,
+                })
+            }
+        }
     } catch (error: any) {
         setApiError('An error occurred while loading the Knockout Stage.')
     }
