@@ -22,7 +22,7 @@ const ScheduleItemButton = ({
 }: ScheduleItemButtonProps) => {
     return (
         <button
-            className={`flex justify-center bg-stone-100/90 outline text-normal rounded-md mt-2 p-0.5 focus-visible:bg-stone-50 
+            className={`flex justify-center items-center bg-stone-100/90 outline text-normal rounded-md min-h-7 mt-2 p-0.5 focus-visible:bg-stone-50 
             ${
                 x % 2
                     ? 'outline-red-400 not-[:disabled]:hover:bg-red-100 active:bg-red-200 disabled:bg-red-50/20'
