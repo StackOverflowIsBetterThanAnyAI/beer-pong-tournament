@@ -72,7 +72,12 @@ const StandingsItem = ({
                                             key={sx}
                                             className={`text-normal font-normal ${
                                                 sx ===
-                                                i.standings.length / 2 - 1
+                                                    i.standings.length / 2 -
+                                                        1 ||
+                                                (![2, 4, 8].includes(
+                                                    standings.length
+                                                ) &&
+                                                    sx === 2)
                                                     ? 'pb-2 border-b-2'
                                                     : ''
                                             } ${
@@ -90,6 +95,12 @@ const StandingsItem = ({
                                                     s.played
                                                         ? sx < 2
                                                             ? 'bg-green-700/30'
+                                                            : ![
+                                                                  2, 4, 8,
+                                                              ].includes(
+                                                                  standings.length
+                                                              ) && sx === 2
+                                                            ? 'bg-amber-200'
                                                             : 'bg-red-600/30'
                                                         : ''
                                                 }`}
@@ -99,6 +110,12 @@ const StandingsItem = ({
                                                         s.played
                                                             ? sx < 2
                                                                 ? 'underline decoration-2 decoration-green-700'
+                                                                : ![
+                                                                      2, 4, 8,
+                                                                  ].includes(
+                                                                      standings.length
+                                                                  ) && sx === 2
+                                                                ? 'underline decoration-2 decoration-yellow-600/60'
                                                                 : 'underline decoration-2 decoration-red-600'
                                                             : ''
                                                     }`}
