@@ -128,7 +128,9 @@ const StandingsItem = ({
                                                                 sx + 1
                                                             }`}
                                                         >
-                                                            {sx + 1}
+                                                            {s.played
+                                                                ? sx + 1
+                                                                : '-'}
                                                         </span>
                                                         <span
                                                             className={`${
