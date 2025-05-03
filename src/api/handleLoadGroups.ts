@@ -40,9 +40,9 @@ export const handleLoadGroups = async ({
             return
         }
 
-        const groups: TournamentGroupsProps = await response.json()
-        setGroups(groups)
-        setItemInStorage('groups', groups)
+        const groups: { data: TournamentGroupsProps } = await response.json()
+        setGroups(groups.data)
+        setItemInStorage('groups', groups.data)
     } catch (error: any) {
         setApiError('An error occurred while loading the groups.')
     }
