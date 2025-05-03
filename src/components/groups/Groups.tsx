@@ -27,7 +27,7 @@ const Groups = ({ groups, page, setPage }: GroupsProps) => {
     return (
         <>
             <ul
-                className="flex flex-col gap-1.5 w-full max-w-80 bg-stone-400/70 drop-shadow-stone-600/60 drop-shadow-sm my-4 p-1.5 m-auto rounded-sm"
+                className="flex flex-col gap-1.5 w-full max-w-96 bg-stone-400/70 drop-shadow-stone-600/60 drop-shadow-sm my-4 p-1.5 m-auto rounded-sm"
                 role="menu"
             >
                 {groups

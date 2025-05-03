@@ -25,7 +25,7 @@ const PageNavigation = ({
     registeredTeams,
 }: PageNavigationProps) => {
     return (
-        <div className="bg-stone-300 grid min-[216px]:grid-cols-3 text-center max-w-80 m-auto mt-2 p-1 rounded-lg">
+        <div className="bg-stone-300 grid min-[216px]:grid-cols-3 text-center w-full max-w-96 m-auto mt-4 p-1 rounded-lg">
             <button
                 className="text-normal bg-stone-300 outline outline-stone-500 disabled:outline-stone-400 disabled:bg-stone-400/20 px-2 py-0.5 rounded-md
                 hover:bg-stone-400/30 active:bg-stone-400/60"
