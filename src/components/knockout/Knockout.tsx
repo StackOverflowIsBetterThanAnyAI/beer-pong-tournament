@@ -100,7 +100,10 @@ const Knockout = () => {
 
     return (
         <main className="w-full relative isolate flex flex-col bg-stone-300 text-stone-950 sm:rounded-lg p-3 sm:p-4 md:p-6 drop-shadow-stone-900 drop-shadow-sm">
-            <FormHeader header="Knockout Stage" />
+            <FormHeader
+                header="Knockout Stage"
+                subHeader={`${koStage.length ? 'knockout' : ''}`}
+            />
             <ContextTournamentWinner.Provider
                 value={[tournamentWinner, setTournamentWinner]}
             >
@@ -149,7 +152,7 @@ const Knockout = () => {
                             <FormHeader subHeader="no content ko" />
                         ) : !isGroupstageOver ? (
                             groups.length ? (
-                                <FormHeader subHeader="knockout" />
+                                <FormHeader subHeader="knockout error" />
                             ) : (
                                 <FormHeader subHeader="no content" />
                             )

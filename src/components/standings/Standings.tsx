@@ -58,7 +58,7 @@ const Standings = () => {
         <main className="w-full relative isolate bg-stone-300 text-stone-950 sm:rounded-lg p-3 sm:p-4 md:p-6 drop-shadow-stone-900 drop-shadow-sm">
             <FormHeader
                 header="Standings"
-                subHeader={`${!standings.length ? 'no content' : ''}`}
+                subHeader={`${!standings.length ? 'no content' : 'standings'}`}
             />
             {isLoading ? (
                 <div className="flex justify-center pt-4 pb-2">

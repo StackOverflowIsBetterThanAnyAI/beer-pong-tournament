@@ -9,6 +9,12 @@ const FormHeader = ({ header, subHeader }: FormHeaderProps) => {
             case 'knockout':
                 return (
                     <h2 className="text-center text-pretty text-large px-1">
+                        Pairings and Scores for the Knockout Stage:
+                    </h2>
+                )
+            case 'knockout error':
+                return (
+                    <h2 className="text-center text-pretty text-large px-1">
                         Not all Group Stage Matches have been played yet.
                     </h2>
                 )
@@ -28,6 +34,12 @@ const FormHeader = ({ header, subHeader }: FormHeaderProps) => {
                 return (
                     <h2 className="text-center text-pretty text-large px-1">
                         Pairings and Scores:
+                    </h2>
+                )
+            case 'standings':
+                return (
+                    <h2 className="text-center text-pretty text-large px-1">
+                        Who will advance in each group?
                     </h2>
                 )
             case 'required':
