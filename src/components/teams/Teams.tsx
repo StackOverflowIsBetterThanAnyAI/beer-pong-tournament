@@ -127,7 +127,7 @@ export const Teams = () => {
                     Currently registered Teams:
                 </h2>
                 <ul
-                    className="flex flex-col gap-2 w-full max-w-80 bg-stone-400 drop-shadow-stone-600/60 drop-shadow-md my-4 p-2 m-auto rounded-sm"
+                    className="flex flex-col gap-1.5 w-full max-w-80 bg-stone-400/70 drop-shadow-stone-600/60 drop-shadow-sm my-4 p-1.5 m-auto rounded-sm"
                     role="menu"
                 >
                     {teams.filter((item, index) => {
