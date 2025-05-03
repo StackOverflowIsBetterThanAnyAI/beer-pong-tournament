@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import { FetchLoading } from 'fetch-loading'
 import FormError from '../form/FormError'
 import FormErrorOpacity from '../form/FormErrorOpacity'
@@ -14,6 +14,7 @@ import { getStoredData } from '../../utils/getStoredData'
 import { handleGenerateKOStage } from '../../api/handleGenerateKOStage'
 import { handleLoadSchedule } from '../../api/handleLoadSchedule'
 import { handleLoadKOStage } from '../../api/handleLoadKOStage'
+import { useAutoFocus } from '../../hooks/useAutoFocus'
 
 const Knockout = () => {
     const parsedStorageData = getStoredData()
@@ -63,6 +64,10 @@ const Knockout = () => {
     const [apiErrorLoad, setApiErrorLoad] = useState<string>('')
     const [apiErrorGenerate, setApiErrorGenerate] = useState<string>('')
     const [isLoading, setIsLoading] = useState<boolean>(false)
+
+    const startButtonRef = useRef<HTMLButtonElement>(null)
+
+    useAutoFocus(startButtonRef)
 
     useEffect(() => {
         handleLoadSchedule({
@@ -123,6 +128,7 @@ const Knockout = () => {
                                 : 'Start Knockout Stage.'
                         }`}
                         disabled={!isGroupstageOver || isSubmitDisabled}
+                        ref={startButtonRef}
                     >
                         {isSubmitDisabled ? (
                             <FetchLoading theme="#44403c" />
