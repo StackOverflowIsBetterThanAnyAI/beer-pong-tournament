@@ -37,8 +37,8 @@ export const handleAdmin = async ({
             return
         }
 
-        const admin: { is_staff: boolean } = await response.json()
-        setItemInStorage('isadmin', admin.is_staff)
+        const admin: { data: { is_staff: boolean } } = await response.json()
+        setItemInStorage('isadmin', admin.data.is_staff)
 
         setIsLoggedIn(true)
         setItemInStorage('isloggedin', true)
