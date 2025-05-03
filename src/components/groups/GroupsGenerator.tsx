@@ -107,7 +107,8 @@ export const GroupsGenerator = () => {
             !(
                 registeredTeams.length >= MIN_TEAMS &&
                 registeredTeams.length % TEAMS_PER_GROUP === 0 &&
-                registeredTeams.length <= MAX_TEAMS
+                registeredTeams.length <= MAX_TEAMS &&
+                registeredTeams.length !== 20
             )
         )
     }, [registeredTeams])
