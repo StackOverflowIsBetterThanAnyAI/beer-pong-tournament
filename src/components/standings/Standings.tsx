@@ -3,6 +3,7 @@ import { FetchLoading } from 'fetch-loading'
 import FormHeader from '../form/FormHeader'
 import PageNavigation from '../page/PageNavigation'
 import StandingsItem from './StandingsItem'
+import StandingsLegend from './StandingsLegend'
 import TeamsError from '../teams/TeamsError'
 import { getStoredData } from '../../utils/getStoredData'
 import { setItemInSessionStorage } from '../../utils/setItemInSessionStorage'
@@ -73,6 +74,7 @@ const Standings = () => {
                         page={page}
                         standings={standings}
                     />
+                    <StandingsLegend standings={standings} />
                     {standings.length > MAX_ITEMS_PER_PAGE ? (
                         <PageNavigation
                             MAX_ITEMS_PER_PAGE={MAX_ITEMS_PER_PAGE}
