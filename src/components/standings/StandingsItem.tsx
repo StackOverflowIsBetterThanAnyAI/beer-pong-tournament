@@ -39,8 +39,21 @@ const StandingsItem = ({
                             <table className="flex flex-col gap-2 pt-2">
                                 <thead>
                                     <tr className="max-[320px]:hidden flex justify-between px-2 text-normal w-full overflow-hidden text-ellipsis">
-                                        <th aria-label="Team" title="Team">
-                                            Team
+                                        <th>
+                                            <div className="flex gap-2">
+                                                <span
+                                                    aria-label="Position"
+                                                    title="Position"
+                                                >
+                                                    #
+                                                </span>
+                                                <span
+                                                    aria-label="Team"
+                                                    title="Team"
+                                                >
+                                                    Team
+                                                </span>
+                                            </div>
                                         </th>
                                         <th>
                                             <div className="grid grid-cols-3 w-32 text-center">
@@ -105,24 +118,42 @@ const StandingsItem = ({
                                                         : ''
                                                 }`}
                                             >
-                                                <td
-                                                    className={`font-bold text-ellipsis overflow-hidden ${
-                                                        s.played
-                                                            ? sx < 2
-                                                                ? 'underline decoration-2 decoration-green-700'
-                                                                : ![
-                                                                      2, 4, 8,
-                                                                  ].includes(
-                                                                      standings.length
-                                                                  ) && sx === 2
-                                                                ? 'underline decoration-2 decoration-yellow-600/60'
-                                                                : 'underline decoration-2 decoration-red-600'
-                                                            : ''
-                                                    }`}
-                                                    aria-label={s.team}
-                                                    title={s.team}
-                                                >
-                                                    {s.team}
+                                                <td className="font-bold text-ellipsis overflow-hidden">
+                                                    <div className="flex gap-2">
+                                                        <span
+                                                            aria-label={`Current Position: ${
+                                                                sx + 1
+                                                            }`}
+                                                            title={`Current Position: ${
+                                                                sx + 1
+                                                            }`}
+                                                        >
+                                                            {sx + 1}
+                                                        </span>
+                                                        <span
+                                                            className={`${
+                                                                s.played
+                                                                    ? sx < 2
+                                                                        ? 'underline decoration-2 decoration-green-700'
+                                                                        : ![
+                                                                              2,
+                                                                              4,
+                                                                              8,
+                                                                          ].includes(
+                                                                              standings.length
+                                                                          ) &&
+                                                                          sx ===
+                                                                              2
+                                                                        ? 'underline decoration-2 decoration-yellow-600/60'
+                                                                        : 'underline decoration-2 decoration-red-600'
+                                                                    : ''
+                                                            }`}
+                                                            aria-label={s.team}
+                                                            title={s.team}
+                                                        >
+                                                            {s.team}
+                                                        </span>
+                                                    </div>
                                                 </td>
                                                 <td className="text-ellipsis overflow-hidden">
                                                     <div className="grid grid-cols-3 min-[320px]:min-w-32 text-center">
