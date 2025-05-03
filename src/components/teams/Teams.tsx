@@ -141,13 +141,15 @@ export const Teams = () => {
                 {apiErrorDelete ? (
                     <TeamsErrorOpacity error={apiErrorDelete} />
                 ) : null}
-                <PageNavigation
-                    MAX_ITEMS_PER_PAGE={MAX_ITEMS_PER_PAGE}
-                    nextPage={nextPage}
-                    page={page}
-                    previousPage={previousPage}
-                    registeredTeams={registeredTeams}
-                />
+                {teams.length > MAX_ITEMS_PER_PAGE ? (
+                    <PageNavigation
+                        MAX_ITEMS_PER_PAGE={MAX_ITEMS_PER_PAGE}
+                        nextPage={nextPage}
+                        page={page}
+                        previousPage={previousPage}
+                        registeredTeams={registeredTeams}
+                    />
+                ) : null}
             </>
         )
     } else {

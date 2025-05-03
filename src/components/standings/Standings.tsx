@@ -73,13 +73,15 @@ const Standings = () => {
                         page={page}
                         standings={standings}
                     />
-                    <PageNavigation
-                        MAX_ITEMS_PER_PAGE={MAX_ITEMS_PER_PAGE}
-                        nextPage={nextPage}
-                        page={page}
-                        previousPage={previousPage}
-                        registeredTeams={standings}
-                    />
+                    {standings.length > MAX_ITEMS_PER_PAGE ? (
+                        <PageNavigation
+                            MAX_ITEMS_PER_PAGE={MAX_ITEMS_PER_PAGE}
+                            nextPage={nextPage}
+                            page={page}
+                            previousPage={previousPage}
+                            registeredTeams={standings}
+                        />
+                    ) : null}
                 </>
             ) : null}
         </main>
