@@ -1,7 +1,13 @@
+import { useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useAutoFocus } from '../hooks/useAutoFocus'
 
 const FourOhFour = () => {
     const navigate = useNavigate()
+
+    const anchorRef = useRef<HTMLAnchorElement>(null)
+
+    useAutoFocus(anchorRef)
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLAnchorElement>) => {
         if (e.key === ' ' || e.key === 'Enter') {
@@ -22,6 +28,7 @@ const FourOhFour = () => {
                     onKeyDown={(e) => handleKeyDown(e)}
                     className="mt-2 px-4 py-2 rounded-lg bg-stone-400 hover:bg-stone-500/60 active:bg-stone-500"
                     aria-label="Back to the Homepage."
+                    ref={anchorRef}
                 >
                     Homepage
                 </a>
