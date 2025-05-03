@@ -112,6 +112,11 @@ main::after {
 
 .winner::before {
     @apply blur-sm opacity-75;
+    background-image: conic-gradient(
+        from var(--angle),
+        transparent 50%,
+        #f59e0b
+    );
 }
 
 @keyframes winneranimation {
