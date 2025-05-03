@@ -94,6 +94,19 @@ main::after {
     inherits: false;
 }
 
+.legendinfo::after {
+    @apply absolute rounded-full blur-xs;
+    content: '';
+    background-image: conic-gradient(
+        from var(--angle),
+        transparent 25%,
+        #dc2626
+    );
+    inset: -1px;
+    z-index: -1;
+    animation: 2s spinanimation linear infinite;
+}
+
 .winner::after,
 .winner::before {
     @apply absolute rounded -z-10;
@@ -103,11 +116,8 @@ main::after {
         transparent 15%,
         #eab308
     );
-    top: -4px;
-    bottom: -4px;
-    left: -4px;
-    right: -4px;
-    animation: 2s winneranimation linear infinite;
+    inset: -6px;
+    animation: 1.5s spinanimation linear infinite;
 }
 
 .winner::before {
@@ -119,7 +129,7 @@ main::after {
     );
 }
 
-@keyframes winneranimation {
+@keyframes spinanimation {
     from {
         --angle: 0deg;
     }
