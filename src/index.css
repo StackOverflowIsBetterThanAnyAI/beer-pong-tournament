@@ -88,6 +88,31 @@ main::after {
     @apply text-lg sm:text-xl md:text-2xl;
 }
 
+.animate-stone-50:focus-visible::after {
+    @apply absolute rounded-md;
+    content: '';
+    background-image: linear-gradient(
+        to right,
+        #fafaf9,
+        #fecaca,
+        #fafaf9,
+        #fecaca
+    );
+    background-size: 200%;
+    inset: 0px;
+    z-index: -1;
+    animation: stone-50-animation 3s ease-in-out infinite alternate;
+}
+
+@keyframes stone-50-animation {
+    0% {
+        background-position: left;
+    }
+    100% {
+        background-position: right;
+    }
+}
+
 @property --angle {
     syntax: '<angle>';
     initial-value: 0deg;

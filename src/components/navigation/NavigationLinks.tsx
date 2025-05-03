@@ -79,7 +79,7 @@ const NavigationLinks = () => {
             {isNavigationExpanded ? routes : null}
             <button
                 onClick={handleClick}
-                className={`bg-stone-100 outline outline-red-400/90 text-normal rounded-md p-0.5 focus-visible:bg-stone-50 hover:bg-red-100 active:bg-red-200
+                className={`animate-stone-50 relative isolate bg-stone-100 outline outline-red-400/90 text-normal rounded-md p-0.5 focus-visible:bg-stone-50 hover:bg-red-100 active:bg-red-200
                     transition-[margin] duration-300 ${
                         isNavigationExpanded ? 'mt-2' : 'mt-0'
                     }`}
