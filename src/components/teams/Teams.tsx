@@ -110,62 +110,52 @@ export const Teams = () => {
         )
     })
 
-    let content
-
-    if (isLoading) {
-        content = (
-            <div className="flex justify-center pt-8 pb-4">
-                <FetchLoading theme="#44403c" />
-            </div>
-        )
-    } else if (apiErrorLoad) {
-        content = <TeamsError error={apiErrorLoad} />
-    } else if (registeredTeams?.length > 0) {
-        content = (
-            <>
-                <h2 className="text-center text-large px-1">
-                    Currently registered Teams:
-                </h2>
-                <ul
-                    className="flex flex-col gap-1.5 w-full max-w-80 bg-stone-400/70 drop-shadow-stone-600/60 drop-shadow-sm my-4 p-1.5 m-auto rounded-sm"
-                    role="menu"
-                >
-                    {teams.filter((item, index) => {
-                        if (
-                            index >= (page - 1) * MAX_ITEMS_PER_PAGE &&
-                            index < page * MAX_ITEMS_PER_PAGE
-                        )
-                            return item
-                    })}
-                </ul>
-                {apiErrorDelete ? (
-                    <TeamsErrorOpacity error={apiErrorDelete} />
-                ) : null}
-                {teams.length > MAX_ITEMS_PER_PAGE ? (
-                    <PageNavigation
-                        MAX_ITEMS_PER_PAGE={MAX_ITEMS_PER_PAGE}
-                        nextPage={nextPage}
-                        page={page}
-                        previousPage={previousPage}
-                        registeredTeams={registeredTeams}
-                    />
-                ) : null}
-            </>
-        )
-    } else {
-        content = (
-            <h2 className="text-center text-large px-1">
-                Currently, no Teams have registered yet.
-            </h2>
-        )
-    }
-
     return (
-        <main className="w-full relative isolate bg-stone-300 text-stone-950 sm:w-80 md:w-112 sm:rounded-lg p-3 sm:p-4 md:p-6 drop-shadow-stone-900 drop-shadow-sm">
+        <main className="w-full relative isolate bg-stone-300 text-stone-950 sm:rounded-lg p-3 sm:p-4 md:p-6 drop-shadow-stone-900 drop-shadow-sm">
             <h1 className="text-center font-semibold text-extra-large pt-2">
                 Registered Teams
             </h1>
-            {content}
+            {isLoading ? (
+                <div className="flex justify-center pt-8 pb-4">
+                    <FetchLoading theme="#44403c" />
+                </div>
+            ) : apiErrorLoad ? (
+                <TeamsError error={apiErrorLoad} />
+            ) : registeredTeams?.length > 0 ? (
+                <>
+                    <h2 className="text-center text-large px-1">
+                        Currently registered Teams:
+                    </h2>
+                    <ul
+                        className="flex flex-col gap-1.5 w-full max-w-96 bg-stone-400/70 drop-shadow-stone-600/60 drop-shadow-sm my-4 p-1.5 m-auto rounded-sm"
+                        role="menu"
+                    >
+                        {teams.filter((item, index) => {
+                            if (
+                                index >= (page - 1) * MAX_ITEMS_PER_PAGE &&
+                                index < page * MAX_ITEMS_PER_PAGE
+                            )
+                                return item
+                        })}
+                    </ul>
+                    {apiErrorDelete ? (
+                        <TeamsErrorOpacity error={apiErrorDelete} />
+                    ) : null}
+                    {teams.length > MAX_ITEMS_PER_PAGE ? (
+                        <PageNavigation
+                            MAX_ITEMS_PER_PAGE={MAX_ITEMS_PER_PAGE}
+                            nextPage={nextPage}
+                            page={page}
+                            previousPage={previousPage}
+                            registeredTeams={registeredTeams}
+                        />
+                    ) : null}
+                </>
+            ) : (
+                <h2 className="text-center text-large px-1">
+                    Currently, no Teams have registered yet.
+                </h2>
+            )}
         </main>
     )
 }
