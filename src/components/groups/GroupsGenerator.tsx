@@ -162,14 +162,14 @@ export const GroupsGenerator = () => {
                     onClick={handleStartTournament}
                     aria-label={`${
                         isStartDisabled
-                            ? 'Start Disabled. The amount of teams has to be divisible by 4, and must be at least 8.'
+                            ? 'Start Disabled. The amount of teams has to be divisible by 4, and must be at least 8, but cannot be 20.'
                             : groups.length
                             ? 'Regenerate Groups and restart Tournament. All Process will be lost.'
                             : 'Generate Groups and start Tournament.'
                     }`}
                     title={`${
                         isStartDisabled
-                            ? 'The amount of teams has to be divisible by 4, and must be at least 8.'
+                            ? 'The amount of teams has to be divisible by 4, and must be at least 8, but cannot be 20.'
                             : groups.length
                             ? 'Regenerate Groups and restart Tournament. All Process will be lost.'
                             : 'Generate Groups and start Tournament.'
@@ -205,7 +205,7 @@ export const GroupsGenerator = () => {
                     {!isAdmin ? (
                         <FormHeader subHeader="no content" />
                     ) : isStartDisabled ? (
-                        <TeamsError error="The amount of teams has to be divisible by 4, and must be at least 8." />
+                        <TeamsError error="The amount of teams has to be divisible by 4, and must be at least 8, but cannot be 20." />
                     ) : (
                         <FormHeader subHeader="no content" />
                     )}
