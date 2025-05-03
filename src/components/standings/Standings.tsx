@@ -6,6 +6,7 @@ import StandingsItem from './StandingsItem'
 import StandingsLegend from './StandingsLegend'
 import TeamsError from '../teams/TeamsError'
 import { getStoredData } from '../../utils/getStoredData'
+import { getStoredSessionData } from '../../utils/getStoredSessionData'
 import { setItemInSessionStorage } from '../../utils/setItemInSessionStorage'
 import { handleLoadStandings } from '../../api/handleLoadStandings'
 import { useTeamsPerPage } from '../../hooks/useTeamsPerPage'
@@ -13,6 +14,7 @@ import { StandingsProps } from '../../types/types'
 
 const Standings = () => {
     const MAX_ITEMS_PER_PAGE = useTeamsPerPage()
+    const parsedSessionData = getStoredSessionData()
 
     const parsedStorageData = getStoredData()
 
@@ -30,7 +32,7 @@ const Standings = () => {
     const [apiError, setApiError] = useState<string>('')
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [page, setPage] = useState<number>(
-        parsedStorageData?.standingspage || 1
+        parsedSessionData?.standingspage || 1
     )
 
     const previousPage = () => {
