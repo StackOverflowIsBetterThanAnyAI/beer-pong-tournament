@@ -45,7 +45,7 @@ const FormInput = ({
                 className={`bg-stone-100 outline outline-stone-500 text-normal w-full ${marginBottom} rounded px-2 py-1
                 enabled:hover:bg-stone-200`}
                 aria-label={title}
-                aria-required={true}
+                aria-required="true"
                 autoComplete={autoComplete}
                 max={type === 'number' ? maxLength : undefined}
                 maxLength={type !== 'number' ? maxLength : undefined}
