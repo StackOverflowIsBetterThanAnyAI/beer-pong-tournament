@@ -51,7 +51,7 @@ const Login = () => {
         useState<boolean>(true)
     const [isSendingRequest, setIsSendingRequest] = useState<boolean>(false)
     const [isSessionExpired, setIsSessionExpired] = useState<boolean>(false)
-    const [submitDisabled, setSubmitDisabled] = useState<boolean>(true)
+    const [isSubmitDisabled, setIsSubmitDisabled] = useState<boolean>(true)
 
     const [errorConfirmPassword, setErrorConfirmPassword] = useState<string>('')
     const [errorPassword, setErrorPassword] = useState<string>('')
@@ -85,7 +85,7 @@ const Login = () => {
         isSigningUp,
         password,
         passwordPattern,
-        setSubmitDisabled,
+        setIsSubmitDisabled,
         userName,
         userNamePattern,
     })
@@ -117,7 +117,7 @@ const Login = () => {
     }
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === 'Enter' && !submitDisabled) {
+        if (e.key === 'Enter' && !isSubmitDisabled) {
             handleClickAuthenticate(e)
         }
     }
@@ -152,7 +152,7 @@ const Login = () => {
         e.preventDefault()
         setApiError('')
         setIsSendingRequest(true)
-        setSubmitDisabled(true)
+        setIsSubmitDisabled(true)
 
         const userData = {
             username: userName,
@@ -164,7 +164,7 @@ const Login = () => {
                 setApiError,
                 setIsLoggedIn,
                 setIsSendingRequest,
-                setSubmitDisabled,
+                setIsSubmitDisabled,
                 userData,
             })
         } else {
@@ -279,7 +279,7 @@ const Login = () => {
                                 </>
                             )}
                             <FormSubmit
-                                disabled={submitDisabled}
+                                disabled={isSubmitDisabled}
                                 handleClick={handleClickAuthenticate}
                                 isSendingRequest={isSendingRequest}
                                 value={isSigningUp ? 'Signup' : 'Login'}

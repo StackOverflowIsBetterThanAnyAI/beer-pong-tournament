@@ -23,13 +23,13 @@ type handleRegisterTeamProps = {
     setApiError: (value: React.SetStateAction<string>) => void
     setGroups: (value: React.SetStateAction<TournamentGroupsProps>) => void
     setIsSendingRequest: (value: React.SetStateAction<boolean>) => void
+    setIsSubmitDisabled: (value: React.SetStateAction<boolean>) => void
     setIsSuccess: (value: React.SetStateAction<boolean>) => void
     setKOStage: React.Dispatch<React.SetStateAction<KOStageProps>>
     setRegisteredTeams: (
         value: React.SetStateAction<RegisteredTeamsProps>
     ) => void
     setSchedule: React.Dispatch<React.SetStateAction<ScheduleProps>>
-    setSubmitDisabled: (value: React.SetStateAction<boolean>) => void
 }
 
 export const handleRegisterTeam = async ({
@@ -40,11 +40,11 @@ export const handleRegisterTeam = async ({
     setApiError,
     setGroups,
     setIsSendingRequest,
+    setIsSubmitDisabled,
     setIsSuccess,
     setKOStage,
     setRegisteredTeams,
     setSchedule,
-    setSubmitDisabled,
 }: handleRegisterTeamProps) => {
     setIsSuccess(false)
 
@@ -93,12 +93,12 @@ export const handleRegisterTeam = async ({
             setSchedule,
         })
 
-        setSubmitDisabled(true)
+        setIsSubmitDisabled(true)
         setIsSuccess(true)
         setTimeout(() => setIsSuccess(false), 3750)
     } catch (error: any) {
         setApiError('An error occurred while adding your team.')
-        setSubmitDisabled(false)
+        setIsSubmitDisabled(false)
         setTimeout(() => setApiError(''), 4000)
     } finally {
         setIsSendingRequest(false)

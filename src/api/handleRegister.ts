@@ -7,7 +7,7 @@ type handleRegisterProps = {
     setApiError: (value: React.SetStateAction<string>) => void
     setIsLoggedIn: (value: React.SetStateAction<boolean | undefined>) => void
     setIsSendingRequest: (value: React.SetStateAction<boolean>) => void
-    setSubmitDisabled: (value: React.SetStateAction<boolean>) => void
+    setIsSubmitDisabled: (value: React.SetStateAction<boolean>) => void
     userData: {
         username: string
         password: string
@@ -18,7 +18,7 @@ export const handleRegister = async ({
     setApiError,
     setIsLoggedIn,
     setIsSendingRequest,
-    setSubmitDisabled,
+    setIsSubmitDisabled,
     userData,
 }: handleRegisterProps) => {
     try {
@@ -54,6 +54,6 @@ export const handleRegister = async ({
         setApiError('An error occurred while trying to signup.')
     } finally {
         setIsSendingRequest(false)
-        setSubmitDisabled(false)
+        setIsSubmitDisabled(false)
     }
 }

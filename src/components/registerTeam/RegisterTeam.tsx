@@ -71,7 +71,7 @@ const RegisterTeam = () => {
     const [apiError, setApiError] = useState<string>('')
     const [isSendingRequest, setIsSendingRequest] = useState<boolean>(false)
     const [isSuccess, setIsSuccess] = useState<boolean>(false)
-    const [submitDisabled, setSubmitDisabled] = useState<boolean>(true)
+    const [isSubmitDisabled, setIsSubmitDisabled] = useState<boolean>(true)
 
     const [errorTeamName, setErrorTeamName] = useState<string>('')
     const [errorMemberOne, setErrorMemberOne] = useState<string>('')
@@ -85,7 +85,7 @@ const RegisterTeam = () => {
     useSubmitDisabledRegister({
         memberOne,
         memberTwo,
-        setSubmitDisabled,
+        setIsSubmitDisabled,
         teamName,
         teamPattern,
     })
@@ -117,25 +117,25 @@ const RegisterTeam = () => {
         setApiError('')
         setTeamName(e.target.value)
         setItemInStorage('teamname', e.target.value)
-        setSubmitDisabled(false)
+        setIsSubmitDisabled(false)
     }
 
     const handleMemberOneInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         setApiError('')
         setMemberOne(e.target.value)
         setItemInStorage('memberone', e.target.value)
-        setSubmitDisabled(false)
+        setIsSubmitDisabled(false)
     }
 
     const handleMemberTwoInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         setApiError('')
         setMemberTwo(e.target.value)
         setItemInStorage('membertwo', e.target.value)
-        setSubmitDisabled(false)
+        setIsSubmitDisabled(false)
     }
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === 'Enter' && !submitDisabled) {
+        if (e.key === 'Enter' && !isSubmitDisabled) {
             handleClickRegisterTeam(e)
         }
     }
@@ -148,7 +148,7 @@ const RegisterTeam = () => {
         e.preventDefault()
         setApiError('')
         setIsSendingRequest(true)
-        setSubmitDisabled(true)
+        setIsSubmitDisabled(true)
 
         const registerTeamData = {
             name: teamName,
@@ -165,10 +165,10 @@ const RegisterTeam = () => {
             setGroups,
             setIsSendingRequest,
             setIsSuccess,
+            setIsSubmitDisabled,
             setKOStage,
             setRegisteredTeams,
             setSchedule,
-            setSubmitDisabled,
         })
     }
 
@@ -245,7 +245,7 @@ const RegisterTeam = () => {
                             <FormError error={errorMemberTwo} />
                         )}
                         <FormSubmit
-                            disabled={submitDisabled}
+                            disabled={isSubmitDisabled}
                             handleClick={handleClickRegisterTeam}
                             isSendingRequest={isSendingRequest}
                             value="Register Team"

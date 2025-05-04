@@ -5,7 +5,7 @@ type useSubmitDisabledLoginProps = {
     isSigningUp: boolean
     password: string
     passwordPattern: RegExp
-    setSubmitDisabled: React.Dispatch<React.SetStateAction<boolean>>
+    setIsSubmitDisabled: React.Dispatch<React.SetStateAction<boolean>>
     userName: string
     userNamePattern: RegExp
 }
@@ -13,7 +13,7 @@ type useSubmitDisabledLoginProps = {
 type useSubmitDisabledRegisterProps = {
     memberOne: string
     memberTwo: string
-    setSubmitDisabled: React.Dispatch<React.SetStateAction<boolean>>
+    setIsSubmitDisabled: React.Dispatch<React.SetStateAction<boolean>>
     teamName: string
     teamPattern: RegExp
 }
@@ -23,7 +23,7 @@ export const useSubmitDisabledLogin = ({
     isSigningUp,
     password,
     passwordPattern,
-    setSubmitDisabled,
+    setIsSubmitDisabled,
     userName,
     userNamePattern,
 }: useSubmitDisabledLoginProps) => {
@@ -37,16 +37,16 @@ export const useSubmitDisabledLogin = ({
                 userNamePattern.test(userName) &&
                 passwordPattern.test(password))
         ) {
-            setSubmitDisabled(false)
+            setIsSubmitDisabled(false)
         } else {
-            setSubmitDisabled(true)
+            setIsSubmitDisabled(true)
         }
     }, [
         confirmPassword,
         isSigningUp,
         password,
         passwordPattern,
-        setSubmitDisabled,
+        setIsSubmitDisabled,
         userName,
         userNamePattern,
     ])
@@ -55,7 +55,7 @@ export const useSubmitDisabledLogin = ({
 export const useSubmitDisabledRegister = ({
     memberOne,
     memberTwo,
-    setSubmitDisabled,
+    setIsSubmitDisabled,
     teamName,
     teamPattern,
 }: useSubmitDisabledRegisterProps) => {
@@ -66,9 +66,9 @@ export const useSubmitDisabledRegister = ({
             teamPattern.test(teamName) &&
             memberOne !== memberTwo
         ) {
-            setSubmitDisabled(false)
+            setIsSubmitDisabled(false)
         } else {
-            setSubmitDisabled(true)
+            setIsSubmitDisabled(true)
         }
-    }, [memberOne, memberTwo, setSubmitDisabled, teamName, teamPattern])
+    }, [memberOne, memberTwo, setIsSubmitDisabled, teamName, teamPattern])
 }
