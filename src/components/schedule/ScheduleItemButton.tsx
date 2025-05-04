@@ -22,11 +22,11 @@ const ScheduleItemButton = ({
 }: ScheduleItemButtonProps) => {
     return (
         <button
-            className={`flex justify-center items-center bg-stone-100/90 outline text-normal rounded-md min-h-7 mt-2 p-0.5 focus-visible:bg-stone-50 
+            className={`relative flex justify-center items-center bg-stone-100/90 outline text-normal rounded-md min-h-7 mt-2 p-0.5 focus-visible:bg-stone-50 disabled:text-stone-600 z-10 
             ${
                 x % 2
-                    ? 'outline-red-400 not-[:disabled]:hover:bg-red-100 active:bg-red-200 disabled:bg-red-50/20'
-                    : 'outline-stone-500 not-[:disabled]:hover:bg-stone-200/80 active:bg-stone-300 disabled:bg-stone-50/20'
+                    ? 'outline-red-400 not-[:disabled]:hover:bg-red-100 active:bg-red-200 disabled:bg-red-50/80 animate-stone-50-red-100'
+                    : 'outline-stone-500 not-[:disabled]:hover:bg-stone-200/80 active:bg-stone-300 disabled:bg-stone-50/20 animate-stone-50-stone-200'
             }`}
             aria-label={
                 i.played
