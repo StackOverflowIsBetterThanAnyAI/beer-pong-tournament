@@ -88,7 +88,7 @@ main::after {
     @apply text-lg sm:text-xl md:text-2xl;
 }
 
-.animate-stone-50:focus-visible::after {
+.animate-stone-50-red-200:focus-visible::after {
     @apply absolute rounded-md;
     content: '';
     background-image: linear-gradient(
@@ -101,10 +101,10 @@ main::after {
     background-size: 200%;
     inset: 0px;
     z-index: -1;
-    animation: stone-50-animation 3s ease-in-out infinite alternate;
+    animation: stone-50-red-200-animation 3s ease-in-out infinite alternate;
 }
 
-@keyframes stone-50-animation {
+@keyframes stone-50-red-200-animation {
     0% {
         background-position: left;
     }
