@@ -165,7 +165,8 @@ main::after {
 
 /* Navigation */
 
-.animate-stone-50-red-200:focus-visible::before {
+.animate-stone-50-red-200:focus-visible::before,
+.animate-stone-50-red-200:hover::before {
     @apply absolute rounded-md;
     content: '';
     background-image: linear-gradient(
@@ -179,6 +180,10 @@ main::after {
     inset: 0px;
     z-index: -1;
     animation: focus-animation 3s ease-in-out infinite alternate;
+}
+
+.animate-stone-50-red-200:active::before {
+    @apply hidden;
 }
 
 @keyframes focus-animation {
