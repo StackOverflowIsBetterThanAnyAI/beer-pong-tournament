@@ -20,12 +20,12 @@ const refreshToken = async (refresh: string) => {
             setItemInStorage('access', data.access)
             return data.access
         } else if (res.status >= 400) {
-            setLogout({ sessionExpired: true })
+            setLogout({ isSessionExpired: true })
         } else {
             throw new Error('Error refreshing the Token.')
         }
     } catch (error: any) {
-        setLogout({ sessionExpired: true })
+        setLogout({ isSessionExpired: true })
     }
 }
 

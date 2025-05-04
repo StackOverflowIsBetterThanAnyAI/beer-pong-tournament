@@ -245,8 +245,8 @@ const RegisterTeam = () => {
                             <FormError error={errorMemberTwo} />
                         )}
                         <FormSubmit
-                            disabled={isSubmitDisabled}
                             handleClick={handleClickRegisterTeam}
+                            isDisabled={isSubmitDisabled}
                             isSendingRequest={isSendingRequest}
                             value="Register Team"
                         />
@@ -254,7 +254,7 @@ const RegisterTeam = () => {
                 </div>
             </main>
             {isSuccess ? (
-                <Toast label="Successfully registered Team!" success />
+                <Toast isSuccess label="Successfully registered Team!" />
             ) : null}
         </>
     )

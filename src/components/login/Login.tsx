@@ -227,10 +227,10 @@ const Login = () => {
                                 error={
                                     (!isSigningUp && apiError) || errorPassword
                                 }
-                                hidden={isPasswordHidden}
                                 id={`${
                                     isSigningUp ? 'signup' : 'login'
                                 }Password`}
+                                isHidden={isPasswordHidden}
                                 label="Password"
                                 maxLength={25}
                                 minLength={8}
@@ -253,10 +253,10 @@ const Login = () => {
                                     <FormInputPassword
                                         autoComplete="new-password"
                                         aria-disabled={confirmPasswordDisabled}
-                                        disabled={confirmPasswordDisabled}
                                         error={apiError || errorConfirmPassword}
-                                        hidden={isPasswordHidden}
                                         id="signupConfirmPassword"
+                                        isDisabled={confirmPasswordDisabled}
+                                        isHidden={isPasswordHidden}
                                         label="Confirm Password"
                                         maxLength={25}
                                         minLength={8}
@@ -279,8 +279,8 @@ const Login = () => {
                                 </>
                             )}
                             <FormSubmit
-                                disabled={isSubmitDisabled}
                                 handleClick={handleClickAuthenticate}
+                                isDisabled={isSubmitDisabled}
                                 isSendingRequest={isSendingRequest}
                                 value={isSigningUp ? 'Signup' : 'Login'}
                             />
@@ -289,7 +289,7 @@ const Login = () => {
                 </div>
             </main>
             {isSessionExpired ? (
-                <Toast label="Session has expired!" success={false} />
+                <Toast isSuccess={false} label="Session has expired!" />
             ) : null}
         </>
     )

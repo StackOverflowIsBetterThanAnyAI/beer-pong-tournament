@@ -2,18 +2,18 @@ import { FetchLoading } from 'fetch-loading'
 import { KOMatchProps } from '../../types/types'
 
 type KnockoutMatchButtonProps = {
-    disabled: boolean
     handleClick: (id: number, score_team1: string, score_team2: string) => void
     i: KOMatchProps
+    isDisabled: boolean
     isLoading: boolean
     scoreTeam1: string | null
     scoreTeam2: string | null
 }
 
 const KnockoutMatchButton = ({
-    disabled,
     handleClick,
     i,
+    isDisabled,
     isLoading,
     scoreTeam1,
     scoreTeam2,
@@ -29,20 +29,20 @@ const KnockoutMatchButton = ({
             aria-label={
                 i.played
                     ? 'Match Over. Score has been saved.'
-                    : disabled
+                    : isDisabled
                     ? 'Enter a valid Score.'
                     : 'Save Score.'
             }
             title={
                 i.played
                     ? 'Match Over. Score has been saved.'
-                    : disabled
+                    : isDisabled
                     ? 'Enter a valid Score.'
                     : 'Save Score.'
             }
             onClick={() => handleClick(i.id, scoreTeam1!, scoreTeam2!)}
-            aria-disabled={disabled}
-            disabled={disabled}
+            aria-disabled={isDisabled}
+            disabled={isDisabled}
         >
             {isLoading ? (
                 <FetchLoading theme="#44403c" />

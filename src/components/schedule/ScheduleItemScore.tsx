@@ -49,7 +49,7 @@ export const ScheduleItemScore = ({ i, x }: ScheduleItemScoreProps) => {
 
     const inputRegex = /^([0-9]|10)$/
 
-    const disabled: boolean =
+    const isDisabled: boolean =
         i.played ||
         !scoreTeam1 ||
         !scoreTeam2 ||
@@ -101,7 +101,7 @@ export const ScheduleItemScore = ({ i, x }: ScheduleItemScoreProps) => {
         e: React.KeyboardEvent<HTMLInputElement>,
         id: number
     ) => {
-        if (!disabled && e.key === 'Enter') {
+        if (!isDisabled && e.key === 'Enter') {
             handleClick(id, scoreTeam1!, scoreTeam2!)
         }
     }
@@ -217,9 +217,9 @@ export const ScheduleItemScore = ({ i, x }: ScheduleItemScoreProps) => {
             {apiError ? <FormErrorOpacity error={apiError} /> : null}
             {isAdmin ? (
                 <ScheduleItemButton
-                    disabled={disabled}
                     handleClick={handleClick}
                     i={i}
+                    isDisabled={isDisabled}
                     isLoading={isLoading}
                     scoreTeam1={scoreTeam1}
                     scoreTeam2={scoreTeam2}

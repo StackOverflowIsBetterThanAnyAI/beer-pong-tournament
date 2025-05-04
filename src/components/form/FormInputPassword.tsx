@@ -3,10 +3,10 @@ import { ContextPasswordVisibility } from './../../context/ContextPasswordVisibi
 
 type FormInputPasswordProps = {
     autoComplete: HTMLInputAutoCompleteAttribute
-    disabled?: boolean
     error: string | boolean
-    hidden?: boolean
     id: string
+    isDisabled?: boolean
+    isHidden?: boolean
     label: string
     maxLength: number
     minLength: number
@@ -18,10 +18,10 @@ type FormInputPasswordProps = {
 
 const FormInputPassword = ({
     autoComplete,
-    disabled = false,
     error,
-    hidden,
     id,
+    isDisabled = false,
+    isHidden,
     label,
     maxLength,
     minLength,
@@ -57,11 +57,11 @@ const FormInputPassword = ({
                     id={id}
                     className={`bg-stone-100 disabled:bg-stone-200 text-normal w-full px-1 rounded
                     enabled:hover:bg-stone-200`}
-                    aria-disabled={disabled}
+                    aria-disabled={isDisabled}
                     aria-required="true"
                     aria-label={title}
                     autoComplete={autoComplete}
-                    disabled={disabled}
+                    disabled={isDisabled}
                     maxLength={maxLength}
                     minLength={minLength}
                     name={label.replace(/\s/g, '').toLowerCase()}
@@ -77,15 +77,15 @@ const FormInputPassword = ({
                     id={`show-${id}`}
                     className="outline outline-stone-500 disabled:outline-0"
                     aria-checked={!isPasswordHidden}
-                    aria-disabled={disabled}
-                    aria-label={`${disabled ? 'Currently disabled. ' : ''}${
-                        hidden ? 'Show' : 'Hide'
+                    aria-disabled={isDisabled}
+                    aria-label={`${isDisabled ? 'Currently disabled. ' : ''}${
+                        isHidden ? 'Show' : 'Hide'
                     } password.`}
-                    checked={!hidden}
-                    disabled={disabled}
+                    checked={!isHidden}
+                    disabled={isDisabled}
                     onChange={handleTogglePasswordVisibility}
-                    title={`${disabled ? 'Currently disabled. ' : ''}${
-                        hidden ? 'Show' : 'Hide'
+                    title={`${isDisabled ? 'Currently disabled. ' : ''}${
+                        isHidden ? 'Show' : 'Hide'
                     } password.`}
                     type="checkbox"
                 />

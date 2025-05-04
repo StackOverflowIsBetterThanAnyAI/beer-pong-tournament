@@ -1,15 +1,15 @@
 import { FetchLoading } from 'fetch-loading'
 
 type FormSubmitProps = {
-    disabled: boolean
     handleClick: (e: React.MouseEvent<HTMLInputElement>) => void
+    isDisabled: boolean
     isSendingRequest: boolean
     value: string
 }
 
 const FormSubmit = ({
-    disabled,
     handleClick,
+    isDisabled,
     isSendingRequest,
     value,
 }: FormSubmitProps) => {
@@ -18,11 +18,11 @@ const FormSubmit = ({
             type="button"
             className="w-32 sm:w-32 self-center text-large bg-stone-100 disabled:bg-stone-200 outline disabled:outline-0 outline-stone-500 disabled:text-stone-600 px-2 py-1 mb-1 mt-4 rounded-xl
             enabled:hover:bg-zinc-300 enabled:active:bg-zinc-400"
-            aria-disabled={disabled}
-            aria-label={`${value}${disabled ? ' disabled.' : ''}`}
+            aria-disabled={isDisabled}
+            aria-label={`${value}${isDisabled ? ' disabled.' : ''}`}
             onClick={handleClick}
-            disabled={disabled}
-            title={`${value}${disabled ? ' disabled.' : ''}`}
+            disabled={isDisabled}
+            title={`${value}${isDisabled ? ' disabled.' : ''}`}
             value={value}
         />
     ) : (

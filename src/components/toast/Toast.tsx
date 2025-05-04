@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react'
 
 type SuccessProps = {
+    isSuccess: boolean
     label: string
-    success: boolean
 }
 
-const Toast = ({ label, success }: SuccessProps) => {
+const Toast = ({ isSuccess, label }: SuccessProps) => {
     const [isTriggered, setIsTriggered] = useState<boolean>(true)
 
     const opacity = isTriggered ? 'opacity-90' : 'opacity-0'
-    const theme = success
+    const theme = isSuccess
         ? 'bg-green-500 text-stone-900/95'
         : 'bg-red-400 text-stone-950'
 
