@@ -6,7 +6,7 @@ import { setItemInStorage } from '../utils/setItemInStorage'
 type handleRegisterProps = {
     setApiError: (value: React.SetStateAction<string>) => void
     setIsLoggedIn: (value: React.SetStateAction<boolean | undefined>) => void
-    setSendingRequest: (value: React.SetStateAction<boolean>) => void
+    setIsSendingRequest: (value: React.SetStateAction<boolean>) => void
     setSubmitDisabled: (value: React.SetStateAction<boolean>) => void
     userData: {
         username: string
@@ -17,7 +17,7 @@ type handleRegisterProps = {
 export const handleRegister = async ({
     setApiError,
     setIsLoggedIn,
-    setSendingRequest,
+    setIsSendingRequest,
     setSubmitDisabled,
     userData,
 }: handleRegisterProps) => {
@@ -47,13 +47,13 @@ export const handleRegister = async ({
         handleLogin({
             setApiError,
             setIsLoggedIn,
-            setSendingRequest,
+            setIsSendingRequest,
             userData,
         })
     } catch (error: any) {
         setApiError('An error occurred while trying to signup.')
     } finally {
-        setSendingRequest(false)
+        setIsSendingRequest(false)
         setSubmitDisabled(false)
     }
 }

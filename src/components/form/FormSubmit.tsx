@@ -3,17 +3,17 @@ import { FetchLoading } from 'fetch-loading'
 type FormSubmitProps = {
     disabled: boolean
     handleClick: (e: React.MouseEvent<HTMLInputElement>) => void
-    sendingRequest: boolean
+    isSendingRequest: boolean
     value: string
 }
 
 const FormSubmit = ({
     disabled,
     handleClick,
-    sendingRequest,
+    isSendingRequest,
     value,
 }: FormSubmitProps) => {
-    return !sendingRequest ? (
+    return !isSendingRequest ? (
         <input
             type="button"
             className="w-32 sm:w-32 self-center text-large bg-stone-100 disabled:bg-stone-200 outline disabled:outline-0 outline-stone-500 disabled:text-stone-600 px-2 py-1 mb-1 mt-4 rounded-full

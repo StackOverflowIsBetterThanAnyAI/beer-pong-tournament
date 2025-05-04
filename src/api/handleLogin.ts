@@ -6,7 +6,7 @@ import { handleAdmin } from './handleAdmin'
 type handleLoginProps = {
     setApiError: (value: React.SetStateAction<string>) => void
     setIsLoggedIn: (value: React.SetStateAction<boolean | undefined>) => void
-    setSendingRequest: (value: React.SetStateAction<boolean>) => void
+    setIsSendingRequest: (value: React.SetStateAction<boolean>) => void
     userData: {
         username: string
         password: string
@@ -16,7 +16,7 @@ type handleLoginProps = {
 export const handleLogin = async ({
     setApiError,
     setIsLoggedIn,
-    setSendingRequest,
+    setIsSendingRequest,
     userData,
 }: handleLoginProps) => {
     try {
@@ -45,6 +45,6 @@ export const handleLogin = async ({
     } catch (error: any) {
         setApiError('An error occurred while trying to login.')
     } finally {
-        setSendingRequest(false)
+        setIsSendingRequest(false)
     }
 }
