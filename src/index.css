@@ -60,10 +60,9 @@ main::after {
     background-position: top;
     background-repeat: repeat;
     content: '';
-    filter: blur(2px);
     filter: saturate(80%);
     inset: 0;
-    opacity: 0.04;
+    opacity: 0.05;
     position: absolute;
     z-index: -1;
 }
@@ -88,15 +87,17 @@ main::after {
     @apply text-lg sm:text-xl md:text-2xl;
 }
 
-.animate-stone-50-red-100:focus::after {
+/* Save Score red */
+
+.animate-red-50-red-100:focus-visible:not(:active)::before {
     @apply absolute rounded-md;
     content: '';
     background-image: linear-gradient(
         to right,
-        #fafaf9,
-        #fee2e2,
-        #fafaf9,
-        #fee2e2
+        #fafaf9 /* stone-50 */,
+        #fee2e2 /* red-100 */,
+        #fafaf9 /* stone-50 */,
+        #fee2e2 /* red-100 */
     );
     background-size: 200%;
     inset: 0px;
@@ -104,15 +105,19 @@ main::after {
     animation: focus-animation 3s ease-in-out infinite alternate;
 }
 
-.animate-stone-50-red-200:focus::after {
+.animate-red-50-red-100:active::before {
+    @apply hidden;
+}
+
+.animate-red-50-red-100:not([disabled]):hover::before {
     @apply absolute rounded-md;
     content: '';
     background-image: linear-gradient(
         to right,
-        #fafaf9,
-        #fecaca,
-        #fafaf9,
-        #fecaca
+        #fef2f2 /* red-50 */,
+        #fecaca /* red-200 */,
+        #fef2f2 /* red-50 */,
+        #fecaca /* red-200 */
     );
     background-size: 200%;
     inset: 0px;
@@ -120,20 +125,60 @@ main::after {
     animation: focus-animation 3s ease-in-out infinite alternate;
 }
 
-.animate-stone-50-stone-200:focus::after {
+/* Save Score Gray */
+
+.animate-stone-50-stone-300:focus-visible::before {
     @apply absolute rounded-md;
     content: '';
     background-image: linear-gradient(
         to right,
-        #fafaf9,
-        #d6d3d1,
-        #fafaf9,
-        #d6d3d1
+        #fafaf9 /* stone-50 */,
+        #e7e5e4 /* stone-200*/,
+        #fafaf9 /* stone-50 */,
+        #e7e5e4 /* stone-200*/
     );
     background-size: 200%;
     inset: 0px;
     z-index: -1;
-    animation: focus-animation 4s ease-in-out infinite alternate;
+    animation: focus-animation 3s ease-in-out infinite alternate;
+}
+
+.animate-stone-50-stone-300:active::before {
+    @apply hidden;
+}
+
+.animate-stone-50-stone-300:not([disabled]):hover::before {
+    @apply absolute rounded-md;
+    content: '';
+    background-image: linear-gradient(
+        to right,
+        #fafaf9 /* stone-50 */,
+        #d6d3d1 /* rstone-300 */,
+        #fafaf9 /* stone-50 */,
+        #d6d3d1 /* rstone-300 */
+    );
+    background-size: 200%;
+    inset: 0px;
+    z-index: -1;
+    animation: focus-animation 3s ease-in-out infinite alternate;
+}
+
+/* Navigation */
+
+.animate-stone-50-red-200:focus-visible::before {
+    @apply absolute rounded-md;
+    content: '';
+    background-image: linear-gradient(
+        to right,
+        #fafaf9 /* stone-50 */,
+        #fecaca /* red-200 */,
+        #fafaf9 /* stone-50 */,
+        #fecaca /* red-200 */
+    );
+    background-size: 200%;
+    inset: 0px;
+    z-index: -1;
+    animation: focus-animation 3s ease-in-out infinite alternate;
 }
 
 @keyframes focus-animation {
@@ -157,7 +202,7 @@ main::after {
     background-image: conic-gradient(
         from var(--angle),
         transparent 25%,
-        #dc2626
+        #dc2626 /* red-600 */
     );
     inset: -1px;
     z-index: -1;
@@ -171,7 +216,7 @@ main::after {
     background-image: conic-gradient(
         from var(--angle),
         transparent 15%,
-        #eab308
+        #eab308 /* yellow-500 */
     );
     inset: -6px;
     animation: 1.5s spinanimation linear infinite;
@@ -182,7 +227,7 @@ main::after {
     background-image: conic-gradient(
         from var(--angle),
         transparent 50%,
-        #f59e0b
+        #f59e0b /* amber-500 */
     );
 }
 
