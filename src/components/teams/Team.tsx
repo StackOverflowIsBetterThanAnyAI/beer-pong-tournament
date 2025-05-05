@@ -32,7 +32,7 @@ const Team = ({ index, item, handleDelete }: TeamProps) => {
             </div>
             {isAdmin ? (
                 <button
-                    className={`relative text-normal outline mt-2 py-0.5 rounded-md focus-visible:bg-stone-50 z-10 
+                    className={`page relative text-normal outline mt-2 py-0.5 rounded-md focus-visible:bg-stone-50 z-10 
                     ${
                         index % 2
                             ? 'bg-red-50 outline-red-400 active:bg-red-200 disabled:bg-red-50/80 animate-red-50-red-100'

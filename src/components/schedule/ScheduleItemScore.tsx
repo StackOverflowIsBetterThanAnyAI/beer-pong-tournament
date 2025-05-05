@@ -145,7 +145,7 @@ export const ScheduleItemScore = ({ i, x }: ScheduleItemScoreProps) => {
                             value={scoreTeam1 ?? ''}
                             aria-label="Score between 0 and 10."
                             title="Score between 0 and 10."
-                            className={`${
+                            className={`page ${
                                 x % 2
                                     ? 'bg-red-400 !outline-red-600'
                                     : 'bg-stone-400/70 !outline-stone-500'
@@ -200,7 +200,7 @@ export const ScheduleItemScore = ({ i, x }: ScheduleItemScoreProps) => {
                             value={scoreTeam2 ?? ''}
                             aria-label="Score between 0 and 10."
                             title="Score between 0 and 10."
-                            className={`${
+                            className={`page ${
                                 x % 2
                                     ? 'bg-red-400 !outline-red-600'
                                     : 'bg-stone-400/70 !outline-stone-500'

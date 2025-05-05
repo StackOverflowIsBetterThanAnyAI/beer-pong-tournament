@@ -76,6 +76,7 @@ const ScheduleItem = ({
             </ul>
             {schedule.length > MAX_ITEMS_PER_PAGE * MATCHES_PER_GROUP ? (
                 <PageNavigation
+                    isMatch
                     MAX_ITEMS_PER_PAGE={MAX_ITEMS_PER_PAGE * MATCHES_PER_GROUP}
                     nextPage={nextPage}
                     page={page}
