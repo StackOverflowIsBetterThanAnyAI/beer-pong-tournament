@@ -8,10 +8,10 @@ type setLogoutProps = {
 export const setLogout = ({ isSessionExpired }: setLogoutProps) => {
     const parsedData = getStoredData()
     const userName = parsedData?.username || ''
-    window.location.href = isSessionExpired ? '/?session=expired' : '/'
     localStorage.clear()
     setItemInStorage('issigningup', false)
     setItemInStorage('username', userName)
+    window.location.href = isSessionExpired ? '/?session=expired' : '/'
 
     return false
 }
