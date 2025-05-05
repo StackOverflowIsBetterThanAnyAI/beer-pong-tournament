@@ -7,8 +7,8 @@ export const useFocusTrap = () => {
 
             const focusableElements = (
                 Array.from(document.querySelectorAll('a, button, input')) as (
-                    | HTMLButtonElement
                     | HTMLAnchorElement
+                    | HTMLButtonElement
                     | HTMLInputElement
                 )[]
             ).filter((item) => ('disabled' in item ? !item.disabled : true))
