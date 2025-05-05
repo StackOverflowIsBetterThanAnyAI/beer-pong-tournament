@@ -87,7 +87,7 @@ main::after {
     @apply text-lg sm:text-xl md:text-2xl;
 }
 
-/* Save Score red */
+/* Save Score / Delete Team red */
 
 .animate-red-50-red-100:focus-visible:not(:active)::before {
     @apply absolute rounded-md;
@@ -125,7 +125,7 @@ main::after {
     animation: focus-animation 3s ease-in-out infinite alternate;
 }
 
-/* Save Score Gray */
+/* Save Score / Delete Team Gray */
 
 .animate-stone-50-stone-300:focus-visible::before {
     @apply absolute rounded-md;
