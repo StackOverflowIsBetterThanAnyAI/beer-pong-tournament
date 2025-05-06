@@ -78,6 +78,7 @@ export const Teams = () => {
             refreshToken,
             registeredTeams,
             setApiError: setApiErrorDelete,
+            setIsLoading,
             setKOStage,
             setSchedule,
             setGroups,
@@ -104,6 +105,7 @@ export const Teams = () => {
             <Team
                 handleDelete={handleDelete}
                 index={index}
+                isLoading={isLoading}
                 item={item}
                 key={item.id}
             />

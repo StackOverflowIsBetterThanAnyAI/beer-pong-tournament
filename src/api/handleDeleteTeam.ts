@@ -21,6 +21,7 @@ type handleDeleteTeamProps = {
     registeredTeams: RegisteredTeamsProps
     setApiError: (value: React.SetStateAction<string>) => void
     setGroups: (value: React.SetStateAction<TournamentGroupsProps>) => void
+    setIsLoading: (value: React.SetStateAction<boolean>) => void
     setKOStage: React.Dispatch<React.SetStateAction<KOStageProps>>
     setRegisteredTeams: (
         value: React.SetStateAction<RegisteredTeamsProps>
@@ -38,10 +39,13 @@ export const handleDeleteTeam = async ({
     registeredTeams,
     setApiError,
     setGroups,
+    setIsLoading,
     setKOStage,
     setRegisteredTeams,
     setSchedule,
 }: handleDeleteTeamProps) => {
+    setIsLoading(true)
+
     try {
         const response = await fetch(
             `${SERVER_ADDRESS}/api/v1/teams/delete/${item.id}/`,
@@ -90,5 +94,7 @@ export const handleDeleteTeam = async ({
     } catch (error: any) {
         setApiError('An error occurred while deleting a team.')
         setTimeout(() => setApiError(''), 4000)
+    } finally {
+        setIsLoading(false)
     }
 }

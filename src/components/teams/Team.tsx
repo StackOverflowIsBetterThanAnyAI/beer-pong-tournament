@@ -4,11 +4,12 @@ import { ContextAdmin } from '../../context/ContextAdmin'
 
 type TeamProps = {
     index: number
+    isLoading: boolean
     item: RegisteredTeamProps
     handleDelete: (item: RegisteredTeamProps) => Promise<void>
 }
 
-const Team = ({ index, item, handleDelete }: TeamProps) => {
+const Team = ({ index, isLoading, item, handleDelete }: TeamProps) => {
     const contextAdmin = useContext(ContextAdmin)
     if (!contextAdmin) {
         throw new Error('Teams must be used within a ContextAdmin.Provider')
@@ -41,6 +42,8 @@ const Team = ({ index, item, handleDelete }: TeamProps) => {
                     onClick={() => handleDelete(item)}
                     aria-label={`Delete ${item.name}`}
                     title={`Delete ${item.name}`}
+                    aria-disabled={isLoading}
+                    disabled={isLoading}
                 >
                     Delete
                 </button>
