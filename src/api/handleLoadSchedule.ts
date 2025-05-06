@@ -2,6 +2,7 @@ import { SERVER_ADDRESS } from '../constants/constants'
 import { ScheduleProps } from '../types/types'
 import { getValidToken } from '../utils/getValidToken'
 import { getValueFromError } from '../utils/getValueFromError'
+import { setItemInSessionStorage } from '../utils/setItemInSessionStorage'
 import { setItemInStorage } from '../utils/setItemInStorage'
 
 type handleLoadScheduleProps = {
@@ -57,6 +58,7 @@ export const handleLoadSchedule = async ({
         } else {
             setItemInStorage('isgroupstageover', false)
             setItemInStorage('kostage', [])
+            setItemInSessionStorage('kostagepage', 1)
             setIsGroupstageOver ? setIsGroupstageOver(false) : null
         }
     } catch (error: any) {

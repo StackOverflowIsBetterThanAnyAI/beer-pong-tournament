@@ -45,6 +45,7 @@ export const handleResetTournament = async ({
         }
 
         setItemInSessionStorage('grouppage', 1)
+        setItemInSessionStorage('kostagepage', 1)
         setItemInSessionStorage('schedulepage', 1)
         setItemInSessionStorage('standingspage', 1)
 

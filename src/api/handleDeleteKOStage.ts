@@ -2,6 +2,7 @@ import { SERVER_ADDRESS } from '../constants/constants'
 import { KOStageProps } from '../types/types'
 import { getValidToken } from '../utils/getValidToken'
 import { getValueFromError } from '../utils/getValueFromError'
+import { setItemInSessionStorage } from '../utils/setItemInSessionStorage'
 import { setItemInStorage } from '../utils/setItemInStorage'
 
 type handleDeleteKOStageProps = {
@@ -43,6 +44,7 @@ export const handleDeleteKOStage = async ({
 
         setItemInStorage('isgroupstageover', false)
         setItemInStorage('kostage', [])
+        setItemInSessionStorage('kostagepage', 1)
         setKOStage([])
     } catch (error: any) {
         setApiError(
