@@ -9,20 +9,20 @@ const ScheduleLegend = () => {
             </span>
             <ul className="text-small list-disc">
                 <li className="ml-4 my-0.5">
-                    A Match is over, if one teams scores{' '}
-                    <strong>10 Cups</strong>.
+                    A match is over, if one teams scores{' '}
+                    <strong>10 cups</strong>.
                 </li>
                 <li className="ml-4 my-0.5">
-                    If both teams score 10 Cups, the Match is a Draw.
+                    If both teams score 10 cups, the match is a draw.
                 </li>
                 <li className="ml-4 my-0.5">
-                    For a Win, you receive <strong>3 Points</strong>.
+                    For a win, you receive <strong>3 points</strong>.
                 </li>
                 <li className="ml-4 my-0.5">
-                    A Draw results in <strong>1 Point</strong> each for both
+                    A draw results in <strong>1 Point</strong> each for both
                     teams.
                 </li>
-                <li className="ml-4 my-0.5">The Loser gets no Points.</li>
+                <li className="ml-4 my-0.5">The loser gets no points.</li>
             </ul>
         </div>
     )
