@@ -179,7 +179,7 @@ export const GroupsGenerator = () => {
                             ? 'Regenerate Groups and restart Tournament. All Process will be lost.'
                             : 'Generate Groups and start Tournament.'
                     }`}
-                    disabled={isStartDisabled || isSubmitDisabled}
+                    disabled={isStartDisabled || isSubmitDisabled || isLoading}
                     ref={startButtonRef}
                 >
                     {isSubmitDisabled ? (
