@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import { FetchLoading } from 'fetch-loading'
 import FormError from '../form/FormError'
 import FormErrorOpacity from '../form/FormErrorOpacity'
@@ -20,6 +20,7 @@ import { getStoredSessionData } from '../../utils/getStoredSessionData'
 import { handleGenerateGroups } from '../../api/handleGenerateGroups'
 import { handleLoadGroups } from '../../api/handleLoadGroups'
 import { handleLoadRegisteredTeams } from '../../api/handleLoadRegisteredTeams'
+import { useAutoFocus } from '../../hooks/useAutoFocus'
 
 export const GroupsGenerator = () => {
     const parsedStorageData = getStoredData()
@@ -80,6 +81,10 @@ export const GroupsGenerator = () => {
     const [apiErrorGenerate, setApiErrorGenerate] = useState<string>('')
     const [apiErrorLoad, setApiErrorLoad] = useState<string>('')
     const [isLoading, setIsLoading] = useState<boolean>(false)
+
+    const startButtonRef = useRef<HTMLButtonElement>(null)
+
+    useAutoFocus(startButtonRef)
 
     handleLoadRegisteredTeams({
         accessToken,
@@ -175,6 +180,7 @@ export const GroupsGenerator = () => {
                             : 'Generate Groups and start Tournament.'
                     }`}
                     disabled={isStartDisabled || isSubmitDisabled}
+                    ref={startButtonRef}
                 >
                     {isSubmitDisabled ? (
                         <FetchLoading theme="#44403c" />
