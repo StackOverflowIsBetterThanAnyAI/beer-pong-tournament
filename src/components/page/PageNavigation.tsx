@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useFocusTrapPage } from '../../hooks/useFocusTrapPage'
 import {
+    KOStageProps,
     RegisteredTeamsProps,
     ScheduleProps,
     StandingsProps,
@@ -15,6 +16,7 @@ type PageNavigationProps = {
     page: number
     previousPage: () => void
     registeredTeams:
+        | KOStageProps
         | RegisteredTeamsProps
         | ScheduleProps
         | StandingsProps
