@@ -99,6 +99,7 @@ export const GroupsGenerator = () => {
             accessToken,
             refreshToken,
             setApiError: setApiErrorLoad,
+            setIsLoading,
             setGroups,
         })
     }

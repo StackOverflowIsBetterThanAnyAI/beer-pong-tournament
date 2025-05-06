@@ -8,6 +8,7 @@ type handleLoadGroupsProps = {
     accessToken: string
     refreshToken: string
     setApiError: (value: React.SetStateAction<string>) => void
+    setIsLoading: (value: React.SetStateAction<boolean>) => void
     setGroups: (value: React.SetStateAction<TournamentGroupsProps>) => void
 }
 
@@ -15,9 +16,11 @@ export const handleLoadGroups = async ({
     accessToken,
     refreshToken,
     setApiError,
+    setIsLoading,
     setGroups,
 }: handleLoadGroupsProps) => {
     setApiError('')
+    setIsLoading(true)
 
     try {
         const response = await fetch(`${SERVER_ADDRESS}/api/v1/groups/`, {
@@ -45,5 +48,7 @@ export const handleLoadGroups = async ({
         setItemInStorage('groups', groups.data)
     } catch (error: any) {
         setApiError('An error occurred while loading the groups.')
+    } finally {
+        setIsLoading(false)
     }
 }
