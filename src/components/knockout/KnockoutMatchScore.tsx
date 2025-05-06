@@ -148,7 +148,7 @@ const KnockoutMatchScore = ({ i, setKOStage }: KnockoutMatchScoreProps) => {
                             value={scoreTeam1 ?? ''}
                             aria-label="Score between 0 and 10."
                             title="Score between 0 and 10."
-                            className={`${
+                            className={`page ${
                                 i.round === 'QF' || i.round === 'F'
                                     ? 'bg-red-400 !outline-red-600'
                                     : 'bg-stone-400/70 !outline-stone-500'
@@ -207,7 +207,7 @@ const KnockoutMatchScore = ({ i, setKOStage }: KnockoutMatchScoreProps) => {
                             value={scoreTeam2 ?? ''}
                             aria-label="Score between 0 and 99."
                             title="Score between 0 and 99."
-                            className={`${
+                            className={`page ${
                                 i.round === 'QF' || i.round === 'F'
                                     ? 'bg-red-400 !outline-red-600'
                                     : 'bg-stone-400/70 !outline-stone-500'

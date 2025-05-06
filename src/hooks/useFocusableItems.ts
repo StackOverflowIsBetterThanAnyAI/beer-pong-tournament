@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import {
+    KOStageProps,
     RegisteredTeamsProps,
     ScheduleProps,
     StandingsProps,
@@ -9,6 +10,7 @@ import {
 type useFocusableItemsProps = {
     page: number
     registeredTeams:
+        | KOStageProps
         | RegisteredTeamsProps
         | ScheduleProps
         | StandingsProps
