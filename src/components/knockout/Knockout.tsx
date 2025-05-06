@@ -132,7 +132,9 @@ const Knockout = () => {
                                 ? 'Start Disabled. Not all Group Stage Matches have been played yet.'
                                 : 'Start Knockout Stage.'
                         }`}
-                        disabled={!isGroupstageOver || isSubmitDisabled}
+                        disabled={
+                            !isGroupstageOver || isSubmitDisabled || isLoading
+                        }
                         ref={startButtonRef}
                     >
                         {isSubmitDisabled ? (
