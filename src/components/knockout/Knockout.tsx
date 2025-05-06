@@ -3,7 +3,6 @@ import { FetchLoading } from 'fetch-loading'
 import FormError from '../form/FormError'
 import FormErrorOpacity from '../form/FormErrorOpacity'
 import FormHeader from '../form/FormHeader'
-import KnockoutChampion from './KnockoutChampion'
 import KnockoutMatch from './KnockoutMatch'
 import { ContextAdmin } from '../../context/ContextAdmin'
 import { ContextGroups } from '../../context/ContextGroups'
@@ -11,6 +10,7 @@ import { ContextKOStage } from '../../context/ContextKOStage'
 import { ContextSchedule } from '../../context/ContextSchedule'
 import { ContextTournamentWinner } from '../../context/ContextTournamentWinner'
 import { getStoredData } from '../../utils/getStoredData'
+import { getStoredSessionData } from '../../utils/getStoredSessionData'
 import { handleGenerateKOStage } from '../../api/handleGenerateKOStage'
 import { handleLoadSchedule } from '../../api/handleLoadSchedule'
 import { handleLoadKOStage } from '../../api/handleLoadKOStage'
@@ -18,6 +18,7 @@ import { useAutoFocus } from '../../hooks/useAutoFocus'
 
 const Knockout = () => {
     const parsedStorageData = getStoredData()
+    const parsedSessionData = getStoredSessionData()
 
     const contextAdmin = useContext(ContextAdmin)
     if (!contextAdmin) {
@@ -54,6 +55,10 @@ const Knockout = () => {
     )
     const [refreshToken, _setRefreshToken] = useState<string>(
         parsedStorageData?.refresh || ''
+    )
+
+    const [page, setPage] = useState<number>(
+        parsedSessionData?.kostagepage || 1
     )
 
     const [isGroupstageOver, setIsGroupstageOver] = useState<boolean>(
@@ -151,7 +156,13 @@ const Knockout = () => {
                         <FormError error={apiErrorLoad} />
                     </div>
                 ) : koStage.length ? (
-                    <KnockoutMatch koStage={koStage} setKOStage={setKOStage} />
+                    <KnockoutMatch
+                        koStage={koStage}
+                        page={page}
+                        setKOStage={setKOStage}
+                        setPage={setPage}
+                        tournamentWinner={tournamentWinner}
+                    />
                 ) : (
                     <div className="pt-2">
                         {!isAdmin ? (
@@ -167,7 +178,6 @@ const Knockout = () => {
                         )}
                     </div>
                 )}
-                {tournamentWinner ? <KnockoutChampion /> : null}
             </ContextTournamentWinner.Provider>
         </main>
     )
