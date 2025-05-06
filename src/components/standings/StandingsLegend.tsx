@@ -24,7 +24,7 @@ const StandingsLegend = ({ standings }: StandingsLegendProps) => {
     const thirdEliminated = standings.length - thirdAdvance
 
     return (
-        <div className="flex flex-col w-full max-w-96 bg-stone-200 p-2 rounded-sm m-auto">
+        <div className="flex flex-col w-full max-w-96 bg-stone-200 drop-shadow-stone-600/60 drop-shadow-sm p-2 rounded-sm m-auto mt-2">
             <span className="flex justify-between z-10">
                 <h3 className="text-normal mb-1">Legend:</h3>
                 <span className="legendinfo relative bg-stone-200 text-center text-normal h-5 w-5 text-red-600 outline-2 outline-red-600 rounded-full">
