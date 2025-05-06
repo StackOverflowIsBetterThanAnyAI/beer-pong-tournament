@@ -35,7 +35,7 @@ const Team = ({ index, item, handleDelete }: TeamProps) => {
                     className={`page relative text-normal outline mt-2 py-0.5 rounded-md focus-visible:bg-stone-50 z-10 
                     ${
                         index % 2
-                            ? 'bg-red-50 outline-red-400 active:bg-red-200 disabled:bg-red-50/80 animate-red-50-red-100'
+                            ? 'bg-red-50 outline-red-400 active:bg-red-200 disabled:bg-red-100/80 animate-red-50-red-100'
                             : 'bg-stone-100/90 outline-stone-500 active:bg-stone-300 disabled:bg-stone-50/20 animate-stone-50-stone-300'
                     }`}
                     onClick={() => handleDelete(item)}

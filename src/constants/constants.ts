@@ -26,4 +26,4 @@ export const ROUTES = [
     'knockout-stage',
 ]
 
-export const SERVER_ADDRESS = 'http://localhost:8000'
+export const SERVER_ADDRESS = 'http://10.51.49.132:8000'

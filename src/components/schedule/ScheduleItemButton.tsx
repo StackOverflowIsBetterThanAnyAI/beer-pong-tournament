@@ -25,7 +25,7 @@ const ScheduleItemButton = ({
             className={`relative flex justify-center items-center outline text-normal rounded-md min-h-7 mt-2 p-0.5 disabled:text-stone-600 z-10 
             ${
                 x % 2
-                    ? 'bg-red-50 outline-red-400 active:bg-red-200 disabled:bg-red-50/80 animate-red-50-red-100'
+                    ? 'bg-red-50 outline-red-400 active:bg-red-200 disabled:bg-red-100/80 animate-red-50-red-100'
                     : 'bg-stone-100/90 outline-stone-500 active:bg-stone-300 disabled:bg-stone-50/20 animate-stone-50-stone-300'
             }`}
             aria-label={
