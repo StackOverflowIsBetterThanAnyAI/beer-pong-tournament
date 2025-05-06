@@ -1,6 +1,7 @@
 import { useContext } from 'react'
 import PageNavigation from '../page/PageNavigation'
 import ScheduleItemScore from './ScheduleItemScore'
+import ScheduleLegend from './ScheduleLegend'
 import { MATCHES_PER_GROUP } from '../../constants/constants'
 import { ContextSchedule } from '../../context/ContextSchedule'
 
@@ -74,6 +75,7 @@ const ScheduleItem = ({
                         )
                     })}
             </ul>
+            <ScheduleLegend />
             {schedule.length > MAX_ITEMS_PER_PAGE * MATCHES_PER_GROUP ? (
                 <PageNavigation
                     isMatch
