@@ -58,7 +58,7 @@ const KnockoutMatch = ({
                             key={i.id}
                             className={`p-2 rounded-sm ${
                                 i.round === 'QF' || i.round === 'F'
-                                    ? 'bg-red-100'
+                                    ? 'bg-red-200'
                                     : 'bg-stone-200'
                             }`}
                             role="menuitem"

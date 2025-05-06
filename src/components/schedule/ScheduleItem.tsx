@@ -49,7 +49,7 @@ const ScheduleItem = ({
                             <li
                                 key={i.id}
                                 className={`p-2 rounded-sm ${
-                                    x % 2 ? 'bg-red-100' : 'bg-stone-200'
+                                    x % 2 ? 'bg-red-200' : 'bg-stone-200'
                                 }`}
                                 role="menuitem"
                             >
