@@ -22,7 +22,7 @@ type handleRegisterTeamProps = {
     registeredTeams: RegisteredTeamsProps
     setApiError: (value: React.SetStateAction<string>) => void
     setGroups: (value: React.SetStateAction<TournamentGroupsProps>) => void
-    setIsSendingRequest: (value: React.SetStateAction<boolean>) => void
+    setIsLoading: (value: React.SetStateAction<boolean>) => void
     setIsSubmitDisabled: (value: React.SetStateAction<boolean>) => void
     setIsSuccess: (value: React.SetStateAction<boolean>) => void
     setKOStage: React.Dispatch<React.SetStateAction<KOStageProps>>
@@ -39,7 +39,7 @@ export const handleRegisterTeam = async ({
     registeredTeams,
     setApiError,
     setGroups,
-    setIsSendingRequest,
+    setIsLoading,
     setIsSubmitDisabled,
     setIsSuccess,
     setKOStage,
@@ -101,6 +101,6 @@ export const handleRegisterTeam = async ({
         setIsSubmitDisabled(false)
         setTimeout(() => setApiError(''), 4000)
     } finally {
-        setIsSendingRequest(false)
+        setIsLoading(false)
     }
 }

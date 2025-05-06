@@ -69,7 +69,7 @@ const RegisterTeam = () => {
     const teamNameRef = useRef<HTMLInputElement>(null)
 
     const [apiError, setApiError] = useState<string>('')
-    const [isSendingRequest, setIsSendingRequest] = useState<boolean>(false)
+    const [isLoading, setIsLoading] = useState<boolean>(false)
     const [isSuccess, setIsSuccess] = useState<boolean>(false)
     const [isSubmitDisabled, setIsSubmitDisabled] = useState<boolean>(true)
 
@@ -147,7 +147,7 @@ const RegisterTeam = () => {
     ) => {
         e.preventDefault()
         setApiError('')
-        setIsSendingRequest(true)
+        setIsLoading(true)
         setIsSubmitDisabled(true)
 
         const registerTeamData = {
@@ -163,7 +163,7 @@ const RegisterTeam = () => {
             registeredTeams,
             setApiError,
             setGroups,
-            setIsSendingRequest,
+            setIsLoading,
             setIsSuccess,
             setIsSubmitDisabled,
             setKOStage,
@@ -247,7 +247,7 @@ const RegisterTeam = () => {
                         <FormSubmit
                             handleClick={handleClickRegisterTeam}
                             isDisabled={isSubmitDisabled}
-                            isSendingRequest={isSendingRequest}
+                            isLoading={isLoading}
                             value="Register Team"
                         />
                     </form>

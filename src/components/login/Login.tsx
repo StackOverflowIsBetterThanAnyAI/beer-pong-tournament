@@ -49,7 +49,7 @@ const Login = () => {
     const [confirmPassword, setConfirmPassword] = useState<string>('')
     const [confirmPasswordDisabled, setConfirmPasswordDisabled] =
         useState<boolean>(true)
-    const [isSendingRequest, setIsSendingRequest] = useState<boolean>(false)
+    const [isLoading, setIsLoading] = useState<boolean>(false)
     const [isSessionExpired, setIsSessionExpired] = useState<boolean>(false)
     const [isSubmitDisabled, setIsSubmitDisabled] = useState<boolean>(true)
 
@@ -151,7 +151,7 @@ const Login = () => {
     ) => {
         e.preventDefault()
         setApiError('')
-        setIsSendingRequest(true)
+        setIsLoading(true)
         setIsSubmitDisabled(true)
 
         const userData = {
@@ -162,16 +162,16 @@ const Login = () => {
         if (isSigningUp) {
             handleRegister({
                 setApiError,
+                setIsLoading,
                 setIsLoggedIn,
-                setIsSendingRequest,
                 setIsSubmitDisabled,
                 userData,
             })
         } else {
             handleLogin({
                 setApiError,
+                setIsLoading,
                 setIsLoggedIn,
-                setIsSendingRequest,
                 userData,
             })
         }
@@ -281,7 +281,7 @@ const Login = () => {
                             <FormSubmit
                                 handleClick={handleClickAuthenticate}
                                 isDisabled={isSubmitDisabled}
-                                isSendingRequest={isSendingRequest}
+                                isLoading={isLoading}
                                 value={isSigningUp ? 'Signup' : 'Login'}
                             />
                         </form>
