@@ -56,7 +56,8 @@ const KnockoutMatchScore = ({ i, setKOStage }: KnockoutMatchScoreProps) => {
         (parseInt(scoreTeam1) < 10 && parseInt(scoreTeam2) < 10) ||
         apiError.length > 0 ||
         inputErrorTeam1.length > 0 ||
-        inputErrorTeam2.length > 0
+        inputErrorTeam2.length > 0 ||
+        isLoading
 
     const marginBottom = !isAdmin
         ? 'mb-1'
