@@ -33,6 +33,6 @@
         "prettier-es5": "^0.0.4",
         "typescript": "~5.8.3",
         "typescript-eslint": "^8.32.0",
-        "vite": "^6.3.4"
+        "vite": "^6.3.5"
     }
 }
