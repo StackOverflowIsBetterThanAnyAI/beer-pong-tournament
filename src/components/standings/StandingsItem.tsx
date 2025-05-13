@@ -118,7 +118,7 @@ const StandingsItem = ({
                                                         : ''
                                                 }`}
                                             >
-                                                <td className="font-bold text-ellipsis overflow-hidden">
+                                                <td className="font-bold max-w-full text-ellipsis overflow-hidden">
                                                     <div className="flex gap-2">
                                                         <span
                                                             aria-label={`Current Position: ${
@@ -150,7 +150,7 @@ const StandingsItem = ({
                                                                         ? 'underline decoration-2 decoration-yellow-600/60'
                                                                         : 'underline decoration-2 decoration-red-600'
                                                                     : ''
-                                                            }`}
+                                                            } text-ellipsis overflow-hidden`}
                                                             aria-label={s.team}
                                                             title={s.team}
                                                         >
