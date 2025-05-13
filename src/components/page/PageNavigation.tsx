@@ -54,7 +54,7 @@ const PageNavigation = ({
 
     return (
         <div className="flex flex-col gap-2 w-full max-w-96 mt-4 mx-auto">
-            <div className="bg-stone-300 grid min-[280px]:grid-cols-3 gap-y-1 w-full text-center m-auto p-1 rounded-lg">
+            <div className="bg-stone-300 grid min-[280px]:grid-cols-3 gap-y-1 w-full text-center m-auto py-1 rounded-lg">
                 <button
                     className="previouspage text-normal bg-stone-300 outline outline-stone-500 disabled:outline-stone-400 disabled:bg-stone-400/20 disabled:text-stone-600 px-2 py-0.5 rounded-md
                     hover:bg-stone-400/30 active:bg-stone-400/60"
