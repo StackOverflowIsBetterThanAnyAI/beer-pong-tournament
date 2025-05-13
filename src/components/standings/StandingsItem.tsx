@@ -127,6 +127,7 @@ const StandingsItem = ({
                                                             title={`Current Position: ${
                                                                 sx + 1
                                                             }`}
+                                                            className="max-[320px]:hidden"
                                                         >
                                                             {s.played
                                                                 ? sx + 1
