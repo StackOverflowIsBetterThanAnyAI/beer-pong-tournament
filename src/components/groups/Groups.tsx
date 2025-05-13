@@ -1,3 +1,4 @@
+import GroupsLegend from './GroupsLegend'
 import PageNavigation from '../page/PageNavigation'
 import { TournamentGroupsProps } from '../../types/types'
 import { useTeamsPerPage } from '../../hooks/useTeamsPerPage'
@@ -90,6 +91,7 @@ const Groups = ({ groups, page, setPage }: GroupsProps) => {
                         )
                     })}
             </ul>
+            <GroupsLegend />
             {groups.length > MAX_ITEMS_PER_PAGE ? (
                 <PageNavigation
                     MAX_ITEMS_PER_PAGE={MAX_ITEMS_PER_PAGE}
