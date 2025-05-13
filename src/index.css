@@ -214,6 +214,10 @@ main::after {
     animation: 2s spinanimation linear infinite;
 }
 
+.logohomepage:active {
+    cursor: url('/splash.webp') 16 16, auto;
+}
+
 .winner::after,
 .winner::before {
     @apply absolute rounded -z-10;
