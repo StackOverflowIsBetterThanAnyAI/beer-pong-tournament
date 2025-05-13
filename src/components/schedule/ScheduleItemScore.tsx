@@ -112,12 +112,17 @@ export const ScheduleItemScore = ({ i, x }: ScheduleItemScoreProps) => {
             <div className="flex flex-wrap items-center max-[280px]:flex-col justify-between gap-x-2 text-ellipsis overflow-hidden pb-1">
                 {i.played ? (
                     <span
-                        className={`${i.score_team1 === 10 ? 'font-bold' : ''}`}
+                        className={`${
+                            i.score_team1 === 10 ? 'font-bold' : ''
+                        } text-ellipsis overflow-hidden max-w-full`}
                     >
                         {i.team1}
                     </span>
                 ) : (
-                    <label htmlFor={`input${i.team1}vs${i.team2}`}>
+                    <label
+                        htmlFor={`input${i.team1}vs${i.team2}`}
+                        className="text-ellipsis overflow-hidden max-w-full"
+                    >
                         {i.team1}
                     </label>
                 )}
@@ -167,12 +172,17 @@ export const ScheduleItemScore = ({ i, x }: ScheduleItemScoreProps) => {
             >
                 {i.played ? (
                     <span
-                        className={`${i.score_team2 === 10 ? 'font-bold' : ''}`}
+                        className={`${
+                            i.score_team2 === 10 ? 'font-bold' : ''
+                        } text-ellipsis overflow-hidden max-w-full`}
                     >
                         {i.team2}
                     </span>
                 ) : (
-                    <label htmlFor={`input${i.team2}vs${i.team1}`}>
+                    <label
+                        htmlFor={`input${i.team2}vs${i.team1}`}
+                        className="text-ellipsis overflow-hidden max-w-full"
+                    >
                         {i.team2}
                     </label>
                 )}
