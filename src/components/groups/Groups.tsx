@@ -74,7 +74,7 @@ const Groups = ({ groups, page, setPage }: GroupsProps) => {
                                                     <div className="font-bold text-ellipsis overflow-hidden">
                                                         {t.name}
                                                     </div>
-                                                    <div className="flex justify-between">
+                                                    <div className="flex flex-wrap gap-x-2 justify-between">
                                                         <div className="text-ellipsis overflow-hidden">
                                                             {t.member_one}
                                                         </div>
