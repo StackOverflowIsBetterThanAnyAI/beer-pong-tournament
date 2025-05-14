@@ -72,14 +72,14 @@ const NavigationLinks = () => {
 
     return (
         <nav
-            className={`flex flex-col gap-1 bg-red-200 text-stone-950 w-full p-4 transition-[padding] duration-300 ${
+            className={`flex flex-col gap-1 max-w-7xl bg-red-200 text-stone-950 w-full p-4 transition-[padding] duration-300 ${
                 isNavigationExpanded ? 'pt-6' : 'py-2'
-            }`}
+            } lg:rounded-b-md`}
         >
             {isNavigationExpanded ? routes : null}
             <button
                 onClick={handleClick}
-                className={`animate-stone-50-red-200 relative isolate bg-stone-50 outline outline-red-400/90 text-normal rounded-md px-2 py-0.5 active:bg-red-200
+                className={`animate-stone-50-red-200 max-w-96 w-full relative isolate bg-stone-50 outline outline-red-400/90 text-normal rounded-md m-auto px-2 py-0.5 lg:py-1 active:bg-red-200
                     transition-[margin] duration-300 ${
                         isNavigationExpanded ? 'mt-2' : 'mt-0'
                     }`}

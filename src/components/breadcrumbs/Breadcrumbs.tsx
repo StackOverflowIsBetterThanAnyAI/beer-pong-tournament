@@ -20,7 +20,7 @@ const Breadcrumbs = () => {
             {pathname.length ? (
                 <nav
                     aria-label="Breadcrumbs"
-                    className="breadcrumbs flex max-w-7xl w-full overflow-x-auto text-nowrap mx-auto items-center p-2"
+                    className="breadcrumbs flex max-w-7xl w-full overflow-x-auto text-nowrap mx-auto items-center p-2 lg:p-2.5"
                 >
                     <a
                         aria-label="Back to the Homepage."

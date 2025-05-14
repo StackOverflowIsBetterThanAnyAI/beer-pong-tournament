@@ -20,18 +20,20 @@ const Navigation = () => {
 
     return (
         <>
-            <nav className="sticky top-0 z-50 h-16 flex items-center justify-between bg-stone-800 text-zinc-100 w-full shadow-md shadow-stone-600/80 px-2 sm:px-4 py-1 md:py-2">
-                <NavigationLogo />
-                {isLoggedIn ? (
-                    <button
-                        className="text-large px-4 py-2 rounded-lg hover:bg-stone-700 active:bg-stone-600"
-                        title="Logout"
-                        aria-label="Logout"
-                        onClick={handleLogout}
-                    >
-                        Logout
-                    </button>
-                ) : null}
+            <nav className="sticky top-0 z-50 bg-stone-800 text-zinc-100 w-full shadow-md shadow-stone-600/80">
+                <div className="max-w-7xl flex items-center justify-between m-auto h-16 px-2 sm:px-4 py-1 md:py-2">
+                    <NavigationLogo />
+                    {isLoggedIn ? (
+                        <button
+                            className="text-large px-4 py-2 rounded-lg hover:bg-stone-700 active:bg-stone-600"
+                            title="Logout"
+                            aria-label="Logout"
+                            onClick={handleLogout}
+                        >
+                            Logout
+                        </button>
+                    ) : null}
+                </div>
             </nav>
             {isLoggedIn ? <NavigationLinks /> : null}
             <Breadcrumbs />
