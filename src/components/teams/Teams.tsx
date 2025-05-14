@@ -113,7 +113,7 @@ export const Teams = () => {
     })
 
     return (
-        <main className="w-full relative isolate bg-stone-300 text-stone-950 sm:rounded-lg p-3 sm:p-4 md:p-6 drop-shadow-stone-900 drop-shadow-sm">
+        <main className="w-full max-w-7xl relative isolate bg-stone-300 text-stone-950 lg:rounded-lg p-3 sm:p-4 lg:p-6 drop-shadow-stone-900 drop-shadow-sm">
             <h1 className="text-center font-semibold text-extra-large pt-2">
                 Registered Teams
             </h1>
@@ -129,7 +129,7 @@ export const Teams = () => {
                         Currently registered Teams:
                     </h2>
                     <ul
-                        className="flex flex-col gap-1.5 w-full max-w-96 bg-stone-400/70 drop-shadow-stone-600/60 drop-shadow-sm my-4 p-1.5 m-auto rounded-sm"
+                        className="grid [grid-template-columns:repeat(auto-fit,minmax(256px,1fr))] gap-2 max-w-96 w-full sm:max-w-5xl bg-stone-400/70 drop-shadow-stone-600/60 drop-shadow-sm mx-auto my-4 p-1.5 rounded-sm"
                         role="menu"
                     >
                         {teams.filter((item, index) => {

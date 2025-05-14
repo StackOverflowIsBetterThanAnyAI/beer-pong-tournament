@@ -19,17 +19,19 @@ const Team = ({ index, isLoading, item, handleDelete }: TeamProps) => {
     return (
         <li
             key={item.name}
-            className={`flex flex-col w-full max-w-96 p-2 m-auto rounded-sm ${
+            className={`flex flex-col w-full max-w-96 justify-between m-auto p-2 rounded-sm h-full ${
                 index % 2 ? 'bg-red-200' : 'bg-stone-200'
             }`}
             role="menuitem"
         >
-            <div className="text-large font-bold underline text-ellipsis overflow-hidden">
-                {item.name}
-            </div>
-            <div className="flex gap-x-2 flex-wrap justify-between">
-                <div className="text-normal">{item.member_one}</div>
-                <div className="text-normal">{item.member_two}</div>
+            <div>
+                <div className="text-large font-bold underline text-ellipsis overflow-hidden">
+                    {item.name}
+                </div>
+                <div className="flex gap-x-2 flex-wrap justify-between">
+                    <div className="text-normal">{item.member_one}</div>
+                    <div className="text-normal">{item.member_two}</div>
+                </div>
             </div>
             {isAdmin ? (
                 <button
