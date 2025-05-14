@@ -174,11 +174,11 @@ const RegisterTeam = () => {
 
     return (
         <>
-            <main className="flex justify-center w-full relative isolate bg-stone-300 text-stone-950 sm:rounded-lg p-3 mx-auto drop-shadow-stone-900 drop-shadow-sm">
+            <main className="flex justify-center w-full max-w-7xl relative isolate bg-stone-300 text-stone-950 lg:rounded-lg p-3 mx-auto drop-shadow-stone-900 drop-shadow-sm">
                 <div className="w-96">
                     <FormHeader header="Register Team" subHeader="required" />
                     <form
-                        className="flex flex-col"
+                        className="flex flex-col pt-1 lg:pt-3"
                         autoComplete="on"
                         aria-label="Register Team"
                         name="registerteam"

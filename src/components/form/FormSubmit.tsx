@@ -16,7 +16,7 @@ const FormSubmit = ({
     return !isLoading ? (
         <input
             type="button"
-            className="w-32 sm:w-32 self-center text-large bg-stone-100 disabled:bg-stone-200 outline disabled:outline-0 outline-stone-500 disabled:text-stone-600 px-2 py-1 mb-1 mt-4 rounded-xl
+            className="w-32 sm:w-40 self-center text-large bg-stone-100 disabled:bg-stone-200 outline disabled:outline-0 outline-stone-500 disabled:text-stone-600 px-2 py-1 mb-1 mt-4 rounded-xl
             enabled:hover:bg-zinc-300 enabled:active:bg-zinc-400"
             aria-disabled={isDisabled}
             aria-label={`${value}${isDisabled ? ' disabled.' : ''}`}
@@ -27,7 +27,7 @@ const FormSubmit = ({
         />
     ) : (
         <button
-            className="flex items-center justify-center w-32 sm:w-32 self-center text-large bg-stone-200 outline outline-stone-500 text-stone-600 px-2 py-1 mb-1 mt-4 rounded-xl"
+            className="flex items-center justify-center w-32 sm:w-40 self-center text-large bg-stone-200 outline outline-stone-500 text-stone-600 px-2 py-1 mb-1 mt-4 rounded-xl"
             aria-disabled="true"
             aria-label={`${value} disabled.`}
             disabled={true}

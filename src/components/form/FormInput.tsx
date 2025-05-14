@@ -33,11 +33,11 @@ const FormInput = ({
     type,
     value,
 }: FormInputProps) => {
-    const marginBottom = error ? 'mb-1' : 'mb-5 md:mb-6'
+    const marginBottom = error ? 'mb-1' : 'mb-5 sm:mb-6'
 
     return (
         <>
-            <label htmlFor={id} className="text-large py-2 md:py-1">
+            <label htmlFor={id} className="text-large py-2 sm:py-1">
                 {label} {<span className="text-red-800">*</span>}
             </label>
             <input
