@@ -38,8 +38,8 @@ const StandingsItem = ({
                             </h2>
                             <table className="flex flex-col gap-2 pt-2">
                                 <thead>
-                                    <tr className="max-[320px]:hidden flex justify-between px-2 text-normal w-full overflow-hidden text-ellipsis">
-                                        <th>
+                                    <tr className="flex justify-between px-2 text-normal w-full overflow-hidden text-ellipsis">
+                                        <th className="max-[320px]:hidden">
                                             <div className="flex gap-2">
                                                 <span
                                                     aria-label="Position"
@@ -55,8 +55,8 @@ const StandingsItem = ({
                                                 </span>
                                             </div>
                                         </th>
-                                        <th>
-                                            <div className="grid grid-cols-3 w-32 text-center">
+                                        <th className="max-[320px]:w-full">
+                                            <div className="grid grid-cols-3 w-32 max-[320px]:w-full text-center">
                                                 <span
                                                     aria-label="Matches Played"
                                                     title="Matches Played"
@@ -95,7 +95,7 @@ const StandingsItem = ({
                                                     : ''
                                             } ${
                                                 sx === 0
-                                                    ? 'min-[320px]:pt-2 min-[320px]:border-t-2'
+                                                    ? 'pt-2 border-t-2'
                                                     : ''
                                             } ${
                                                 x % 2
@@ -104,7 +104,7 @@ const StandingsItem = ({
                                             } `}
                                         >
                                             <tr
-                                                className={`flex flex-wrap max-[320px]:flex-col justify-between gap-y-1 w-full text-normal px-2 py-1 ${
+                                                className={`flex max-[320px]:flex-col justify-between gap-y-1 w-full text-normal px-2 py-1 ${
                                                     s.played
                                                         ? sx < 2
                                                             ? 'bg-green-700/30'
