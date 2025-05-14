@@ -115,12 +115,15 @@ const KnockoutMatchScore = ({ i, setKOStage }: KnockoutMatchScoreProps) => {
                     <span
                         className={`${
                             i.score_team1! > i.score_team2! ? 'font-bold' : ''
-                        }`}
+                        } text-ellipsis overflow-hidden max-w-full`}
                     >
                         {i.team1_name}
                     </span>
                 ) : (
-                    <label htmlFor={`input${i.team1}vs${i.team2}`}>
+                    <label
+                        htmlFor={`input${i.team1}vs${i.team2}`}
+                        className="text-ellipsis overflow-hidden max-w-full"
+                    >
                         {i.team1_name}
                     </label>
                 )}
@@ -174,12 +177,15 @@ const KnockoutMatchScore = ({ i, setKOStage }: KnockoutMatchScoreProps) => {
                     <span
                         className={`${
                             i.score_team2! > i.score_team1! ? 'font-bold' : ''
-                        }`}
+                        } text-ellipsis overflow-hidden max-w-full`}
                     >
                         {i.team2_name}
                     </span>
                 ) : (
-                    <label htmlFor={`input${i.team2}vs${i.team1}`}>
+                    <label
+                        htmlFor={`input${i.team2}vs${i.team1}`}
+                        className="text-ellipsis overflow-hidden max-w-full"
+                    >
                         {i.team2_name}
                     </label>
                 )}
