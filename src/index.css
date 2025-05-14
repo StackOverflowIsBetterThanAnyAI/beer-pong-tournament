@@ -72,19 +72,19 @@ main::after {
 }
 
 .text-small {
-    @apply text-xs md:text-sm;
+    @apply text-xs sm:text-sm;
 }
 
 .text-normal {
-    @apply text-sm md:text-base;
+    @apply text-sm sm:text-base lg:text-lg;
 }
 
 .text-large {
-    @apply text-base md:text-lg;
+    @apply text-base sm:text-lg lg:text-xl;
 }
 
 .text-extra-large {
-    @apply text-lg sm:text-xl md:text-2xl;
+    @apply text-lg sm:text-xl lg:text-2xl;
 }
 
 /* Save Score / Delete Team red */
