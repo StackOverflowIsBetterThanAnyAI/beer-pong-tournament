@@ -1,13 +1,13 @@
 import { useContext, useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { ROUTES } from '../../constants/constants'
 import { ContextIsLoggedIn } from '../../context/ContextLogin'
-import { getStoredData } from '../../utils/getStoredData'
+import { getStoredSessionData } from '../../utils/getStoredSessionData'
 import { getValidHref } from '../../utils/getValidHref'
-import { setItemInStorage } from '../../utils/setItemInStorage'
-import { useNavigate } from 'react-router-dom'
+import { setItemInSessionStorage } from '../../utils/setItemInSessionStorage'
 
 const NavigationLinks = () => {
-    const parsedStorageData = getStoredData()
+    const parsedSessionData = getStoredSessionData()
 
     const navigate = useNavigate()
 
@@ -21,19 +21,19 @@ const NavigationLinks = () => {
 
     const [isNavigationExpanded, setIsNavigationExpanded] = useState<
         boolean | undefined
-    >(parsedStorageData?.isnavigationexpanded ?? undefined)
+    >(parsedSessionData?.isnavigationexpanded ?? undefined)
 
     useEffect(() => {
         if (isLoggedIn === true && isNavigationExpanded === undefined) {
             setIsNavigationExpanded(true)
-            setItemInStorage('isnavigationexpanded', true)
+            setItemInSessionStorage('isnavigationexpanded', true)
         }
     }, [isLoggedIn])
 
     const handleClick = () => {
         const navigationExpanded = !isNavigationExpanded
         setIsNavigationExpanded(navigationExpanded)
-        setItemInStorage('isnavigationexpanded', navigationExpanded)
+        setItemInSessionStorage('isnavigationexpanded', navigationExpanded)
     }
 
     const handleKeyDown = (

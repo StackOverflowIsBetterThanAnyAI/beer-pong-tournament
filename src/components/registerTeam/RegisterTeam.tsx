@@ -10,7 +10,8 @@ import { ContextKOStage } from '../../context/ContextKOStage'
 import { ContextRegisteredTeams } from '../../context/ContextRegisteredTeams'
 import { ContextSchedule } from '../../context/ContextSchedule'
 import { getStoredData } from '../../utils/getStoredData'
-import { setItemInStorage } from '../../utils/setItemInStorage'
+import { getStoredSessionData } from '../../utils/getStoredSessionData'
+import { setItemInSessionStorage } from '../../utils/setItemInSessionStorage'
 import { handleRegisterTeam } from '../../api/handleRegisterTeam'
 import { useAutoFocus } from '../../hooks/useAutoFocus'
 import { useErrorName, useErrorSameMember } from '../../hooks/useError'
@@ -18,6 +19,7 @@ import { useSubmitDisabledRegister } from '../../hooks/useSubmitDisabled'
 
 const RegisterTeam = () => {
     const parsedStorageData = getStoredData()
+    const parsedSessionData = getStoredSessionData()
 
     const contextGroups = useContext(ContextGroups)
     if (!contextGroups) {
@@ -58,13 +60,13 @@ const RegisterTeam = () => {
         parsedStorageData?.refresh || ''
     )
     const [teamName, setTeamName] = useState<string>(
-        parsedStorageData?.teamname || ''
+        parsedSessionData?.teamname || ''
     )
     const [memberOne, setMemberOne] = useState<string>(
-        parsedStorageData?.memberone || parsedStorageData?.username || ''
+        parsedSessionData?.memberone || parsedStorageData?.username || ''
     )
     const [memberTwo, setMemberTwo] = useState<string>(
-        parsedStorageData?.membertwo || ''
+        parsedSessionData?.membertwo || ''
     )
     const teamNameRef = useRef<HTMLInputElement>(null)
 
@@ -116,21 +118,21 @@ const RegisterTeam = () => {
     const handleTeamNameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         setApiError('')
         setTeamName(e.target.value)
-        setItemInStorage('teamname', e.target.value)
+        setItemInSessionStorage('teamname', e.target.value)
         setIsSubmitDisabled(false)
     }
 
     const handleMemberOneInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         setApiError('')
         setMemberOne(e.target.value)
-        setItemInStorage('memberone', e.target.value)
+        setItemInSessionStorage('memberone', e.target.value)
         setIsSubmitDisabled(false)
     }
 
     const handleMemberTwoInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         setApiError('')
         setMemberTwo(e.target.value)
-        setItemInStorage('membertwo', e.target.value)
+        setItemInSessionStorage('membertwo', e.target.value)
         setIsSubmitDisabled(false)
     }
 
