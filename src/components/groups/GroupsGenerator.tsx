@@ -153,7 +153,7 @@ export const GroupsGenerator = () => {
         <main className="w-full max-w-7xl relative isolate flex flex-col bg-stone-300 text-stone-950 lg:rounded-lg p-3 sm:p-4 lg:p-6 drop-shadow-stone-900 drop-shadow-sm">
             <FormHeader header="Groups" />
             {isLoading ? (
-                <div className="flex justify-center">
+                <div className="flex justify-center h-6 sm:h-7">
                     <FetchLoading theme="#44403c" />
                 </div>
             ) : (
