@@ -6,6 +6,8 @@ export const MAX_GROUPS_DESKTOP = 8
 
 export const MAX_MATCHES_KO_STAGE = 8
 
+export const MAX_MATCHES_KO_STAGE_DESKTOP = 15
+
 export const MAX_TEAMS = 32
 
 export const MIN_TEAMS = 8

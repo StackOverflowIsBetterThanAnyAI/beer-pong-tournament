@@ -1,10 +1,11 @@
+import KnockoutChampion from './KnockoutChampion'
+import KnockoutLegend from './KnockoutLegend'
 import KnockoutMatchScore from './KnockoutMatchScore'
 import PageNavigation from '../page/PageNavigation'
-import { MAX_MATCHES_KO_STAGE } from '../../constants/constants'
 import { KOStageProps } from '../../types/types'
 import { setItemInSessionStorage } from '../../utils/setItemInSessionStorage'
-import KnockoutLegend from './KnockoutLegend'
-import KnockoutChampion from './KnockoutChampion'
+import { useUpdatePage } from '../../hooks/useUpdatePage'
+import { useKOMatchesPerPage } from '../../hooks/useKOMatchesPerPage'
 
 type KnockoutMatchProps = {
     koStage: KOStageProps
@@ -21,6 +22,16 @@ const KnockoutMatch = ({
     setPage,
     tournamentWinner,
 }: KnockoutMatchProps) => {
+    const MAX_ITEMS_PER_PAGE = useKOMatchesPerPage()
+
+    useUpdatePage({
+        items: koStage,
+        key: 'kostagepage',
+        MAX_ITEMS_PER_PAGE,
+        page,
+        setPage,
+    })
+
     const previousPage = () => {
         if (page > 1) {
             setPage((prev) => prev - 1)
@@ -35,8 +46,8 @@ const KnockoutMatch = ({
 
     const filteredKOStage = koStage.filter((item, index) => {
         if (
-            index >= (page - 1) * MAX_MATCHES_KO_STAGE &&
-            index < page * MAX_MATCHES_KO_STAGE
+            index >= (page - 1) * MAX_ITEMS_PER_PAGE &&
+            index < page * MAX_ITEMS_PER_PAGE
         )
             return item
     })
@@ -87,10 +98,10 @@ const KnockoutMatch = ({
             </ul>
             {tournamentWinner && page !== 1 ? <KnockoutChampion /> : null}
             <KnockoutLegend />
-            {koStage.length > MAX_MATCHES_KO_STAGE ? (
+            {koStage.length > MAX_ITEMS_PER_PAGE ? (
                 <PageNavigation
                     isMatch
-                    MAX_ITEMS_PER_PAGE={MAX_MATCHES_KO_STAGE}
+                    MAX_ITEMS_PER_PAGE={MAX_ITEMS_PER_PAGE}
                     nextPage={nextPage}
                     page={page}
                     previousPage={previousPage}

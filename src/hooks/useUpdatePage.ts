@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import {
+    KOStageProps,
     ScheduleProps,
     StandingsProps,
     TournamentGroupsProps,
@@ -7,7 +8,7 @@ import {
 import { setItemInSessionStorage } from '../utils/setItemInSessionStorage'
 
 type useUpdatePageProps = {
-    items: ScheduleProps | StandingsProps | TournamentGroupsProps
+    items: KOStageProps | ScheduleProps | StandingsProps | TournamentGroupsProps
     key: string
     MAX_ITEMS_PER_PAGE: number
     page: number
