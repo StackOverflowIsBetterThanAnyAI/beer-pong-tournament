@@ -1,9 +1,12 @@
 const GroupsLegend = () => {
     return (
-        <div className="flex flex-col w-full max-w-96 bg-stone-200 drop-shadow-stone-600/60 drop-shadow-sm p-2 rounded-sm m-auto mt-2">
+        <div className="flex flex-col w-full max-w-96 sm:max-w-lg bg-stone-200 drop-shadow-stone-600/60 drop-shadow-sm p-2 rounded-sm m-auto mt-2">
             <span className="flex justify-between z-10">
                 <h3 className="text-normal mb-1">Rules:</h3>
-                <span className="legendinfo relative bg-stone-200 text-center text-sm h-5 w-5 text-red-600 outline-2 outline-red-600 rounded-full">
+                <span
+                    aria-hidden="true"
+                    className="legendinfo relative bg-stone-200 text-center text-sm h-5 w-5 text-red-600 outline-2 outline-red-600 rounded-full"
+                >
                     !
                 </span>
             </span>
