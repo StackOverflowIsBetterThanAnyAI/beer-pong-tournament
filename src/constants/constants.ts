@@ -14,7 +14,7 @@ export const MIN_TEAMS = 8
 
 export const MAX_TEAMS_MOBILE = 8
 
-export const MAX_TEAMS_DESKTOP = 12
+export const MAX_TEAMS_DESKTOP = 32
 
 export const MATCHES_PER_GROUP = 6
 
