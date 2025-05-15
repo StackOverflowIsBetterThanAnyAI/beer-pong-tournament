@@ -1,6 +1,6 @@
 export const MAX_GROUPS_MOBILE = 1
 
-export const MAX_GROUPS_DESKTOP = 2
+export const MAX_GROUPS_DESKTOP = 8
 
 export const MAX_MATCHES_KO_STAGE = 8
 
