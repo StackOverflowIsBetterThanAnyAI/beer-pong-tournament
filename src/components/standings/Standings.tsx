@@ -5,12 +5,13 @@ import PageNavigation from '../page/PageNavigation'
 import StandingsItem from './StandingsItem'
 import StandingsLegend from './StandingsLegend'
 import TeamsError from '../teams/TeamsError'
+import { StandingsProps } from '../../types/types'
 import { getStoredData } from '../../utils/getStoredData'
 import { getStoredSessionData } from '../../utils/getStoredSessionData'
-import { setItemInSessionStorage } from '../../utils/setItemInSessionStorage'
 import { handleLoadStandings } from '../../api/handleLoadStandings'
+import { setItemInSessionStorage } from '../../utils/setItemInSessionStorage'
 import { useTeamsPerPage } from '../../hooks/useTeamsPerPage'
-import { StandingsProps } from '../../types/types'
+import { useUpdatePage } from '../../hooks/useUpdatePage'
 
 const Standings = () => {
     const MAX_ITEMS_PER_PAGE = useTeamsPerPage()
@@ -34,6 +35,14 @@ const Standings = () => {
     const [page, setPage] = useState<number>(
         parsedSessionData?.standingspage || 1
     )
+
+    useUpdatePage({
+        items: standings,
+        key: 'standingspage',
+        MAX_ITEMS_PER_PAGE,
+        page,
+        setPage,
+    })
 
     const previousPage = () => {
         if (page > 1) {

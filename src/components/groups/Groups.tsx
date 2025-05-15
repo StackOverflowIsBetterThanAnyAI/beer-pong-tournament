@@ -1,8 +1,9 @@
 import GroupsLegend from './GroupsLegend'
 import PageNavigation from '../page/PageNavigation'
 import { TournamentGroupsProps } from '../../types/types'
-import { useTeamsPerPage } from '../../hooks/useTeamsPerPage'
 import { setItemInSessionStorage } from '../../utils/setItemInSessionStorage'
+import { useTeamsPerPage } from '../../hooks/useTeamsPerPage'
+import { useUpdatePage } from '../../hooks/useUpdatePage'
 
 type GroupsProps = {
     groups: TournamentGroupsProps
@@ -12,6 +13,14 @@ type GroupsProps = {
 
 const Groups = ({ groups, page, setPage }: GroupsProps) => {
     const MAX_ITEMS_PER_PAGE = useTeamsPerPage()
+
+    useUpdatePage({
+        items: groups,
+        key: 'grouppage',
+        MAX_ITEMS_PER_PAGE,
+        page,
+        setPage,
+    })
 
     const previousPage = () => {
         if (page > 1) {

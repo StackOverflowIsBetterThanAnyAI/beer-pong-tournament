@@ -1,14 +1,16 @@
 import { useContext, useEffect, useState } from 'react'
+import { FetchLoading } from 'fetch-loading'
 import FormError from '../form/FormError'
 import FormHeader from '../form/FormHeader'
 import ScheduleItem from './ScheduleItem'
+import { MATCHES_PER_GROUP } from '../../constants/constants'
 import { ContextSchedule } from '../../context/ContextSchedule'
-import { FetchLoading } from 'fetch-loading'
 import { getStoredData } from '../../utils/getStoredData'
 import { getStoredSessionData } from '../../utils/getStoredSessionData'
-import { setItemInSessionStorage } from '../../utils/setItemInSessionStorage'
 import { handleLoadSchedule } from '../../api/handleLoadSchedule'
+import { setItemInSessionStorage } from '../../utils/setItemInSessionStorage'
 import { useTeamsPerPage } from '../../hooks/useTeamsPerPage'
+import { useUpdatePage } from '../../hooks/useUpdatePage'
 
 const Schedule = () => {
     const MAX_ITEMS_PER_PAGE = useTeamsPerPage()
@@ -36,6 +38,14 @@ const Schedule = () => {
     const [page, setPage] = useState<number>(
         parsedSessionData?.schedulepage || 1
     )
+
+    useUpdatePage({
+        items: schedule,
+        key: 'schedulepage',
+        MAX_ITEMS_PER_PAGE: MAX_ITEMS_PER_PAGE * MATCHES_PER_GROUP,
+        page,
+        setPage,
+    })
 
     useEffect(() => {
         handleLoadSchedule({
