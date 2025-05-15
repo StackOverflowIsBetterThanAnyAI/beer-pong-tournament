@@ -19,13 +19,13 @@ const Team = ({ index, isLoading, item, handleDelete }: TeamProps) => {
     return (
         <li
             key={item.name}
-            className={`flex flex-col w-full max-w-96 justify-between m-auto p-2 rounded-sm h-full ${
+            className={`flex flex-col w-full max-w-96 justify-between m-auto p-2 lg:p-2.5 rounded-sm h-full ${
                 index % 2 ? 'bg-red-200' : 'bg-stone-200'
             }`}
             role="menuitem"
         >
             <div>
-                <div className="text-large font-bold underline text-ellipsis overflow-hidden">
+                <div className="text-large font-bold underline text-ellipsis overflow-hidden lg:pb-1">
                     {item.name}
                 </div>
                 <div className="flex gap-x-2 flex-wrap justify-between">
@@ -35,7 +35,7 @@ const Team = ({ index, isLoading, item, handleDelete }: TeamProps) => {
             </div>
             {isAdmin ? (
                 <button
-                    className={`page relative text-normal outline mt-2 py-0.5 rounded-md focus-visible:bg-stone-50 z-10 
+                    className={`page relative text-normal outline mt-2 lg:mt-2.5 py-0.5 rounded-md focus-visible:bg-stone-50 z-10 
                     ${
                         index % 2
                             ? 'bg-red-50 outline-red-400 active:bg-red-200 disabled:bg-red-100/80 animate-red-50-red-100'
