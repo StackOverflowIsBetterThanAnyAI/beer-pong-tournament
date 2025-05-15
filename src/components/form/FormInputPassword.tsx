@@ -46,7 +46,7 @@ const FormInputPassword = ({
 
     return (
         <>
-            <label htmlFor={id} className="text-large py-1 md:py-0">
+            <label htmlFor={id} className="text-large py-1">
                 {label} <span className="text-red-800">*</span>
             </label>
             <div
