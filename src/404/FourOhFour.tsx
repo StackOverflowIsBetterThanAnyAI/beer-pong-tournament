@@ -26,7 +26,7 @@ const FourOhFour = () => {
                 <a
                     href="/"
                     onKeyDown={(e) => handleKeyDown(e)}
-                    className="mt-2 px-4 py-2 lg:py-2.5 rounded-lg bg-stone-400 hover:bg-stone-500/60 active:bg-stone-500"
+                    className="relative mt-2 px-4 py-2 lg:py-2.5 rounded-lg bg-stone-100/90 outline outline-stone-500 active:bg-stone-300 animate-stone-50-stone-300"
                     aria-label="Back to the Homepage."
                     ref={anchorRef}
                 >
