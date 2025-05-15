@@ -20,7 +20,7 @@ const KnockoutMatchButton = ({
 }: KnockoutMatchButtonProps) => {
     return (
         <button
-            className={`relative flex justify-center items-center outline text-normal rounded-md min-h-7 mt-2 p-0.5 disabled:text-stone-600 z-10 
+            className={`relative flex justify-center items-center outline text-normal rounded-md h-7 lg:h-8 mt-2 p-0.5 disabled:text-stone-600 z-10 
         ${
             i.round === 'QF' || i.round === 'F'
                 ? 'bg-red-50 outline-red-400 active:bg-red-200 disabled:bg-red-100/80 animate-red-50-red-100'
