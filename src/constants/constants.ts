@@ -1,4 +1,4 @@
-export const MAX_GROUPS_MOBILE = 1
+export const MAX_GROUPS_MOBILE = 2
 
 export const MAX_GROUPS_DESKTOP = 8
 
