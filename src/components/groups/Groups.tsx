@@ -30,7 +30,7 @@ const Groups = ({ groups, page, setPage }: GroupsProps) => {
             <ul
                 className="grid lg:[grid-template-columns:repeat(2,minmax(384px,1fr))]
                 gap-2 lg:gap-2.5 max-w-96 w-full sm:w-2/3 lg:w-full sm:max-w-lg lg:max-w-4xl
-                drop-shadow-sm my-4 p-1.5 m-auto rounded-sm"
+                my-4 p-1.5 m-auto"
                 role="menu"
             >
                 {groups
@@ -45,11 +45,11 @@ const Groups = ({ groups, page, setPage }: GroupsProps) => {
                         return (
                             <li
                                 key={i.id}
-                                className="p-2 rounded-sm bg-stone-400/70 drop-shadow-stone-600/60"
+                                className="p-2 rounded-md bg-stone-400/70"
                                 role="menuitem"
                             >
                                 <div
-                                    className={`p-2 h-full ${
+                                    className={`p-2 h-full drop-shadow-stone-300/80 drop-shadow-md rounded-sm ${
                                         x % 2 ? 'bg-red-100' : 'bg-stone-200'
                                     }`}
                                 >
