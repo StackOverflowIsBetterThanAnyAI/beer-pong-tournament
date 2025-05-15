@@ -72,7 +72,7 @@ const Knockout = () => {
 
     const startButtonRef = useRef<HTMLButtonElement>(null)
 
-    useAutoFocus(startButtonRef)
+    useAutoFocus(startButtonRef, !isLoading)
 
     useEffect(() => {
         handleLoadSchedule({

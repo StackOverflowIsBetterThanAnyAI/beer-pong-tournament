@@ -1,7 +1,9 @@
 import { useEffect } from 'react'
 
-export const useAutoFocus = (ref: React.RefObject<any>) => {
+export const useAutoFocus = (ref: React.RefObject<any>, enabled = true) => {
     useEffect(() => {
-        ref?.current?.focus()
-    }, [ref?.current])
+        if (enabled && ref?.current) {
+            ref.current.focus()
+        }
+    }, [enabled])
 }

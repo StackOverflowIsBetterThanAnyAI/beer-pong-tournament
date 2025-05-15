@@ -84,7 +84,7 @@ export const GroupsGenerator = () => {
 
     const startButtonRef = useRef<HTMLButtonElement>(null)
 
-    useAutoFocus(startButtonRef)
+    useAutoFocus(startButtonRef, !isLoading)
 
     handleLoadRegisteredTeams({
         accessToken,
