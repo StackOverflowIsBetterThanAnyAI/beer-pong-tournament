@@ -28,7 +28,9 @@ const Groups = ({ groups, page, setPage }: GroupsProps) => {
     return (
         <>
             <ul
-                className="flex flex-col gap-1.5 w-full max-w-96 bg-stone-400/70 drop-shadow-stone-600/60 drop-shadow-sm my-4 p-1.5 m-auto rounded-sm"
+                className="grid lg:[grid-template-columns:repeat(2,minmax(384px,1fr))]
+                gap-2 lg:gap-2.5 max-w-96 w-full sm:w-2/3 lg:w-full sm:max-w-lg lg:max-w-4xl
+                drop-shadow-sm my-4 p-1.5 m-auto rounded-sm"
                 role="menu"
             >
                 {groups
@@ -43,50 +45,54 @@ const Groups = ({ groups, page, setPage }: GroupsProps) => {
                         return (
                             <li
                                 key={i.id}
-                                className={`p-2 rounded-sm ${
-                                    x % 2 ? 'bg-red-100' : 'bg-stone-200'
-                                }`}
+                                className="p-2 rounded-sm bg-stone-400/70 drop-shadow-stone-600/60"
                                 role="menuitem"
                             >
-                                <h2 className="text-large font-bold underline">
-                                    {i.name}
-                                </h2>
-                                <ul
-                                    className="flex flex-col gap-2 pt-2"
-                                    role="menu"
+                                <div
+                                    className={`p-2 h-full ${
+                                        x % 2 ? 'bg-red-100' : 'bg-stone-200'
+                                    }`}
                                 >
-                                    {i.teams.map((t, tx) => {
-                                        return (
-                                            <li
-                                                key={t.id}
-                                                className={`text-normal font-normal ${
-                                                    (tx + 1) % 4
-                                                        ? 'pb-2 border-b-2'
-                                                        : ''
-                                                } ${
-                                                    x % 2
-                                                        ? 'border-red-500'
-                                                        : 'border-stone-600'
-                                                } `}
-                                                role="menuitem"
-                                            >
-                                                <div className="flex flex-col">
-                                                    <div className="font-bold text-ellipsis overflow-hidden">
-                                                        {t.name}
-                                                    </div>
-                                                    <div className="flex flex-wrap gap-x-2 justify-between">
-                                                        <div className="text-ellipsis overflow-hidden">
-                                                            {t.member_one}
+                                    <h2 className="text-large font-bold underline">
+                                        {i.name}
+                                    </h2>
+                                    <ul
+                                        className="flex flex-col gap-2 pt-2"
+                                        role="menu"
+                                    >
+                                        {i.teams.map((t, tx) => {
+                                            return (
+                                                <li
+                                                    key={t.id}
+                                                    className={`text-normal font-normal ${
+                                                        (tx + 1) % 4
+                                                            ? 'pb-2 border-b-2'
+                                                            : ''
+                                                    } ${
+                                                        x % 2
+                                                            ? 'border-red-500'
+                                                            : 'border-stone-600'
+                                                    } `}
+                                                    role="menuitem"
+                                                >
+                                                    <div className="flex flex-col">
+                                                        <div className="font-bold text-ellipsis overflow-hidden">
+                                                            {t.name}
                                                         </div>
-                                                        <div className="text-ellipsis overflow-hidden">
-                                                            {t.member_two}
+                                                        <div className="flex flex-wrap gap-x-2 justify-between">
+                                                            <div className="text-ellipsis overflow-hidden">
+                                                                {t.member_one}
+                                                            </div>
+                                                            <div className="text-ellipsis overflow-hidden">
+                                                                {t.member_two}
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </li>
-                                        )
-                                    })}
-                                </ul>
+                                                </li>
+                                            )
+                                        })}
+                                    </ul>
+                                </div>
                             </li>
                         )
                     })}
