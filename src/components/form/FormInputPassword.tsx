@@ -38,7 +38,7 @@ const FormInputPassword = ({
     }
     const [isPasswordHidden, setIsPasswordHidden] = contextPasswordVisibility
 
-    const marginBottom = error ? 'mb-1' : 'mb-5 md:mb-6'
+    const marginBottom = error ? 'mb-1' : 'mb-5 sm:mb-6'
 
     const handleTogglePasswordVisibility = () => {
         setIsPasswordHidden((prev) => !prev)
