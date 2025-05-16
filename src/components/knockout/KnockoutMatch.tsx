@@ -1,3 +1,4 @@
+import React from 'react'
 import KnockoutChampion from './KnockoutChampion'
 import KnockoutLegend from './KnockoutLegend'
 import KnockoutMatchScore from './KnockoutMatchScore'
@@ -56,7 +57,7 @@ const KnockoutMatch = ({
         <>
             {tournamentWinner && page === 1 ? <KnockoutChampion /> : null}
             <ul
-                className="flex flex-col sm:grid lg:[grid-template-columns:repeat(2,minmax(384px,1fr))]
+                className="flex flex-col lg:grid lg:[grid-template-columns:repeat(2,minmax(384px,1fr))]
                 gap-4 lg:gap-5 max-w-96 w-full sm:w-2/3 lg:w-full sm:max-w-lg lg:max-w-4xl
                 mx-auto my-4 lg:my-5 rounded-sm"
                 role="menu"
@@ -67,37 +68,38 @@ const KnockoutMatch = ({
                             (item) => item.round === i.round
                         ) === x
                     return (
-                        <li
-                            key={i.id}
-                            className="p-2 rounded-md bg-stone-400/70"
-                            role="menuitem"
-                        >
-                            <ul
-                                className="flex flex-col gap-2 h-full"
-                                role="menu"
+                        <React.Fragment key={i.id}>
+                            {isFirstOfStage ? (
+                                <h2 className="text-large font-bold underline col-span-2">
+                                    {i.round_display}
+                                </h2>
+                            ) : null}
+                            <li
+                                className="p-2 rounded-md bg-stone-400/70"
+                                role="menuitem"
                             >
-                                <li
-                                    className={`p-2 text-normal font-normal rounded-sm h-full ${
-                                        i.round === 'QF' || i.round === 'F'
-                                            ? 'bg-red-200'
-                                            : 'bg-stone-200'
-                                    }`}
-                                    role="menuitem"
+                                <ul
+                                    className="flex flex-col gap-2 h-full"
+                                    role="menu"
                                 >
-                                    {isFirstOfStage ? (
-                                        <h2 className="text-large font-bold underline pb-2">
-                                            {i.round_display}
-                                        </h2>
-                                    ) : null}
-                                    <div className="flex flex-col">
-                                        <KnockoutMatchScore
-                                            i={i}
-                                            setKOStage={setKOStage}
-                                        />
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
+                                    <li
+                                        className={`p-2 text-normal font-normal rounded-sm h-full ${
+                                            i.round === 'QF' || i.round === 'F'
+                                                ? 'bg-red-200'
+                                                : 'bg-stone-200'
+                                        }`}
+                                        role="menuitem"
+                                    >
+                                        <div className="flex flex-col">
+                                            <KnockoutMatchScore
+                                                i={i}
+                                                setKOStage={setKOStage}
+                                            />
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </React.Fragment>
                     )
                 })}
             </ul>
