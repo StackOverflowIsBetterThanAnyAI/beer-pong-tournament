@@ -9,6 +9,7 @@ export const setLogout = ({ isSessionExpired }: setLogoutProps) => {
     const parsedData = getStoredData()
     const userName = parsedData?.username || ''
     localStorage.clear()
+    sessionStorage.clear()
     setItemInStorage('issigningup', false)
     setItemInStorage('username', userName)
     window.location.href = isSessionExpired ? '/?session=expired' : '/'
