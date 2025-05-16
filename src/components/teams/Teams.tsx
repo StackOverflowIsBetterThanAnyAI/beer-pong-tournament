@@ -1,5 +1,6 @@
 import { useContext, useState } from 'react'
 import { FetchLoading } from 'fetch-loading'
+import FormHeader from '../form/FormHeader'
 import PageNavigation from '../page/PageNavigation'
 import Team from './Team'
 import TeamsError from './TeamsError'
@@ -125,9 +126,7 @@ export const Teams = () => {
                 <TeamsError error={apiErrorLoad} />
             ) : registeredTeams?.length > 0 ? (
                 <>
-                    <h2 className="text-center text-large px-1">
-                        Currently registered Teams:
-                    </h2>
+                    <FormHeader subHeader="teams" />
                     <ul
                         className="grid sm:[grid-template-columns:repeat(auto-fit,minmax(256px,1fr))] gap-2 lg:gap-2.5 max-w-96 w-full sm:max-w-5xl mx-auto my-4 p-1.5 lg:p-2 rounded-sm"
                         role="menu"
