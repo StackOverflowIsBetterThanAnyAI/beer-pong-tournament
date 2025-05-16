@@ -78,12 +78,9 @@ const KnockoutMatch = ({
                                 className="p-2 rounded-md bg-stone-400/70"
                                 role="menuitem"
                             >
-                                <ul
-                                    className="flex flex-col gap-2 h-full"
-                                    role="menu"
-                                >
+                                <ul className="flex flex-col gap-2" role="menu">
                                     <li
-                                        className={`p-2 text-normal font-normal rounded-sm h-full ${
+                                        className={`p-2 text-normal font-normal rounded-sm ${
                                             i.round === 'QF' || i.round === 'F'
                                                 ? 'bg-red-200'
                                                 : 'bg-stone-200'
