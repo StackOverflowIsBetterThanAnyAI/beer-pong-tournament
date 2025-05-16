@@ -14,7 +14,7 @@ const StandingsItem = ({
     return (
         <ul
             className="flex flex-col sm:grid lg:[grid-template-columns:repeat(2,minmax(384px,1fr))]
-            gap-2 lg:gap-2.5 max-w-96 w-full sm:w-2/3 lg:w-full sm:max-w-lg lg:max-w-4xl
+            gap-4 lg:gap-5 max-w-96 w-full sm:w-2/3 lg:w-full sm:max-w-lg lg:max-w-4xl
             my-4 m-auto"
             role="menu"
         >
