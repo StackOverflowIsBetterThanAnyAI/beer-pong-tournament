@@ -7,47 +7,25 @@ const FormHeader = ({ header, subHeader }: FormHeaderProps) => {
     const subHeaderElement = (() => {
         switch (subHeader) {
             case 'knockout':
-                return (
-                    <h2 className="text-center text-pretty text-large px-1">
-                        Pairings and Scores for the Knockout Stage:
-                    </h2>
-                )
+                return 'Pairings and Scores for the Knockout Stage:'
             case 'knockout error':
-                return (
-                    <h2 className="text-center text-pretty text-large px-1">
-                        Not all Group Stage Matches have been played yet.
-                    </h2>
-                )
+                return 'Not all Group Stage Matches have been played yet.'
             case 'no content':
-                return (
-                    <h2 className="text-center text-pretty text-large px-1">
-                        The Tournament has not started yet.
-                    </h2>
-                )
+                return 'The Tournament has not started yet.'
             case 'no content ko':
-                return (
-                    <h2 className="text-center text-pretty text-large px-1">
-                        The Knockout Stage has not started yet.
-                    </h2>
-                )
+                return 'The Knockout Stage has not started yet.'
             case 'schedule':
-                return (
-                    <h2 className="text-center text-pretty text-large px-1">
-                        Pairings and Scores:
-                    </h2>
-                )
+                return 'Pairings and Scores:'
             case 'standings':
-                return (
-                    <h2 className="text-center text-pretty text-large px-1">
-                        Who will advance in each group?
-                    </h2>
-                )
+                return 'Who will advance in each group?'
+            case 'teams':
+                return 'Currently registered Teams:'
             case 'required':
                 return (
-                    <h2 className="text-center text-pretty text-large px-1">
+                    <span>
                         All fields marked with{' '}
                         <span className="text-red-800">*</span> are required.
-                    </h2>
+                    </span>
                 )
             default:
                 return null
@@ -61,7 +39,11 @@ const FormHeader = ({ header, subHeader }: FormHeaderProps) => {
                     {header}
                 </h1>
             ) : null}
-            {subHeaderElement}
+            {subHeader ? (
+                <h2 className="text-center text-pretty text-large px-1 lg:py-1">
+                    {subHeaderElement}
+                </h2>
+            ) : null}
         </>
     )
 }
