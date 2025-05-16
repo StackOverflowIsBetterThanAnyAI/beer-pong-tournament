@@ -45,10 +45,10 @@ const KnockoutChampion = () => {
     }
 
     return (
-        <div className="flex flex-col gap-2 justify-center w-full max-w-96 text-normal bg-stone-200 drop-shadow-stone-600/60 drop-shadow-sm my-4 p-2 m-auto rounded-sm">
+        <div className="flex flex-col gap-2 justify-center max-w-96 w-full sm:w-2/3 lg:w-full sm:max-w-lg text-normal bg-stone-200 drop-shadow-stone-600/60 drop-shadow-sm my-4 p-2 m-auto rounded-sm">
             <div className="winner relative flex flex-col justify-center w-full bg-amber-300 rounded-sm pb-2">
                 <FormHeader header="Tournament Winner" />
-                <span className="text-center text-ellipsis overflow-hidden max-w-full">
+                <span className="text-center py-1.5 lg:py-2 text-ellipsis overflow-hidden max-w-full">
                     {tournamentWinner}
                 </span>
             </div>
