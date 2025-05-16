@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import React, { useContext } from 'react'
 import PageNavigation from '../page/PageNavigation'
 import ScheduleItemScore from './ScheduleItemScore'
 import ScheduleLegend from './ScheduleLegend'
@@ -51,37 +51,36 @@ const ScheduleItem = ({
             >
                 {paginatedGroupKeys.map((item) => {
                     return (
-                        <li
-                            key={item}
-                            className="p-1.5 lg:p-2 rounded-sm bg-stone-400/70"
-                            role="menuitem"
-                        >
-                            <ul
-                                className="flex flex-col gap-2 lg:gap-2.5"
-                                role="menu"
-                            >
-                                {groupedSchedule[item].map((i, x) => (
-                                    <li
-                                        key={i.id}
-                                        className={`p-2 text-normal font-normal rounded-sm ${
-                                            x % 2
-                                                ? 'bg-red-200'
-                                                : 'bg-stone-200'
-                                        } drop-shadow-stone-300/80 drop-shadow-md`}
-                                        role="menuitem"
-                                    >
-                                        {x % 6 ? null : (
-                                            <h2 className="text-large font-bold underline">
-                                                {item}
-                                            </h2>
-                                        )}
-                                        <div className="flex flex-col">
-                                            <ScheduleItemScore i={i} x={x} />
-                                        </div>
-                                    </li>
-                                ))}
-                            </ul>
-                        </li>
+                        <React.Fragment key={item}>
+                            <li role="menuitem">
+                                <h2 className="text-large font-bold underline pb-4 lg:pb-5">
+                                    {item}
+                                </h2>
+                                <ul
+                                    className="flex flex-col gap-2 lg:gap-2.5 bg-stone-400/70 p-2 rounded-md"
+                                    role="menu"
+                                >
+                                    {groupedSchedule[item].map((i, x) => (
+                                        <li
+                                            key={i.id}
+                                            className={`p-2 text-normal font-normal rounded-sm ${
+                                                x % 2
+                                                    ? 'bg-red-200'
+                                                    : 'bg-stone-200'
+                                            } drop-shadow-stone-300/80 drop-shadow-md`}
+                                            role="menuitem"
+                                        >
+                                            <div className="flex flex-col">
+                                                <ScheduleItemScore
+                                                    i={i}
+                                                    x={x}
+                                                />
+                                            </div>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </li>
+                        </React.Fragment>
                     )
                 })}
             </ul>
