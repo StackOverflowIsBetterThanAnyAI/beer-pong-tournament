@@ -58,7 +58,7 @@ const Groups = ({ groups, page, setPage }: GroupsProps) => {
                                 role="menuitem"
                             >
                                 <div
-                                    className={`p-2 h-full drop-shadow-stone-300/80 drop-shadow-md rounded-sm ${
+                                    className={`p-2 lg:p-4 h-full drop-shadow-stone-300/80 drop-shadow-md rounded-sm ${
                                         x % 2 ? 'bg-red-200' : 'bg-stone-200'
                                     }`}
                                 >
