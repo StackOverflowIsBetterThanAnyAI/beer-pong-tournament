@@ -70,9 +70,12 @@ const KnockoutMatch = ({
                     return (
                         <React.Fragment key={i.id}>
                             {isFirstOfStage ? (
-                                <h2 className="text-large font-bold underline col-span-2">
-                                    {i.round_display}
-                                </h2>
+                                <li
+                                    role="menuitem"
+                                    className="text-large font-bold underline col-span-2"
+                                >
+                                    <h2>{i.round_display}</h2>
+                                </li>
                             ) : null}
                             <li
                                 className="p-2 rounded-md bg-stone-400/70"
