@@ -163,7 +163,7 @@ export const GroupsGenerator = () => {
             )}
             {isAdmin ? (
                 <button
-                    className="text-normal bg-stone-300 outline outline-stone-500 disabled:outline-stone-400 disabled:bg-stone-400/20 h-7 lg:h-8 w-fit m-auto px-8 py-0.5 mt-2 rounded-md
+                    className="text-normal bg-stone-300 outline outline-stone-500 disabled:outline-stone-400 disabled:bg-stone-400/20 min-h-7 lg:min-h-8 w-fit m-auto px-8 py-0.5 mt-2 rounded-md
                         not-[:disabled]:hover:bg-stone-400/40 not-[:disabled]:active:bg-stone-400/70"
                     onClick={handleStartTournament}
                     aria-label={`${
