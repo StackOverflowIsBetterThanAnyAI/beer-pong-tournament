@@ -4,6 +4,7 @@ import ScheduleItemScore from './ScheduleItemScore'
 import ScheduleLegend from './ScheduleLegend'
 import { MATCHES_PER_GROUP } from '../../constants/constants'
 import { ContextSchedule } from '../../context/ContextSchedule'
+import { GameProps } from '../../types/types'
 
 type ScheduleItemProps = {
     MAX_ITEMS_PER_PAGE: number
@@ -26,54 +27,63 @@ const ScheduleItem = ({
     }
     const [schedule, _setSchedule] = contextSchedule
 
+    const groupedSchedule = schedule.reduce((total, cur) => {
+        if (!total[cur.group]) {
+            total[cur.group] = []
+        }
+        total[cur.group].push(cur)
+        return total
+    }, {} as Record<string, GameProps[]>)
+
+    const groupKeys = Object.keys(groupedSchedule)
+    const paginatedGroupKeys = groupKeys.slice(
+        (page - 1) * MAX_ITEMS_PER_PAGE,
+        page * MAX_ITEMS_PER_PAGE
+    )
+
     return (
         <>
             <ul
-                className="flex flex-col gap-1.5 w-full max-w-96 bg-stone-400/70 drop-shadow-stone-600/60 drop-shadow-sm my-4 p-1.5 m-auto rounded-sm"
+                className="flex flex-col sm:grid lg:[grid-template-columns:repeat(2,minmax(384px,1fr))]
+                gap-4 lg:gap-5 max-w-96 w-full sm:w-2/3 lg:w-full sm:max-w-lg lg:max-w-4xl
+                mx-auto my-4 lg:my-5 rounded-sm"
                 role="menu"
             >
-                {schedule
-                    .filter((item, index) => {
-                        if (
-                            index >=
-                                (page - 1) *
-                                    MAX_ITEMS_PER_PAGE *
-                                    MATCHES_PER_GROUP &&
-                            index <
-                                page * MAX_ITEMS_PER_PAGE * MATCHES_PER_GROUP
-                        )
-                            return item
-                    })
-                    .map((i, x) => {
-                        return (
-                            <li
-                                key={i.id}
-                                className={`p-2 rounded-sm ${
-                                    x % 2 ? 'bg-red-200' : 'bg-stone-200'
-                                }`}
-                                role="menuitem"
+                {paginatedGroupKeys.map((item) => {
+                    return (
+                        <li
+                            key={item}
+                            className="p-1.5 lg:p-2 rounded-sm bg-stone-400/70"
+                            role="menuitem"
+                        >
+                            <ul
+                                className="flex flex-col gap-2 lg:gap-2.5"
+                                role="menu"
                             >
-                                {x % MATCHES_PER_GROUP ? null : (
-                                    <h2 className="text-large font-bold underline">
-                                        {i.group}
-                                    </h2>
-                                )}
-                                <ul
-                                    className="flex flex-col gap-2 pt-1"
-                                    role="menu"
-                                >
+                                {groupedSchedule[item].map((i, x) => (
                                     <li
-                                        className="text-normal font-normal"
+                                        key={i.id}
+                                        className={`p-2 text-normal font-normal rounded-sm ${
+                                            x % 2
+                                                ? 'bg-red-200'
+                                                : 'bg-stone-200'
+                                        } drop-shadow-stone-300/80 drop-shadow-md`}
                                         role="menuitem"
                                     >
+                                        {x % 6 ? null : (
+                                            <h2 className="text-large font-bold underline">
+                                                {item}
+                                            </h2>
+                                        )}
                                         <div className="flex flex-col">
                                             <ScheduleItemScore i={i} x={x} />
                                         </div>
                                     </li>
-                                </ul>
-                            </li>
-                        )
-                    })}
+                                ))}
+                            </ul>
+                        </li>
+                    )
+                })}
             </ul>
             <ScheduleLegend />
             {schedule.length > MAX_ITEMS_PER_PAGE * MATCHES_PER_GROUP ? (
