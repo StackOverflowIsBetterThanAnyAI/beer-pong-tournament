@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useRef, useState } from 'react'
 import { FetchLoading } from 'fetch-loading'
 import FormHeader from '../form/FormHeader'
 import TeamsErrorOpacity from '../teams/TeamsErrorOpacity'
@@ -6,6 +6,7 @@ import { ContextAdmin } from '../../context/ContextAdmin'
 import { ContextTournamentWinner } from '../../context/ContextTournamentWinner'
 import { getStoredData } from '../../utils/getStoredData'
 import { handleResetTournament } from '../../api/handleResetTournament'
+import { useAutoFocus } from '../../hooks/useAutoFocus'
 
 const KnockoutChampion = () => {
     const parsedStorageData = getStoredData()
@@ -35,6 +36,10 @@ const KnockoutChampion = () => {
     const [apiError, setApiError] = useState<string>('')
     const [isDisabled, setIsDisabled] = useState<boolean>(false)
 
+    const buttonRef = useRef<HTMLButtonElement>(null)
+
+    useAutoFocus(buttonRef, !isDisabled)
+
     const handleClick = () => {
         handleResetTournament({
             accessToken,
@@ -62,6 +67,7 @@ const KnockoutChampion = () => {
                         disabled={isDisabled}
                         aria-disabled={isDisabled}
                         onClick={handleClick}
+                        ref={buttonRef}
                     >
                         {isDisabled ? (
                             <FetchLoading theme="#44403c" />
