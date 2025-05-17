@@ -67,6 +67,7 @@ export const ScheduleItemScore = ({ i, x }: ScheduleItemScoreProps) => {
 
     const handleInput = (
         e: React.ChangeEvent<HTMLInputElement>,
+        otherScore: string | null,
         setState: (value: React.SetStateAction<string | null>) => void,
         setInputError: React.Dispatch<React.SetStateAction<string>>
     ) => {
@@ -77,6 +78,11 @@ export const ScheduleItemScore = ({ i, x }: ScheduleItemScoreProps) => {
         setInputError(
             !inputRegex.test(score) && score.length
                 ? 'Please use an integer between 0 and 10.'
+                : score?.length &&
+                  otherScore?.length &&
+                  parseInt(score) < 10 &&
+                  parseInt(otherScore) < 10
+                ? 'At least on team has to score 10 cups.'
                 : ''
         )
     }
@@ -143,6 +149,7 @@ export const ScheduleItemScore = ({ i, x }: ScheduleItemScoreProps) => {
                             onChange={(e) =>
                                 handleInput(
                                     e,
+                                    scoreTeam2,
                                     setScoreTeam1,
                                     setInputErrorTeam1
                                 )
@@ -203,6 +210,7 @@ export const ScheduleItemScore = ({ i, x }: ScheduleItemScoreProps) => {
                             onChange={(e) =>
                                 handleInput(
                                     e,
+                                    scoreTeam1,
                                     setScoreTeam2,
                                     setInputErrorTeam2
                                 )

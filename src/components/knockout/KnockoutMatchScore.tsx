@@ -54,6 +54,8 @@ const KnockoutMatchScore = ({ i, setKOStage }: KnockoutMatchScoreProps) => {
         !scoreTeam2 ||
         parseInt(scoreTeam1) === parseInt(scoreTeam2) ||
         (parseInt(scoreTeam1) < 10 && parseInt(scoreTeam2) < 10) ||
+        (parseInt(scoreTeam1) < 10 && parseInt(scoreTeam2) > 10) ||
+        (parseInt(scoreTeam1) > 10 && parseInt(scoreTeam2) < 10) ||
         apiError.length > 0 ||
         inputErrorTeam1.length > 0 ||
         inputErrorTeam2.length > 0 ||
@@ -67,6 +69,7 @@ const KnockoutMatchScore = ({ i, setKOStage }: KnockoutMatchScoreProps) => {
 
     const handleInput = (
         e: React.ChangeEvent<HTMLInputElement>,
+        otherScore: string | null,
         setState: (value: React.SetStateAction<string | null>) => void,
         setInputError: React.Dispatch<React.SetStateAction<string>>
     ) => {
@@ -77,6 +80,16 @@ const KnockoutMatchScore = ({ i, setKOStage }: KnockoutMatchScoreProps) => {
         setInputError(
             !inputRegex.test(score) && score.length
                 ? 'Please use an integer between 0 and 99.'
+                : score?.length &&
+                  otherScore?.length &&
+                  parseInt(score) < 10 &&
+                  parseInt(otherScore) < 10
+                ? 'At least on team has to score 10 cups.'
+                : score?.length &&
+                  otherScore?.length &&
+                  ((parseInt(score) < 10 && parseInt(otherScore) > 10) ||
+                      (parseInt(score) > 10 && parseInt(otherScore) < 10))
+                ? 'For overtime, both teams have to score 10 cups.'
                 : ''
         )
     }
@@ -144,6 +157,7 @@ const KnockoutMatchScore = ({ i, setKOStage }: KnockoutMatchScoreProps) => {
                             onChange={(e) =>
                                 handleInput(
                                     e,
+                                    scoreTeam2,
                                     setScoreTeam1,
                                     setInputErrorTeam1
                                 )
@@ -206,6 +220,7 @@ const KnockoutMatchScore = ({ i, setKOStage }: KnockoutMatchScoreProps) => {
                             onChange={(e) =>
                                 handleInput(
                                     e,
+                                    scoreTeam1,
                                     setScoreTeam2,
                                     setInputErrorTeam2
                                 )
