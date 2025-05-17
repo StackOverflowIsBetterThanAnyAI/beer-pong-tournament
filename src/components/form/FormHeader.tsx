@@ -6,6 +6,12 @@ type FormHeaderProps = {
 const FormHeader = ({ header, subHeader }: FormHeaderProps) => {
     const subHeaderElement = (() => {
         switch (subHeader) {
+            case 'groupstage':
+                return 'Currently the group phase is underway.'
+            case 'groupstage over':
+                return 'The group stage has just been completed.'
+            case 'kostage':
+                return 'Currently the knockout stage is underway.'
             case 'knockout':
                 return 'Pairings and Scores for the Knockout Stage:'
             case 'knockout error':
