@@ -48,7 +48,13 @@ const Knockout = () => {
     }
     const [_schedule, setSchedule] = contextSchedule
 
-    const [tournamentWinner, setTournamentWinner] = useState<string>('')
+    const contextTournamentWinner = useContext(ContextTournamentWinner)
+    if (!contextTournamentWinner) {
+        throw new Error(
+            'KnockoutMatchScore must be used within a ContextTournamentWinner.Provider'
+        )
+    }
+    const [tournamentWinner, setTournamentWinner] = contextTournamentWinner
 
     const [accessToken, _setAccessToken] = useState<string>(
         parsedStorageData?.access || ''
@@ -114,73 +120,69 @@ const Knockout = () => {
                 header="Knockout Stage"
                 subHeader={`${koStage.length ? 'knockout' : ''}`}
             />
-            <ContextTournamentWinner.Provider
-                value={[tournamentWinner, setTournamentWinner]}
-            >
-                {isAdmin && !koStage.length ? (
-                    <button
-                        className="text-normal bg-stone-300 outline outline-stone-500 disabled:outline-stone-400 disabled:bg-stone-400/20 min-h-7 lg:min-h-8 w-fit m-auto px-8 py-0.5 mt-2 rounded-md
+            {isAdmin && !koStage.length ? (
+                <button
+                    className="text-normal bg-stone-300 outline outline-stone-500 disabled:outline-stone-400 disabled:bg-stone-400/20 min-h-7 lg:min-h-8 w-fit m-auto px-8 py-0.5 mt-2 rounded-md
                          disabled:text-stone-600 not-[:disabled]:hover:bg-stone-400/40 not-[:disabled]:active:bg-stone-400/70"
-                        onClick={handleKOStage}
-                        aria-label={`${
-                            !isGroupstageOver
-                                ? 'Start Disabled. Not all Group Stage Matches have been played yet.'
-                                : 'Start Knockout Stage.'
-                        }`}
-                        title={`${
-                            !isGroupstageOver
-                                ? 'Start Disabled. Not all Group Stage Matches have been played yet.'
-                                : 'Start Knockout Stage.'
-                        }`}
-                        disabled={
-                            !isGroupstageOver || isSubmitDisabled || isLoading
-                        }
-                        ref={startButtonRef}
-                    >
-                        {isSubmitDisabled ? (
-                            <FetchLoading theme="#44403c" />
-                        ) : (
-                            'Start Knockout Stage'
-                        )}
-                    </button>
-                ) : null}
-                {apiErrorGenerate ? (
-                    <div className="text-center pt-4">
-                        <FormErrorOpacity error={apiErrorGenerate} />
-                    </div>
-                ) : null}
-                {isLoading ? (
-                    <div className="flex justify-center pt-6 pb-2">
+                    onClick={handleKOStage}
+                    aria-label={`${
+                        !isGroupstageOver
+                            ? 'Start Disabled. Not all Group Stage Matches have been played yet.'
+                            : 'Start Knockout Stage.'
+                    }`}
+                    title={`${
+                        !isGroupstageOver
+                            ? 'Start Disabled. Not all Group Stage Matches have been played yet.'
+                            : 'Start Knockout Stage.'
+                    }`}
+                    disabled={
+                        !isGroupstageOver || isSubmitDisabled || isLoading
+                    }
+                    ref={startButtonRef}
+                >
+                    {isSubmitDisabled ? (
                         <FetchLoading theme="#44403c" />
-                    </div>
-                ) : apiErrorLoad ? (
-                    <div className="text-center pt-4">
-                        <FormError error={apiErrorLoad} />
-                    </div>
-                ) : koStage.length ? (
-                    <KnockoutMatch
-                        koStage={koStage}
-                        page={page}
-                        setKOStage={setKOStage}
-                        setPage={setPage}
-                        tournamentWinner={tournamentWinner}
-                    />
-                ) : (
-                    <div className="pt-2 pb-6 sm:pb-5 lg:pb-3">
-                        {!isAdmin ? (
-                            <FormHeader subHeader="no content ko" />
-                        ) : !isGroupstageOver ? (
-                            groups.length ? (
-                                <FormHeader subHeader="knockout error" />
-                            ) : (
-                                <FormHeader subHeader="no content" />
-                            )
+                    ) : (
+                        'Start Knockout Stage'
+                    )}
+                </button>
+            ) : null}
+            {apiErrorGenerate ? (
+                <div className="text-center pt-4">
+                    <FormErrorOpacity error={apiErrorGenerate} />
+                </div>
+            ) : null}
+            {isLoading ? (
+                <div className="flex justify-center pt-6 pb-2">
+                    <FetchLoading theme="#44403c" />
+                </div>
+            ) : apiErrorLoad ? (
+                <div className="text-center pt-4">
+                    <FormError error={apiErrorLoad} />
+                </div>
+            ) : koStage.length ? (
+                <KnockoutMatch
+                    koStage={koStage}
+                    page={page}
+                    setKOStage={setKOStage}
+                    setPage={setPage}
+                    tournamentWinner={tournamentWinner}
+                />
+            ) : (
+                <div className="pt-2 pb-6 sm:pb-5 lg:pb-3">
+                    {!isAdmin ? (
+                        <FormHeader subHeader="no content ko" />
+                    ) : !isGroupstageOver ? (
+                        groups.length ? (
+                            <FormHeader subHeader="knockout error" />
                         ) : (
-                            <FormHeader subHeader="no content ko" />
-                        )}
-                    </div>
-                )}
-            </ContextTournamentWinner.Provider>
+                            <FormHeader subHeader="no content" />
+                        )
+                    ) : (
+                        <FormHeader subHeader="no content ko" />
+                    )}
+                </div>
+            )}
         </main>
     )
 }
