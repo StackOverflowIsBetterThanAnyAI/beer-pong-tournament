@@ -166,7 +166,7 @@ const Knockout = () => {
                         tournamentWinner={tournamentWinner}
                     />
                 ) : (
-                    <div className="pt-4 pb-4 sm:pb-3 lg:pb-1">
+                    <div className="pt-2 pb-6 sm:pb-5 lg:pb-3">
                         {!isAdmin ? (
                             <FormHeader subHeader="no content ko" />
                         ) : !isGroupstageOver ? (
