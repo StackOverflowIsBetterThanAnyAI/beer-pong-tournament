@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { ROUTES } from '../../constants/constants'
 import { ContextIsLoggedIn } from '../../context/ContextLogin'
 import { getStoredSessionData } from '../../utils/getStoredSessionData'
@@ -40,7 +40,7 @@ const NavigationLinks = () => {
         e: React.KeyboardEvent<HTMLAnchorElement>,
         i: string
     ) => {
-        if (e.key === ' ' || e.key === 'Enter') {
+        if (e.key === ' ') {
             e.preventDefault()
             navigate(i)
         }
@@ -57,16 +57,16 @@ const NavigationLinks = () => {
             .join(' ')
 
         return (
-            <a
+            <Link
                 key={i}
                 onKeyDown={(e) => handleKeyDown(e, i)}
-                href={`/${getValidHref(i)}`}
+                to={`/${getValidHref(i)}`}
                 className="underline rounded-md text-normal px-2 py-0.5 focus-visible:bg-stone-100/50 hover:bg-red-300/50 active:bg-red-300"
                 aria-label={formattedRoute}
                 title={formattedRoute}
             >
                 {formattedRoute}
-            </a>
+            </Link>
         )
     })
 

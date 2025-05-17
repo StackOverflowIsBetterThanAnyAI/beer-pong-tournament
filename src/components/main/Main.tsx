@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { FetchLoading } from 'fetch-loading'
 import FormHeader from '../form/FormHeader'
 import KnockoutChampion from '../knockout/KnockoutChampion'
@@ -125,7 +125,7 @@ const Main = () => {
         e: React.KeyboardEvent<HTMLAnchorElement>,
         href: string
     ) => {
-        if (e.key === ' ' || e.key === 'Enter') {
+        if (e.key === ' ') {
             e.preventDefault()
             navigate(href)
         }
@@ -193,8 +193,8 @@ const Main = () => {
                             <MainMatch item={upcomingKOMatch} />
                         ) : null}
                     </ul>
-                    <a
-                        href="/knockout-stage"
+                    <Link
+                        to="/knockout-stage"
                         onKeyDown={(e) => handleKeyDown(e, '/knockout-stage')}
                         className="relative text-center w-full max-w-64 my-2 mx-auto px-4 py-1 lg:py-1.5 rounded-lg bg-stone-100/90 outline outline-stone-500 active:bg-stone-300 animate-stone-50-stone-300"
                         aria-label="Go to the Knockout Stage."
@@ -202,7 +202,7 @@ const Main = () => {
                         ref={anchorRef}
                     >
                         Knockout Stage
-                    </a>
+                    </Link>
                 </div>
             ) : groups.length ? (
                 <div className="flex flex-col justify-center">
@@ -222,8 +222,8 @@ const Main = () => {
                             <MainMatch item={upcomingMatch} />
                         ) : null}
                     </ul>
-                    <a
-                        href="/schedule"
+                    <Link
+                        to="/schedule"
                         onKeyDown={(e) => handleKeyDown(e, '/schedule')}
                         className="relative text-center w-full max-w-64 my-2 mx-auto px-4 py-1 lg:py-1.5 rounded-lg bg-stone-100/90 outline outline-stone-500 active:bg-stone-300 animate-stone-50-stone-300"
                         aria-label="Go to the Results."
@@ -231,7 +231,7 @@ const Main = () => {
                         ref={anchorRef}
                     >
                         Results
-                    </a>
+                    </Link>
                 </div>
             ) : (
                 <div className="flex flex-col gap-0.5 lg:gap-1 text-center text-normal">
@@ -240,8 +240,8 @@ const Main = () => {
                         Currently registered Teams: {registeredTeams.length} /{' '}
                         {MAX_TEAMS}
                     </div>
-                    <a
-                        href="/register-team"
+                    <Link
+                        to="/register-team"
                         onKeyDown={(e) => handleKeyDown(e, '/register-team')}
                         className="relative text-center w-full max-w-64 my-2 mx-auto px-4 py-1 lg:py-1.5 rounded-lg bg-stone-100/90 outline outline-stone-500 active:bg-stone-300 animate-stone-50-stone-300"
                         aria-label="Register a new Team."
@@ -249,7 +249,7 @@ const Main = () => {
                         ref={anchorRef}
                     >
                         Register Team
-                    </a>
+                    </Link>
                     <div>Register now before it starts.</div>
                 </div>
             )}

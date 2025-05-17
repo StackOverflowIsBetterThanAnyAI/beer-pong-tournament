@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { useAutoFocus } from '../hooks/useAutoFocus'
 
 const FourOhFour = () => {
@@ -10,7 +10,7 @@ const FourOhFour = () => {
     useAutoFocus(anchorRef)
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLAnchorElement>) => {
-        if (e.key === ' ' || e.key === 'Enter') {
+        if (e.key === ' ') {
             e.preventDefault()
             navigate('/')
         }
@@ -23,8 +23,8 @@ const FourOhFour = () => {
                 <h2 className="text-large">
                     It looks like this site does not exist ...
                 </h2>
-                <a
-                    href="/"
+                <Link
+                    to="/"
                     onKeyDown={(e) => handleKeyDown(e)}
                     className="relative mt-2 px-4 py-2 lg:py-2.5 rounded-lg bg-stone-100/90 outline outline-stone-500 active:bg-stone-300 animate-stone-50-stone-300"
                     aria-label="Back to the Homepage."
@@ -32,7 +32,7 @@ const FourOhFour = () => {
                     ref={anchorRef}
                 >
                     Homepage
-                </a>
+                </Link>
             </div>
         </main>
     )

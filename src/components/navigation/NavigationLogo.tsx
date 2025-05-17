@@ -1,19 +1,19 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import logo from './../../assets/logo.webp'
 
 const NavigationLogo = () => {
     const navigate = useNavigate()
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLAnchorElement>) => {
-        if (e.key === ' ' || e.key === 'Enter') {
+        if (e.key === ' ') {
             e.preventDefault()
             navigate('/')
         }
     }
 
     return (
-        <a
-            href="/"
+        <Link
+            to="/"
             onKeyDown={(e) => handleKeyDown(e)}
             className="logohomepage flex items-center gap-2 no-underline rounded-lg p-1 pr-2 hover:bg-stone-700 active:bg-stone-600"
             title="Back to the Homepage"
@@ -29,7 +29,7 @@ const NavigationLogo = () => {
             <span className="max-[280px]:hidden text-large">
                 Beer Pong Tournament
             </span>
-        </a>
+        </Link>
     )
 }
 

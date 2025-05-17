@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { ROUTES } from '../../constants/constants'
 import { getValidHref } from '../../utils/getValidHref'
 import { getValidPathname } from '../../utils/getValidPathname'
@@ -20,15 +20,15 @@ const Breadcrumbs = () => {
             aria-label="Breadcrumbs"
             className="breadcrumbs flex max-w-7xl w-full overflow-x-auto text-nowrap mx-auto items-center p-2 lg:p-2.5"
         >
-            <a
+            <Link
                 aria-label="Back to the Homepage."
                 className="text-small underline decoration-zinc-300/50 text-zinc-300 last:decoration-zinc-100/50 last:text-zinc-100 rounded-sm px-1 py-0.5"
-                href="/"
+                to="/"
                 onKeyDown={handleKeyDownHome}
                 title="Home"
             >
                 Home
-            </a>
+            </Link>
             {pathname?.map((item, index) => {
                 let route = ''
                 for (let i = 0; i <= index; i++) {
@@ -66,15 +66,15 @@ const Breadcrumbs = () => {
                             >
                                 &gt;
                             </div>
-                            <a
+                            <Link
                                 aria-label={formattedItem}
                                 className="text-small underline decoration-zinc-100/50 text-zinc-100 rounded-sm px-1 py-0.5"
-                                href={route}
+                                to={route}
                                 onKeyDown={handleKeyDown}
                                 title={formattedItem}
                             >
                                 {formattedItem}
-                            </a>
+                            </Link>
                         </React.Fragment>
                     )
                 }
