@@ -12,6 +12,8 @@ const FormHeader = ({ header, subHeader }: FormHeaderProps) => {
                 return 'Not all Group Stage Matches have been played yet.'
             case 'no content':
                 return 'The Tournament has not started yet.'
+            case 'no content main':
+                return 'The next tournament is just around the corner!'
             case 'no content teams':
                 return 'Currently, no Teams have registered yet.'
             case 'no content ko':
