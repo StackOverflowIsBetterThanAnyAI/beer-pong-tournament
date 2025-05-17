@@ -10,6 +10,8 @@ const FormHeader = ({ header, subHeader }: FormHeaderProps) => {
                 return 'Pairings and Scores for the Knockout Stage:'
             case 'knockout error':
                 return 'Not all Group Stage Matches have been played yet.'
+            case 'tournament over':
+                return 'This tournament is already over.'
             case 'no content':
                 return 'The Tournament has not started yet.'
             case 'no content main':
