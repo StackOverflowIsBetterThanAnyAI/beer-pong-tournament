@@ -119,7 +119,7 @@ export const Teams = () => {
                 Registered Teams
             </h1>
             {isLoading ? (
-                <div className="flex justify-center pt-6 pb-2">
+                <div className="flex justify-center pt-4 pb-2">
                     <FetchLoading theme="#44403c" />
                 </div>
             ) : apiErrorLoad ? (
@@ -153,7 +153,7 @@ export const Teams = () => {
                     ) : null}
                 </>
             ) : (
-                <div className="pt-2 pb-6 sm:pb-5 lg:pb-3">
+                <div className="pt-1 pb-5 sm:pb-4 lg:pb-2">
                     <FormHeader subHeader="no content teams" />
                 </div>
             )}
