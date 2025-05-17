@@ -24,7 +24,7 @@ const Breadcrumbs = () => {
                 >
                     <a
                         aria-label="Back to the Homepage."
-                        className="text-small underline decoration-zinc-300/50 text-zinc-300 rounded-sm px-1 py-0.5"
+                        className="text-small underline decoration-zinc-300/50 text-zinc-300 last:decoration-zinc-100/50 last:text-zinc-100 rounded-sm px-1 py-0.5"
                         href="/"
                         onKeyDown={handleKeyDownHome}
                         title="Home"
@@ -33,7 +33,7 @@ const Breadcrumbs = () => {
                     </a>
                     {pathname.map((item, index) => {
                         let route = ''
-                        for (let i = 0; i <= index; i++) {
+                        for (let i = 1; i <= index; i++) {
                             route += `/${pathname[i]}`
                         }
                         const formattedItem = item
@@ -70,7 +70,7 @@ const Breadcrumbs = () => {
                                     </div>
                                     <a
                                         aria-label={formattedItem}
-                                        className="text-small underline decoration-zinc-300/50 text-zinc-300 last:decoration-zinc-100/50 last:text-zinc-100 rounded-sm px-1 py-0.5"
+                                        className="text-small underline decoration-zinc-100/50 text-zinc-100 rounded-sm px-1 py-0.5"
                                         href={route}
                                         onKeyDown={handleKeyDown}
                                         title={formattedItem}
