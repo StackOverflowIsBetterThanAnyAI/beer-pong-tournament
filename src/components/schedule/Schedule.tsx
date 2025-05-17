@@ -73,14 +73,14 @@ const Schedule = () => {
         <main className="w-full max-w-7xl relative isolate bg-stone-300 text-stone-950 lg:rounded-lg p-3 sm:p-4 lg:p-6 drop-shadow-stone-900 drop-shadow-sm">
             <FormHeader
                 header="Schedule"
-                subHeader={`${!schedule.length ? 'no content' : 'schedule'}`}
+                subHeader={`${schedule.length ? 'schedule' : ''}`}
             />
             {apiError ? (
                 <div className="text-center pt-4">
                     <FormError error={apiError} />
                 </div>
             ) : isLoading ? (
-                <div className="flex justify-center">
+                <div className="flex justify-center pt-4 pb-2">
                     <FetchLoading theme="#44403c" />
                 </div>
             ) : schedule.length ? (
@@ -90,7 +90,11 @@ const Schedule = () => {
                     page={page}
                     previousPage={previousPage}
                 />
-            ) : null}
+            ) : (
+                <div className="pt-1 pb-5 sm:pb-4 lg:pb-2">
+                    <FormHeader subHeader="no content" />
+                </div>
+            )}
         </main>
     )
 }
