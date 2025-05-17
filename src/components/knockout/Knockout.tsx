@@ -119,7 +119,7 @@ const Knockout = () => {
             >
                 {isAdmin && !koStage.length ? (
                     <button
-                        className="text-normal bg-stone-300 outline outline-stone-500 disabled:outline-stone-400 disabled:bg-stone-400/20 h-7 lg:h-8 w-fit m-auto px-8 py-0.5 mt-2 rounded-md
+                        className="text-normal bg-stone-300 outline outline-stone-500 disabled:outline-stone-400 disabled:bg-stone-400/20 min-h-7 lg:min-h-8 w-fit m-auto px-8 py-0.5 mt-2 rounded-md
                          disabled:text-stone-600 not-[:disabled]:hover:bg-stone-400/40 not-[:disabled]:active:bg-stone-400/70"
                         onClick={handleKOStage}
                         aria-label={`${
@@ -150,7 +150,7 @@ const Knockout = () => {
                     </div>
                 ) : null}
                 {isLoading ? (
-                    <div className="flex justify-center pt-8 pb-4">
+                    <div className="flex justify-center pt-6 pb-2">
                         <FetchLoading theme="#44403c" />
                     </div>
                 ) : apiErrorLoad ? (
@@ -166,7 +166,7 @@ const Knockout = () => {
                         tournamentWinner={tournamentWinner}
                     />
                 ) : (
-                    <div className="pt-2">
+                    <div className="pt-4 pb-4 sm:pb-3 lg:pb-1">
                         {!isAdmin ? (
                             <FormHeader subHeader="no content ko" />
                         ) : !isGroupstageOver ? (
