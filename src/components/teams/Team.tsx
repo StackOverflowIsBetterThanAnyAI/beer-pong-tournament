@@ -32,8 +32,12 @@ const Team = ({ index, isLoading, item, handleDelete }: TeamProps) => {
                         {item.name}
                     </div>
                     <div className="flex gap-x-2 flex-wrap justify-between">
-                        <div className="text-normal">{item.member_one}</div>
-                        <div className="text-normal">{item.member_two}</div>
+                        <div className="text-normal text-ellipsis overflow-hidden">
+                            {item.member_one}
+                        </div>
+                        <div className="text-normal text-ellipsis overflow-hidden">
+                            {item.member_two}
+                        </div>
                     </div>
                 </div>
                 {isAdmin ? (
