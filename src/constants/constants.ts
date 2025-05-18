@@ -30,4 +30,5 @@ export const ROUTES = [
     'knockout-stage',
 ]
 
-export const SERVER_ADDRESS = 'http://localhost:8000'
+export const SERVER_ADDRESS =
+    'https://beer-pong-tournament-backend.onrender.com'
