@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Footer from './components/footer/Footer'
 import FourOhFour from './404/FourOhFour'
 import GroupsGenerator from './components/groups/GroupsGenerator'
