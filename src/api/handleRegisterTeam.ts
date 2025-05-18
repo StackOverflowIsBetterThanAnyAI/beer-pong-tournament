@@ -4,6 +4,7 @@ import {
     RegisteredTeamProps,
     RegisteredTeamsProps,
     ScheduleProps,
+    ToastProps,
     TournamentGroupsProps,
 } from '../types/types'
 import { getValidToken } from '../utils/getValidToken'
@@ -24,12 +25,12 @@ type handleRegisterTeamProps = {
     setGroups: (value: React.SetStateAction<TournamentGroupsProps>) => void
     setIsLoading: (value: React.SetStateAction<boolean>) => void
     setIsSubmitDisabled: (value: React.SetStateAction<boolean>) => void
-    setIsSuccess: (value: React.SetStateAction<boolean>) => void
     setKOStage: React.Dispatch<React.SetStateAction<KOStageProps>>
     setRegisteredTeams: (
         value: React.SetStateAction<RegisteredTeamsProps>
     ) => void
     setSchedule: React.Dispatch<React.SetStateAction<ScheduleProps>>
+    showToast: (toast: ToastProps) => void
 }
 
 export const handleRegisterTeam = async ({
@@ -41,13 +42,11 @@ export const handleRegisterTeam = async ({
     setGroups,
     setIsLoading,
     setIsSubmitDisabled,
-    setIsSuccess,
     setKOStage,
     setRegisteredTeams,
     setSchedule,
+    showToast,
 }: handleRegisterTeamProps) => {
-    setIsSuccess(false)
-
     try {
         const response = await fetch(`${SERVER_ADDRESS}/api/v1/teams/`, {
             method: 'POST',
@@ -94,8 +93,10 @@ export const handleRegisterTeam = async ({
         })
 
         setIsSubmitDisabled(true)
-        setIsSuccess(true)
-        setTimeout(() => setIsSuccess(false), 3750)
+        showToast({
+            label: 'Successfully registered Team!',
+            isSuccess: true,
+        })
     } catch (error: any) {
         setApiError('An error occurred while adding your team.')
         setIsSubmitDisabled(false)

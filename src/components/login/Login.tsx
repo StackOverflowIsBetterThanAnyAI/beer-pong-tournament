@@ -6,7 +6,6 @@ import FormInput from './../form/FormInput'
 import FormInputPassword from './../form/FormInputPassword'
 import FormSubmit from './../form/FormSubmit'
 import FormSwitch from './../form/FormSwitch'
-import Toast from '../toast/Toast'
 import { ContextIsLoggedIn } from '../../context/ContextLogin'
 import { ContextPasswordVisibility } from '../../context/ContextPasswordVisibility'
 import { getStoredData } from '../../utils/getStoredData'
@@ -19,9 +18,16 @@ import {
     useErrorPassword,
     useErrorName,
 } from '../../hooks/useError'
+import { useContextToast } from '../../context/ContextToast'
 import { useSubmitDisabledLogin } from '../../hooks/useSubmitDisabled'
 
 const Login = () => {
+    const parsedStorageData = getStoredData()
+    const { showToast } = useContextToast()
+
+    const location = useLocation()
+    const navigate = useNavigate()
+
     const contextIsLoggedIn = useContext(ContextIsLoggedIn)
     if (!contextIsLoggedIn) {
         throw new Error(
@@ -29,11 +35,6 @@ const Login = () => {
         )
     }
     const [_isLoggedIn, setIsLoggedIn] = contextIsLoggedIn
-
-    const parsedStorageData = getStoredData()
-
-    const location = useLocation()
-    const navigate = useNavigate()
 
     const [userName, setUserName] = useState<string>(
         parsedStorageData?.username || ''
@@ -50,7 +51,6 @@ const Login = () => {
     const [confirmPasswordDisabled, setConfirmPasswordDisabled] =
         useState<boolean>(true)
     const [isLoading, setIsLoading] = useState<boolean>(false)
-    const [isSessionExpired, setIsSessionExpired] = useState<boolean>(false)
     const [isSubmitDisabled, setIsSubmitDisabled] = useState<boolean>(true)
 
     const [errorConfirmPassword, setErrorConfirmPassword] = useState<string>('')
@@ -65,7 +65,10 @@ const Login = () => {
     useEffect(() => {
         const searchParams = new URLSearchParams(location.search)
         if (searchParams.get('session')) {
-            setIsSessionExpired(true)
+            showToast({
+                label: 'Session has expired!',
+                isSuccess: false,
+            })
             searchParams.delete('session')
             navigate(
                 {
@@ -74,9 +77,6 @@ const Login = () => {
                 },
                 { replace: true }
             )
-            setTimeout(() => {
-                setIsSessionExpired(false)
-            }, 3750)
         }
     }, [])
 
@@ -178,120 +178,109 @@ const Login = () => {
     }
 
     return (
-        <>
-            <main className="flex justify-center w-full max-w-7xl relative isolate bg-stone-300 text-stone-950 lg:rounded-b-lg p-3 sm:p-4 lg:p-6 drop-shadow-stone-900 drop-shadow-sm">
-                <div className="w-96">
-                    <FormHeader
-                        header={isSigningUp ? 'Signup' : 'Login'}
-                        subHeader="required"
-                    />
-                    <FormSwitch
-                        isSigningUp={isSigningUp}
-                        handleClick={handleSwitch}
-                    />
-                    <ContextPasswordVisibility.Provider
-                        value={[isPasswordHidden, setIsPasswordHidden]}
+        <main className="flex justify-center w-full max-w-7xl relative isolate bg-stone-300 text-stone-950 lg:rounded-b-lg p-3 sm:p-4 lg:p-6 drop-shadow-stone-900 drop-shadow-sm">
+            <div className="w-96">
+                <FormHeader
+                    header={isSigningUp ? 'Signup' : 'Login'}
+                    subHeader="required"
+                />
+                <FormSwitch
+                    isSigningUp={isSigningUp}
+                    handleClick={handleSwitch}
+                />
+                <ContextPasswordVisibility.Provider
+                    value={[isPasswordHidden, setIsPasswordHidden]}
+                >
+                    <form
+                        className="flex flex-col"
+                        autoComplete="on"
+                        aria-label={isSigningUp ? 'Signup' : 'Login'}
+                        name={isSigningUp ? 'signup' : 'login'}
+                        method="post"
+                        target="_self"
                     >
-                        <form
-                            className="flex flex-col"
-                            autoComplete="on"
-                            aria-label={isSigningUp ? 'Signup' : 'Login'}
-                            name={isSigningUp ? 'signup' : 'login'}
-                            method="post"
-                            target="_self"
-                        >
-                            <FormInput
-                                autoComplete="username"
-                                error={errorUserName}
-                                id={`${isSigningUp ? 'signup' : 'login'}User`}
-                                label="User Name"
-                                maxLength={20}
-                                minLength={5}
-                                onInput={handleUserNameInput}
-                                onKeyDown={handleKeyDown}
-                                placeholder="JohnDoe1337"
-                                ref={userNameRef}
-                                title={
-                                    isSigningUp
-                                        ? 'Choose a user name containing between 5 and 20 characters and only Latin letters or numbers.'
-                                        : 'Enter your user name.'
-                                }
-                                type="text"
-                                value={userName}
-                            />
-                            <FormError error={errorUserName} />
-                            <FormInputPassword
-                                autoComplete={`${
-                                    isSigningUp ? 'new' : 'current'
-                                }-password`}
-                                error={
-                                    (!isSigningUp && apiError) || errorPassword
-                                }
-                                id={`${
-                                    isSigningUp ? 'signup' : 'login'
-                                }Password`}
-                                isHidden={isPasswordHidden}
-                                label="Password"
-                                maxLength={25}
-                                minLength={8}
-                                onInput={handlePasswordInput}
-                                onKeyDown={handleKeyDown}
-                                title={
-                                    isSigningUp
-                                        ? 'Choose a password containing between 8 and 25 characters.'
-                                        : 'Enter your password.'
-                                }
-                                value={password}
-                            />
-                            {!isSigningUp && apiError ? (
-                                <FormError error={apiError} />
-                            ) : (
-                                <FormError error={errorPassword} />
-                            )}
-                            {isSigningUp && (
-                                <>
-                                    <FormInputPassword
-                                        autoComplete="new-password"
-                                        aria-disabled={confirmPasswordDisabled}
-                                        error={apiError || errorConfirmPassword}
-                                        id="signupConfirmPassword"
-                                        isDisabled={confirmPasswordDisabled}
-                                        isHidden={isPasswordHidden}
-                                        label="Confirm Password"
-                                        maxLength={25}
-                                        minLength={8}
-                                        onInput={handleConfirmPasswordInput}
-                                        onKeyDown={handleKeyDown}
-                                        title={
-                                            confirmPasswordDisabled
-                                                ? 'Currently disabled, enter a valid password first.'
-                                                : 'Confirm the password by entering it again.'
-                                        }
-                                        value={confirmPassword}
-                                    />
-                                    {apiError ? (
-                                        <FormError error={apiError} />
-                                    ) : (
-                                        <FormError
-                                            error={errorConfirmPassword}
-                                        />
-                                    )}
-                                </>
-                            )}
-                            <FormSubmit
-                                handleClick={handleClickAuthenticate}
-                                isDisabled={isSubmitDisabled}
-                                isLoading={isLoading}
-                                value={isSigningUp ? 'Signup' : 'Login'}
-                            />
-                        </form>
-                    </ContextPasswordVisibility.Provider>
-                </div>
-            </main>
-            {isSessionExpired ? (
-                <Toast isSuccess={false} label="Session has expired!" />
-            ) : null}
-        </>
+                        <FormInput
+                            autoComplete="username"
+                            error={errorUserName}
+                            id={`${isSigningUp ? 'signup' : 'login'}User`}
+                            label="User Name"
+                            maxLength={20}
+                            minLength={5}
+                            onInput={handleUserNameInput}
+                            onKeyDown={handleKeyDown}
+                            placeholder="JohnDoe1337"
+                            ref={userNameRef}
+                            title={
+                                isSigningUp
+                                    ? 'Choose a user name containing between 5 and 20 characters and only Latin letters or numbers.'
+                                    : 'Enter your user name.'
+                            }
+                            type="text"
+                            value={userName}
+                        />
+                        <FormError error={errorUserName} />
+                        <FormInputPassword
+                            autoComplete={`${
+                                isSigningUp ? 'new' : 'current'
+                            }-password`}
+                            error={(!isSigningUp && apiError) || errorPassword}
+                            id={`${isSigningUp ? 'signup' : 'login'}Password`}
+                            isHidden={isPasswordHidden}
+                            label="Password"
+                            maxLength={25}
+                            minLength={8}
+                            onInput={handlePasswordInput}
+                            onKeyDown={handleKeyDown}
+                            title={
+                                isSigningUp
+                                    ? 'Choose a password containing between 8 and 25 characters.'
+                                    : 'Enter your password.'
+                            }
+                            value={password}
+                        />
+                        {!isSigningUp && apiError ? (
+                            <FormError error={apiError} />
+                        ) : (
+                            <FormError error={errorPassword} />
+                        )}
+                        {isSigningUp && (
+                            <>
+                                <FormInputPassword
+                                    autoComplete="new-password"
+                                    aria-disabled={confirmPasswordDisabled}
+                                    error={apiError || errorConfirmPassword}
+                                    id="signupConfirmPassword"
+                                    isDisabled={confirmPasswordDisabled}
+                                    isHidden={isPasswordHidden}
+                                    label="Confirm Password"
+                                    maxLength={25}
+                                    minLength={8}
+                                    onInput={handleConfirmPasswordInput}
+                                    onKeyDown={handleKeyDown}
+                                    title={
+                                        confirmPasswordDisabled
+                                            ? 'Currently disabled, enter a valid password first.'
+                                            : 'Confirm the password by entering it again.'
+                                    }
+                                    value={confirmPassword}
+                                />
+                                {apiError ? (
+                                    <FormError error={apiError} />
+                                ) : (
+                                    <FormError error={errorConfirmPassword} />
+                                )}
+                            </>
+                        )}
+                        <FormSubmit
+                            handleClick={handleClickAuthenticate}
+                            isDisabled={isSubmitDisabled}
+                            isLoading={isLoading}
+                            value={isSigningUp ? 'Signup' : 'Login'}
+                        />
+                    </form>
+                </ContextPasswordVisibility.Provider>
+            </div>
+        </main>
     )
 }
 
