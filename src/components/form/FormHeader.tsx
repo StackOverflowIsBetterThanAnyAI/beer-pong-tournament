@@ -30,8 +30,6 @@ const FormHeader = ({ header, subHeader }: FormHeaderProps) => {
                 return 'Pairings and Scores:'
             case 'standings':
                 return 'Who will advance in each group?'
-            case 'teams':
-                return 'Currently registered Teams:'
             case 'required':
                 return (
                     <span>

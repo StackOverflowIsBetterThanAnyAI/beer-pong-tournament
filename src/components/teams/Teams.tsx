@@ -5,6 +5,7 @@ import PageNavigation from '../page/PageNavigation'
 import Team from './Team'
 import TeamsError from './TeamsError'
 import TeamsErrorOpacity from './TeamsErrorOpacity'
+import { MAX_TEAMS } from '../../constants/constants'
 import { ContextGroups } from '../../context/ContextGroups'
 import { ContextKOStage } from '../../context/ContextKOStage'
 import { ContextRegisteredTeams } from '../../context/ContextRegisteredTeams'
@@ -126,7 +127,13 @@ export const Teams = () => {
                 <TeamsError error={apiErrorLoad} />
             ) : registeredTeams?.length > 0 ? (
                 <>
-                    <FormHeader subHeader="teams" />
+                    <h2
+                        className="text-center text-pretty text-large px-1 lg:py-1"
+                        aria-label={`Currently registered Teams: ${registeredTeams.length} out of ${MAX_TEAMS}`}
+                    >
+                        Currently registered Teams: {registeredTeams.length} /{' '}
+                        {MAX_TEAMS}
+                    </h2>
                     <ul
                         className="flex flex-col sm:grid [grid-template-columns:repeat(auto-fit,minmax(256px,1fr))] gap-4 lg:gap-5 max-w-96 w-full sm:max-w-5xl mx-auto my-4 p-1.5 lg:p-2 rounded-sm"
                         role="menu"
