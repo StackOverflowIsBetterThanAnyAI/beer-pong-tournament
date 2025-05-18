@@ -17,7 +17,7 @@ import { setItemInSessionStorage } from '../../utils/setItemInSessionStorage'
 import { handleDeleteTeam } from '../../api/handleDeleteTeam'
 import { handleLoadRegisteredTeams } from '../../api/handleLoadRegisteredTeams'
 import { useItemsPerPage } from '../../hooks/useItemsPerPage'
-import { useWindowScrollYState } from '../../hooks/useWindowScrollyState'
+import { useWindowScrollYState } from '../../hooks/useWindowScrollYState'
 
 export const Teams = () => {
     const parsedStorageData = getStoredData()

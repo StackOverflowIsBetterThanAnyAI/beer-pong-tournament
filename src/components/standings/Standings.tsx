@@ -12,7 +12,7 @@ import { handleLoadStandings } from '../../api/handleLoadStandings'
 import { setItemInSessionStorage } from '../../utils/setItemInSessionStorage'
 import { useTeamsPerPage } from '../../hooks/useTeamsPerPage'
 import { useUpdatePage } from '../../hooks/useUpdatePage'
-import { useWindowScrollYState } from '../../hooks/useWindowScrollyState'
+import { useWindowScrollYState } from '../../hooks/useWindowScrollYState'
 
 const Standings = () => {
     const MAX_ITEMS_PER_PAGE = useTeamsPerPage()

@@ -21,7 +21,7 @@ import { handleGenerateGroups } from '../../api/handleGenerateGroups'
 import { handleLoadGroups } from '../../api/handleLoadGroups'
 import { handleLoadRegisteredTeams } from '../../api/handleLoadRegisteredTeams'
 import { useAutoFocus } from '../../hooks/useAutoFocus'
-import { useWindowScrollYState } from '../../hooks/useWindowScrollyState'
+import { useWindowScrollYState } from '../../hooks/useWindowScrollYState'
 
 export const GroupsGenerator = () => {
     const parsedStorageData = getStoredData()

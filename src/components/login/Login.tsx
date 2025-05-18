@@ -22,7 +22,7 @@ import {
 import { useContextToast } from '../../context/ContextToast'
 import { useSessionExpired } from '../../hooks/useSessionExpired'
 import { useSubmitDisabledLogin } from '../../hooks/useSubmitDisabled'
-import { useWindowScrollYState } from '../../hooks/useWindowScrollyState'
+import { useWindowScrollYState } from '../../hooks/useWindowScrollYState'
 
 const Login = () => {
     const parsedStorageData = getStoredData()

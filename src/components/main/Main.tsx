@@ -17,7 +17,7 @@ import { handleLoadKOStage } from '../../api/handleLoadKOStage'
 import { handleLoadRegisteredTeams } from '../../api/handleLoadRegisteredTeams'
 import { handleLoadSchedule } from '../../api/handleLoadSchedule'
 import { useAutoFocus } from '../../hooks/useAutoFocus'
-import { useWindowScrollYState } from '../../hooks/useWindowScrollyState'
+import { useWindowScrollYState } from '../../hooks/useWindowScrollYState'
 
 const Main = () => {
     const parsedStorageData = getStoredData()

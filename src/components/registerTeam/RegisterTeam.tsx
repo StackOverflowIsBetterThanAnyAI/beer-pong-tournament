@@ -16,7 +16,7 @@ import { useAutoFocus } from '../../hooks/useAutoFocus'
 import { useContextToast } from '../../context/ContextToast'
 import { useErrorName, useErrorSameMember } from '../../hooks/useError'
 import { useSubmitDisabledRegister } from '../../hooks/useSubmitDisabled'
-import { useWindowScrollYState } from '../../hooks/useWindowScrollyState'
+import { useWindowScrollYState } from '../../hooks/useWindowScrollYState'
 
 const RegisterTeam = () => {
     const parsedStorageData = getStoredData()

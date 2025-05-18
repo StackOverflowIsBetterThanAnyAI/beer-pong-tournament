@@ -15,7 +15,7 @@ import { handleGenerateKOStage } from '../../api/handleGenerateKOStage'
 import { handleLoadSchedule } from '../../api/handleLoadSchedule'
 import { handleLoadKOStage } from '../../api/handleLoadKOStage'
 import { useAutoFocus } from '../../hooks/useAutoFocus'
-import { useWindowScrollYState } from '../../hooks/useWindowScrollyState'
+import { useWindowScrollYState } from '../../hooks/useWindowScrollYState'
 
 const Knockout = () => {
     const parsedStorageData = getStoredData()
