@@ -1,5 +1,6 @@
 import { useNavigate, Link } from 'react-router-dom'
 import logo from './../../assets/logo.webp'
+import logo_mobile from './../../assets/logo_mobile.webp'
 
 const NavigationLogo = () => {
     const navigate = useNavigate()
@@ -20,6 +21,7 @@ const NavigationLogo = () => {
         >
             <img
                 src={logo}
+                srcSet={`${logo_mobile} 2x`}
                 width="48px"
                 height="48px"
                 alt="Back to the Homepage"
