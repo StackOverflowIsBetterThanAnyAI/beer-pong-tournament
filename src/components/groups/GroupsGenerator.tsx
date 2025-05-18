@@ -157,7 +157,11 @@ export const GroupsGenerator = () => {
                     <FetchLoading theme="#44403c" />
                 </div>
             ) : (
-                <div className="text-center text-large">
+                <div
+                    className="text-center text-large"
+                    aria-label={`Currently registered Teams: ${registeredTeams.length} out of
+                        ${MAX_TEAMS}`}
+                >
                     {registeredTeams.length} / {MAX_TEAMS} Teams
                 </div>
             )}

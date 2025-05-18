@@ -236,21 +236,32 @@ const Main = () => {
             ) : (
                 <div className="flex flex-col gap-0.5 lg:gap-1 text-center text-normal">
                     <FormHeader subHeader="no content main" />
-                    <div>
+                    <div
+                        aria-label={`Currently registered Teams: ${registeredTeams.length} out of
+                        ${MAX_TEAMS}`}
+                    >
                         Currently registered Teams: {registeredTeams.length} /{' '}
                         {MAX_TEAMS}
                     </div>
-                    <Link
-                        to="/register-team"
-                        onKeyDown={(e) => handleKeyDown(e, '/register-team')}
-                        className="relative text-center w-full max-w-64 my-2 mx-auto px-4 py-1 lg:py-1.5 rounded-lg bg-stone-100/90 outline outline-stone-500 active:bg-stone-300 animate-stone-50-stone-300"
-                        aria-label="Register a new Team."
-                        title="Register a new Team."
-                        ref={anchorRef}
-                    >
-                        Register Team
-                    </Link>
-                    <div>Register now before it starts.</div>
+                    {registeredTeams.length < MAX_TEAMS ? (
+                        <>
+                            <Link
+                                to="/register-team"
+                                onKeyDown={(e) =>
+                                    handleKeyDown(e, '/register-team')
+                                }
+                                className="relative text-center w-full max-w-64 my-2 mx-auto px-4 py-1 lg:py-1.5 rounded-lg bg-stone-100/90 outline outline-stone-500 active:bg-stone-300 animate-stone-50-stone-300"
+                                aria-label="Register a new Team."
+                                title="Register a new Team."
+                                ref={anchorRef}
+                            >
+                                Register Team
+                            </Link>
+                            <div>Register now before it starts.</div>
+                        </>
+                    ) : (
+                        <div>Unfortunately, all places are already taken.</div>
+                    )}
                 </div>
             )}
         </main>
