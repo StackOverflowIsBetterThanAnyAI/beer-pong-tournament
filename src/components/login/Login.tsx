@@ -1,4 +1,4 @@
-import { useContext, useEffect, useMemo, useRef, useState } from 'react'
+import { useContext, useMemo, useRef, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import FormError from './../form/FormError'
 import FormHeader from './../form/FormHeader'
@@ -19,6 +19,7 @@ import {
     useErrorName,
 } from '../../hooks/useError'
 import { useContextToast } from '../../context/ContextToast'
+import { useSessionExpired } from '../../hooks/useSessionExpired'
 import { useSubmitDisabledLogin } from '../../hooks/useSubmitDisabled'
 
 const Login = () => {
@@ -61,24 +62,7 @@ const Login = () => {
     const passwordPattern = useMemo<RegExp>(() => /^[^\s]{8,25}$/, [])
 
     useAutoFocus(userNameRef)
-
-    useEffect(() => {
-        const searchParams = new URLSearchParams(location.search)
-        if (searchParams.get('session')) {
-            showToast({
-                isSuccess: false,
-                label: 'Session has expired!',
-            })
-            searchParams.delete('session')
-            navigate(
-                {
-                    pathname: location.pathname,
-                    search: searchParams.toString(),
-                },
-                { replace: true }
-            )
-        }
-    }, [])
+    useSessionExpired({ location, navigate, showToast })
 
     useSubmitDisabledLogin({
         confirmPassword,
