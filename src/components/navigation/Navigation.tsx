@@ -1,9 +1,10 @@
-import { useContext } from 'react'
+import { useContext, useRef, useState } from 'react'
 import Breadcrumbs from '../breadcrumbs/Breadcrumbs'
 import NavigationLinks from './NavigationLinks'
 import NavigationLogo from './NavigationLogo'
 import { ContextIsLoggedIn } from '../../context/ContextLogin'
 import { setLogout } from '../../utils/setLogout'
+import { useNavigationOpacity } from '../../hooks/useNavigationOpacity'
 
 const Navigation = () => {
     const contextIsLoggedIn = useContext(ContextIsLoggedIn)
@@ -14,13 +15,21 @@ const Navigation = () => {
     }
     const [isLoggedIn, setIsLoggedIn] = contextIsLoggedIn
 
+    const [navOpacity, setNavOpacity] = useState<string>('opacity-100')
+    const timerRef = useRef<number>(undefined)
+
     const handleLogout = () => {
         setIsLoggedIn(setLogout({ isSessionExpired: false }))
     }
 
+    useNavigationOpacity({ setNavOpacity, timerRef })
+
     return (
         <>
-            <nav className="sticky top-0 z-50 bg-stone-800 text-zinc-100 w-full shadow-md shadow-stone-600/80">
+            <nav
+                className={`sticky top-0 z-50 bg-stone-800 text-zinc-100 w-full shadow-md shadow-stone-600/80
+                transition-opacity duration-1000 ease-in-out ${navOpacity}`}
+            >
                 <div className="max-w-7xl flex items-center justify-between m-auto h-16 px-2 sm:px-4 py-1 md:py-2">
                     <NavigationLogo />
                     {isLoggedIn ? (
