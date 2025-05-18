@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { FetchLoading } from 'fetch-loading'
 import FormHeader from '../form/FormHeader'
 import PageNavigation from '../page/PageNavigation'
@@ -62,13 +62,21 @@ export const Teams = () => {
     const [page, setPage] = useState<number>(parsedSessionData?.teampage || 1)
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
-    handleLoadRegisteredTeams({
+    useEffect(() => {
+        handleLoadRegisteredTeams({
+            accessToken,
+            refreshToken,
+            setApiError: setApiErrorLoad,
+            setIsLoading,
+            setRegisteredTeams,
+        })
+    }, [
         accessToken,
         refreshToken,
-        setApiError: setApiErrorLoad,
+        setApiErrorLoad,
         setIsLoading,
         setRegisteredTeams,
-    })
+    ])
 
     const handleDelete = async (item: RegisteredTeamProps) => {
         handleDeleteTeam({

@@ -86,13 +86,21 @@ export const GroupsGenerator = () => {
 
     useAutoFocus(startButtonRef, !isLoading)
 
-    handleLoadRegisteredTeams({
+    useEffect(() => {
+        handleLoadRegisteredTeams({
+            accessToken,
+            refreshToken,
+            setApiError: setApiErrorLoad,
+            setIsLoading,
+            setRegisteredTeams,
+        })
+    }, [
         accessToken,
         refreshToken,
-        setApiError: setApiErrorLoad,
+        setApiErrorLoad,
         setIsLoading,
         setRegisteredTeams,
-    })
+    ])
 
     const loadGroups = async () => {
         handleLoadGroups({

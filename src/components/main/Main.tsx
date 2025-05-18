@@ -113,13 +113,21 @@ const Main = () => {
         loadSchedule()
     }, [accessToken, refreshToken])
 
-    handleLoadRegisteredTeams({
+    useEffect(() => {
+        handleLoadRegisteredTeams({
+            accessToken,
+            refreshToken,
+            setApiError,
+            setIsLoading,
+            setRegisteredTeams,
+        })
+    }, [
         accessToken,
         refreshToken,
         setApiError,
         setIsLoading,
         setRegisteredTeams,
-    })
+    ])
 
     const handleKeyDown = (
         e: React.KeyboardEvent<HTMLAnchorElement>,
