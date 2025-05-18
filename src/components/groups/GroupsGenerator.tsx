@@ -159,8 +159,7 @@ export const GroupsGenerator = () => {
             ) : (
                 <div
                     className="text-center text-large"
-                    aria-label={`Currently registered Teams: ${registeredTeams.length} out of
-                        ${MAX_TEAMS}`}
+                    aria-label={`Currently registered Teams: ${registeredTeams.length} out of ${MAX_TEAMS}`}
                 >
                     {registeredTeams.length} / {MAX_TEAMS} Teams
                 </div>

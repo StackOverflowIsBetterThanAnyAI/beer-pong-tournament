@@ -237,8 +237,7 @@ const Main = () => {
                 <div className="flex flex-col gap-0.5 lg:gap-1 text-center text-normal">
                     <FormHeader subHeader="no content main" />
                     <div
-                        aria-label={`Currently registered Teams: ${registeredTeams.length} out of
-                        ${MAX_TEAMS}`}
+                        aria-label={`Currently registered Teams: ${registeredTeams.length} out of ${MAX_TEAMS}`}
                     >
                         Currently registered Teams: {registeredTeams.length} /{' '}
                         {MAX_TEAMS}
