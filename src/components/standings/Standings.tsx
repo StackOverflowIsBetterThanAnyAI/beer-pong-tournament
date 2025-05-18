@@ -44,6 +44,16 @@ const Standings = () => {
         setPage,
     })
 
+    useEffect(() => {
+        handleLoadStandings({
+            accessToken,
+            refreshToken,
+            setApiError,
+            setIsLoading,
+            setStandings,
+        })
+    }, [])
+
     const previousPage = () => {
         if (page > 1) {
             setPage((prev) => prev - 1)
@@ -55,16 +65,6 @@ const Standings = () => {
         setPage((prev) => prev + 1)
         setItemInSessionStorage('standingspage', page + 1)
     }
-
-    useEffect(() => {
-        handleLoadStandings({
-            accessToken,
-            refreshToken,
-            setApiError,
-            setIsLoading,
-            setStandings,
-        })
-    }, [])
 
     return (
         <main className="w-full max-w-7xl relative isolate bg-stone-300 text-stone-950 lg:rounded-lg p-3 sm:p-4 lg:p-6 drop-shadow-stone-900 drop-shadow-sm">
