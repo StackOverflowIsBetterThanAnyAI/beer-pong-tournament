@@ -63,7 +63,7 @@ export const ScheduleItemScore = ({ i, x }: ScheduleItemScoreProps) => {
         ? 'mb-1'
         : apiError || inputErrorTeam1 || inputErrorTeam2
         ? 'mb-1'
-        : 'mb-5 md:mb-6'
+        : 'mb-5 sm:mb-6'
 
     const handleInput = (
         e: React.ChangeEvent<HTMLInputElement>,

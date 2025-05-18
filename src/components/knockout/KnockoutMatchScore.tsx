@@ -65,7 +65,7 @@ const KnockoutMatchScore = ({ i, setKOStage }: KnockoutMatchScoreProps) => {
         ? 'mb-1'
         : apiError || inputErrorTeam1 || inputErrorTeam2
         ? 'mb-1'
-        : 'mb-5 md:mb-6'
+        : 'mb-5 sm:mb-6'
 
     const handleInput = (
         e: React.ChangeEvent<HTMLInputElement>,
@@ -90,6 +90,8 @@ const KnockoutMatchScore = ({ i, setKOStage }: KnockoutMatchScoreProps) => {
                   ((parseInt(score) < 10 && parseInt(otherScore) > 10) ||
                       (parseInt(score) > 10 && parseInt(otherScore) < 10))
                 ? 'For overtime, both teams have to score 10 cups.'
+                : otherScore && parseInt(score) === parseInt(otherScore)
+                ? 'In this stage, one team has to win.'
                 : ''
         )
     }
