@@ -22,6 +22,7 @@ import {
 import { useContextToast } from '../../context/ContextToast'
 import { useSessionExpired } from '../../hooks/useSessionExpired'
 import { useSubmitDisabledLogin } from '../../hooks/useSubmitDisabled'
+import { useWindowScrollYState } from '../../hooks/useWindowScrollyState'
 
 const Login = () => {
     const parsedStorageData = getStoredData()
@@ -102,6 +103,8 @@ const Login = () => {
         password,
         setErrorConfirmPassword,
     })
+
+    useWindowScrollYState()
 
     const handleUserNameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         setApiError('')

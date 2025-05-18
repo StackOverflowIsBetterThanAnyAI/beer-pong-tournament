@@ -16,6 +16,7 @@ import { useAutoFocus } from '../../hooks/useAutoFocus'
 import { useContextToast } from '../../context/ContextToast'
 import { useErrorName, useErrorSameMember } from '../../hooks/useError'
 import { useSubmitDisabledRegister } from '../../hooks/useSubmitDisabled'
+import { useWindowScrollYState } from '../../hooks/useWindowScrollyState'
 
 const RegisterTeam = () => {
     const parsedStorageData = getStoredData()
@@ -114,6 +115,8 @@ const RegisterTeam = () => {
     })
 
     useErrorSameMember({ memberOne, memberTwo, setErrorSameMember })
+
+    useWindowScrollYState()
 
     const handleTeamNameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         setApiError('')

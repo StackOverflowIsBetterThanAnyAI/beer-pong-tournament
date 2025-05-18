@@ -17,6 +17,7 @@ import { handleLoadKOStage } from '../../api/handleLoadKOStage'
 import { handleLoadRegisteredTeams } from '../../api/handleLoadRegisteredTeams'
 import { handleLoadSchedule } from '../../api/handleLoadSchedule'
 import { useAutoFocus } from '../../hooks/useAutoFocus'
+import { useWindowScrollYState } from '../../hooks/useWindowScrollyState'
 
 const Main = () => {
     const parsedStorageData = getStoredData()
@@ -166,6 +167,8 @@ const Main = () => {
         const notPlayed = koStage.filter((item) => !item.played)
         setUpcomingKOMatch(notPlayed.length ? notPlayed[0] : null)
     }, [koStage])
+
+    useWindowScrollYState()
 
     return (
         <main className="w-full max-w-7xl relative isolate bg-stone-300 text-stone-950 lg:rounded-lg p-3 sm:p-4 lg:p-6 drop-shadow-stone-900 drop-shadow-sm">

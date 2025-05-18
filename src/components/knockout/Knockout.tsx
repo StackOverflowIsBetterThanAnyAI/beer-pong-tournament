@@ -15,6 +15,7 @@ import { handleGenerateKOStage } from '../../api/handleGenerateKOStage'
 import { handleLoadSchedule } from '../../api/handleLoadSchedule'
 import { handleLoadKOStage } from '../../api/handleLoadKOStage'
 import { useAutoFocus } from '../../hooks/useAutoFocus'
+import { useWindowScrollYState } from '../../hooks/useWindowScrollyState'
 
 const Knockout = () => {
     const parsedStorageData = getStoredData()
@@ -102,6 +103,8 @@ const Knockout = () => {
             })
         }
     }, [isGroupstageOver])
+
+    useWindowScrollYState()
 
     const handleKOStage = () => {
         handleGenerateKOStage({

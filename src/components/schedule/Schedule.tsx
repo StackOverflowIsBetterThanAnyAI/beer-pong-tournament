@@ -11,6 +11,7 @@ import { handleLoadSchedule } from '../../api/handleLoadSchedule'
 import { setItemInSessionStorage } from '../../utils/setItemInSessionStorage'
 import { useTeamsPerPage } from '../../hooks/useTeamsPerPage'
 import { useUpdatePage } from '../../hooks/useUpdatePage'
+import { useWindowScrollYState } from '../../hooks/useWindowScrollyState'
 
 const Schedule = () => {
     const MAX_ITEMS_PER_PAGE = useTeamsPerPage()
@@ -56,6 +57,8 @@ const Schedule = () => {
             setIsLoading,
         })
     }, [])
+
+    useWindowScrollYState()
 
     const previousPage = () => {
         if (page > 1) {

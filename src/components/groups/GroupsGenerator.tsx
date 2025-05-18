@@ -21,6 +21,7 @@ import { handleGenerateGroups } from '../../api/handleGenerateGroups'
 import { handleLoadGroups } from '../../api/handleLoadGroups'
 import { handleLoadRegisteredTeams } from '../../api/handleLoadRegisteredTeams'
 import { useAutoFocus } from '../../hooks/useAutoFocus'
+import { useWindowScrollYState } from '../../hooks/useWindowScrollyState'
 
 export const GroupsGenerator = () => {
     const parsedStorageData = getStoredData()
@@ -126,6 +127,8 @@ export const GroupsGenerator = () => {
             )
         )
     }, [registeredTeams])
+
+    useWindowScrollYState()
 
     const handleStartTournament = async () => {
         const shuffledTeams = [...registeredTeams].sort(

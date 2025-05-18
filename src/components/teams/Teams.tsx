@@ -17,6 +17,7 @@ import { setItemInSessionStorage } from '../../utils/setItemInSessionStorage'
 import { handleDeleteTeam } from '../../api/handleDeleteTeam'
 import { handleLoadRegisteredTeams } from '../../api/handleLoadRegisteredTeams'
 import { useItemsPerPage } from '../../hooks/useItemsPerPage'
+import { useWindowScrollYState } from '../../hooks/useWindowScrollyState'
 
 export const Teams = () => {
     const parsedStorageData = getStoredData()
@@ -77,6 +78,8 @@ export const Teams = () => {
         setIsLoading,
         setRegisteredTeams,
     ])
+
+    useWindowScrollYState()
 
     const handleDelete = async (item: RegisteredTeamProps) => {
         handleDeleteTeam({
