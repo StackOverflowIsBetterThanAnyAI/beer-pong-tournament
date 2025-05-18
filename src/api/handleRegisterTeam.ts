@@ -94,8 +94,8 @@ export const handleRegisterTeam = async ({
 
         setIsSubmitDisabled(true)
         showToast({
-            label: 'Successfully registered Team!',
             isSuccess: true,
+            label: 'Successfully registered Team!',
         })
     } catch (error: any) {
         setApiError('An error occurred while adding your team.')

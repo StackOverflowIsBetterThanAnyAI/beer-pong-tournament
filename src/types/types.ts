@@ -53,6 +53,6 @@ export type TournamentGroupsProps = {
 }[]
 
 export type ToastProps = {
-    label: string
     isSuccess: boolean
+    label: string
 }

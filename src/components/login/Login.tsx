@@ -66,8 +66,8 @@ const Login = () => {
         const searchParams = new URLSearchParams(location.search)
         if (searchParams.get('session')) {
             showToast({
-                label: 'Session has expired!',
                 isSuccess: false,
+                label: 'Session has expired!',
             })
             searchParams.delete('session')
             navigate(
