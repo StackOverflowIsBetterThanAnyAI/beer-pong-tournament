@@ -6,6 +6,7 @@ import FormInput from './../form/FormInput'
 import FormInputPassword from './../form/FormInputPassword'
 import FormSubmit from './../form/FormSubmit'
 import FormSwitch from './../form/FormSwitch'
+import { ContextAdmin } from '../../context/ContextAdmin'
 import { ContextIsLoggedIn } from '../../context/ContextLogin'
 import { ContextPasswordVisibility } from '../../context/ContextPasswordVisibility'
 import { getStoredData } from '../../utils/getStoredData'
@@ -28,6 +29,14 @@ const Login = () => {
 
     const location = useLocation()
     const navigate = useNavigate()
+
+    const contextAdmin = useContext(ContextAdmin)
+    if (!contextAdmin) {
+        throw new Error(
+            'GroupsGenerator must be used within a ContextAdmin.Provider'
+        )
+    }
+    const [_isAdmin, setIsAdmin] = contextAdmin
 
     const contextIsLoggedIn = useContext(ContextIsLoggedIn)
     if (!contextIsLoggedIn) {
@@ -146,6 +155,7 @@ const Login = () => {
         if (isSigningUp) {
             handleRegister({
                 setApiError,
+                setIsAdmin,
                 setIsLoading,
                 setIsLoggedIn,
                 setIsSubmitDisabled,
@@ -154,6 +164,7 @@ const Login = () => {
         } else {
             handleLogin({
                 setApiError,
+                setIsAdmin,
                 setIsLoading,
                 setIsLoggedIn,
                 userData,

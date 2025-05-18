@@ -5,6 +5,7 @@ import { setItemInStorage } from '../utils/setItemInStorage'
 
 type handleRegisterProps = {
     setApiError: (value: React.SetStateAction<string>) => void
+    setIsAdmin: (value: React.SetStateAction<boolean>) => void
     setIsLoading: (value: React.SetStateAction<boolean>) => void
     setIsLoggedIn: (value: React.SetStateAction<boolean | undefined>) => void
     setIsSubmitDisabled: (value: React.SetStateAction<boolean>) => void
@@ -16,6 +17,7 @@ type handleRegisterProps = {
 
 export const handleRegister = async ({
     setApiError,
+    setIsAdmin,
     setIsLoading,
     setIsLoggedIn,
     setIsSubmitDisabled,
@@ -46,6 +48,7 @@ export const handleRegister = async ({
 
         handleLogin({
             setApiError,
+            setIsAdmin,
             setIsLoading,
             setIsLoggedIn,
             userData,

@@ -5,12 +5,14 @@ import { setItemInStorage } from '../utils/setItemInStorage'
 
 type handleAdminProps = {
     setApiError: (value: React.SetStateAction<string>) => void
+    setIsAdmin: (value: React.SetStateAction<boolean>) => void
     setIsLoggedIn: (value: React.SetStateAction<boolean | undefined>) => void
     token: { access: string; refresh: string }
 }
 
 export const handleAdmin = async ({
     setApiError,
+    setIsAdmin,
     setIsLoggedIn,
     token,
 }: handleAdminProps) => {
@@ -39,6 +41,7 @@ export const handleAdmin = async ({
 
         const admin: { data: { is_staff: boolean } } = await response.json()
         setItemInStorage('isadmin', admin.data.is_staff)
+        setIsAdmin(admin.data.is_staff)
 
         setIsLoggedIn(true)
         setItemInStorage('isloggedin', true)
