@@ -7,7 +7,7 @@ const FormHeader = ({ header, subHeader }: FormHeaderProps) => {
     const subHeaderElement = (() => {
         switch (subHeader) {
             case 'groupstage':
-                return 'Currently the group phase is underway.'
+                return 'Currently the group stage is underway.'
             case 'groupstage over':
                 return 'The group stage has just been completed.'
             case 'kostage':

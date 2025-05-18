@@ -17,7 +17,7 @@ const GroupsLegend = () => {
                     A player can only be a member of one team.
                 </li>
                 <li className="ml-4 my-0.5">
-                    In the group phase, all four teams in a group play against
+                    In the group stage, all four teams in a group play against
                     each other once.
                 </li>
             </ul>
