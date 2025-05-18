@@ -19,8 +19,8 @@ const Toast = ({ isSuccess, label }: SuccessProps) => {
 
     return (
         <div
-            className={`text-normal absolute bottom-6 left-6 rounded-sm
-                outline-1 outline-zinc-50 p-2 transition-[opacity] duration-700 ${opacity} ${theme}`}
+            className={`text-normal fixed bottom-6 left-6 rounded-sm
+            outline-1 outline-zinc-50 p-2 transition-[opacity] duration-700 ${opacity} ${theme}`}
             role="status"
             aria-live="polite"
         >
