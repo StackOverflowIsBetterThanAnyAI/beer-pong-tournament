@@ -3,13 +3,13 @@ import { RegisteredTeamProps } from '../../types/types'
 import { ContextAdmin } from '../../context/ContextAdmin'
 
 type TeamProps = {
+    handleDelete: (item: RegisteredTeamProps) => Promise<void>
     index: number
     isLoading: boolean
     item: RegisteredTeamProps
-    handleDelete: (item: RegisteredTeamProps) => Promise<void>
 }
 
-const Team = ({ index, isLoading, item, handleDelete }: TeamProps) => {
+const Team = ({ handleDelete, index, isLoading, item }: TeamProps) => {
     const contextAdmin = useContext(ContextAdmin)
     if (!contextAdmin) {
         throw new Error('Teams must be used within a ContextAdmin.Provider')
