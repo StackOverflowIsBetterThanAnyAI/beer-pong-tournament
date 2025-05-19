@@ -31,4 +31,4 @@ export const ROUTES = [
 ]
 
 export const SERVER_ADDRESS =
-    'https://beer-pong-tournament-backend.onrender.com'
+    import.meta.env.VITE_SERVER_ADDRESS || 'http://localhost:8000'
