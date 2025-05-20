@@ -36,6 +36,11 @@ const Groups = ({ groups, page, setPage }: GroupsProps) => {
         setItemInSessionStorage('grouppage', page + 1)
     }
 
+    const redBackground = 'bg-red-200'
+    const redBorder = 'border-red-500'
+    const stoneBackground = 'bg-stone-200'
+    const stoneBorder = 'border-stone-600'
+
     return (
         <>
             <ul
@@ -63,11 +68,11 @@ const Groups = ({ groups, page, setPage }: GroupsProps) => {
                                     className={`p-2 lg:p-4 h-full drop-shadow-stone-300/80 drop-shadow-md rounded-sm ${
                                         SCREEN_WIDTH === 'DESKTOP'
                                             ? [1, 2, 5, 6].includes(x)
-                                                ? 'bg-red-200'
-                                                : 'bg-stone-200'
+                                                ? redBackground
+                                                : stoneBackground
                                             : x % 2
-                                            ? 'bg-red-200'
-                                            : 'bg-stone-200'
+                                            ? redBackground
+                                            : stoneBackground
                                     }`}
                                 >
                                     <h2 className="text-large font-bold underline">
@@ -91,11 +96,11 @@ const Groups = ({ groups, page, setPage }: GroupsProps) => {
                                                             ? [
                                                                   1, 2, 5, 6,
                                                               ].includes(x)
-                                                                ? 'border-red-500'
-                                                                : 'border-stone-600'
+                                                                ? redBorder
+                                                                : stoneBorder
                                                             : x % 2
-                                                            ? 'border-red-500'
-                                                            : 'border-stone-600'
+                                                            ? redBorder
+                                                            : stoneBorder
                                                     }`}
                                                     role="menuitem"
                                                 >
