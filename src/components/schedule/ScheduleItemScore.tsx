@@ -7,13 +7,17 @@ import { ContextAdmin } from '../../context/ContextAdmin'
 import { ContextSchedule } from '../../context/ContextSchedule'
 import { getStoredData } from '../../utils/getStoredData'
 import { handleUpdateScore } from '../../api/handleUpdateScore'
+import { useScreenWidth } from '../../hooks/useScreenWidth'
 
 type ScheduleItemScoreProps = {
     i: GameProps
+    index: number
     x: number
 }
 
-export const ScheduleItemScore = ({ i, x }: ScheduleItemScoreProps) => {
+export const ScheduleItemScore = ({ i, index, x }: ScheduleItemScoreProps) => {
+    const SCREEN_WIDTH = useScreenWidth()
+
     const parsedStorageData = getStoredData()
 
     const contextAdmin = useContext(ContextAdmin)
@@ -113,6 +117,41 @@ export const ScheduleItemScore = ({ i, x }: ScheduleItemScoreProps) => {
         }
     }
 
+    const redBackground = 'bg-red-400 !outline-red-600'
+    const redBorder = 'border-red-500/50'
+    const stoneBackground = 'bg-stone-400/70 !outline-stone-500'
+    const stoneBorder = 'border-stone-500/50'
+
+    const background = (() => {
+        switch (SCREEN_WIDTH) {
+            case 'DESKTOP':
+                if ([1, 2, 5, 6].includes(index)) {
+                    return ![2, 3].includes(x) ? redBackground : stoneBackground
+                }
+                return [2, 3].includes(x) ? redBackground : stoneBackground
+            default:
+                if (index % 2) {
+                    return ![2, 3].includes(x) ? redBackground : stoneBackground
+                }
+                return [2, 3].includes(x) ? redBackground : stoneBackground
+        }
+    })()
+
+    const border = (() => {
+        switch (SCREEN_WIDTH) {
+            case 'DESKTOP':
+                if ([1, 2, 5, 6].includes(index)) {
+                    return ![2, 3].includes(x) ? redBorder : stoneBorder
+                }
+                return [2, 3].includes(x) ? redBorder : stoneBorder
+            default:
+                if (index % 2) {
+                    return ![2, 3].includes(x) ? redBorder : stoneBorder
+                }
+                return [2, 3].includes(x) ? redBorder : stoneBorder
+        }
+    })()
+
     return (
         <>
             <div className="flex flex-wrap items-center max-[280px]:flex-col justify-between gap-x-2 text-ellipsis overflow-hidden pb-1">
@@ -158,22 +197,14 @@ export const ScheduleItemScore = ({ i, x }: ScheduleItemScoreProps) => {
                             value={scoreTeam1 ?? ''}
                             aria-label="Score between 0 and 10."
                             title="Score between 0 and 10."
-                            className={`page ${
-                                x % 2
-                                    ? 'bg-red-400 !outline-red-600'
-                                    : 'bg-stone-400/70 !outline-stone-500'
-                            } w-16 pl-1 rounded-sm`}
+                            className={`page ${background} w-16 pl-1 rounded-sm`}
                         />
                     ) : (
                         '-'
                     )}
                 </span>
             </div>
-            <hr
-                className={`border-t-2 pt-1 ${
-                    x % 2 ? 'border-red-500/50' : 'border-stone-500/50'
-                }`}
-            />
+            <hr className={`border-t-2 pt-1 ${border}`} />
             <div
                 className={`flex flex-wrap items-center max-[280px]:flex-col justify-between gap-x-2 text-ellipsis overflow-hidden ${marginBottom}`}
             >
@@ -219,11 +250,7 @@ export const ScheduleItemScore = ({ i, x }: ScheduleItemScoreProps) => {
                             value={scoreTeam2 ?? ''}
                             aria-label="Score between 0 and 10."
                             title="Score between 0 and 10."
-                            className={`page ${
-                                x % 2
-                                    ? 'bg-red-400 !outline-red-600'
-                                    : 'bg-stone-400/70 !outline-stone-500'
-                            } w-16 pl-1 rounded-sm`}
+                            className={`page ${background} w-16 pl-1 rounded-sm`}
                         />
                     ) : (
                         '-'
@@ -238,6 +265,7 @@ export const ScheduleItemScore = ({ i, x }: ScheduleItemScoreProps) => {
                 <ScheduleItemButton
                     handleClick={handleClick}
                     i={i}
+                    index={index}
                     isDisabled={isDisabled}
                     isLoading={isLoading}
                     scoreTeam1={scoreTeam1}
