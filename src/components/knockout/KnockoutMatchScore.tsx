@@ -166,8 +166,8 @@ const KnockoutMatchScore = ({ i, setKOStage }: KnockoutMatchScoreProps) => {
                             }
                             onKeyDown={(e) => handleKeyDown(e, i.id)}
                             value={scoreTeam1 ?? ''}
-                            aria-label="Score between 0 and 10."
-                            title="Score between 0 and 10."
+                            aria-label="Score between 0 and 10 for Regulation Time, Score between 0 and 99 for Overtime."
+                            title="Score between 0 and 99."
                             className={`page ${
                                 i.round === 'QF' || i.round === 'F'
                                     ? 'bg-red-400 !outline-red-600'
@@ -229,7 +229,7 @@ const KnockoutMatchScore = ({ i, setKOStage }: KnockoutMatchScoreProps) => {
                             }
                             onKeyDown={(e) => handleKeyDown(e, i.id)}
                             value={scoreTeam2 ?? ''}
-                            aria-label="Score between 0 and 99."
+                            aria-label="Score between 0 and 10 for Regulation Time, Score between 0 and 99 for Overtime."
                             title="Score between 0 and 99."
                             className={`page ${
                                 i.round === 'QF' || i.round === 'F'
