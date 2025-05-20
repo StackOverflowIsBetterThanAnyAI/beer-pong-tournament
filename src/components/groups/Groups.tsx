@@ -2,6 +2,7 @@ import GroupsLegend from './GroupsLegend'
 import PageNavigation from '../page/PageNavigation'
 import { TournamentGroupsProps } from '../../types/types'
 import { setItemInSessionStorage } from '../../utils/setItemInSessionStorage'
+import { useScreenWidth } from '../../hooks/useScreenWidth'
 import { useTeamsPerPage } from '../../hooks/useTeamsPerPage'
 import { useUpdatePage } from '../../hooks/useUpdatePage'
 
@@ -13,6 +14,7 @@ type GroupsProps = {
 
 const Groups = ({ groups, page, setPage }: GroupsProps) => {
     const MAX_ITEMS_PER_PAGE = useTeamsPerPage()
+    const SCREEN_WIDTH = useScreenWidth()
 
     useUpdatePage({
         items: groups,
@@ -59,7 +61,13 @@ const Groups = ({ groups, page, setPage }: GroupsProps) => {
                             >
                                 <div
                                     className={`p-2 lg:p-4 h-full drop-shadow-stone-300/80 drop-shadow-md rounded-sm ${
-                                        x % 2 ? 'bg-red-200' : 'bg-stone-200'
+                                        SCREEN_WIDTH === 'DESKTOP'
+                                            ? [1, 2, 5, 6].includes(x)
+                                                ? 'bg-red-200'
+                                                : 'bg-stone-200'
+                                            : x % 2
+                                            ? 'bg-red-200'
+                                            : 'bg-stone-200'
                                     }`}
                                 >
                                     <h2 className="text-large font-bold underline">
@@ -78,10 +86,17 @@ const Groups = ({ groups, page, setPage }: GroupsProps) => {
                                                             ? 'pb-2 border-b-2'
                                                             : ''
                                                     } ${
-                                                        x % 2
+                                                        SCREEN_WIDTH ===
+                                                        'DESKTOP'
+                                                            ? [
+                                                                  1, 2, 5, 6,
+                                                              ].includes(x)
+                                                                ? 'border-red-500'
+                                                                : 'border-stone-600'
+                                                            : x % 2
                                                             ? 'border-red-500'
                                                             : 'border-stone-600'
-                                                    } `}
+                                                    }`}
                                                     role="menuitem"
                                                 >
                                                     <div className="flex flex-col">
