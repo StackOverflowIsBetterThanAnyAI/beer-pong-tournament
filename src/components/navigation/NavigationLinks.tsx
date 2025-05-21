@@ -62,6 +62,7 @@ const NavigationLinks = () => {
                 onKeyDown={(e) => handleKeyDown(e, i)}
                 to={`/${getValidHref(i)}`}
                 className="underline rounded-md text-normal px-2 py-0.5 focus-visible:bg-stone-100/50 hover:bg-red-300/50 active:bg-red-300"
+                data-testid={`navigation-link-${i}`}
                 aria-label={formattedRoute}
                 title={formattedRoute}
             >
