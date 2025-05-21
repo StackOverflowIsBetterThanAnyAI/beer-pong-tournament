@@ -6,10 +6,10 @@ export const useWindowScrollYState = () => {
     const path = location.pathname
 
     useLayoutEffect(() => {
-        const stored = sessionStorage.getItem('scrolly')
+        const stored = sessionStorage.getItem('beer-pong-tournament')
         if (stored) {
             const parsed = JSON.parse(stored)
-            const y = parsed[path]
+            const y = parsed.scrolly?.[path]
             if (y) {
                 requestAnimationFrame(() => {
                     setTimeout(
@@ -28,10 +28,15 @@ export const useWindowScrollYState = () => {
 
     useEffect(() => {
         const onScroll = () => {
-            const stored = sessionStorage.getItem('scrolly')
+            const stored = sessionStorage.getItem('beer-pong-tournament')
             const parsed = stored ? JSON.parse(stored) : {}
-            parsed[path] = window.scrollY
-            sessionStorage.setItem('scrolly', JSON.stringify(parsed))
+            if (!parsed.scrolly) parsed.scrolly = {}
+            parsed.scrolly[path] = window.scrollY
+
+            sessionStorage.setItem(
+                'beer-pong-tournament',
+                JSON.stringify(parsed)
+            )
         }
 
         window.addEventListener('scroll', onScroll)
