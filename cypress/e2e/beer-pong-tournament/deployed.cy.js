@@ -2,7 +2,7 @@
 
 describe('deployed', () => {
     beforeEach(() => {
-        cy.visit('https://beer-pong-tournament.vercel.app/')
+        cy.visit('/')
     })
 
     it('should be available at beer-pong-tournament.vercel.app', () => {

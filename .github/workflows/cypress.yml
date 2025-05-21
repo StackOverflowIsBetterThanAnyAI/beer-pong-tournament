@@ -30,6 +30,7 @@ jobs:
             - name: Run Cypress Tests
               uses: cypress-io/github-action@v6
               env:
+                  CYPRESS_BASE_URL: https://beer-pong-tournament.vercel.app
                   VITE_SERVER_ADDRESS: https://beer-pong-tournament-backend.onrender.com
               with:
                   browser: electron
