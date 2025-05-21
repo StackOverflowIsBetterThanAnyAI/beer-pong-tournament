@@ -21,4 +21,25 @@ describe('deployed', () => {
             'Copyright © 2025 Michael Münzenhofer. All Rights Reserved.GitHub Repository'
         )
     })
+
+    it('should login as admin', () => {
+        cy.get('[data-testid="login-switch"]').should('exist').click()
+
+        cy.get('[data-testid="login-user-input"]')
+            .should('exist')
+            .type(Cypress.env('ADMIN_USERNAME'))
+
+        cy.get('[data-testid="login-password-input"]')
+            .should('exist')
+            .type(Cypress.env('ADMIN_PASSWORD'))
+
+        cy.get('[data-testid="login-submit"]').should('exist').click()
+
+        cy.get('[data-testid="navigation-links"]', { timeout: 50000 })
+            .should('exist')
+            .should(
+                'have.text',
+                'Register TeamTeamsGroupsScheduleStandingsKnockout StageClose Navigation'
+            )
+    })
 })
