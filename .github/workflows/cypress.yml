@@ -30,6 +30,8 @@ jobs:
             - name: Run Cypress Tests
               uses: cypress-io/github-action@v6
               env:
+                  CYPRESS_ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+                  CYPRESS_ADMIN_USERNAME: ${{ secrets.ADMIN_USERNAME }}
                   CYPRESS_BASE_URL: https://beer-pong-tournament.vercel.app
                   VITE_SERVER_ADDRESS: https://beer-pong-tournament-backend.onrender.com
               with:
