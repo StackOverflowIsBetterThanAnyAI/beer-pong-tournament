@@ -12,6 +12,7 @@ type FormInputProps = {
     onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void
     placeholder: string
     ref?: React.RefObject<HTMLInputElement | null>
+    testID?: string
     title: string
     type: string
     value: string
@@ -29,6 +30,7 @@ const FormInput = ({
     onKeyDown,
     placeholder,
     ref,
+    testID,
     title,
     type,
     value,
@@ -42,6 +44,7 @@ const FormInput = ({
             </label>
             <input
                 id={id}
+                data-testid={testID}
                 className={`bg-stone-100 outline outline-stone-500 text-normal w-full ${marginBottom} rounded px-2 py-1
                 enabled:hover:bg-stone-200`}
                 aria-label={title}

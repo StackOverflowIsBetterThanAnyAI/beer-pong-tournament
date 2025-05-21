@@ -29,6 +29,7 @@ const Navigation = () => {
             <nav
                 className={`sticky top-0 z-50 bg-stone-800 text-zinc-100 w-full shadow-md shadow-stone-600/80
                 transition-opacity duration-1000 ease-in-out ${navOpacity}`}
+                data-testid="navigation"
             >
                 <div className="max-w-7xl flex items-center justify-between m-auto h-16 px-2 sm:px-4 py-1 md:py-2">
                     <NavigationLogo />

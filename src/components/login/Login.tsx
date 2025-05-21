@@ -176,7 +176,10 @@ const Login = () => {
     }
 
     return (
-        <main className="flex justify-center w-full max-w-7xl relative isolate bg-stone-300 text-stone-950 lg:rounded-b-lg p-3 sm:p-4 lg:p-6 drop-shadow-stone-900 drop-shadow-sm">
+        <main
+            className="flex justify-center w-full max-w-7xl relative isolate bg-stone-300 text-stone-950 lg:rounded-b-lg p-3 sm:p-4 lg:p-6 drop-shadow-stone-900 drop-shadow-sm"
+            data-testid="login-main"
+        >
             <div className="w-96">
                 <FormHeader
                     header={isSigningUp ? 'Signup' : 'Login'}
@@ -208,6 +211,7 @@ const Login = () => {
                             onKeyDown={handleKeyDown}
                             placeholder="JohnDoe1337"
                             ref={userNameRef}
+                            testID="login-user-input"
                             title={
                                 isSigningUp
                                     ? 'Choose a user name containing between 5 and 20 characters and only Latin letters or numbers.'
@@ -229,6 +233,7 @@ const Login = () => {
                             minLength={8}
                             onInput={handlePasswordInput}
                             onKeyDown={handleKeyDown}
+                            testID="login-password-input"
                             title={
                                 isSigningUp
                                     ? 'Choose a password containing between 8 and 25 characters.'

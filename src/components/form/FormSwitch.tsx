@@ -24,6 +24,7 @@ const FormSwitch = ({ isSigningUp, handleClick }: FormSwitchProps) => {
                 title={`Switch to ${
                     isSigningUp ? 'Login' : 'Signup'
                 }. Currently, ${isSigningUp ? 'Signup' : 'Login'} is selected.`}
+                data-testid="login-switch"
             >
                 <div
                     className={`${loginStyle} w-16 md:w-20 rounded-l-lg transition duration-500 ease-in-out pl-4 pr-2 py-1`}
