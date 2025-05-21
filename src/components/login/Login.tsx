@@ -278,6 +278,7 @@ const Login = () => {
                             handleClick={handleClickAuthenticate}
                             isDisabled={isSubmitDisabled}
                             isLoading={isLoading}
+                            testID="login-submit"
                             value={isSigningUp ? 'Signup' : 'Login'}
                         />
                     </form>

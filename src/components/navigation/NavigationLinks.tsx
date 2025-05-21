@@ -75,6 +75,7 @@ const NavigationLinks = () => {
             className={`flex flex-col gap-1 max-w-7xl bg-red-200 text-stone-950 w-full p-4 transition-[padding] duration-300 ${
                 isNavigationExpanded ? 'pt-6' : 'py-2'
             } lg:rounded-b-md`}
+            data-testid="navigation-links"
         >
             {isNavigationExpanded ? routes : null}
             <button
