@@ -16,7 +16,7 @@ const Navigation = () => {
     const [isLoggedIn, setIsLoggedIn] = contextIsLoggedIn
 
     const [navOpacity, setNavOpacity] = useState<string>('opacity-100')
-    const timerRef = useRef<number>(undefined)
+    const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
     const handleLogout = () => {
         setIsLoggedIn(setLogout({ isSessionExpired: false }))

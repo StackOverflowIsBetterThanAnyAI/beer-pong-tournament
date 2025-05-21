@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 
 type useNavigationOpacityProps = {
     setNavOpacity: React.Dispatch<React.SetStateAction<string>>
-    timerRef: React.RefObject<number | undefined>
+    timerRef: React.RefObject<ReturnType<typeof setTimeout> | null>
 }
 
 export const useNavigationOpacity = ({
@@ -19,7 +19,7 @@ export const useNavigationOpacity = ({
                 setNavOpacity('opacity-80')
             }
 
-            clearTimeout(timerRef.current)
+            timerRef.current && clearTimeout(timerRef.current)
 
             if (window.scrollY < lastScrollY) {
                 timerRef.current = setTimeout(() => {
@@ -34,7 +34,7 @@ export const useNavigationOpacity = ({
 
         return () => {
             window.removeEventListener('scroll', handleScroll)
-            clearTimeout(timerRef.current)
+            timerRef.current && clearTimeout(timerRef.current)
         }
     }, [setNavOpacity, timerRef])
 }
