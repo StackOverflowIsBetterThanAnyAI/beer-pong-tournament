@@ -71,7 +71,7 @@ jobs:
               run: npm ci
 
             - name: Start Frontend
-              run: npm start -- --host 127.0.0.1 &
+              run: npm start -- --host 127.0.0.1 > frontend.log 2>&1 &
               shell: bash
 
             - name: Setup Python
@@ -94,6 +94,7 @@ jobs:
               run: |
                   python manage.py runserver 127.0.0.1:8000 > backend.log 2>&1 &
                   sleep 10
+                  echo "===== backend.log output ====="
                   cat backend.log
               shell: bash
 
@@ -117,3 +118,17 @@ jobs:
                   path: |
                       cypress/screenshots
                       cypress/videos
+
+            - name: Upload Backend Log
+              if: failure()
+              uses: actions/upload-artifact@v4
+              with:
+                  name: backend-log
+                  path: ./backend/backend.log
+
+            - name: Upload Frontend Log
+              if: failure()
+              uses: actions/upload-artifact@v4
+              with:
+                  name: frontend-log
+                  path: frontend.log
