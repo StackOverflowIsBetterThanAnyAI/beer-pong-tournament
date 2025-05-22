@@ -98,7 +98,7 @@ jobs:
               shell: bash
 
             - name: Wait for servers
-              run: npx wait-on --httpStatus 404 --timeout 10000 http://127.0.0.1:5173 http://127.0.0.1:8000
+              run: npx wait-on --timeout 10000 http://127.0.0.1:5173 http://127.0.0.1:8000
 
             - name: Run Cypress Tests
               uses: cypress-io/github-action@v6
