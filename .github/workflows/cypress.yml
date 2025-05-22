@@ -100,8 +100,8 @@ jobs:
             - name: Run Cypress Tests
               uses: cypress-io/github-action@v6
               env:
-                  CYPRESS_ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD_LOCAL }}
-                  CYPRESS_ADMIN_USERNAME: ${{ secrets.ADMIN_USERNAME_LOCAL }}
+                  CYPRESS_ADMIN_PASSWORD_LOCAL: ${{ secrets.ADMIN_PASSWORD_LOCAL }}
+                  CYPRESS_ADMIN_USERNAME_LOCAL: ${{ secrets.ADMIN_USERNAME_LOCAL }}
               with:
                   browser: electron
                   spec: cypress/e2e/local/*.cy.js
