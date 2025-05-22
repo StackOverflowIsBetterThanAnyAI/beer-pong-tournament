@@ -81,7 +81,7 @@ jobs:
             - name: Install Dependencies - Backend
               working-directory: ./backend
               run: |
-                  python -m pop install --upgrade pip
+                  python -m pip install --upgrade pip
                   pip install -r requirements.txt
 
             - name: Run Migrations
