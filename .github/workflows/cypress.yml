@@ -90,8 +90,10 @@ jobs:
               run: python manage.py migrate
 
             - name: Start Backend
-              working-directory: ./backend
-              run: python manage.py runserver 127.0.0.1:8000 &
+              run: |
+                  python manage.py runserver 127.0.0.1:8000 > backend.log 2>&1 &
+                  sleep 2
+                  cat backend.log
               shell: bash
 
             - name: Wait for servers
