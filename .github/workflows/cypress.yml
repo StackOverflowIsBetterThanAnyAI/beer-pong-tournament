@@ -93,7 +93,7 @@ jobs:
               run: python manage.py runserver 127.0.0.1:8000 &
               shell: bash
               env:
-                  SECRET_KEY: ${{ secrets.SECRET_KEY }}
+                  SECRET_KEY: 'django'
 
             - name: Wait for servers
               run: npx wait-on http://127.0.0.1:5173 http://127.0.0.1:8000
