@@ -1,5 +1,6 @@
 import { SERVER_ADDRESS } from '../constants/constants'
 import { RegisteredTeamsProps } from '../types/types'
+import { getAbortSignal } from './abortControllerManager'
 import { getValidToken } from '../utils/getValidToken'
 import { getValueFromError } from '../utils/getValueFromError'
 import { setItemInStorage } from '../utils/setItemInStorage'
@@ -25,6 +26,7 @@ export const handleLoadRegisteredTeams = async ({
     try {
         const response = await fetch(`${SERVER_ADDRESS}/api/v1/teams/`, {
             method: 'GET',
+            signal: getAbortSignal(),
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${await getValidToken(

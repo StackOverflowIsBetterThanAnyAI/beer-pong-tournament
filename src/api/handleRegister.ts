@@ -1,4 +1,5 @@
 import { SERVER_ADDRESS } from '../constants/constants'
+import { getAbortSignal } from './abortControllerManager'
 import { getValueFromError } from '../utils/getValueFromError'
 import { handleLogin } from './handleLogin'
 import { setItemInStorage } from '../utils/setItemInStorage'
@@ -28,6 +29,7 @@ export const handleRegister = async ({
             `${SERVER_ADDRESS}/api/v1/user/register/`,
             {
                 method: 'POST',
+                signal: getAbortSignal(),
                 headers: {
                     'Content-Type': 'application/json',
                 },

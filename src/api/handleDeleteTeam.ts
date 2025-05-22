@@ -6,6 +6,7 @@ import {
     ScheduleProps,
     TournamentGroupsProps,
 } from '../types/types'
+import { getAbortSignal } from './abortControllerManager'
 import { getValidToken } from '../utils/getValidToken'
 import { getValueFromError } from '../utils/getValueFromError'
 import { setItemInStorage } from '../utils/setItemInStorage'
@@ -51,6 +52,7 @@ export const handleDeleteTeam = async ({
             `${SERVER_ADDRESS}/api/v1/teams/delete/${item.id}/`,
             {
                 method: 'DELETE',
+                signal: getAbortSignal(),
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${await getValidToken(

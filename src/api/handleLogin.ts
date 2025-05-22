@@ -1,4 +1,5 @@
 import { SERVER_ADDRESS } from '../constants/constants'
+import { getAbortSignal } from './abortControllerManager'
 import { getValueFromError } from '../utils/getValueFromError'
 import { setItemInStorage } from '../utils/setItemInStorage'
 import { handleAdmin } from './handleAdmin'
@@ -24,6 +25,7 @@ export const handleLogin = async ({
     try {
         const response = await fetch(`${SERVER_ADDRESS}/api/v1/token/`, {
             method: 'POST',
+            signal: getAbortSignal(),
             headers: {
                 'Content-Type': 'application/json',
             },

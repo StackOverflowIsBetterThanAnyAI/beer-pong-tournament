@@ -1,5 +1,6 @@
 import { SERVER_ADDRESS } from '../constants/constants'
 import { StandingsProps } from '../types/types'
+import { getAbortSignal } from './abortControllerManager'
 import { getValidToken } from '../utils/getValidToken'
 import { getValueFromError } from '../utils/getValueFromError'
 import { setItemInStorage } from '../utils/setItemInStorage'
@@ -29,6 +30,7 @@ export const handleLoadStandings = async ({
             `${SERVER_ADDRESS}/api/v1/groups/standings/`,
             {
                 method: 'GET',
+                signal: getAbortSignal(),
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${await getValidToken(

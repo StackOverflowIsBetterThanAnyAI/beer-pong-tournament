@@ -1,5 +1,6 @@
 import { SERVER_ADDRESS } from '../constants/constants'
 import { KOStageProps } from '../types/types'
+import { getAbortSignal } from './abortControllerManager'
 import { getValidToken } from '../utils/getValidToken'
 import { getValueFromError } from '../utils/getValueFromError'
 import { setItemInStorage } from '../utils/setItemInStorage'
@@ -23,6 +24,7 @@ export const handleLoadKOStage = async ({
     try {
         const response = await fetch(`${SERVER_ADDRESS}/api/v1/ko-stage/`, {
             method: 'GET',
+            signal: getAbortSignal(),
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${await getValidToken(

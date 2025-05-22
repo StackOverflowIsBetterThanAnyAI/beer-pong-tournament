@@ -1,5 +1,6 @@
 import { jwtDecode } from 'jwt-decode'
 import { SERVER_ADDRESS } from '../constants/constants'
+import { getAbortSignal } from '../api/abortControllerManager'
 import { setItemInStorage } from './setItemInStorage'
 import { setLogout } from './setLogout'
 
@@ -10,6 +11,7 @@ const refreshToken = async (refresh: string) => {
         }
         const res = await fetch(`${SERVER_ADDRESS}/api/v1/token/refresh/`, {
             method: 'POST',
+            signal: getAbortSignal(),
             headers: {
                 'Content-Type': 'application/json',
             },

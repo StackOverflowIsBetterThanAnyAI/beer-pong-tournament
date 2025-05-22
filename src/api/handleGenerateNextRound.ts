@@ -1,5 +1,6 @@
 import { SERVER_ADDRESS } from '../constants/constants'
 import { KOStageProps } from '../types/types'
+import { getAbortSignal } from './abortControllerManager'
 import { getValidToken } from '../utils/getValidToken'
 import { getValueFromError } from '../utils/getValueFromError'
 import { handleLoadKOStage } from './handleLoadKOStage'
@@ -32,6 +33,7 @@ export const handleGenerateNextRound = async ({
             `${SERVER_ADDRESS}/api/v1/ko-stage/next-round/`,
             {
                 method: 'POST',
+                signal: getAbortSignal(),
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${await getValidToken(

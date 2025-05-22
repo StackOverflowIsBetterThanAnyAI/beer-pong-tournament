@@ -7,6 +7,7 @@ import {
     ToastProps,
     TournamentGroupsProps,
 } from '../types/types'
+import { getAbortSignal } from './abortControllerManager'
 import { getValidToken } from '../utils/getValidToken'
 import { getValueFromError } from '../utils/getValueFromError'
 import { setItemInStorage } from '../utils/setItemInStorage'
@@ -50,6 +51,7 @@ export const handleRegisterTeam = async ({
     try {
         const response = await fetch(`${SERVER_ADDRESS}/api/v1/teams/`, {
             method: 'POST',
+            signal: getAbortSignal(),
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${await getValidToken(

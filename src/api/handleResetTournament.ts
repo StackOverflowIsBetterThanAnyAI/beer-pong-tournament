@@ -1,4 +1,5 @@
 import { SERVER_ADDRESS } from '../constants/constants'
+import { getAbortSignal } from './abortControllerManager'
 import { getValidToken } from '../utils/getValidToken'
 import { getValueFromError } from '../utils/getValueFromError'
 import { setItemInSessionStorage } from '../utils/setItemInSessionStorage'
@@ -24,6 +25,7 @@ export const handleResetTournament = async ({
             `${SERVER_ADDRESS}/api/v1/reset-tournament/`,
             {
                 method: 'POST',
+                signal: getAbortSignal(),
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${await getValidToken(

@@ -98,7 +98,7 @@ describe('deployed', () => {
             expect(storage).to.exist
 
             const parsed = JSON.parse(storage)
-            // expect(Object.keys(parsed)).to.have.length(2)
+            expect(Object.keys(parsed)).to.have.length(2)
             expect(parsed.issigningup).to.equal(false)
             expect(parsed.username).to.equal(Cypress.env('ADMIN_USERNAME'))
         })

@@ -1,5 +1,6 @@
 import { SERVER_ADDRESS } from '../constants/constants'
 import { ScheduleProps } from '../types/types'
+import { getAbortSignal } from './abortControllerManager'
 import { getValidToken } from '../utils/getValidToken'
 import { getValueFromError } from '../utils/getValueFromError'
 import { setItemInSessionStorage } from '../utils/setItemInSessionStorage'
@@ -28,6 +29,7 @@ export const handleLoadSchedule = async ({
     try {
         const response = await fetch(`${SERVER_ADDRESS}/api/v1/games/`, {
             method: 'GET',
+            signal: getAbortSignal(),
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${await getValidToken(
