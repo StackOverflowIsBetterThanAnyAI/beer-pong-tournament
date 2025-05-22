@@ -37,7 +37,7 @@ jobs:
                   VITE_SERVER_ADDRESS: https://beer-pong-tournament-backend.onrender.com
               with:
                   browser: electron
-                  spec: cypress/e2e/beer-pong-tournament/deployed.cy.js
+                  spec: cypress/e2e/deployed/*.cy.js
 
             - name: Upload Cypress Artifacts
               if: failure()
@@ -104,7 +104,7 @@ jobs:
                   CYPRESS_ADMIN_USERNAME: ${{ secrets.ADMIN_USERNAME_LOCAL }}
               with:
                   browser: electron
-                  spec: cypress/e2e/beer-pong-tournament/local.cy.js
+                  spec: cypress/e2e/local/*.cy.js
 
             - name: Upload Cypress Artifacts
               if: failure()
