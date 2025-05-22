@@ -91,10 +91,7 @@ jobs:
 
             - name: Start Backend
               working-directory: ./backend
-              run: |
-                  python manage.py runserver 127.0.0.1:8000 > backend.log 2>&1 &
-                  sleep 10
-                  cat backend.log
+              run: python manage.py runserver 127.0.0.1:8000 &
               shell: bash
 
             - name: Wait for servers
@@ -103,8 +100,8 @@ jobs:
             - name: Run Cypress Tests
               uses: cypress-io/github-action@v6
               env:
-                  CYPRESS_ADMIN_PASSWORD: admin1234
-                  CYPRESS_ADMIN_USERNAME: admin
+                  CYPRESS_ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD_LOCAL }}
+                  CYPRESS_ADMIN_USERNAME: ${{ secrets.ADMIN_USERNAME_LOCAL }}
               with:
                   browser: electron
                   spec: cypress/e2e/beer-pong-tournament/local.cy.js
@@ -117,10 +114,3 @@ jobs:
                   path: |
                       cypress/screenshots
                       cypress/videos
-
-            - name: Upload Backend Log
-              if: failure()
-              uses: actions/upload-artifact@v4
-              with:
-                  name: backend-log
-                  path: ./backend/backend.log
