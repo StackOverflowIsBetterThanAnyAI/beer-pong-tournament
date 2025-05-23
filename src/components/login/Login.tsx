@@ -260,6 +260,7 @@ const Login = () => {
                                     minLength={8}
                                     onInput={handleConfirmPasswordInput}
                                     onKeyDown={handleKeyDown}
+                                    testID="login-confirm-password-input"
                                     title={
                                         confirmPasswordDisabled
                                             ? 'Currently disabled, enter a valid password first.'
