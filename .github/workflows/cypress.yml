@@ -71,6 +71,11 @@ jobs:
                   repository: StackOverflowIsBetterThanAnyAI/beer-pong-tournament-backend
                   path: backend
 
+            - name: Setup Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 22
+
             - name: Install Dependencies - Frontend
               run: npm ci
 
@@ -120,6 +125,44 @@ jobs:
               with:
                   browser: electron
                   spec: cypress/e2e/local/*.cy.js
+
+            - name: Upload Cypress Artifacts
+              if: failure()
+              uses: actions/upload-artifact@v4
+              with:
+                  name: cypress-artifacts
+                  path: |
+                      cypress/screenshots
+                      cypress/videos
+
+    smoke:
+        runs-on: ubuntu-latest
+        name: Smoke Test Local Application
+
+        steps:
+            - name: Checkout Repository
+              uses: actions/checkout@v4
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 22
+
+            - name: Install Dependencies
+              run: npm ci
+
+            - name: Start Frontend
+              run: npm start -- --host 127.0.0.1 &
+              shell: bash
+
+            - name: Wait for Frontend
+              run: npx wait-on http://127.0.0.1:5173
+
+            - name: Run Cypress Smoke Tests
+              uses: cypress-io/github-action@v6
+              with:
+                  browser: electron
+                  spec: cypress/e2e/smoke/*.cy.js
 
             - name: Upload Cypress Artifacts
               if: failure()
