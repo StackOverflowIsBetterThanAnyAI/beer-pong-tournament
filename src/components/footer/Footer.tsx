@@ -29,6 +29,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 aria-label="GitHub Repository (opens in new tab)"
                 className="w-fit flex items-center gap-1 px-4 py-1 rounded-sm m-auto underline hover:bg-stone-700 active:bg-stone-600"
+                data-testid="footer-github-link"
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"

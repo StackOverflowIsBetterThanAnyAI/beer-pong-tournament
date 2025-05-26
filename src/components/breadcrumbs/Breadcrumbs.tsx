@@ -19,6 +19,7 @@ const Breadcrumbs = () => {
         <nav
             aria-label="Breadcrumbs"
             className="breadcrumbs flex max-w-7xl w-full overflow-x-auto text-nowrap mx-auto items-center p-2 lg:p-2.5"
+            data-testid="breadcrumbs"
         >
             <Link
                 aria-label="Back to the Homepage."
@@ -26,6 +27,7 @@ const Breadcrumbs = () => {
                 to="/"
                 onKeyDown={handleKeyDownHome}
                 title="Home"
+                data-testid="breadcrumbs-home"
             >
                 Home
             </Link>
