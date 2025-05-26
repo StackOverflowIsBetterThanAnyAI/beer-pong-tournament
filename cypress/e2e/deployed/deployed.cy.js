@@ -24,11 +24,11 @@ describe('deployed', () => {
 
         cy.get('[data-testid="login-user-input"]')
             .should('exist')
-            .type(Cypress.env('CYPRESS_ADMIN_USERNAME'))
+            .type(Cypress.env('ADMIN_USERNAME'))
 
         cy.get('[data-testid="login-password-input"]')
             .should('exist')
-            .type(Cypress.env('CYPRESS_ADMIN_PASSWORD'))
+            .type(Cypress.env('ADMIN_PASSWORD'))
 
         cy.get('[data-testid="login-submit"]').should('exist').click()
 
@@ -52,11 +52,11 @@ describe('deployed', () => {
         cy.get('[data-testid="login-switch"]').click()
 
         cy.get('[data-testid="login-user-input"]').type(
-            Cypress.env('CYPRESS_ADMIN_USERNAME')
+            Cypress.env('ADMIN_USERNAME')
         )
 
         cy.get('[data-testid="login-password-input"]').type(
-            Cypress.env('CYPRESS_ADMIN_PASSWORD')
+            Cypress.env('ADMIN_PASSWORD')
         )
 
         cy.get('[data-testid="login-submit"]').click()
@@ -80,11 +80,11 @@ describe('deployed', () => {
         cy.get('[data-testid="login-switch"]').click()
 
         cy.get('[data-testid="login-user-input"]').type(
-            Cypress.env('CYPRESS_ADMIN_USERNAME')
+            Cypress.env('ADMIN_USERNAME')
         )
 
         cy.get('[data-testid="login-password-input"]').type(
-            Cypress.env('CYPRESS_ADMIN_PASSWORD')
+            Cypress.env('ADMIN_PASSWORD')
         )
 
         cy.get('[data-testid="login-submit"]').click()
@@ -100,9 +100,7 @@ describe('deployed', () => {
             const parsed = JSON.parse(storage)
             expect(Object.keys(parsed)).to.have.length(2)
             expect(parsed.issigningup).to.equal(false)
-            expect(parsed.username).to.equal(
-                Cypress.env('CYPRESS_ADMIN_USERNAME')
-            )
+            expect(parsed.username).to.equal(Cypress.env('ADMIN_USERNAME'))
         })
 
         cy.window().should((win) => {
@@ -115,11 +113,11 @@ describe('deployed', () => {
         cy.get('[data-testid="login-switch"]').click()
 
         cy.get('[data-testid="login-user-input"]').type(
-            Cypress.env('CYPRESS_ADMIN_USERNAME')
+            Cypress.env('ADMIN_USERNAME')
         )
 
         cy.get('[data-testid="login-password-input"]').type(
-            Cypress.env('CYPRESS_ADMIN_PASSWORD')
+            Cypress.env('ADMIN_PASSWORD')
         )
 
         cy.get('[data-testid="login-submit"]').click()
@@ -166,11 +164,11 @@ describe('deployed', () => {
         cy.get('[data-testid="login-switch"]').click()
 
         cy.get('[data-testid="login-user-input"]').type(
-            Cypress.env('CYPRESS_ADMIN_USERNAME')
+            Cypress.env('ADMIN_USERNAME')
         )
 
         cy.get('[data-testid="login-password-input"]').type(
-            Cypress.env('CYPRESS_ADMIN_PASSWORD')
+            Cypress.env('ADMIN_PASSWORD')
         )
 
         cy.get('[data-testid="login-submit"]').click()
