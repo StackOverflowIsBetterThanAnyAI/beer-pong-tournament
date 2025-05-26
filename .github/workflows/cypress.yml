@@ -15,6 +15,11 @@ jobs:
     deployed-e2e:
         runs-on: ubuntu-latest
         name: Test Deployed Application
+        env:
+            CYPRESS_ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+            CYPRESS_ADMIN_USERNAME: ${{ secrets.ADMIN_USERNAME }}
+            CYPRESS_BASE_URL: https://beer-pong-tournament.vercel.app
+            VITE_SERVER_ADDRESS: https://beer-pong-tournament-backend.onrender.com
 
         steps:
             - name: Checkout Repository
@@ -30,11 +35,6 @@ jobs:
 
             - name: Run Cypress Tests
               uses: cypress-io/github-action@v6
-              env:
-                  CYPRESS_ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
-                  CYPRESS_ADMIN_USERNAME: ${{ secrets.ADMIN_USERNAME }}
-                  CYPRESS_BASE_URL: https://beer-pong-tournament.vercel.app
-                  VITE_SERVER_ADDRESS: https://beer-pong-tournament-backend.onrender.com
               with:
                   browser: electron
                   spec: cypress/e2e/deployed/*.cy.js
@@ -51,8 +51,9 @@ jobs:
     local-e2e:
         runs-on: ubuntu-latest
         name: Test Local Application
-
         env:
+            CYPRESS_ADMIN_PASSWORD_LOCAL: ${{ secrets.ADMIN_PASSWORD_LOCAL }}
+            CYPRESS_ADMIN_USERNAME_LOCAL: ${{ secrets.ADMIN_USERNAME_LOCAL }}
             CYPRESS_BASE_URL: http://127.0.0.1:5173
             DEBUG: ${{ secrets.DEBUG }}
             SECRET_KEY: ${{ secrets.SECRET_KEY }}
@@ -114,9 +115,6 @@ jobs:
 
             - name: Run Cypress Tests
               uses: cypress-io/github-action@v6
-              env:
-                  CYPRESS_ADMIN_PASSWORD_LOCAL: ${{ secrets.ADMIN_PASSWORD_LOCAL }}
-                  CYPRESS_ADMIN_USERNAME_LOCAL: ${{ secrets.ADMIN_USERNAME_LOCAL }}
               with:
                   browser: electron
                   spec: cypress/e2e/local/*.cy.js
