@@ -13,6 +13,7 @@ permissions:
 
 jobs:
     deployed-e2e:
+        if: github.actor != 'dependabot[bot]'
         runs-on: ubuntu-latest
         name: Test Deployed Application
         env:
@@ -49,6 +50,7 @@ jobs:
                       cypress/videos
 
     local-e2e:
+        if: github.actor != 'dependabot[bot]'
         runs-on: ubuntu-latest
         name: Test Local Application
         env:
