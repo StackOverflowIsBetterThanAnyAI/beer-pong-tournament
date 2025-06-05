@@ -12,4 +12,4 @@
 
 ## Backend 
 
-![GitHub Repository Backend](https://github.com/StackOverflowIsBetterThanAnyAI/beer-pong-tournament-backend)
+[GitHub Repository Backend](https://github.com/StackOverflowIsBetterThanAnyAI/beer-pong-tournament-backend)
