@@ -57,28 +57,39 @@ const NavigationLinks = () => {
             .join(' ')
 
         return (
-            <Link
+            <li
                 key={i}
-                onKeyDown={(e) => handleKeyDown(e, i)}
-                to={`/${getValidHref(i)}`}
-                className="underline rounded-md text-normal px-2 py-0.5 focus-visible:bg-stone-100/50 hover:bg-red-300/50 active:bg-red-300"
-                data-testid={`navigation-link-${i}`}
-                aria-label={formattedRoute}
-                title={formattedRoute}
+                className="underline rounded-md text-normal focus-visible:bg-stone-100/50 hover:bg-red-300/50 active:bg-red-300"
             >
-                {formattedRoute}
-            </Link>
+                <Link
+                    onKeyDown={(e) => handleKeyDown(e, i)}
+                    to={`/${getValidHref(i)}`}
+                    className="block w-full px-2 py-0.5"
+                    data-testid={`navigation-link-${i}`}
+                    aria-label={`Go to ${formattedRoute}`}
+                    title={formattedRoute}
+                >
+                    {formattedRoute}
+                </Link>
+            </li>
         )
     })
 
     return (
         <nav
-            className={`flex flex-col gap-1 max-w-7xl bg-red-200 text-stone-950 w-full p-4 transition-[padding] duration-300 ${
+            className={`flex flex-col gap-1 w-full max-w-7xl bg-red-200 text-stone-950 p-4 transition-[padding] duration-300 ${
                 isNavigationExpanded ? 'pt-6' : 'py-2'
             } lg:rounded-b-md`}
             data-testid="navigation-links"
         >
-            {isNavigationExpanded ? routes : null}
+            {isNavigationExpanded ? (
+                <ul
+                    className="flex flex-col gap-1"
+                    aria-label="Main Navigation"
+                >
+                    {routes}
+                </ul>
+            ) : null}
             <button
                 onClick={handleClick}
                 className={`animate-stone-50-red-200 max-w-96 w-full relative isolate bg-stone-50 outline outline-red-400/90 text-normal rounded-md m-auto px-2 py-0.5 lg:py-1 active:bg-red-200
