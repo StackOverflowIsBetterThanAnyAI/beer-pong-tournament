@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from 'react'
 import Toast from '../components/toast/Toast'
+import { ContextIsToastVisible } from './ContextIsToastVisible'
 import { ToastProps } from '../types/types'
 
 type ContextToastType = {
@@ -13,25 +14,32 @@ export const ContextToastProvider = ({
 }: {
     children: React.ReactNode
 }) => {
+    const contextIsToastVisible = useContext(ContextIsToastVisible)
+    if (!contextIsToastVisible) {
+        throw new Error(
+            'FormInputPassword must be used within a ContextIsToastVisible.Provider'
+        )
+    }
+    const [isVisible, setIsVisible] = contextIsToastVisible
+
     const [toast, setToast] = useState<ToastProps | null>(null)
-    const [visible, setVisible] = useState<boolean>(false)
 
     const showToast = ({ label, isSuccess }: ToastProps) => {
         setToast({ label, isSuccess })
-        setVisible(true)
+        setIsVisible(true)
     }
 
     useEffect(() => {
-        if (visible) {
-            const timeout = setTimeout(() => setVisible(false), 3750)
+        if (isVisible) {
+            const timeout = setTimeout(() => setIsVisible(false), 3750)
             return () => clearTimeout(timeout)
         }
-    }, [visible])
+    }, [isVisible])
 
     return (
         <ContextToast.Provider value={{ showToast }}>
             {children}
-            {visible && toast && (
+            {isVisible && toast && (
                 <Toast label={toast.label} isSuccess={toast.isSuccess} />
             )}
         </ContextToast.Provider>
