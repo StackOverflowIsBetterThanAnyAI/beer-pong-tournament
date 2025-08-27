@@ -18,6 +18,7 @@ const Toast = ({ isSuccess, label }: SuccessProps) => {
     const [isTriggered, setIsTriggered] = useState<boolean>(true)
 
     const opacity = isTriggered ? 'opacity-90' : 'opacity-0'
+    const positionX = isTriggered ? 'left-2 min-[280px]:left-6' : '-left-64'
     const theme = isSuccess
         ? 'bg-green-500 text-stone-900/95'
         : 'bg-red-400 text-stone-950'
@@ -28,13 +29,13 @@ const Toast = ({ isSuccess, label }: SuccessProps) => {
 
     const handleCloseToast = () => {
         setIsTriggered(false)
-        setIsVisible(false)
+        setTimeout(() => setIsVisible(false), 500)
     }
 
     return (
         <div
-            className={`text-normal fixed flex gap-2 bottom-6 left-2 min-[280px]:left-6 rounded-sm
-            outline-1 outline-zinc-50 p-2 transition-[opacity] duration-700 ${opacity} ${theme}`}
+            className={`text-normal fixed flex gap-2 bottom-6 ${positionX} rounded-sm
+            outline-1 outline-zinc-50 p-2 transition-all duration-700 ${opacity} ${theme}`}
             role="status"
             aria-live="polite"
         >
