@@ -64,7 +64,9 @@ const NavigationLinks = () => {
                 <Link
                     onKeyDown={(e) => handleKeyDown(e, i)}
                     to={`/${getValidHref(i)}`}
-                    className="block w-full px-2 py-0.5"
+                    className={`block w-full transition-[padding] duration-300 px-2 ${
+                        isNavigationExpanded ? 'py-0.5' : 'py-0'
+                    }`}
                     data-testid={`navigation-link-${i}`}
                     aria-label={`Go to ${formattedRoute}`}
                     title={formattedRoute}
@@ -77,8 +79,8 @@ const NavigationLinks = () => {
 
     return (
         <nav
-            className={`flex flex-col gap-1 w-full max-w-7xl bg-red-200 text-stone-950 p-4 transition-[padding] duration-300 ${
-                isNavigationExpanded ? 'pt-6' : 'py-2'
+            className={`flex flex-col w-full max-w-7xl bg-red-200 text-stone-950 p-4 transition-[gap] duration-700 ${
+                isNavigationExpanded ? 'pt-6 gap-1' : 'py-2 gap-0'
             } lg:rounded-b-md`}
             data-testid="navigation-links"
         >
