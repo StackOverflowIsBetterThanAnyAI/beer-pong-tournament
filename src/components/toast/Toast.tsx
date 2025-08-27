@@ -33,7 +33,7 @@ const Toast = ({ isSuccess, label }: SuccessProps) => {
 
     return (
         <div
-            className={`text-normal fixed flex gap-2 bottom-6 left-6 rounded-sm
+            className={`text-normal fixed flex gap-2 bottom-6 left-2 min-[280px]:left-6 rounded-sm
             outline-1 outline-zinc-50 p-2 transition-[opacity] duration-700 ${opacity} ${theme}`}
             role="status"
             aria-live="polite"
