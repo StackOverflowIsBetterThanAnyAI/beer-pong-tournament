@@ -23,12 +23,28 @@ const NavigationLinks = () => {
         boolean | undefined
     >(parsedSessionData?.isnavigationexpanded ?? undefined)
 
+    const [isNavigationLinksHidden, setIsNavigationLinksHidden] = useState<
+        boolean | undefined
+    >(parsedSessionData?.isnavigationexpanded ?? undefined)
+
     useEffect(() => {
         if (isLoggedIn === true && isNavigationExpanded === undefined) {
             setIsNavigationExpanded(true)
             setItemInSessionStorage('isnavigationexpanded', true)
         }
     }, [isLoggedIn])
+
+    useEffect(() => {
+        if (isNavigationExpanded) {
+            setIsNavigationLinksHidden(false)
+        } else {
+            const timeout = setTimeout(() => {
+                setIsNavigationLinksHidden(true)
+            }, 300)
+
+            return () => clearTimeout(timeout)
+        }
+    }, [isNavigationExpanded])
 
     const handleClick = () => {
         const navigationExpanded = !isNavigationExpanded
@@ -59,12 +75,16 @@ const NavigationLinks = () => {
         return (
             <li
                 key={i}
-                className="underline rounded-md text-normal focus-visible:bg-stone-100/50 hover:bg-red-300/50 active:bg-red-300"
+                className={`
+                transition-all duration-300 ${
+                    isNavigationExpanded ? 'max-h-8' : 'max-h-0'
+                }`}
             >
                 <Link
                     onKeyDown={(e) => handleKeyDown(e, i)}
                     to={`/${getValidHref(i)}`}
-                    className={`block w-full transition-[padding] duration-300 px-2 ${
+                    className={`underline text-normal block w-full transition-[padding] duration-300 px-2 rounded-md hover:bg-red-300/50 active:bg-red-300
+                    focus-visible:bg-stone-100/50 focus-visible:outline-2 focus-visible:outline-red-400 ${
                         isNavigationExpanded ? 'py-0.5' : 'py-0'
                     }`}
                     data-testid={`navigation-link-${i}`}
@@ -79,14 +99,18 @@ const NavigationLinks = () => {
 
     return (
         <nav
-            className={`flex flex-col w-full max-w-7xl bg-red-200 text-stone-950 p-4 transition-[gap] duration-700 ${
+            className={`flex flex-col w-full max-w-7xl bg-red-200 text-stone-950 p-4 transition-[all] duration-300 ${
                 isNavigationExpanded ? 'pt-6 gap-1' : 'py-2 gap-0'
             } lg:rounded-b-md`}
             data-testid="navigation-links"
         >
-            {isNavigationExpanded ? (
+            {!isNavigationLinksHidden ? (
                 <ul
-                    className="flex flex-col gap-1"
+                    className={`flex flex-col gap-1 transition-all duration-300 ${
+                        isNavigationExpanded
+                            ? 'opacity-100 max-h-80'
+                            : 'opacity-0 max-h-0'
+                    }`}
                     aria-label="Main Navigation"
                 >
                     {routes}
@@ -95,9 +119,9 @@ const NavigationLinks = () => {
             <button
                 onClick={handleClick}
                 className={`animate-stone-50-red-200 max-w-96 w-full relative isolate bg-stone-50 outline outline-red-400/90 text-normal rounded-md m-auto px-2 py-0.5 lg:py-1 active:bg-red-200
-                    transition-[margin] duration-300 ${
-                        isNavigationExpanded ? 'mt-2' : 'mt-0'
-                    }`}
+                transition-[margin] duration-300 ${
+                    isNavigationExpanded ? 'mt-2' : 'mt-0'
+                }`}
                 aria-label={`${
                     isNavigationExpanded ? 'Close' : 'Open'
                 } Navigation Menu`}
