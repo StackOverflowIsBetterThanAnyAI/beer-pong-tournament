@@ -32,7 +32,7 @@ describe('local', () => {
 
         cy.get('[data-testid="login-submit"]').should('exist').click()
 
-        cy.get('[data-testid="navigation-links"]', { timeout: 50000 })
+        cy.get('[data-testid="navigation-links"]')
             .should('exist')
             .should(
                 'have.text',
@@ -61,9 +61,7 @@ describe('local', () => {
 
         cy.get('[data-testid="login-submit"]').click()
 
-        cy.get('[data-testid="navigation-links"]', { timeout: 50000 }).should(
-            'exist'
-        )
+        cy.get('[data-testid="navigation-links"]').should('exist')
 
         cy.reload()
 
@@ -89,9 +87,7 @@ describe('local', () => {
 
         cy.get('[data-testid="login-submit"]').click()
 
-        cy.get('[data-testid="logout"]', { timeout: 50000 })
-            .should('exist')
-            .click()
+        cy.get('[data-testid="logout"]').should('exist').click()
 
         cy.window().should((win) => {
             const storage = win.localStorage.getItem('beer-pong-tournament')
@@ -124,9 +120,7 @@ describe('local', () => {
 
         cy.get('[data-testid="login-submit"]').click()
 
-        cy.get('[data-testid="navigation-link-register-team"]', {
-            timeout: 50000,
-        })
+        cy.get('[data-testid="navigation-link-register-team"]')
             .should('exist')
             .click()
 
