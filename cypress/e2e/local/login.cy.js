@@ -30,9 +30,7 @@ describe('login', () => {
 
         cy.get('[data-testid="login-submit"]').should('exist').click()
 
-        cy.get('[data-testid="logout"]', { timeout: 50000 })
-            .should('exist')
-            .click()
+        cy.get('[data-testid="logout"]').should('exist').click()
 
         cy.window().should((win) => {
             const storage = win.localStorage.getItem('beer-pong-tournament')
@@ -56,9 +54,7 @@ describe('login', () => {
 
         cy.get('[data-testid="login-submit"]').should('exist').click()
 
-        cy.get('[data-testid="logout"]', { timeout: 50000 })
-            .should('exist')
-            .click()
+        cy.get('[data-testid="logout"]').should('exist').click()
 
         cy.window().should((win) => {
             const storage = win.localStorage.getItem('beer-pong-tournament')
