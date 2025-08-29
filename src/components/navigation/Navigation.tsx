@@ -27,7 +27,8 @@ const Navigation = () => {
     return (
         <>
             <nav
-                className={`sticky top-0 z-50 bg-stone-800 text-zinc-100 w-full shadow-md shadow-stone-600/80
+                className={`sticky top-0 z-50 w-full
+                bg-stone-200 dark:bg-stone-800 text-zinc-900 dark:text-zinc-100 shadow-md shadow-stone-400/80 dark:shadow-stone-600/80
                 transition-opacity duration-1000 ease-in-out ${navOpacity}`}
                 data-testid="navigation"
             >
@@ -35,7 +36,7 @@ const Navigation = () => {
                     <NavigationLogo />
                     {isLoggedIn ? (
                         <button
-                            className="text-large px-4 py-2 rounded-lg hover:bg-stone-700 active:bg-stone-600"
+                            className="text-large px-4 py-2 rounded-lg hover:bg-stone-300 dark:hover:bg-stone-700 active:bg-stone-400/65 dark:active:bg-stone-600"
                             data-testid="logout"
                             title="Logout"
                             aria-label="Logout"

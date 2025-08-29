@@ -15,7 +15,7 @@ const Footer = () => {
 
     return (
         <footer
-            className="flex flex-col gap-y-2 w-full max-w-5xl text-pretty text-center text-small text-zinc-100 pb-2 pt-4 px-4 mb-1 mt-auto"
+            className="flex flex-col gap-y-2 w-full max-w-5xl text-pretty text-center text-small text-zinc-900 dark:text-zinc-100 pb-2 pt-4 px-4 mb-1 mt-auto"
             data-testid="footer"
         >
             <span>
@@ -29,14 +29,16 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 aria-label="GitHub Repository (opens in new tab)"
                 title="GitHub Repository (opens in new tab)"
-                className="w-fit flex items-center gap-1 px-4 py-1 rounded-sm m-auto underline hover:bg-stone-700 active:bg-stone-600"
+                className="w-fit flex items-center gap-1 px-4 py-1 rounded-sm m-auto underline
+                hover:bg-stone-400/25 dark:hover:bg-stone-700 active:bg-stone-400/75 dark:active:bg-stone-600"
                 data-testid="footer-github-link"
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
                     height={12}
-                    fill="#f4f4f5"
+                    fill="currentColor"
+                    className="text-zinc-900 dark:text-zinc-100"
                     aria-hidden="true"
                     focusable="false"
                 >

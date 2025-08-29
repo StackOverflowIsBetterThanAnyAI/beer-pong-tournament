@@ -57,7 +57,7 @@ const App = () => {
     useFocusTrap()
 
     return (
-        <div className="min-h-svh flex flex-col items-center justify-start bg-gradient-to-b from-stone-700 to-stone-800">
+        <div className="min-h-svh flex flex-col items-center justify-start bg-gradient-to-b from-stone-200 to-stone-300 dark:from-stone-700 dark:to-stone-800">
             <ContextAdmin.Provider value={[isAdmin, setIsAdmin]}>
                 <ContextGroups.Provider value={[groups, setGroups]}>
                     <ContextIsLoggedIn.Provider
