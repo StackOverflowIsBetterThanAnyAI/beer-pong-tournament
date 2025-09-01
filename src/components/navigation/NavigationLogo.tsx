@@ -29,7 +29,7 @@ const NavigationLogo = () => {
                 className="rounded-lg"
                 loading="lazy"
             />
-            <span className="max-[280px]:hidden text-large">
+            <span className="max-[336px]:hidden text-large">
                 Beer Pong Tournament
             </span>
         </Link>
