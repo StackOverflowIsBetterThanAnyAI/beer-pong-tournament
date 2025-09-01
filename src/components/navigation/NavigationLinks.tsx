@@ -25,7 +25,7 @@ const NavigationLinks = () => {
 
     const [isNavigationLinksHidden, setIsNavigationLinksHidden] = useState<
         boolean | undefined
-    >(parsedSessionData?.isnavigationexpanded ?? undefined)
+    >(false)
 
     useEffect(() => {
         if (isLoggedIn === true && isNavigationExpanded === undefined) {

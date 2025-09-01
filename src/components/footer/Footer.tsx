@@ -15,7 +15,7 @@ const Footer = () => {
 
     return (
         <footer
-            className="flex flex-col gap-y-2 w-full max-w-5xl text-pretty text-center text-small text-zinc-900 dark:text-zinc-100 pb-2 pt-4 px-4 mb-1 mt-auto"
+            className="flex flex-col gap-y-2 w-full max-w-5xl text-pretty text-center text-small text-zinc-900 dark:text-zinc-100 pb-2 pt-6 px-4 mb-1 mt-auto"
             data-testid="footer"
         >
             <span>
