@@ -17,7 +17,10 @@ const FourOhFour = () => {
     }
 
     return (
-        <main className="flex justify-center w-full max-w-7xl relative isolate text-center bg-stone-300 text-stone-950 sm:rounded-lg px-8 py-6 sm:p-10">
+        <main
+            className="flex justify-center w-full max-w-7xl relative isolate text-center bg-stone-300 text-stone-950 sm:rounded-lg px-8 py-6 sm:p-10
+            drop-shadow-stone-500 dark:drop-shadow-stone-900 drop-shadow-sm"
+        >
             <div className="flex flex-col justify-center gap-1 w-96">
                 <h1 className="text-extra-large font-bold">Oops!</h1>
                 <h2 className="text-large">

@@ -126,7 +126,10 @@ export const Teams = () => {
     })
 
     return (
-        <main className="w-full max-w-7xl relative isolate bg-stone-300 text-stone-950 lg:rounded-lg p-3 sm:p-4 lg:p-6 drop-shadow-stone-900 drop-shadow-sm">
+        <main
+            className="w-full max-w-7xl relative isolate bg-stone-300 text-stone-950 lg:rounded-lg p-3 sm:p-4 lg:p-6
+            drop-shadow-stone-500 dark:drop-shadow-stone-900 drop-shadow-sm"
+        >
             <h1 className="text-center font-semibold text-extra-large pt-2 pb-1">
                 Registered Teams
             </h1>

@@ -16,7 +16,8 @@ const NavigationLogo = () => {
         <Link
             to="/"
             onKeyDown={(e) => handleKeyDown(e)}
-            className="logohomepage flex items-center gap-2 no-underline rounded-lg p-1 pr-2 hover:bg-stone-700 active:bg-stone-600"
+            className="logohomepage flex items-center gap-2 no-underline rounded-lg p-1 pr-2
+            hover:bg-stone-300 dark:hover:bg-stone-700 active:bg-stone-400/65 dark:active:bg-stone-600"
             title="Back to the Homepage"
         >
             <img
@@ -28,7 +29,7 @@ const NavigationLogo = () => {
                 className="rounded-lg"
                 loading="lazy"
             />
-            <span className="max-[280px]:hidden text-large">
+            <span className="max-[336px]:hidden text-large">
                 Beer Pong Tournament
             </span>
         </Link>

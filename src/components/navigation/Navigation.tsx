@@ -2,6 +2,7 @@ import { useContext, useRef, useState } from 'react'
 import Breadcrumbs from '../breadcrumbs/Breadcrumbs'
 import NavigationLinks from './NavigationLinks'
 import NavigationLogo from './NavigationLogo'
+import ThemeSwitch from '../themeSwitch/ThemeSwitch'
 import { ContextIsLoggedIn } from '../../context/ContextLogin'
 import { setLogout } from '../../utils/setLogout'
 import { useNavigationOpacity } from '../../hooks/useNavigationOpacity'
@@ -27,23 +28,27 @@ const Navigation = () => {
     return (
         <>
             <nav
-                className={`sticky top-0 z-50 bg-stone-800 text-zinc-100 w-full shadow-md shadow-stone-600/80
+                className={`sticky top-0 z-50 w-full
+                bg-stone-200 dark:bg-stone-800 text-zinc-900 dark:text-zinc-100 shadow-md shadow-stone-400/80 dark:shadow-stone-600/80
                 transition-opacity duration-1000 ease-in-out ${navOpacity}`}
                 data-testid="navigation"
             >
                 <div className="max-w-7xl flex items-center justify-between m-auto h-16 px-2 sm:px-4 py-1 md:py-2">
                     <NavigationLogo />
-                    {isLoggedIn ? (
-                        <button
-                            className="text-large px-4 py-2 rounded-lg hover:bg-stone-700 active:bg-stone-600"
-                            data-testid="logout"
-                            title="Logout"
-                            aria-label="Logout"
-                            onClick={handleLogout}
-                        >
-                            Logout
-                        </button>
-                    ) : null}
+                    <div className="flex justify-center items-center gap-2 md:gap-4">
+                        <ThemeSwitch />
+                        {isLoggedIn ? (
+                            <button
+                                className="text-large px-4 py-2 rounded-lg hover:bg-stone-300 dark:hover:bg-stone-700 active:bg-stone-400/65 dark:active:bg-stone-600"
+                                data-testid="logout"
+                                title="Logout"
+                                aria-label="Logout"
+                                onClick={handleLogout}
+                            >
+                                Logout
+                            </button>
+                        ) : null}
+                    </div>
                 </div>
             </nav>
             {isLoggedIn ? <NavigationLinks /> : null}

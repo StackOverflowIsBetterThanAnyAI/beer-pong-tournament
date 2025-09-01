@@ -23,7 +23,8 @@ const Breadcrumbs = () => {
         >
             <Link
                 aria-label="Back to the Homepage."
-                className="text-small underline decoration-zinc-300/50 text-zinc-300 last:decoration-zinc-100/50 last:text-zinc-100 rounded-sm px-1 py-0.5"
+                className="text-small underline rounded-sm px-1 py-0.5
+                decoration-zinc-600/50 dark:decoration-zinc-300/50 text-zinc-600 dark:text-zinc-300 last:decoration-zinc-900/50 dark:last:decoration-zinc-100/50 last:text-zinc-900 dark:last:text-zinc-100"
                 to="/"
                 onKeyDown={handleKeyDownHome}
                 title="Home"
@@ -64,13 +65,13 @@ const Breadcrumbs = () => {
                         <React.Fragment key={item}>
                             <div
                                 aria-hidden="true"
-                                className="text-small text-zinc-300 px-1 py-0.5"
+                                className="text-small text-zinc-600 dark:text-zinc-300 px-1 py-0.5"
                             >
                                 &gt;
                             </div>
                             <Link
                                 aria-label={formattedItem}
-                                className="text-small underline decoration-zinc-100/50 text-zinc-100 rounded-sm px-1 py-0.5"
+                                className="text-small underline decoration-zinc-900/50 dark:decoration-zinc-100/50 text-zinc-900 dark:text-zinc-100 rounded-sm px-1 py-0.5"
                                 to={route}
                                 onKeyDown={handleKeyDown}
                                 title={formattedItem}

@@ -73,7 +73,10 @@ const Schedule = () => {
     }
 
     return (
-        <main className="w-full max-w-7xl relative isolate bg-stone-300 text-stone-950 lg:rounded-lg p-3 sm:p-4 lg:p-6 drop-shadow-stone-900 drop-shadow-sm">
+        <main
+            className="w-full max-w-7xl relative isolate bg-stone-300 text-stone-950 lg:rounded-lg p-3 sm:p-4 lg:p-6
+            drop-shadow-stone-500 dark:drop-shadow-stone-900 drop-shadow-sm"
+        >
             <FormHeader
                 header="Schedule"
                 subHeader={`${schedule.length ? 'schedule' : ''}`}
