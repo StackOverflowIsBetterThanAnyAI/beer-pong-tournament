@@ -45,7 +45,7 @@ const FormHeader = ({ header, subHeader }: FormHeaderProps) => {
     return (
         <>
             {header ? (
-                <h1 className="text-center font-semibold text-extra-large pt-2">
+                <h1 className="text-center font-semibold text-extra-large pt-2 pb-1">
                     {header}
                 </h1>
             ) : null}
