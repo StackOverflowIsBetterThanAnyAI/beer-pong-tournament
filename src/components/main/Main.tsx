@@ -4,6 +4,7 @@ import { FetchLoading } from 'fetch-loading'
 import FormHeader from '../form/FormHeader'
 import KnockoutChampion from '../knockout/KnockoutChampion'
 import MainMatch from './MainMatch'
+import logoHero from './../../assets/logo_hero.webp'
 import { MAX_TEAMS } from '../../constants/constants'
 import { ContextGroups } from '../../context/ContextGroups'
 import { ContextKOStage } from '../../context/ContextKOStage'
@@ -172,111 +173,131 @@ const Main = () => {
 
     return (
         <main
-            className="w-full max-w-7xl relative isolate bg-stone-300 text-stone-950 lg:rounded-lg p-3 sm:p-4 lg:p-6
+            className="w-full flex items-center gap-4 max-w-7xl relative isolate bg-stone-300 text-stone-950 lg:rounded-lg p-3 sm:p-4 lg:p-6
             drop-shadow-stone-500 dark:drop-shadow-stone-900 drop-shadow-sm"
         >
-            <FormHeader header="Welcome to the Beer Pong Tournament!" />
-            {isLoading ? (
-                <div className="flex justify-center pt-2 sm:pb-1 lg:pb-3">
-                    <FetchLoading theme="#44403c" />
-                </div>
-            ) : apiError ? (
-                <div className="pb-2">
-                    <FormHeader subHeader="no content main" />
-                </div>
-            ) : tournamentWinner ? (
-                <div className="flex flex-col justify-center">
-                    <FormHeader subHeader="tournament over" />
-                    <KnockoutChampion />
-                    <div className="text-center text-normal m-auto pb-2">
-                        Stay tuned, the next tournament is just around the
-                        corner!
+            <div className="min-sm:flex-2/3 max-sm:m-auto">
+                <FormHeader header="Welcome to the Beer Pong Tournament!" />
+                {isLoading ? (
+                    <div className="flex justify-center pt-2 sm:pb-1 lg:pb-3">
+                        <FetchLoading theme="#44403c" />
                     </div>
-                </div>
-            ) : koStage.length ? (
-                <div className="flex flex-col justify-center">
-                    <FormHeader subHeader="kostage" />
-                    <ul
-                        className={`flex flex-wrap gap-4 lg:gap-5
-                        max-w-96 w-full sm:w-2/3 lg:w-full sm:max-w-lg lg:max-w-5xl
-                        mx-auto my-4 lg:my-5`}
-                        role="menu"
-                    >
-                        {lastKOMatch ? <MainMatch item={lastKOMatch} /> : null}
-                        {upcomingKOMatch ? (
-                            <MainMatch item={upcomingKOMatch} />
-                        ) : null}
-                    </ul>
-                    <Link
-                        to="/knockout-stage"
-                        onKeyDown={(e) => handleKeyDown(e, '/knockout-stage')}
-                        className="relative text-center w-full max-w-64 my-2 mx-auto px-4 py-1 lg:py-1.5 rounded-lg bg-stone-100/90 outline outline-stone-500 active:bg-stone-300 animate-stone-50-stone-300"
-                        aria-label="Go to the Knockout Stage."
-                        title="Go to the Knockout Stage."
-                        ref={anchorRef}
-                    >
-                        Knockout Stage
-                    </Link>
-                </div>
-            ) : groups.length ? (
-                <div className="flex flex-col justify-center">
-                    <FormHeader
-                        subHeader={`${
-                            isGroupstageOver ? 'groupstage over' : 'groupstage'
-                        }`}
-                    />
-                    <ul
-                        className={`flex flex-wrap gap-4 lg:gap-5
-                        max-w-96 w-full sm:w-2/3 lg:w-full sm:max-w-lg lg:max-w-5xl
-                        mx-auto my-4 lg:my-5`}
-                        role="menu"
-                    >
-                        {lastMatch ? <MainMatch item={lastMatch} /> : null}
-                        {upcomingMatch ? (
-                            <MainMatch item={upcomingMatch} />
-                        ) : null}
-                    </ul>
-                    <Link
-                        to="/schedule"
-                        onKeyDown={(e) => handleKeyDown(e, '/schedule')}
-                        className="relative text-center w-full max-w-64 my-2 mx-auto px-4 py-1 lg:py-1.5 rounded-lg bg-stone-100/90 outline outline-stone-500 active:bg-stone-300 animate-stone-50-stone-300"
-                        aria-label="Go to the Results."
-                        title="Go to the Results."
-                        ref={anchorRef}
-                    >
-                        Results
-                    </Link>
-                </div>
-            ) : (
-                <div className="flex flex-col gap-0.5 lg:gap-1 text-center text-normal">
-                    <FormHeader subHeader="no content main" />
-                    <div
-                        aria-label={`Currently registered Teams: ${registeredTeams.length} out of ${MAX_TEAMS}`}
-                    >
-                        Currently registered Teams: {registeredTeams.length} /{' '}
-                        {MAX_TEAMS}
+                ) : apiError ? (
+                    <div className="pb-2">
+                        <FormHeader subHeader="no content main" />
                     </div>
-                    {registeredTeams.length < MAX_TEAMS ? (
-                        <>
-                            <Link
-                                to="/register-team"
-                                onKeyDown={(e) =>
-                                    handleKeyDown(e, '/register-team')
-                                }
-                                className="relative text-center w-full max-w-64 my-2 mx-auto px-4 py-1 lg:py-1.5 rounded-lg bg-stone-100/90 outline outline-stone-500 active:bg-stone-300 animate-stone-50-stone-300"
-                                aria-label="Register a new Team."
-                                title="Register a new Team."
-                                ref={anchorRef}
-                            >
-                                Register Team
-                            </Link>
-                            <div>Register now before it starts.</div>
-                        </>
-                    ) : (
-                        <div>Unfortunately, all places are already taken.</div>
-                    )}
-                </div>
-            )}
+                ) : tournamentWinner ? (
+                    <div className="flex flex-col justify-center">
+                        <FormHeader subHeader="tournament over" />
+                        <KnockoutChampion />
+                        <div className="text-center text-normal m-auto pb-2">
+                            Stay tuned, the next tournament is just around the
+                            corner!
+                        </div>
+                    </div>
+                ) : koStage.length ? (
+                    <div className="flex flex-col justify-center">
+                        <FormHeader subHeader="kostage" />
+                        <ul
+                            className={`flex flex-wrap gap-4 lg:gap-5
+                            max-w-96 w-full sm:w-2/3 lg:w-full sm:max-w-lg lg:max-w-5xl
+                            mx-auto my-4 lg:my-5`}
+                            role="menu"
+                        >
+                            {lastKOMatch ? (
+                                <MainMatch item={lastKOMatch} />
+                            ) : null}
+                            {upcomingKOMatch ? (
+                                <MainMatch item={upcomingKOMatch} />
+                            ) : null}
+                        </ul>
+                        <Link
+                            to="/knockout-stage"
+                            onKeyDown={(e) =>
+                                handleKeyDown(e, '/knockout-stage')
+                            }
+                            className="relative text-center w-full max-w-64 my-2 mx-auto px-4 py-1 lg:py-1.5 rounded-lg bg-stone-100/90 outline outline-stone-500 active:bg-stone-300 animate-stone-50-stone-300"
+                            aria-label="Go to the Knockout Stage."
+                            title="Go to the Knockout Stage."
+                            ref={anchorRef}
+                        >
+                            Knockout Stage
+                        </Link>
+                    </div>
+                ) : groups.length ? (
+                    <div className="flex flex-col justify-center">
+                        <FormHeader
+                            subHeader={`${
+                                isGroupstageOver
+                                    ? 'groupstage over'
+                                    : 'groupstage'
+                            }`}
+                        />
+                        <ul
+                            className={`flex flex-wrap gap-4 lg:gap-5
+                            max-w-96 w-full sm:w-2/3 lg:w-full sm:max-w-lg lg:max-w-5xl
+                            mx-auto my-4 lg:my-5`}
+                            role="menu"
+                        >
+                            {lastMatch ? <MainMatch item={lastMatch} /> : null}
+                            {upcomingMatch ? (
+                                <MainMatch item={upcomingMatch} />
+                            ) : null}
+                        </ul>
+                        <Link
+                            to="/schedule"
+                            onKeyDown={(e) => handleKeyDown(e, '/schedule')}
+                            className="relative text-center w-full max-w-64 my-2 mx-auto px-4 py-1 lg:py-1.5 rounded-lg bg-stone-100/90 outline outline-stone-500 active:bg-stone-300 animate-stone-50-stone-300"
+                            aria-label="Go to the Results."
+                            title="Go to the Results."
+                            ref={anchorRef}
+                        >
+                            Results
+                        </Link>
+                    </div>
+                ) : (
+                    <div className="flex flex-col gap-0.5 lg:gap-1 text-center text-normal">
+                        <FormHeader subHeader="no content main" />
+                        <div
+                            aria-label={`Currently registered Teams: ${registeredTeams.length} out of ${MAX_TEAMS}`}
+                        >
+                            Currently registered Teams: {registeredTeams.length}{' '}
+                            / {MAX_TEAMS}
+                        </div>
+                        {registeredTeams.length < MAX_TEAMS ? (
+                            <>
+                                <Link
+                                    to="/register-team"
+                                    onKeyDown={(e) =>
+                                        handleKeyDown(e, '/register-team')
+                                    }
+                                    className="relative text-center w-full max-w-64 my-2 mx-auto px-4 py-1 lg:py-1.5 rounded-lg bg-stone-100/90 outline outline-stone-500 active:bg-stone-300 animate-stone-50-stone-300"
+                                    aria-label="Register a new Team."
+                                    title="Register a new Team."
+                                    ref={anchorRef}
+                                >
+                                    Register Team
+                                </Link>
+                                <div>Register now before it starts.</div>
+                            </>
+                        ) : (
+                            <div>
+                                Unfortunately, all places are already taken.
+                            </div>
+                        )}
+                    </div>
+                )}
+            </div>
+            <div className="flex-1/3 max-sm:hidden">
+                <img
+                    src={logoHero}
+                    alt="Beer Pong Tournament Logo"
+                    className="bg-red-200/50 rounded-xl outline-4 outline-stone-200"
+                    loading="lazy"
+                    height="384px"
+                    width="384px"
+                />
+            </div>
         </main>
     )
 }

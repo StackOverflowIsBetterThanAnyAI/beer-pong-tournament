@@ -99,7 +99,7 @@ const NavigationLinks = () => {
 
     return (
         <nav
-            className={`flex flex-col w-full max-w-7xl bg-red-200 text-stone-950 shadow-md shadow-stone-400/65 dark:shadow-stone-800/80 p-4 transition-[all] duration-300 ${
+            className={`flex flex-col w-full max-w-7xl bg-red-200 text-stone-950 shadow-md shadow-stone-400/65 dark:shadow-stone-800/80 p-4 transition-[padding,gap] duration-300 ${
                 isNavigationExpanded ? 'pt-6 gap-1' : 'py-2 gap-0'
             } lg:rounded-b-md`}
             data-testid="navigation-links"
