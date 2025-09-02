@@ -292,8 +292,10 @@ const Main = () => {
                 <img
                     src={LogoLarge}
                     alt="Beer Pong Tournament Logo"
-                    width="384px"
                     className="bg-red-200/50 rounded-xl outline-4 outline-stone-200"
+                    loading="lazy"
+                    height="384px"
+                    width="384px"
                 />
             </div>
         </main>
