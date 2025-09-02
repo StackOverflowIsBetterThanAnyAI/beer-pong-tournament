@@ -4,7 +4,7 @@ import { FetchLoading } from 'fetch-loading'
 import FormHeader from '../form/FormHeader'
 import KnockoutChampion from '../knockout/KnockoutChampion'
 import MainMatch from './MainMatch'
-import LogoLarge from './../../assets/logo_large.webp'
+import logoHero from './../../assets/logo_hero.webp'
 import { MAX_TEAMS } from '../../constants/constants'
 import { ContextGroups } from '../../context/ContextGroups'
 import { ContextKOStage } from '../../context/ContextKOStage'
@@ -290,7 +290,7 @@ const Main = () => {
             </div>
             <div className="flex-1/3 max-sm:hidden">
                 <img
-                    src={LogoLarge}
+                    src={logoHero}
                     alt="Beer Pong Tournament Logo"
                     className="bg-red-200/50 rounded-xl outline-4 outline-stone-200"
                     loading="lazy"
