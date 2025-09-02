@@ -46,20 +46,14 @@ const ThemeSwitch = () => {
 
     return (
         <button
-            className={`h-8 w-16 rounded-4xl transition-[background] duration-300 ${
-                isDarkMode ? 'bg-stone-500' : 'bg-stone-400'
-            }`}
+            className="h-8 w-16 rounded-4xl transition-[background] duration-300 bg-stone-400 dark:bg-stone-500 hover:bg-stone-500/70"
             onClick={handleClick}
             title={`Switch Theme to ${isDarkMode ? 'Light' : 'Dark'} Mode`}
             aria-label={`Switch Theme to ${
                 isDarkMode ? 'Light' : 'Dark'
             } Mode - Currently using ${isDarkMode ? 'Dark' : 'Light'} Mode`}
         >
-            <div
-                className={`h-6 w-6 m-1 rounded-full transition-all duration-300 ${
-                    isDarkMode ? 'translate-x-8' : ''
-                }`}
-            >
+            <div className="h-6 w-6 m-1 rounded-full transition-all duration-300 dark:translate-x-8">
                 {isDarkMode ? darkIcon : lightIcon}
             </div>
         </button>
