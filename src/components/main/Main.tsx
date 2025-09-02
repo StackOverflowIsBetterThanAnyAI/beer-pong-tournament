@@ -173,7 +173,7 @@ const Main = () => {
 
     return (
         <main
-            className="w-full flex items-center max-w-7xl relative isolate bg-stone-300 text-stone-950 lg:rounded-lg p-3 sm:p-4 lg:p-6
+            className="w-full flex items-center gap-4 max-w-7xl relative isolate bg-stone-300 text-stone-950 lg:rounded-lg p-3 sm:p-4 lg:p-6
             drop-shadow-stone-500 dark:drop-shadow-stone-900 drop-shadow-sm"
         >
             <div className="min-sm:flex-2/3 max-sm:m-auto">
