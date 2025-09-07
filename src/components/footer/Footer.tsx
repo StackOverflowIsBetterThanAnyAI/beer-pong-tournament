@@ -1,15 +1,13 @@
-import { useNavigate } from 'react-router-dom'
-
 const Footer = () => {
-    const navigate = useNavigate()
-
     const date = new Date()
     const year = date.getFullYear()
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLAnchorElement>) => {
-        if (e.key === ' ' || e.key === 'Enter') {
+        if (e.key === ' ') {
             e.preventDefault()
-            navigate('/')
+            window.open(
+                'https://github.com/StackOverflowIsBetterThanAnyAI/beer-pong-tournament'
+            )
         }
     }
 
