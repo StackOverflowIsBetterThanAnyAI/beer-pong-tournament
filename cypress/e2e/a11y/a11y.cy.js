@@ -1,6 +1,5 @@
 import { formatWCAGTag } from '../../support/formatWCAGTag'
 import { handleAuthentication } from '../../support/handleAuthentication'
-import { isGoodStatusCode } from '../../support/isGoodStatusCode'
 
 describe('Accessibility Tests', () => {
     const envPages = Cypress.env('CYPRESS_A11Y_PAGES')
@@ -20,8 +19,10 @@ describe('Accessibility Tests', () => {
             }).then((response) => {
                 const statusCode = response.status
 
-                if (!isGoodStatusCode(statusCode, page.path)) {
-                    return
+                if (statusCode >= 400) {
+                    throw new Error(
+                        `⚠️  Skipping Accessibility Check: ${page.path} failed to load (Status: ${statusCode}).`
+                    )
                 }
 
                 cy.task(
