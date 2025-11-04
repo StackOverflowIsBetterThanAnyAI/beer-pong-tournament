@@ -112,6 +112,9 @@ describe('Accessibility Tests', () => {
                                 },
                             ]
 
+                            const pageViolations =
+                                results?.violations?.length || 0
+
                             categories.forEach(({ key, label }) => {
                                 const items = results[key] || []
                                 cy.task(
@@ -148,7 +151,21 @@ describe('Accessibility Tests', () => {
                             })
 
                             cy.writeFile(reportPath, results)
+
+                            return pageViolations
                         })
+                    })
+                    .then((pageViolations) => {
+                        if (pageViolations) {
+                            throw new Error(
+                                `\n❌  WCAG violations found on page ${page.path} (${pageViolations} issues)`
+                            )
+                        } else {
+                            cy.task(
+                                'log',
+                                `\n✅  No accessibility violations found on ${page.path}`
+                            )
+                        }
                     })
             })
         })
