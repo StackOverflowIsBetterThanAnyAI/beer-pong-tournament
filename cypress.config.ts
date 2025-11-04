@@ -11,6 +11,16 @@ export default defineConfig({
         ADMIN_PASSWORD_LOCAL: process.env.CYPRESS_ADMIN_PASSWORD_LOCAL,
     },
     e2e: {
+        setupNodeEvents(on, config) {
+            on('task', {
+                log(message) {
+                    console.log(message)
+                    return null
+                },
+            })
+            config.env = process.env
+            return config
+        },
         baseUrl: process.env.CYPRESS_BASE_URL || 'http://localhost:5173',
         defaultCommandTimeout: 90000,
     },
