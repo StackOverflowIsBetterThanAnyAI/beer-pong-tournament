@@ -60,7 +60,7 @@ describe('Accessibility Tests', () => {
                         } else {
                             const tokenObject = {
                                 access: authResponse.body.access,
-                                isloggedin: true,
+                                isloggedin: authResponse.body.isloggedin,
                             }
 
                             cy.window().then((win) => {
