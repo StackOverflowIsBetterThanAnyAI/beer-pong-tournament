@@ -2,17 +2,13 @@ import { formatWCAGTag } from '../../support/formatWCAGTag'
 import { isGoodStatusCode } from '../../support/isGoodStatusCode'
 
 describe('Accessibility Tests', () => {
-    const pages = [
-        { path: '/', protected: false },
-        { path: '/register-team', protected: true },
-        { path: '/teams', protected: true },
-        { path: '/groups', protected: true },
-        { path: '/schedule', protected: true },
-        { path: '/standings', protected: true },
-        { path: '/knockout-stage', protected: true },
-    ]
+    const envPages = Cypress.env('CYPRESS_A11Y_PAGES')
+    let pages = []
+    if (envPages) {
+        pages = JSON.parse(envPages)
+    }
 
-    pages.forEach((page) => {
+    pages?.forEach((page) => {
         it(`WCAG 2.2 accessibility evaluation of ${
             page.path === '/' ? 'Homepage' : page.path
         }`, () => {
@@ -135,12 +131,19 @@ describe('Accessibility Tests', () => {
                                         'log',
                                         `  Description: ${rule.help}`
                                     )
-                                    cy.task(
-                                        'log',
-                                        `  Impact: ${rule.impact || 'n/a'}`
-                                    )
+                                    if (/failed/.test(label)) {
+                                        cy.task(
+                                            'log',
+                                            `  Impact: ${rule.impact || 'n/a'}`
+                                        )
+                                    }
                                     cy.task('log', `  WCAG: ${wcagRefs}`)
-                                    cy.task('log', `  Help: ${rule.helpUrl}`)
+                                    if (/failed/.test(label)) {
+                                        cy.task(
+                                            'log',
+                                            `  Help: ${rule.helpUrl}`
+                                        )
+                                    }
                                 })
                             })
 
