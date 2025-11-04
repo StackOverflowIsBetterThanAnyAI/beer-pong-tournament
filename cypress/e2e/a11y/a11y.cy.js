@@ -64,20 +64,15 @@ describe('Accessibility Tests', () => {
                             }
 
                             cy.window().then((win) => {
-                                if (
+                                const storage =
                                     Cypress.env('CYPRESS_A11Y_STORAGE') ===
                                     'sessionStorage'
-                                ) {
-                                    win.sessionStorage.setItem(
-                                        'beer-pong-tournament',
-                                        JSON.stringify(tokenObject)
-                                    )
-                                } else {
-                                    win.localStorage.setItem(
-                                        'beer-pong-tournament',
-                                        JSON.stringify(tokenObject)
-                                    )
-                                }
+                                        ? win.sessionStorage
+                                        : win.localStorage
+                                storage.setItem(
+                                    Cypress.env('CYPRESS_A11Y_STORAGE_KEY'),
+                                    JSON.stringify(tokenObject)
+                                )
                             })
 
                             cy.task('log', `\n✅  Authentication successful.`)
