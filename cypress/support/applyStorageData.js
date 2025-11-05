@@ -7,7 +7,19 @@ export const applyStorageData = (page) => {
                     : win.localStorage
 
             Object.entries(page.storage.data).forEach(([key, value]) => {
-                storage.setItem(key, JSON.stringify(value))
+                const existingKey = storage.getItem(key)
+
+                if (existingKey) {
+                    try {
+                        const parsed = JSON.parse(existingKey)
+                        const merged = { ...parsed, ...value }
+                        storage.setItem(key, JSON.stringify(merged))
+                    } catch {
+                        storage.setItem(key, JSON.stringify(value))
+                    }
+                } else {
+                    storage.setItem(key, JSON.stringify(value))
+                }
             })
         })
 
