@@ -11,10 +11,7 @@ export const authenticateUser = (page) => {
         failOnStatusCode: false,
         timeout: 60000,
         method: 'POST',
-        body: {
-            username: Cypress.env('CYPRESS_A11Y_USERNAME'),
-            password: Cypress.env('CYPRESS_A11Y_PASSWORD'),
-        },
+        body: JSON.parse(Cypress.env('CYPRESS_A11Y_AUTH_BODY') || '{}'),
     }).then((authResponse) => {
         if (authResponse.status !== 200) {
             cy.task(
