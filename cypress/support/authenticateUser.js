@@ -7,9 +7,17 @@ export const authenticateUser = (page) => {
     )
 
     const authUrl = page?.authUrl || Cypress.env('CYPRESS_A11Y_AUTH_URL') || ''
-    const authBody =
-        page?.authBody ||
-        JSON.parse(Cypress.env('CYPRESS_A11Y_AUTH_BODY') || '{}')
+    let authBody = {}
+    try {
+        authBody =
+            page?.authBody ||
+            JSON.parse(Cypress.env('CYPRESS_A11Y_AUTH_BODY') || '{}')
+    } catch (e) {
+        cy.task(
+            'log',
+            `\n ⚠️  Invalid format for CYPRESS_A11Y_AUTH_BODY: ${e.message}`
+        )
+    }
 
     cy.request({
         url: authUrl,
