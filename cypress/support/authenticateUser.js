@@ -1,4 +1,4 @@
-export const handleAuthentication = (page) => {
+export const authenticateUser = (page) => {
     cy.visit(page.path)
 
     cy.task(
