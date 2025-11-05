@@ -6,8 +6,10 @@ export const authenticateUser = (page) => {
         `\n🔑  Authentication required: Attempting to log in for ${page.path}`
     )
 
+    const authUrl = page?.authUrl || Cypress.env('CYPRESS_A11Y_AUTH_URL') || ''
+
     cy.request({
-        url: Cypress.env('CYPRESS_A11Y_AUTH_URL'),
+        url: authUrl,
         failOnStatusCode: false,
         timeout: 60000,
         method: 'POST',
