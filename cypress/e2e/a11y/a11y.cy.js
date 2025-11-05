@@ -7,7 +7,7 @@ describe('Accessibility Tests', () => {
     } catch (error) {
         cy.task(
             'log',
-            `\n ⚠️  Invalid format for CYPRESS_A11Y_PAGES: ${error.message}`
+            `\n🚨  Invalid format for CYPRESS_A11Y_PAGES: ${error.message}`
         )
     }
 

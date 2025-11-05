@@ -31,7 +31,7 @@ export const applyStorageData = (page) => {
             } catch (error) {
                 cy.task(
                     'log',
-                    `\n ⚠️  Failed to apply storage data: ${error.message}`
+                    `\n🚨  Failed to apply storage data: ${error.message}`
                 )
             }
         })

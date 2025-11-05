@@ -15,7 +15,7 @@ export const authenticateUser = (page) => {
     } catch (e) {
         cy.task(
             'log',
-            `\n ⚠️  Invalid format for CYPRESS_A11Y_AUTH_BODY: ${e.message}`
+            `\n🚨  Invalid format for CYPRESS_A11Y_AUTH_BODY: ${e.message}`
         )
     }
 

@@ -11,7 +11,7 @@ export const testPageForAccessibility = (page) => {
             const statusCode = response.status
             if (statusCode >= 400) {
                 throw new Error(
-                    `⚠️  Skipping Accessibility Check: ${page.path} failed to load (Status: ${statusCode}).`
+                    `🚨  Skipping Accessibility Check: ${page.path} failed to load (Status: ${statusCode}).`
                 )
             }
 
@@ -58,7 +58,7 @@ export const testPageForAccessibility = (page) => {
                         })
                         .catch((error) => {
                             throw new Error(
-                                `⚠️  Axe analysis failed for ${page.path}: ${error.message}`
+                                `🚨  Axe analysis failed for ${page.path}: ${error.message}`
                             )
                         })
                 })
