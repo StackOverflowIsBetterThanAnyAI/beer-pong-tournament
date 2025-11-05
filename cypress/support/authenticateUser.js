@@ -7,13 +7,16 @@ export const authenticateUser = (page) => {
     )
 
     const authUrl = page?.authUrl || Cypress.env('CYPRESS_A11Y_AUTH_URL') || ''
+    const authBody =
+        page?.authBody ||
+        JSON.parse(Cypress.env('CYPRESS_A11Y_AUTH_BODY') || '{}')
 
     cy.request({
         url: authUrl,
         failOnStatusCode: false,
         timeout: 60000,
         method: 'POST',
-        body: JSON.parse(Cypress.env('CYPRESS_A11Y_AUTH_BODY') || '{}'),
+        body: authBody,
     }).then((authResponse) => {
         if (authResponse.status !== 200) {
             cy.task(
