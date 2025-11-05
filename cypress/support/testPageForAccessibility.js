@@ -1,3 +1,4 @@
+import { applyStorageData } from './applyStorageData'
 import { authenticateUser } from './authenticateUser'
 import { displayAxeResults } from './displayAxeResults'
 
@@ -25,6 +26,7 @@ export const testPageForAccessibility = (page) => {
         }
 
         cy.visit(page.path)
+        applyStorageData(page)
         cy.injectAxe()
 
         cy.window()
