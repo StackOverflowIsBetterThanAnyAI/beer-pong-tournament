@@ -12,10 +12,10 @@ export const authenticateUser = (page) => {
         authBody =
             page?.authBody ||
             JSON.parse(Cypress.env('CYPRESS_A11Y_AUTH_BODY') || '{}')
-    } catch (e) {
+    } catch (error) {
         cy.task(
             'log',
-            `\n🚨  Invalid format for CYPRESS_A11Y_AUTH_BODY: ${e.message}`
+            `\n🚨  Invalid format for CYPRESS_A11Y_AUTH_BODY: ${error.message}`
         )
     }
 
