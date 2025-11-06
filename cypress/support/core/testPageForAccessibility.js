@@ -1,6 +1,6 @@
-import { applyStorageData } from './applyStorageData'
-import { authenticateUser } from './authenticateUser'
-import { displayAxeResults } from './displayAxeResults'
+import { applyStorageData } from '../helpers/applyStorageData'
+import { authenticateUser } from '../helpers/authenticateUser'
+import { displayAxeResults } from '../helpers/displayAxeResults'
 
 export const testPageForAccessibility = (page) => {
     cy.request({

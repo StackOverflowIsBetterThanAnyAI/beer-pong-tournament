@@ -1,4 +1,4 @@
-import { formatWCAGTag } from './formatWCAGTag'
+import { formatWCAGTag } from '../utils/formatWCAGTag'
 
 export const displayAxeResults = (page, results) => {
     const categories = [

@@ -1,4 +1,4 @@
-import { testPageForAccessibility } from '../../support/testPageForAccessibility'
+import { testPageForAccessibility } from './../../support/core/testPageForAccessibility'
 
 describe('Accessibility Tests', () => {
     let pages = []
