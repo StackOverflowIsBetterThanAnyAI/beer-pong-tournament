@@ -19,36 +19,38 @@ export const authenticateUser = (page) => {
         )
     }
 
-    cy.request({
-        url: authUrl,
-        failOnStatusCode: false,
-        timeout: 60000,
-        method: 'POST',
-        body: authBody,
-    }).then((authResponse) => {
-        if (authResponse.status !== 200) {
-            cy.task(
-                'log',
-                `\n❌  Authentication failed (status ${authResponse.status}).`
-            )
-        } else {
-            const tokenObject = {
-                access: authResponse.body.access,
-                isloggedin: true,
-            }
-
-            cy.window().then((win) => {
-                const storage =
-                    Cypress.env('CYPRESS_A11Y_STORAGE') === 'sessionStorage'
-                        ? win.sessionStorage
-                        : win.localStorage
-                storage.setItem(
-                    Cypress.env('CYPRESS_A11Y_STORAGE_KEY'),
-                    JSON.stringify(tokenObject)
+    return cy
+        .request({
+            url: authUrl,
+            failOnStatusCode: false,
+            timeout: 60000,
+            method: 'POST',
+            body: authBody,
+        })
+        .then((authResponse) => {
+            if (authResponse.status !== 200) {
+                cy.task(
+                    'log',
+                    `\n❌  Authentication failed (status ${authResponse.status}).`
                 )
-            })
+            } else {
+                const tokenObject = {
+                    access: authResponse.body.access,
+                    isloggedin: true,
+                }
 
-            cy.task('log', `\n✅  Authentication successful.`)
-        }
-    })
+                cy.window().then((win) => {
+                    const storage =
+                        Cypress.env('CYPRESS_A11Y_STORAGE') === 'sessionStorage'
+                            ? win.sessionStorage
+                            : win.localStorage
+                    storage.setItem(
+                        Cypress.env('CYPRESS_A11Y_STORAGE_KEY'),
+                        JSON.stringify(tokenObject)
+                    )
+                })
+
+                cy.task('log', `\n✅  Authentication successful.`)
+            }
+        })
 }

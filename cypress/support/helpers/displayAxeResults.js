@@ -1,6 +1,11 @@
 import { formatWCAGTag } from '../utils/formatWCAGTag'
 
 export const displayAxeResults = (page, results) => {
+    if (!results) {
+        cy.task('log', `\n🚨 No Axe results found for ${page.path}`)
+        return
+    }
+
     const categories = [
         { key: 'violations', label: `❌ failed` },
         { key: 'passes', label: `✅ passed` },

@@ -1,6 +1,6 @@
 export const applyStorageData = (page) => {
     if (page?.storage?.data) {
-        cy.window().then((win) => {
+        return cy.window().then((win) => {
             try {
                 const storage =
                     page.storage?.type === 'sessionStorage'
