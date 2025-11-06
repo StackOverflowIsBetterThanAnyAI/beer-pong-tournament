@@ -29,6 +29,7 @@ export const testPageForAccessibility = (page) => {
             cy.visit(page.path)
             applyStorageData(page)
             cy.injectAxe()
+            cy.wait(500)
 
             cy.window()
                 .its('axe')
