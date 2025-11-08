@@ -1,3 +1,4 @@
+import { discoverSubPages } from '../../support/helpers/discoverSubPages'
 import { testPageForAccessibility } from './../../support/core/testPageForAccessibility'
 
 describe('Accessibility Tests', () => {
@@ -10,6 +11,11 @@ describe('Accessibility Tests', () => {
             `\n🚨  Invalid format for CYPRESS_A11Y_PAGES: ${error.message}`
         )
     }
+
+    discoverSubPages({
+        path: '/',
+        protected: true,
+    })
 
     pages?.forEach((page) => {
         it(`WCAG 2.2 accessibility evaluation of ${
