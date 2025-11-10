@@ -31,7 +31,7 @@
         "cypress-dotenv": "^3.0.1",
         "dotenv": "^17.2.3",
         "eslint": "^9.39.0",
-        "eslint-plugin-react-hooks": "^5.1.0",
+        "eslint-plugin-react-hooks": "^7.0.1",
         "eslint-plugin-react-refresh": "^0.4.24",
         "globals": "^16.5.0",
         "prettier-es5": "^0.0.4",
