@@ -23,9 +23,11 @@ export const useFocusTrapPage = ({ focusableItems }: useFocusTrapPageProps) => {
             if (e.shiftKey) {
                 if (document.activeElement === focusableElements[0]) {
                     e.preventDefault()
-                    !previousButton.disabled
-                        ? previousButton?.focus()
-                        : nextButton?.focus()
+                    if (!previousButton.disabled) {
+                        previousButton?.focus()
+                    } else {
+                        nextButton?.focus()
+                    }
                 }
             }
         }
