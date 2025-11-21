@@ -87,7 +87,7 @@ export const useErrorName = ({
                 setErrorName('You must only use Latin letters and numbers!')
             }
         }
-    }, [name, namePattern, setErrorName])
+    }, [name, namePattern, setErrorName, type])
 }
 
 export const useErrorSameMember = ({
