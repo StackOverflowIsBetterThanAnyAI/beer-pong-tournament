@@ -19,7 +19,9 @@ export const useNavigationOpacity = ({
                 setNavOpacity('opacity-80')
             }
 
-            timerRef.current && clearTimeout(timerRef.current)
+            if (timerRef.current) {
+                clearTimeout(timerRef.current)
+            }
 
             if (window.scrollY < lastScrollY) {
                 timerRef.current = setTimeout(() => {
@@ -34,7 +36,9 @@ export const useNavigationOpacity = ({
 
         return () => {
             window.removeEventListener('scroll', handleScroll)
-            timerRef.current && clearTimeout(timerRef.current)
+            if (timerRef.current) {
+                clearTimeout(timerRef.current)
+            }
         }
     }, [setNavOpacity, timerRef])
 }
