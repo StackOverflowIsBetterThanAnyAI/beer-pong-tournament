@@ -99,7 +99,7 @@ export const handleRegisterTeam = async ({
             isSuccess: true,
             label: 'Successfully registered Team!',
         })
-    } catch (error: any) {
+    } catch (_error) {
         setApiError('An error occurred while adding your team.')
         setIsSubmitDisabled(false)
         setTimeout(() => setApiError(''), 4000)

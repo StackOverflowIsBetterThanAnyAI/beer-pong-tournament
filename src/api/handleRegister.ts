@@ -55,7 +55,7 @@ export const handleRegister = async ({
             setIsLoggedIn,
             userData,
         })
-    } catch (error: any) {
+    } catch (_error) {
         setApiError('An error occurred while trying to signup.')
     } finally {
         setIsLoading(false)

@@ -56,7 +56,7 @@ export const handleGenerateKOStage = async ({
             setKOStage,
             setTournamentWinner,
         })
-    } catch (error: any) {
+    } catch (_error) {
         setApiError('An error occurred while generating the Knockout Stage.')
     } finally {
         setIsSubmitDisabled(false)

@@ -93,7 +93,7 @@ export const handleDeleteTeam = async ({
             setKOStage,
             setSchedule,
         })
-    } catch (error: any) {
+    } catch (_error) {
         setApiError('An error occurred while deleting a team.')
         setTimeout(() => setApiError(''), 4000)
     } finally {

@@ -73,7 +73,7 @@ export const handleGenerateGroups = async ({
 
         setItemInSessionStorage('grouppage', 1)
         setItemInSessionStorage('schedulepage', 1)
-    } catch (error: any) {
+    } catch (_error) {
         setApiError('An error occurred while starting the tournament.')
         setTimeout(() => setApiError(''), 4000)
     } finally {

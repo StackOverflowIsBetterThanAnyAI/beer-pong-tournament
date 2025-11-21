@@ -63,7 +63,7 @@ export const handleLoadSchedule = async ({
             setItemInSessionStorage('kostagepage', 1)
             setIsGroupstageOver ? setIsGroupstageOver(false) : null
         }
-    } catch (error: any) {
+    } catch (_error) {
         setApiError('An error occurred while loading the schedule.')
     } finally {
         setIsLoading(false)

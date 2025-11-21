@@ -49,7 +49,7 @@ export const handleAdmin = async ({
         setItemInStorage('isloggedin', true)
         setItemInStorage('access', token.access)
         setItemInStorage('refresh', token.refresh)
-    } catch (error: any) {
+    } catch (_error) {
         setApiError('An error occurred while trying to login.')
     }
 }

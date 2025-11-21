@@ -48,7 +48,7 @@ export const handleDeleteKOStage = async ({
         setItemInStorage('kostage', [])
         setItemInSessionStorage('kostagepage', 1)
         setKOStage([])
-    } catch (error: any) {
+    } catch (_error) {
         setApiError(
             'An error occurred while deleting the current knockout stage.'
         )

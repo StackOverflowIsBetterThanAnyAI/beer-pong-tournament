@@ -26,7 +26,7 @@ const refreshToken = async (refresh: string) => {
         } else {
             throw new Error('Error refreshing the Token.')
         }
-    } catch (error: any) {
+    } catch (_error) {
         setLogout({ isSessionExpired: true })
     }
 }
