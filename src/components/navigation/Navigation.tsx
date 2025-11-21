@@ -42,7 +42,6 @@ const Navigation = () => {
                                 className="text-large px-4 py-2 rounded-lg hover:bg-stone-300 dark:hover:bg-stone-700 active:bg-stone-400/65 dark:active:bg-stone-600"
                                 data-testid="logout"
                                 title="Logout"
-                                aria-label="Logout"
                                 onClick={handleLogout}
                             >
                                 Logout

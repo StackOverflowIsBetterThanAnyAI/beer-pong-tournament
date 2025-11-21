@@ -48,10 +48,7 @@ const StandingsItem = ({
                                                     >
                                                         #
                                                     </span>
-                                                    <span
-                                                        aria-label="Team"
-                                                        title="Team"
-                                                    >
+                                                    <span title="Team">
                                                         Team
                                                     </span>
                                                 </div>
@@ -70,10 +67,7 @@ const StandingsItem = ({
                                                     >
                                                         +/-
                                                     </span>
-                                                    <span
-                                                        aria-label="Points"
-                                                        title="Points"
-                                                    >
+                                                    <span title="Points">
                                                         Points
                                                     </span>
                                                 </div>

@@ -70,7 +70,6 @@ const Breadcrumbs = () => {
                                 &gt;
                             </div>
                             <Link
-                                aria-label={formattedItem}
                                 className="text-small underline decoration-zinc-900/50 dark:decoration-zinc-100/50 text-zinc-900 dark:text-zinc-100 rounded-sm px-1 py-0.5"
                                 to={route}
                                 onKeyDown={handleKeyDown}
