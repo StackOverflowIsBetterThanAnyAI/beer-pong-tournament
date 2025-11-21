@@ -56,12 +56,16 @@ export const handleLoadSchedule = async ({
             !!schedule.length && !schedule.filter((item) => !item.played).length
         if (allMatchesPlayed) {
             setItemInStorage('isgroupstageover', true)
-            setIsGroupstageOver ? setIsGroupstageOver(true) : null
+            if (setIsGroupstageOver) {
+                setIsGroupstageOver(true)
+            }
         } else {
             setItemInStorage('isgroupstageover', false)
             setItemInStorage('kostage', [])
             setItemInSessionStorage('kostagepage', 1)
-            setIsGroupstageOver ? setIsGroupstageOver(false) : null
+            if (setIsGroupstageOver) {
+                setIsGroupstageOver(false)
+            }
         }
     } catch (_error) {
         setApiError('An error occurred while loading the schedule.')
