@@ -28,5 +28,5 @@ export const useUpdatePage = ({
             setPage(maxPages)
             setItemInSessionStorage(key, maxPages)
         }
-    }, [MAX_ITEMS_PER_PAGE, items.length])
+    }, [MAX_ITEMS_PER_PAGE, items.length, key, page, setPage])
 }

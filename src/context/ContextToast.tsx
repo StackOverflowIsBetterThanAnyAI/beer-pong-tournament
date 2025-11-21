@@ -34,7 +34,7 @@ export const ContextToastProvider = ({
             const timeout = setTimeout(() => setIsVisible(false), 3750)
             return () => clearTimeout(timeout)
         }
-    }, [isVisible])
+    }, [isVisible, setIsVisible])
 
     return (
         <ContextToast.Provider value={{ showToast }}>
