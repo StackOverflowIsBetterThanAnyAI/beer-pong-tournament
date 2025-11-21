@@ -1,4 +1,4 @@
-export const setItemInStorage = (key: string, value: any) => {
+export const setItemInStorage = (key: string, value: unknown) => {
     const storage = localStorage.getItem('beer-pong-tournament')
     const parsedTracker = storage ? JSON.parse(storage) : {}
     parsedTracker[key] = value
