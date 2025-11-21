@@ -32,7 +32,7 @@ const NavigationLinks = () => {
             setIsNavigationExpanded(true)
             setItemInSessionStorage('isnavigationexpanded', true)
         }
-    }, [isLoggedIn])
+    }, [isLoggedIn, isNavigationExpanded])
 
     useEffect(() => {
         if (isNavigationExpanded) {
