@@ -3,7 +3,7 @@ import { Location, NavigateFunction } from 'react-router-dom'
 import { ToastProps } from '../types/types'
 
 type useSessionExpiredProps = {
-    location: Location<any>
+    location: Location<unknown>
     navigate: NavigateFunction
     showToast: (toast: ToastProps) => void
 }
