@@ -13,7 +13,7 @@
     },
     "dependencies": {
         "@tailwindcss/vite": "^4.1.17",
-        "fetch-loading": "^0.0.7",
+        "fetch-loading": "^0.0.8",
         "jwt-decode": "^4.0.0",
         "react": "^19.2.0",
         "react-dom": "^19.2.0",
