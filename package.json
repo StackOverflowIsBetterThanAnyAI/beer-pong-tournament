@@ -17,8 +17,8 @@
         "jwt-decode": "^4.0.0",
         "react": "^19.2.0",
         "react-dom": "^19.2.0",
-        "react-router": "^7.9.6",
         "react-router-dom": "^7.10.1",
+        "react-router": "^7.10.1",
         "tailwindcss": "^4.1.17"
     },
     "devDependencies": {
