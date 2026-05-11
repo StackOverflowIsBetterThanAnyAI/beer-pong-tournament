@@ -1,174 +1,180 @@
 name: Run Cypress Tests
 
 on:
-    push:
-        branches:
-            - master
-    pull_request:
-        branches:
-            - master
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
 
 permissions:
-    contents: write
+  contents: write
 
 jobs:
-    deployed-e2e:
-        if: github.actor != 'dependabot[bot]'
-        runs-on: ubuntu-latest
-        name: Test Deployed Application
-        env:
-            CYPRESS_ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
-            CYPRESS_ADMIN_USERNAME: ${{ secrets.ADMIN_USERNAME }}
-            CYPRESS_BASE_URL: https://beer-pong-tournament.vercel.app
-            VITE_SERVER_ADDRESS: https://beer-pong-tournament-backend.onrender.com
+  deployed-e2e:
+    if: github.actor != 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    name: Test Deployed Application
+    env:
+      CYPRESS_ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+      CYPRESS_ADMIN_USERNAME: ${{ secrets.ADMIN_USERNAME }}
+      CYPRESS_BASE_URL: https://beer-pong-tournament.vercel.app
+      VITE_SERVER_ADDRESS: https://beer-pong-tournament-backend.onrender.com
 
-        steps:
-            - name: Checkout Repository
-              uses: actions/checkout@v4
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-            - name: Setup Node.js
-              uses: actions/setup-node@v3
-              with:
-                  node-version: 22
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22
 
-            - name: Install Dependencies
-              run: npm ci
+      - name: Install Dependencies
+        run: npm ci
 
-            - name: Run Cypress Tests
-              uses: cypress-io/github-action@v6
-              with:
-                  browser: electron
-                  spec: cypress/e2e/deployed/*.cy.js
+      - name: Run Cypress Tests
+        uses: cypress-io/github-action@v6
+        with:
+          browser: electron
+          spec: cypress/e2e/deployed/*.cy.js
 
-            - name: Upload Cypress Artifacts
-              if: failure()
-              uses: actions/upload-artifact@v4
-              with:
-                  name: cypress-artifacts
-                  path: |
-                      cypress/screenshots
-                      cypress/videos
+      - name: Upload Cypress Artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-artifacts
+          path: |
+            cypress/screenshots
+            cypress/videos
 
-    local-e2e:
-        if: github.actor != 'dependabot[bot]'
-        runs-on: ubuntu-latest
-        name: Test Local Application
-        env:
-            CYPRESS_ADMIN_PASSWORD_LOCAL: ${{ secrets.ADMIN_PASSWORD_LOCAL }}
-            CYPRESS_ADMIN_USERNAME_LOCAL: ${{ secrets.ADMIN_USERNAME_LOCAL }}
-            CYPRESS_BASE_URL: http://127.0.0.1:5173
-            DEBUG: ${{ secrets.DEBUG }}
-            SECRET_KEY: ${{ secrets.SECRET_KEY }}
-            VITE_SERVER_ADDRESS: http://127.0.0.1:8000
+  local-e2e:
+    if: github.actor != 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    name: Test Local Application
+    env:
+      CYPRESS_ADMIN_PASSWORD_LOCAL: ${{ secrets.ADMIN_PASSWORD_LOCAL }}
+      CYPRESS_ADMIN_USERNAME_LOCAL: ${{ secrets.ADMIN_USERNAME_LOCAL }}
+      CYPRESS_BASE_URL: http://127.0.0.1:5173
+      DEBUG: ${{ secrets.DEBUG }}
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      VITE_SERVER_ADDRESS: http://127.0.0.1:8000
 
-        steps:
-            - name: Checkout Frontend
-              uses: actions/checkout@v4
+    steps:
+      - name: Checkout Frontend
+        uses: actions/checkout@v4
 
-            - name: Clone Backend
-              uses: actions/checkout@v4
-              with:
-                  repository: StackOverflowIsBetterThanAnyAI/beer-pong-tournament-backend
-                  path: backend
+      - name: Clone Backend
+        uses: actions/checkout@v4
+        with:
+          repository: StackOverflowIsBetterThanAnyAI/beer-pong-tournament-backend
+          path: backend
 
-            - name: Setup Node.js
-              uses: actions/setup-node@v3
-              with:
-                  node-version: 22
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22
 
-            - name: Install Dependencies - Frontend
-              run: npm ci
+      - name: Install Dependencies - Frontend
+        run: npm ci
 
-            - name: Start Frontend
-              run: npm start -- --host 127.0.0.1 &
-              shell: bash
+      - name: Start Frontend
+        run: npm start -- --host 127.0.0.1 &
+        shell: bash
 
-            - name: Setup Python
-              uses: actions/setup-python@v5
-              with:
-                  python-version: 3.11
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.11
 
-            - name: Install Dependencies - Backend
-              working-directory: ./backend
-              run: |
-                  python -m pip install --upgrade pip
-                  pip install -r requirements.txt
+      - name: Install Dependencies - Backend
+        working-directory: ./backend
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
-            - name: Run Migrations
-              working-directory: ./backend
-              run: python manage.py migrate
+      - name: Run Migrations
+        working-directory: ./backend
+        run: python manage.py migrate
 
-            - name: Create Superuser
-              working-directory: ./backend
-              run: |
-                  python manage.py shell <<EOF
-                  from django.contrib.auth import get_user_model
-                  User = get_user_model()
-                  if not User.objects.filter(username='${{ secrets.ADMIN_USERNAME_LOCAL }}').exists():
-                    User.objects.create_superuser(
-                      '${{ secrets.ADMIN_USERNAME_LOCAL }}',
-                      'superuser@example.com',
-                      '${{ secrets.ADMIN_PASSWORD_LOCAL }}'
-                    )
-                  EOF
+      - name: Create Superuser
+        working-directory: ./backend
+        run: |
+          python manage.py shell <<EOF
+          from django.contrib.auth import get_user_model
+          User = get_user_model()
+          if not User.objects.filter(username='${{ secrets.ADMIN_USERNAME_LOCAL }}').exists():
+            User.objects.create_superuser(
+              '${{ secrets.ADMIN_USERNAME_LOCAL }}',
+              'superuser@example.com',
+              '${{ secrets.ADMIN_PASSWORD_LOCAL }}'
+            )
+          EOF
 
-            - name: Start Backend
-              working-directory: ./backend
-              run: python manage.py runserver 127.0.0.1:8000 &
-              shell: bash
+      - name: Start Backend
+        working-directory: ./backend
+        run: python manage.py runserver 127.0.0.1:8000 &
+        shell: bash
 
-            - name: Wait for servers
-              run: npx wait-on --timeout 10000 http://127.0.0.1:5173 http://127.0.0.1:8000
+      - name: Wait for servers
+        run: npx wait-on --timeout 10000 http://127.0.0.1:5173 http://127.0.0.1:8000
 
-            - name: Run Cypress Tests
-              uses: cypress-io/github-action@v6
-              with:
-                  browser: electron
-                  spec: cypress/e2e/local/*.cy.js
+      - name: Run Cypress Tests
+        uses: cypress-io/github-action@v6
+        with:
+          browser: electron
+          spec: cypress/e2e/local/*.cy.js
 
-            - name: Upload Cypress Artifacts
-              if: failure()
-              uses: actions/upload-artifact@v4
-              with:
-                  name: cypress-artifacts
-                  path: |
-                      cypress/screenshots
-                      cypress/videos
+      - name: Upload Cypress Artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-artifacts
+          path: |
+            cypress/screenshots
+            cypress/videos
 
-    smoke:
-        runs-on: ubuntu-latest
-        name: Smoke Test Local Application
+  smoke:
+    runs-on: ubuntu-latest
+    name: Smoke Test Local Application
 
-        steps:
-            - name: Checkout Repository
-              uses: actions/checkout@v4
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-            - name: Setup Node.js
-              uses: actions/setup-node@v3
-              with:
-                  node-version: 22
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22
 
-            - name: Install Dependencies
-              run: npm ci
+      - name: Install Dependencies
+        run: npm ci
 
-            - name: Start Frontend
-              run: npm start -- --host 127.0.0.1 &
-              shell: bash
+      - name: Start Frontend
+        run: npm start -- --host 127.0.0.1 &
+        shell: bash
 
-            - name: Wait for Frontend
-              run: npx wait-on http://127.0.0.1:5173
+      - name: Wait for Frontend
+        run: npx wait-on http://127.0.0.1:5173
 
-            - name: Run Cypress Smoke Tests
-              uses: cypress-io/github-action@v6
-              with:
-                  browser: electron
-                  spec: cypress/e2e/smoke/*.cy.js
+      - name: Run Cypress Smoke Tests
+        uses: cypress-io/github-action@v6
+        with:
+          browser: electron
+          spec: cypress/e2e/smoke/*.cy.js
 
-            - name: Upload Cypress Artifacts
-              if: failure()
-              uses: actions/upload-artifact@v4
-              with:
-                  name: cypress-artifacts
-                  path: |
-                      cypress/screenshots
-                      cypress/videos
+      - name: Upload Cypress Artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-artifacts
+          path: |
+            cypress/screenshots
+            cypress/videos
+
+  full-accessibility-audit:
+    uses: StackOverflowIsBetterThanAnyAI/accessibility-crawler/.github/workflows/reusable-accessibility-audit.yml@master
+    with:
+      app_port: "5173"
+      start_command: "npm start"
