@@ -19,7 +19,7 @@
         "react-dom": "^19.2.4",
         "react-router": "^7.14.0",
         "react-router-dom": "^7.14.0",
-        "tailwindcss": "^4.2.2"
+        "tailwindcss": "^4.3.0"
     },
     "devDependencies": {
         "@eslint/js": "^9.38.0",
