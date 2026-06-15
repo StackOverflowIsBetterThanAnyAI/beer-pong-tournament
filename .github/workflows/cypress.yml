@@ -174,22 +174,9 @@ jobs:
             cypress/videos
 
   full-accessibility-audit-custom:
-    name: Full Accessibility Audit Custom
+    name: Full Accessibility Audit
     uses: StackOverflowIsBetterThanAnyAI/full-accessibility-audit/.github/workflows/full-accessibility-audit.yml@master
     with:
       app_port: "5173"
       start_command: "npx vite --port 5173 --host"
 
-  full-accessibility-audit-axe:
-    name: Full Accessibility Audit Axe
-    uses: StackOverflowIsBetterThanAnyAI/full-accessibility-audit/.github/workflows/full-accessibility-audit.yml@axe
-    with:
-      app_port: "5173"
-      start_command: "npx vite --port 5173 --host"
-
-  full-accessibility-audit-alfa:
-    name: Full Accessibility Audit Alfa
-    uses: StackOverflowIsBetterThanAnyAI/full-accessibility-audit/.github/workflows/full-accessibility-audit.yml@alfa
-    with:
-      app_port: "5173"
-      start_command: "npx vite --port 5173 --host"
