@@ -60,8 +60,6 @@ const FormInputPassword = ({
                     data-testid={testID}
                     className={`bg-stone-100 disabled:bg-stone-200 text-normal w-full px-1 rounded
                     enabled:hover:bg-stone-200`}
-                    aria-required="true"
-                    aria-label={title}
                     autoComplete={autoComplete}
                     disabled={isDisabled}
                     maxLength={maxLength}
