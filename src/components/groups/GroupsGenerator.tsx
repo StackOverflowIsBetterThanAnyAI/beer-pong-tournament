@@ -173,7 +173,7 @@ export const GroupsGenerator = () => {
             ) : (
                 <div
                     className="text-center text-large"
-                    aria-label={`Currently registered Teams: ${registeredTeams.length} out of ${MAX_TEAMS}`}
+                    title={`Currently registered Teams: ${registeredTeams.length} out of ${MAX_TEAMS}`}
                 >
                     {registeredTeams.length} / {MAX_TEAMS} Teams
                 </div>
@@ -187,15 +187,15 @@ export const GroupsGenerator = () => {
                         isStartDisabled
                             ? 'Start Disabled. The amount of teams has to be divisible by 4, and must be at least 8, but cannot be 20.'
                             : groups.length
-                            ? 'Regenerate Groups and restart Tournament. All Process will be lost.'
-                            : 'Generate Groups and start Tournament.'
+                              ? 'Regenerate Groups and restart Tournament. All Process will be lost.'
+                              : 'Generate Groups and start Tournament.'
                     }`}
                     title={`${
                         isStartDisabled
                             ? 'The amount of teams has to be divisible by 4, and must be at least 8, but cannot be 20.'
                             : groups.length
-                            ? 'Regenerate Groups and restart Tournament. All Process will be lost.'
-                            : 'Generate Groups and start Tournament.'
+                              ? 'Regenerate Groups and restart Tournament. All Process will be lost.'
+                              : 'Generate Groups and start Tournament.'
                     }`}
                     disabled={isStartDisabled || isSubmitDisabled || isLoading}
                     ref={startButtonRef}

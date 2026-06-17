@@ -143,7 +143,7 @@ export const Teams = () => {
                 <>
                     <h2
                         className="text-center text-pretty text-large px-1 lg:py-1"
-                        aria-label={`Currently registered Teams: ${registeredTeams.length} out of ${MAX_TEAMS}`}
+                        title={`Currently registered Teams: ${registeredTeams.length} out of ${MAX_TEAMS}`}
                     >
                         Currently registered Teams: {registeredTeams.length} /{' '}
                         {MAX_TEAMS}

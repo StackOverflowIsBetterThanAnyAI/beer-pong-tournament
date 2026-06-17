@@ -112,6 +112,7 @@ const NavigationLinks = () => {
                             : 'opacity-0 max-h-0'
                     }`}
                     aria-label="Main Navigation"
+                    id="main-navigation-list"
                 >
                     {routes}
                 </ul>
@@ -128,6 +129,8 @@ const NavigationLinks = () => {
                 title={`${
                     isNavigationExpanded ? 'Close' : 'Open'
                 } Navigation Menu`}
+                aria-expanded={!!isNavigationExpanded}
+                aria-controls="main-navigation-list"
             >
                 {isNavigationExpanded ? 'Close' : 'Open'} Navigation
             </button>

@@ -42,10 +42,7 @@ const StandingsItem = ({
                                         <tr className="flex justify-between px-2 text-normal w-full overflow-hidden text-ellipsis">
                                             <th className="max-[320px]:hidden">
                                                 <div className="flex gap-2">
-                                                    <span
-                                                        aria-label="Position"
-                                                        title="Position"
-                                                    >
+                                                    <span title="Position">
                                                         #
                                                     </span>
                                                     <span title="Team">
@@ -55,16 +52,10 @@ const StandingsItem = ({
                                             </th>
                                             <th className="max-[320px]:w-full">
                                                 <div className="grid grid-cols-3 w-32 sm:w-40 max-[320px]:w-full text-center">
-                                                    <span
-                                                        aria-label="Matches Played"
-                                                        title="Matches Played"
-                                                    >
+                                                    <span title="Matches Played">
                                                         Played
                                                     </span>
-                                                    <span
-                                                        aria-label="Cup Difference"
-                                                        title="Cup Difference"
-                                                    >
+                                                    <span title="Cup Difference">
                                                         +/-
                                                     </span>
                                                     <span title="Points">
@@ -113,9 +104,6 @@ const StandingsItem = ({
                                                     <td className="font-bold max-w-full text-ellipsis overflow-hidden">
                                                         <div className="flex gap-2">
                                                             <span
-                                                                aria-label={`Current Position: ${
-                                                                    sx + 1
-                                                                }`}
                                                                 title={`Current Position: ${
                                                                     sx + 1
                                                                 }`}
@@ -129,9 +117,6 @@ const StandingsItem = ({
                                                                 className={
                                                                     'text-ellipsis overflow-hidden'
                                                                 }
-                                                                aria-label={
-                                                                    s.team
-                                                                }
                                                                 title={s.team}
                                                             >
                                                                 {s.team}
@@ -142,13 +127,11 @@ const StandingsItem = ({
                                                         <div className="grid grid-cols-3 min-[320px]:min-w-32 sm:w-40 text-center">
                                                             <span
                                                                 title={`${s.played} Matches played`}
-                                                                aria-label={`${s.played} Matches played`}
                                                             >
                                                                 {s.played}
                                                             </span>
                                                             <span
                                                                 title={`Cup difference: ${s.cup_difference}`}
-                                                                aria-label={`Cup difference: ${s.cup_difference}`}
                                                             >
                                                                 {
                                                                     s.cup_difference
@@ -157,7 +140,6 @@ const StandingsItem = ({
                                                             <span
                                                                 className="font-bold"
                                                                 title={`${s.points} Points`}
-                                                                aria-label={`${s.points} Points`}
                                                             >
                                                                 {s.points}
                                                             </span>
