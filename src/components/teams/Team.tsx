@@ -28,7 +28,7 @@ const Team = ({ handleDelete, index, isLoading, item }: TeamProps) => {
                 }`}
             >
                 <div>
-                    <div className="text-large font-bold underline text-ellipsis overflow-hidden lg:pb-1">
+                    <div className="text-large font-bold text-ellipsis overflow-hidden lg:pb-1">
                         {item.name}
                     </div>
                     <div className="flex gap-x-2 flex-wrap justify-between">

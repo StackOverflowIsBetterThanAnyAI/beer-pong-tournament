@@ -71,11 +71,11 @@ const Groups = ({ groups, page, setPage }: GroupsProps) => {
                                                 ? redBackground
                                                 : stoneBackground
                                             : x % 2
-                                            ? redBackground
-                                            : stoneBackground
+                                              ? redBackground
+                                              : stoneBackground
                                     }`}
                                 >
-                                    <h2 className="text-large font-bold underline">
+                                    <h2 className="text-large font-bold">
                                         {i.name}
                                     </h2>
                                     <ul
@@ -99,8 +99,8 @@ const Groups = ({ groups, page, setPage }: GroupsProps) => {
                                                                 ? redBorder
                                                                 : stoneBorder
                                                             : x % 2
-                                                            ? redBorder
-                                                            : stoneBorder
+                                                              ? redBorder
+                                                              : stoneBorder
                                                     }`}
                                                     role="menuitem"
                                                 >

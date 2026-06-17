@@ -72,7 +72,7 @@ const KnockoutMatch = ({
                             {isFirstOfStage ? (
                                 <li
                                     role="menuitem"
-                                    className="text-large font-bold underline col-span-2"
+                                    className="text-large font-bold col-span-2"
                                 >
                                     <h2>{i.round_display}</h2>
                                 </li>

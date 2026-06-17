@@ -34,7 +34,7 @@ const StandingsItem = ({
                             role="menuitem"
                         >
                             <div className="p-2 rounded-sm bg-stone-200 drop-shadow-stone-300/80 drop-shadow-md">
-                                <h2 className="text-large font-bold underline">
+                                <h2 className="text-large font-bold">
                                     {i.group}
                                 </h2>
                                 <table className="flex flex-col gap-2 pt-2">
@@ -100,12 +100,13 @@ const StandingsItem = ({
                                                             ? sx < 2
                                                                 ? 'bg-green-700/30'
                                                                 : ![
-                                                                      2, 4, 8,
-                                                                  ].includes(
-                                                                      standings.length
-                                                                  ) && sx === 2
-                                                                ? 'bg-amber-200'
-                                                                : 'bg-red-600/30'
+                                                                        2, 4, 8,
+                                                                    ].includes(
+                                                                        standings.length
+                                                                    ) &&
+                                                                    sx === 2
+                                                                  ? 'bg-amber-200'
+                                                                  : 'bg-red-600/30'
                                                             : ''
                                                     }`}
                                                 >
@@ -125,23 +126,9 @@ const StandingsItem = ({
                                                                     : '-'}
                                                             </span>
                                                             <span
-                                                                className={`${
-                                                                    s.played
-                                                                        ? sx < 2
-                                                                            ? 'underline decoration-2 decoration-green-700'
-                                                                            : ![
-                                                                                  2,
-                                                                                  4,
-                                                                                  8,
-                                                                              ].includes(
-                                                                                  standings.length
-                                                                              ) &&
-                                                                              sx ===
-                                                                                  2
-                                                                            ? 'underline decoration-2 decoration-yellow-600/60'
-                                                                            : 'underline decoration-2 decoration-red-600'
-                                                                        : ''
-                                                                } text-ellipsis overflow-hidden`}
+                                                                className={
+                                                                    'text-ellipsis overflow-hidden'
+                                                                }
                                                                 aria-label={
                                                                     s.team
                                                                 }

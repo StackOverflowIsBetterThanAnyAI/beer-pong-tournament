@@ -7,7 +7,7 @@ type MainMatchProps = {
 const MainMatch = ({ item }: MainMatchProps) => {
     return (
         <li className="max-w-md w-full m-auto" role="menuitem">
-            <h2 className="text-large font-bold underline pb-2 lg:pb-2.5">
+            <h2 className="text-large font-bold pb-2 lg:pb-2.5">
                 {item.played ? 'Last ' : 'Upcoming '}Match:
             </h2>
             <ul

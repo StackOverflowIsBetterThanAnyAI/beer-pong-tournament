@@ -30,13 +30,16 @@ const ScheduleItem = ({
     }
     const [schedule, _setSchedule] = contextSchedule
 
-    const groupedSchedule = schedule.reduce((total, cur) => {
-        if (!total[cur.group]) {
-            total[cur.group] = []
-        }
-        total[cur.group].push(cur)
-        return total
-    }, {} as Record<string, GameProps[]>)
+    const groupedSchedule = schedule.reduce(
+        (total, cur) => {
+            if (!total[cur.group]) {
+                total[cur.group] = []
+            }
+            total[cur.group].push(cur)
+            return total
+        },
+        {} as Record<string, GameProps[]>
+    )
 
     const groupKeys = Object.keys(groupedSchedule)
     const paginatedGroupKeys = groupKeys.slice(
@@ -59,7 +62,7 @@ const ScheduleItem = ({
                     return (
                         <React.Fragment key={item}>
                             <li role="menuitem">
-                                <h2 className="text-large font-bold underline pb-4 lg:pb-5">
+                                <h2 className="text-large font-bold pb-4 lg:pb-5">
                                     {item}
                                 </h2>
                                 <ul
@@ -78,20 +81,20 @@ const ScheduleItem = ({
                                                             ? redBackground
                                                             : stoneBackground
                                                         : [2, 3].includes(x)
-                                                        ? redBackground
-                                                        : stoneBackground
+                                                          ? redBackground
+                                                          : stoneBackground
                                                     : index % 2
-                                                    ? ![2, 3].includes(x)
+                                                      ? ![2, 3].includes(x)
+                                                          ? redBackground
+                                                          : stoneBackground
+                                                      : [2, 3].includes(x)
                                                         ? redBackground
                                                         : stoneBackground
-                                                    : [2, 3].includes(x)
-                                                    ? redBackground
-                                                    : stoneBackground
                                             } drop-shadow-stone-300/80 drop-shadow-md`}
                                             role="menuitem"
                                         >
                                             {x % 2 ? null : (
-                                                <h3 className="text-normal font-bold underline pb-2">{`Matchday ${
+                                                <h3 className="text-normal font-bold pb-2">{`Matchday ${
                                                     x / 2 + 1
                                                 }`}</h3>
                                             )}
