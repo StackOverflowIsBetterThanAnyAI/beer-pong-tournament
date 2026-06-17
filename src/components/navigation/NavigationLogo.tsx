@@ -25,7 +25,7 @@ const NavigationLogo = () => {
                 srcSet={`${logo_mobile} 2x`}
                 width="48px"
                 height="48px"
-                alt="Back to the Homepage"
+                alt=""
                 className="rounded-lg"
                 loading="lazy"
             />
