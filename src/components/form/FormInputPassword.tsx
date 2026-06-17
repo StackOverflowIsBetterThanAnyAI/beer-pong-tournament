@@ -60,7 +60,6 @@ const FormInputPassword = ({
                     data-testid={testID}
                     className={`bg-stone-100 disabled:bg-stone-200 text-normal w-full px-1 rounded
                     enabled:hover:bg-stone-200`}
-                    aria-disabled={isDisabled}
                     aria-required="true"
                     aria-label={title}
                     autoComplete={autoComplete}
@@ -80,7 +79,6 @@ const FormInputPassword = ({
                     id={`show-${id}`}
                     className="outline outline-stone-500 disabled:outline-0"
                     aria-checked={!isPasswordHidden}
-                    aria-disabled={isDisabled}
                     aria-label={`${isDisabled ? 'Currently disabled. ' : ''}${
                         isHidden ? 'Show' : 'Hide'
                     } password.`}

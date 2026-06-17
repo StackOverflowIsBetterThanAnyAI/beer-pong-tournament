@@ -64,7 +64,6 @@ const PageNavigation = ({
                             : 'Go to the previous page'
                     }`}
                     onClick={previousPage}
-                    aria-disabled={page <= 1}
                     disabled={page <= 1}
                     title={`${
                         page <= 1
@@ -84,9 +83,6 @@ const PageNavigation = ({
                             : 'Go to the next page'
                     }`}
                     onClick={nextPage}
-                    aria-disabled={
-                        page >= registeredTeams.length / MAX_ITEMS_PER_PAGE
-                    }
                     disabled={
                         page >= registeredTeams.length / MAX_ITEMS_PER_PAGE
                     }

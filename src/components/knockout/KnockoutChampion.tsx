@@ -65,7 +65,6 @@ const KnockoutChampion = () => {
                         aria-label="Start new Tournament."
                         title="Start new Tournament."
                         disabled={isDisabled}
-                        aria-disabled={isDisabled}
                         onClick={handleClick}
                         ref={buttonRef}
                     >

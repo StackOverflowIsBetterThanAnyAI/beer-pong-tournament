@@ -51,7 +51,6 @@ const Team = ({ handleDelete, index, isLoading, item }: TeamProps) => {
                         onClick={() => handleDelete(item)}
                         aria-label={`Delete ${item.name}`}
                         title={`Delete ${item.name}`}
-                        aria-disabled={isLoading}
                         disabled={isLoading}
                     >
                         Delete

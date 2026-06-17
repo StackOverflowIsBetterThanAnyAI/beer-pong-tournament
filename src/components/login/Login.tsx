@@ -250,7 +250,6 @@ const Login = () => {
                             <>
                                 <FormInputPassword
                                     autoComplete="new-password"
-                                    aria-disabled={confirmPasswordDisabled}
                                     error={apiError || errorConfirmPassword}
                                     id="signupConfirmPassword"
                                     isDisabled={confirmPasswordDisabled}

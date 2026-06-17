@@ -52,18 +52,17 @@ const ScheduleItemButton = ({
                 i.played
                     ? 'Match Over. Score has been saved.'
                     : isDisabled
-                    ? 'Enter a valid Score.'
-                    : 'Save Score.'
+                      ? 'Enter a valid Score.'
+                      : 'Save Score.'
             }
             title={
                 i.played
                     ? 'Match Over. Score has been saved.'
                     : isDisabled
-                    ? 'Enter a valid Score.'
-                    : 'Save Score.'
+                      ? 'Enter a valid Score.'
+                      : 'Save Score.'
             }
             onClick={() => handleClick(i.id, scoreTeam1!, scoreTeam2!)}
-            aria-disabled={isDisabled}
             disabled={isDisabled}
         >
             {isLoading ? (
