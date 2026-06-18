@@ -11,7 +11,7 @@ const ThemeSwitch = () => {
         } else {
             document.body.classList.remove('dark')
         }
-    }, [])
+    }, [parsedStorageData?.isdarkmode])
 
     const [isDarkMode, setIsDarkMode] = useState<boolean>(
         parsedStorageData?.isdarkmode ?? false

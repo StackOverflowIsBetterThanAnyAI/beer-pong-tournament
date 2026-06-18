@@ -90,7 +90,7 @@ const Knockout = () => {
             setIsLoading,
             setSchedule,
         })
-    }, [])
+    }, [accessToken, refreshToken, setSchedule])
 
     useEffect(() => {
         if (isGroupstageOver) {

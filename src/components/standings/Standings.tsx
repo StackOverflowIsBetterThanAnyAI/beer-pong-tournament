@@ -53,7 +53,7 @@ const Standings = () => {
             setIsLoading,
             setStandings,
         })
-    }, [])
+    }, [accessToken, refreshToken])
 
     useWindowScrollYState()
 
