@@ -90,17 +90,7 @@ const Main = () => {
 
     useAutoFocus(anchorRef, !isLoading)
 
-    const loadSchedule = async () => {
-        handleLoadSchedule({
-            accessToken,
-            refreshToken,
-            setApiError,
-            setSchedule,
-            setIsLoading,
-        })
-    }
-
-    const loadGroups = async () => {
+    useEffect(() => {
         handleLoadGroups({
             accessToken,
             refreshToken,
@@ -108,12 +98,22 @@ const Main = () => {
             setIsLoading,
             setGroups,
         })
-    }
 
-    useEffect(() => {
-        loadGroups()
-        loadSchedule()
-    }, [accessToken, refreshToken])
+        handleLoadSchedule({
+            accessToken,
+            refreshToken,
+            setApiError,
+            setSchedule,
+            setIsLoading,
+        })
+    }, [
+        accessToken,
+        refreshToken,
+        setGroups,
+        setSchedule,
+        setApiError,
+        setIsLoading,
+    ])
 
     useEffect(() => {
         handleLoadRegisteredTeams({
