@@ -102,7 +102,13 @@ const Knockout = () => {
                 setTournamentWinner,
             })
         }
-    }, [isGroupstageOver])
+    }, [
+        accessToken,
+        refreshToken,
+        isGroupstageOver,
+        setKOStage,
+        setTournamentWinner,
+    ])
 
     useWindowScrollYState()
 

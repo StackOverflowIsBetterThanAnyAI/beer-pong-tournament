@@ -56,7 +56,7 @@ const Schedule = () => {
             setSchedule,
             setIsLoading,
         })
-    }, [])
+    }, [accessToken, refreshToken, setSchedule])
 
     useWindowScrollYState()
 

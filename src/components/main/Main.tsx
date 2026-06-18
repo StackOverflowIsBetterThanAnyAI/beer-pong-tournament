@@ -159,7 +159,13 @@ const Main = () => {
                 setTournamentWinner,
             })
         }
-    }, [isGroupstageOver])
+    }, [
+        accessToken,
+        refreshToken,
+        isGroupstageOver,
+        setKOStage,
+        setTournamentWinner,
+    ])
 
     useEffect(() => {
         const played = koStage.filter((item) => item.played)
