@@ -3,7 +3,8 @@ type getValueFromErrorProps = {
 }
 
 export const getValueFromError = (obj: getValueFromErrorProps) => {
-    const value = Object.values(obj)[0]
-    typeof value === 'string' ? value : value.join('') || ''
+    let value = Object.values(obj)[0]
+    if (!value) return ''
+    value = typeof value === 'string' ? value : value.join('')
     return value.toString()
 }

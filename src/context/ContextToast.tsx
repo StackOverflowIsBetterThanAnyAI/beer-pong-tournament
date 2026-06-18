@@ -46,6 +46,7 @@ export const ContextToastProvider = ({
     )
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useContextToast = () => {
     const context = useContext(ContextToast)
     if (!context) {
