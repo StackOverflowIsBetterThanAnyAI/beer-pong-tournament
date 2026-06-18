@@ -69,7 +69,7 @@ describe('login', () => {
             url: 'http://127.0.0.1:8000/api/v1/test_utils/__delete-cypress-test-user/',
             failOnStatusCode: false,
         }).then((response) => {
-            if (!response.status === 200) {
+            if (response.status !== 200) {
                 throw new Error(`Unexpected error: ${response.status}`)
             }
         })
