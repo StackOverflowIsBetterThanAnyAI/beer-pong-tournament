@@ -29,5 +29,5 @@ export const useSessionExpired = ({
                 { replace: true }
             )
         }
-    }, [])
+    }, [location.pathname, location.search, navigate, showToast])
 }

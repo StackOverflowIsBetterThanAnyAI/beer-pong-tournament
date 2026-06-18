@@ -1,4 +1,10 @@
-import { createContext, useContext, useState, useEffect } from 'react'
+import {
+    createContext,
+    useContext,
+    useState,
+    useEffect,
+    useCallback,
+} from 'react'
 import Toast from '../components/toast/Toast'
 import { ContextIsToastVisible } from './ContextIsToastVisible'
 import { ToastProps } from '../types/types'
@@ -17,17 +23,20 @@ export const ContextToastProvider = ({
     const contextIsToastVisible = useContext(ContextIsToastVisible)
     if (!contextIsToastVisible) {
         throw new Error(
-            'FormInputPassword must be used within a ContextIsToastVisible.Provider'
+            'ContextToastProvider must be used within a ContextIsToastVisible.Provider'
         )
     }
     const [isVisible, setIsVisible] = contextIsToastVisible
 
     const [toast, setToast] = useState<ToastProps | null>(null)
 
-    const showToast = ({ label, isSuccess }: ToastProps) => {
-        setToast({ label, isSuccess })
-        setIsVisible(true)
-    }
+    const showToast = useCallback(
+        ({ label, isSuccess }: ToastProps) => {
+            setToast({ label, isSuccess })
+            setIsVisible(true)
+        },
+        [setIsVisible]
+    )
 
     useEffect(() => {
         if (isVisible) {
