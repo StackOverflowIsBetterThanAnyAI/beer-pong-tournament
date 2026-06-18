@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from 'react'
+import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { FetchLoading } from 'fetch-loading'
 import FormError from '../form/FormError'
 import FormErrorOpacity from '../form/FormErrorOpacity'
@@ -103,7 +103,7 @@ export const GroupsGenerator = () => {
         setRegisteredTeams,
     ])
 
-    const loadGroups = async () => {
+    const loadGroups = useCallback(async () => {
         handleLoadGroups({
             accessToken,
             refreshToken,
@@ -111,11 +111,11 @@ export const GroupsGenerator = () => {
             setIsLoading,
             setGroups,
         })
-    }
+    }, [accessToken, refreshToken, setGroups, setApiErrorLoad, setIsLoading])
 
     useEffect(() => {
         loadGroups()
-    }, [accessToken, refreshToken])
+    }, [loadGroups])
 
     useEffect(() => {
         setIsStartDisabled(
