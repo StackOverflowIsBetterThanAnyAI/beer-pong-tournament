@@ -57,7 +57,7 @@ jobs:
       CYPRESS_ADMIN_PASSWORD_LOCAL: ${{ secrets.ADMIN_PASSWORD_LOCAL }}
       CYPRESS_ADMIN_USERNAME_LOCAL: ${{ secrets.ADMIN_USERNAME_LOCAL }}
       CYPRESS_BASE_URL: http://127.0.0.1:5173
-      DEBUG: True
+      DEBUG: ${{ secrets.DEBUG }}
       SECRET_KEY: ${{ secrets.SECRET_KEY }}
       VITE_SERVER_ADDRESS: http://127.0.0.1:8000
 
