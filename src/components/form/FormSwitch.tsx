@@ -15,16 +15,10 @@ const FormSwitch = ({ isSigningUp, handleClick }: FormSwitchProps) => {
     return (
         <div className="flex justify-center text-normal py-2">
             <button
-                aria-label={`Switch to ${
-                    isSigningUp ? 'Login' : 'Signup'
-                }. Currently, ${isSigningUp ? 'Signup' : 'Login'} is selected.`}
                 aria-pressed={isSigningUp}
                 className="flex outline-stone-100 outline-2 rounded-lg
                 focus-visible:outline-offset-1"
                 onClick={handleClick}
-                title={`Switch to ${
-                    isSigningUp ? 'Login' : 'Signup'
-                }. Currently, ${isSigningUp ? 'Signup' : 'Login'} is selected.`}
                 data-testid="login-switch"
             >
                 <span
