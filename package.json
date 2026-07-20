@@ -12,7 +12,7 @@
         "preview": "vite preview"
     },
     "dependencies": {
-        "@tailwindcss/vite": "^4.3.2",
+        "@tailwindcss/vite": "^4.3.3",
         "fetch-loading": "^0.1.0",
         "jwt-decode": "^4.0.0",
         "react": "^19.2.7",
