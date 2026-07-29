@@ -31,7 +31,7 @@ const MainMatch = ({ item }: MainMatchProps) => {
                                     item.team1}
                             </span>
                             <span
-                                className={`!m-1 ${
+                                className={`m-1! ${
                                     item.score_team1 === 10 ? 'font-bold' : ''
                                 }`}
                             >
@@ -55,7 +55,7 @@ const MainMatch = ({ item }: MainMatchProps) => {
                                     item.team2}
                             </span>
                             <span
-                                className={`!m-1 ${
+                                className={`m-1! ${
                                     item.score_team2 === 10 ? 'font-bold' : ''
                                 }`}
                             >

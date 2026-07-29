@@ -64,8 +64,8 @@ const KnockoutMatchScore = ({ i, setKOStage }: KnockoutMatchScoreProps) => {
     const marginBottom = !isAdmin
         ? 'mb-1'
         : apiError || inputErrorTeam1 || inputErrorTeam2
-        ? 'mb-1'
-        : 'mb-5 sm:mb-6'
+          ? 'mb-1'
+          : 'mb-5 sm:mb-6'
 
     const handleInput = (
         e: React.ChangeEvent<HTMLInputElement>,
@@ -81,18 +81,18 @@ const KnockoutMatchScore = ({ i, setKOStage }: KnockoutMatchScoreProps) => {
             !inputRegex.test(score) && score.length
                 ? 'Please use an integer between 0 and 99.'
                 : score?.length &&
-                  otherScore?.length &&
-                  parseInt(score) < 10 &&
-                  parseInt(otherScore) < 10
-                ? 'At least on team has to score 10 cups.'
-                : score?.length &&
-                  otherScore?.length &&
-                  ((parseInt(score) < 10 && parseInt(otherScore) > 10) ||
-                      (parseInt(score) > 10 && parseInt(otherScore) < 10))
-                ? 'For overtime, both teams have to score 10 cups.'
-                : otherScore && parseInt(score) === parseInt(otherScore)
-                ? 'In this stage, one team has to win.'
-                : ''
+                    otherScore?.length &&
+                    parseInt(score) < 10 &&
+                    parseInt(otherScore) < 10
+                  ? 'At least on team has to score 10 cups.'
+                  : score?.length &&
+                      otherScore?.length &&
+                      ((parseInt(score) < 10 && parseInt(otherScore) > 10) ||
+                          (parseInt(score) > 10 && parseInt(otherScore) < 10))
+                    ? 'For overtime, both teams have to score 10 cups.'
+                    : otherScore && parseInt(score) === parseInt(otherScore)
+                      ? 'In this stage, one team has to win.'
+                      : ''
         )
     }
 
@@ -143,7 +143,7 @@ const KnockoutMatchScore = ({ i, setKOStage }: KnockoutMatchScoreProps) => {
                     </label>
                 )}
                 <span
-                    className={`!m-1 ${
+                    className={`m-1! ${
                         i.score_team1! > i.score_team2! ? 'font-bold' : ''
                     }`}
                 >
@@ -170,8 +170,8 @@ const KnockoutMatchScore = ({ i, setKOStage }: KnockoutMatchScoreProps) => {
                             title="Score between 0 and 99."
                             className={`page ${
                                 i.round === 'QF' || i.round === 'F'
-                                    ? 'bg-red-400 !outline-red-600'
-                                    : 'bg-stone-400/70 !outline-stone-500'
+                                    ? 'bg-red-400 outline-red-600!'
+                                    : 'bg-stone-400/70 outline-stone-500!'
                             } w-16 pl-1 rounded-sm`}
                         />
                     ) : (
@@ -206,7 +206,7 @@ const KnockoutMatchScore = ({ i, setKOStage }: KnockoutMatchScoreProps) => {
                     </label>
                 )}
                 <span
-                    className={`!m-1 ${
+                    className={`m-1! ${
                         i.score_team2! > i.score_team1! ? 'font-bold' : ''
                     }`}
                 >
@@ -233,8 +233,8 @@ const KnockoutMatchScore = ({ i, setKOStage }: KnockoutMatchScoreProps) => {
                             title="Score between 0 and 99."
                             className={`page ${
                                 i.round === 'QF' || i.round === 'F'
-                                    ? 'bg-red-400 !outline-red-600'
-                                    : 'bg-stone-400/70 !outline-stone-500'
+                                    ? 'bg-red-400 outline-red-600!'
+                                    : 'bg-stone-400/70 outline-stone-500!'
                             } w-16 pl-1 rounded-sm`}
                         />
                     ) : (

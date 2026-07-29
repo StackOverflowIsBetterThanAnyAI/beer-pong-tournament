@@ -66,8 +66,8 @@ export const ScheduleItemScore = ({ i, index, x }: ScheduleItemScoreProps) => {
     const marginBottom = !isAdmin
         ? 'mb-1'
         : apiError || inputErrorTeam1 || inputErrorTeam2
-        ? 'mb-1'
-        : 'mb-5 sm:mb-6'
+          ? 'mb-1'
+          : 'mb-5 sm:mb-6'
 
     const handleInput = (
         e: React.ChangeEvent<HTMLInputElement>,
@@ -83,11 +83,11 @@ export const ScheduleItemScore = ({ i, index, x }: ScheduleItemScoreProps) => {
             !inputRegex.test(score) && score.length
                 ? 'Please use an integer between 0 and 10.'
                 : score?.length &&
-                  otherScore?.length &&
-                  parseInt(score) < 10 &&
-                  parseInt(otherScore) < 10
-                ? 'At least on team has to score 10 cups.'
-                : ''
+                    otherScore?.length &&
+                    parseInt(score) < 10 &&
+                    parseInt(otherScore) < 10
+                  ? 'At least on team has to score 10 cups.'
+                  : ''
         )
     }
 
@@ -172,7 +172,7 @@ export const ScheduleItemScore = ({ i, index, x }: ScheduleItemScoreProps) => {
                     </label>
                 )}
                 <span
-                    className={`!m-1 ${
+                    className={`m-1! ${
                         i.score_team1 === 10 ? 'font-bold' : ''
                     }`}
                 >
@@ -225,7 +225,7 @@ export const ScheduleItemScore = ({ i, index, x }: ScheduleItemScoreProps) => {
                     </label>
                 )}
                 <span
-                    className={`!m-1 ${
+                    className={`m-1! ${
                         i.score_team2 === 10 ? 'font-bold' : ''
                     }`}
                 >
