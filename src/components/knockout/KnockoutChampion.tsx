@@ -61,7 +61,7 @@ const KnockoutChampion = () => {
                 <>
                     <button
                         className="flex justify-center items-center bg-stone-100 outline text-normal rounded-md mt-2 p-0.5 text-normal min-h-7 sm:min-h-8 w-full focus-visible:bg-stone-50 outline-stone-500
-                        not-[:disabled]:hover:bg-stone-300 not-[:disabled]:active:bg-stone-400/40 disabled:outline-stone-400 disabled:bg-stone-400/20"
+                        not-disabled:hover:bg-stone-300 not-disabled:active:bg-stone-400/40 disabled:outline-stone-400 disabled:bg-stone-400/20"
                         aria-label="Start new Tournament."
                         title="Start new Tournament."
                         disabled={isDisabled}
