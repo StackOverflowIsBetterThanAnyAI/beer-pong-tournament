@@ -149,7 +149,7 @@ export const Teams = () => {
                         {MAX_TEAMS}
                     </h2>
                     <ul
-                        className="flex flex-col sm:grid [grid-template-columns:repeat(auto-fit,minmax(256px,1fr))] gap-4 lg:gap-5 max-w-96 w-full sm:max-w-5xl mx-auto my-4 p-1.5 lg:p-2 rounded-sm"
+                        className="flex flex-col sm:grid grid-cols-[repeat(auto-fit,minmax(256px,1fr))] gap-4 lg:gap-5 max-w-96 w-full sm:max-w-5xl mx-auto my-4 p-1.5 lg:p-2 rounded-sm"
                         role="menu"
                     >
                         {teams.filter((item, index) => {
