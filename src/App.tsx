@@ -35,7 +35,7 @@ const AppContent = ({ isLoggedIn }: { isLoggedIn: boolean | undefined }) => {
     useFocusTrap()
 
     return (
-        <div className="min-h-svh flex flex-col items-center justify-start bg-gradient-to-b from-stone-200 to-stone-300 dark:from-stone-700 dark:to-stone-800 w-full">
+        <div className="min-h-svh flex flex-col items-center justify-start bg-linear-to-b from-stone-200 to-stone-300 dark:from-stone-700 dark:to-stone-800 w-full">
             <Navigation />
             <Routes>
                 <Route path="/" element={isLoggedIn ? <Main /> : <Login />} />
