@@ -298,7 +298,7 @@ const Main = () => {
                 <img
                     src={logoHero}
                     alt="Beer Pong Tournament Logo"
-                    className="bg-red-200/50 rounded-xl outline-4 outline-stone-200"
+                    className="bg-linear-to-b from-red-200/20 to-red-200/70 rounded-xl outline-4 outline-stone-200"
                     loading="lazy"
                     height="384px"
                     width="384px"
