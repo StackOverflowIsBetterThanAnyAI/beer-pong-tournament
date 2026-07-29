@@ -2,10 +2,10 @@
 
 describe('deployed', () => {
     beforeEach(() => {
-        cy.visit('https://beer-pong-tournament.vercel.app/')
+        cy.visit('https://beer-pong-tournament.onrender.com/')
     })
 
-    it('should be available at beer-pong-tournament.vercel.app', () => {
+    it('should be available at beer-pong-tournament.onrender.com', () => {
         cy.get('[data-testid="navigation"]').should(
             'have.text',
             'Beer Pong Tournament'
@@ -167,21 +167,21 @@ describe('deployed', () => {
 
         cy.get('[data-testid="login-submit"]').click()
 
-        cy.visit('https://beer-pong-tournament.vercel.app/admin')
+        cy.visit('https://beer-pong-tournament.onrender.com/admin')
 
         cy.get('main').should(
             'have.text',
             'Oops!It looks like this site does not exist ...Homepage'
         )
 
-        cy.visit('https://beer-pong-tournament.vercel.app/home')
+        cy.visit('https://beer-pong-tournament.onrender.com/home')
 
         cy.get('main').should(
             'have.text',
             'Oops!It looks like this site does not exist ...Homepage'
         )
 
-        cy.visit('https://beer-pong-tournament.vercel.app/index')
+        cy.visit('https://beer-pong-tournament.onrender.com/index')
 
         cy.get('main').should(
             'have.text',
@@ -190,42 +190,42 @@ describe('deployed', () => {
     })
 
     it('should show 404 for intended routes if the user is not logged in', () => {
-        cy.visit('https://beer-pong-tournament.vercel.app/register-team')
+        cy.visit('https://beer-pong-tournament.onrender.com/register-team')
 
         cy.get('main').should(
             'have.text',
             'Oops!It looks like this site does not exist ...Homepage'
         )
 
-        cy.visit('https://beer-pong-tournament.vercel.app/teams')
+        cy.visit('https://beer-pong-tournament.onrender.com/teams')
 
         cy.get('main').should(
             'have.text',
             'Oops!It looks like this site does not exist ...Homepage'
         )
 
-        cy.visit('https://beer-pong-tournament.vercel.app/groups')
+        cy.visit('https://beer-pong-tournament.onrender.com/groups')
 
         cy.get('main').should(
             'have.text',
             'Oops!It looks like this site does not exist ...Homepage'
         )
 
-        cy.visit('https://beer-pong-tournament.vercel.app/schedule')
+        cy.visit('https://beer-pong-tournament.onrender.com/schedule')
 
         cy.get('main').should(
             'have.text',
             'Oops!It looks like this site does not exist ...Homepage'
         )
 
-        cy.visit('https://beer-pong-tournament.vercel.app/standings')
+        cy.visit('https://beer-pong-tournament.onrender.com/standings')
 
         cy.get('main').should(
             'have.text',
             'Oops!It looks like this site does not exist ...Homepage'
         )
 
-        cy.visit('https://beer-pong-tournament.vercel.app/knockout-stage')
+        cy.visit('https://beer-pong-tournament.onrender.com/knockout-stage')
 
         cy.get('main').should(
             'have.text',
