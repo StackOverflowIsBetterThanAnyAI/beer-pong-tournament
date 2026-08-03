@@ -14,7 +14,7 @@
         "@tailwindcss/vite": "^4.3.3",
         "fetch-loading": "^0.1.0",
         "jwt-decode": "^4.0.0",
-        "react": "^19.2.7",
+        "react": "^19.2.8",
         "react-dom": "^19.2.7",
         "react-router": "^7.18.0",
         "react-router-dom": "^7.18.0",
@@ -22,7 +22,7 @@
     },
     "devDependencies": {
         "@eslint/js": "^9.39.4",
-        "@types/react": "^19.2.9",
+        "@types/react": "^19.2.18",
         "@types/react-dom": "^19.2.3",
         "@vitejs/plugin-react": "^4.7.0",
         "cypress": "^14.5.4",
