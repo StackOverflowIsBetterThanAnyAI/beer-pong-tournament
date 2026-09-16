@@ -1,8 +1,5 @@
 import { useEffect } from 'react'
-
-type useFocusTrapPageProps = {
-    focusableItems: (HTMLInputElement | HTMLButtonElement)[]
-}
+import { useFocusTrapPageProps } from '../types/types'
 
 export const useFocusTrapPage = ({ focusableItems }: useFocusTrapPageProps) => {
     useEffect(() => {

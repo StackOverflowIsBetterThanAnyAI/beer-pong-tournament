@@ -1,8 +1,4 @@
-import { GameProps, KOMatchProps } from '../../types/types'
-
-type MainMatchProps = {
-    item: GameProps | KOMatchProps
-}
+import { KOMatchProps, MainMatchProps } from '../../types/types'
 
 const MainMatch = ({ item }: MainMatchProps) => {
     return (

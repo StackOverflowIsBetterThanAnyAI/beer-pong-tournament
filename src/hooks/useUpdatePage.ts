@@ -1,19 +1,6 @@
 import { useEffect } from 'react'
-import {
-    KOStageProps,
-    ScheduleProps,
-    StandingsProps,
-    TournamentGroupsProps,
-} from '../types/types'
+import { useUpdatePageProps } from '../types/types'
 import { setItemInSessionStorage } from '../utils/setItemInSessionStorage'
-
-type useUpdatePageProps = {
-    items: KOStageProps | ScheduleProps | StandingsProps | TournamentGroupsProps
-    key: string
-    MAX_ITEMS_PER_PAGE: number
-    page: number
-    setPage: React.Dispatch<React.SetStateAction<number>>
-}
 
 export const useUpdatePage = ({
     items,

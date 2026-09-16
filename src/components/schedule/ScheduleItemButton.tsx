@@ -1,17 +1,6 @@
 import { FetchLoading } from 'fetch-loading'
-import { GameProps } from '../../types/types'
 import { useScreenWidth } from '../../hooks/useScreenWidth'
-
-type ScheduleItemButtonProps = {
-    handleClick: (id: number, score_team1: string, score_team2: string) => void
-    i: GameProps
-    index: number
-    isDisabled: boolean
-    isLoading: boolean
-    scoreTeam1: string | null
-    scoreTeam2: string | null
-    x: number
-}
+import { ScheduleItemButtonProps } from '../../types/types'
 
 const ScheduleItemButton = ({
     handleClick,

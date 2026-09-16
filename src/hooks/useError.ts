@@ -1,30 +1,10 @@
 import { useEffect } from 'react'
-
-type useErrorConfirmPasswordProps = {
-    confirmPassword: string
-    password: string
-    setErrorConfirmPassword: React.Dispatch<React.SetStateAction<string>>
-}
-
-type useErrorPasswordProps = {
-    password: string
-    passwordPattern: RegExp
-    setConfirmPasswordDisabled: React.Dispatch<React.SetStateAction<boolean>>
-    setErrorPassword: React.Dispatch<React.SetStateAction<string>>
-}
-
-type useErrorNameProps = {
-    setErrorName: React.Dispatch<React.SetStateAction<string>>
-    name: string
-    namePattern: RegExp
-    type: string
-}
-
-type useErrorSameMemberProps = {
-    memberOne: string
-    memberTwo: string
-    setErrorSameMember: React.Dispatch<React.SetStateAction<string>>
-}
+import {
+    useErrorConfirmPasswordProps,
+    useErrorPasswordProps,
+    useErrorNameProps,
+    useErrorSameMemberProps,
+} from '../types/types'
 
 export const useErrorConfirmPassword = ({
     confirmPassword,

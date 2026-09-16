@@ -1,8 +1,5 @@
 import { useEffect, useState } from 'react'
-
-type TeamsErrorProps = {
-    error: string
-}
+import { TeamsErrorProps } from '../../types/types'
 
 const TeamsErrorOpacity = ({ error }: TeamsErrorProps) => {
     const [opacity, setOpacity] = useState<string>('opacity-100')

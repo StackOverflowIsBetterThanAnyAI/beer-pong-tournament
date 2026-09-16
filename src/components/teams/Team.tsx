@@ -1,13 +1,6 @@
 import { useContext } from 'react'
-import { RegisteredTeamProps } from '../../types/types'
+import { TeamProps } from '../../types/types'
 import { ContextAdmin } from '../../context/ContextAdmin'
-
-type TeamProps = {
-    handleDelete: (item: RegisteredTeamProps) => Promise<void>
-    index: number
-    isLoading: boolean
-    item: RegisteredTeamProps
-}
 
 const Team = ({ handleDelete, index, isLoading, item }: TeamProps) => {
     const contextAdmin = useContext(ContextAdmin)

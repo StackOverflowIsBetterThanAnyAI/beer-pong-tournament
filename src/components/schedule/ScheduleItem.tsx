@@ -4,15 +4,8 @@ import ScheduleItemScore from './ScheduleItemScore'
 import ScheduleLegend from './ScheduleLegend'
 import { MATCHES_PER_GROUP } from '../../constants/constants'
 import { ContextSchedule } from '../../context/ContextSchedule'
-import { GameProps } from '../../types/types'
+import { GameProps, ScheduleItemProps } from '../../types/types'
 import { useScreenWidth } from '../../hooks/useScreenWidth'
-
-type ScheduleItemProps = {
-    MAX_ITEMS_PER_PAGE: number
-    nextPage: () => void
-    page: number
-    previousPage: () => void
-}
 
 const ScheduleItem = ({
     MAX_ITEMS_PER_PAGE,

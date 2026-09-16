@@ -7,11 +7,7 @@ import {
 } from 'react'
 import Toast from '../components/toast/Toast'
 import { ContextIsToastVisible } from './ContextIsToastVisible'
-import { ToastProps } from '../types/types'
-
-type ContextToastType = {
-    showToast: (toast: ToastProps) => void
-}
+import { ContextToastType, ToastProps } from '../types/types'
 
 const ContextToast = createContext<ContextToastType | undefined>(undefined)
 

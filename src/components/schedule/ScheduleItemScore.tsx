@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react'
-import { GameProps } from '../../types/types'
+import { ScheduleItemScoreProps } from '../../types/types'
 import FormError from '../form/FormError'
 import FormErrorOpacity from '../form/FormErrorOpacity'
 import ScheduleItemButton from './ScheduleItemButton'
@@ -8,12 +8,6 @@ import { ContextSchedule } from '../../context/ContextSchedule'
 import { getStoredData } from '../../utils/getStoredData'
 import { handleUpdateScore } from '../../api/handleUpdateScore'
 import { useScreenWidth } from '../../hooks/useScreenWidth'
-
-type ScheduleItemScoreProps = {
-    i: GameProps
-    index: number
-    x: number
-}
 
 export const ScheduleItemScore = ({ i, index, x }: ScheduleItemScoreProps) => {
     const SCREEN_WIDTH = useScreenWidth()

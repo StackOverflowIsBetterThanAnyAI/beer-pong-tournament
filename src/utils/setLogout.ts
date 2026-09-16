@@ -1,10 +1,7 @@
 import { cancelAllRequests } from '../api/abortControllerManager'
 import { getStoredData } from './getStoredData'
 import { setItemInStorage } from './setItemInStorage'
-
-type setLogoutProps = {
-    isSessionExpired: boolean
-}
+import { setLogoutProps } from '../types/types'
 
 export const setLogout = ({ isSessionExpired }: setLogoutProps) => {
     cancelAllRequests()

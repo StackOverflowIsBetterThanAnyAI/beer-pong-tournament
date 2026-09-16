@@ -1,10 +1,4 @@
-import { StandingsProps } from '../../types/types'
-
-type StandingsItemProps = {
-    MAX_ITEMS_PER_PAGE: number
-    page: number
-    standings: StandingsProps
-}
+import { StandingsItemProps } from '../../types/types'
 
 const StandingsItem = ({
     MAX_ITEMS_PER_PAGE,

@@ -1,24 +1,5 @@
 import { useEffect } from 'react'
-import {
-    KOStageProps,
-    RegisteredTeamsProps,
-    ScheduleProps,
-    StandingsProps,
-    TournamentGroupsProps,
-} from '../types/types'
-
-type useFocusableItemsProps = {
-    page: number
-    registeredTeams:
-        | KOStageProps
-        | RegisteredTeamsProps
-        | ScheduleProps
-        | StandingsProps
-        | TournamentGroupsProps
-    setFocusableItems: (
-        value: React.SetStateAction<(HTMLInputElement | HTMLButtonElement)[]>
-    ) => void
-}
+import { useFocusableItemsProps } from '../types/types'
 
 export const useFocusableItems = ({
     page,

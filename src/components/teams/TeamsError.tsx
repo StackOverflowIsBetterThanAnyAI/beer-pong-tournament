@@ -1,6 +1,4 @@
-type TeamsErrorProps = {
-    error: string
-}
+import { TeamsErrorProps } from '../../types/types'
 
 const TeamsError = ({ error }: TeamsErrorProps) => {
     return (

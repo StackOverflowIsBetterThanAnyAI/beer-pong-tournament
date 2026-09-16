@@ -1,12 +1,5 @@
 import { useEffect } from 'react'
-import { Location, NavigateFunction } from 'react-router-dom'
-import { ToastProps } from '../types/types'
-
-type useSessionExpiredProps = {
-    location: Location<unknown>
-    navigate: NavigateFunction
-    showToast: (toast: ToastProps) => void
-}
+import { useSessionExpiredProps } from '../types/types'
 
 export const useSessionExpired = ({
     location,

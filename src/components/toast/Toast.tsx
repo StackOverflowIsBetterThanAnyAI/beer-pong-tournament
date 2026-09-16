@@ -1,10 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import { ContextIsToastVisible } from '../../context/ContextIsToastVisible'
-
-type SuccessProps = {
-    isSuccess: boolean
-    label: string
-}
+import { SuccessProps } from '../../types/types'
 
 const Toast = ({ isSuccess, label }: SuccessProps) => {
     const contextIsToastVisible = useContext(ContextIsToastVisible)

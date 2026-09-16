@@ -1,8 +1,4 @@
-import { StandingsProps } from '../../types/types'
-
-type StandingsLegendProps = {
-    standings: StandingsProps
-}
+import { StandingsLegendProps } from '../../types/types'
 
 const StandingsLegend = ({ standings }: StandingsLegendProps) => {
     const thirdAdvance = (() => {

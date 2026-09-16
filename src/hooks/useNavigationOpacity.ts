@@ -1,9 +1,5 @@
 import { useEffect } from 'react'
-
-type useNavigationOpacityProps = {
-    setNavOpacity: React.Dispatch<React.SetStateAction<string>>
-    timerRef: React.RefObject<ReturnType<typeof setTimeout> | null>
-}
+import { useNavigationOpacityProps } from '../types/types'
 
 export const useNavigationOpacity = ({
     setNavOpacity,

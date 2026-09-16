@@ -1,22 +1,8 @@
 import { useEffect } from 'react'
-
-type useSubmitDisabledLoginProps = {
-    confirmPassword: string
-    isSigningUp: boolean
-    password: string
-    passwordPattern: RegExp
-    setIsSubmitDisabled: React.Dispatch<React.SetStateAction<boolean>>
-    userName: string
-    userNamePattern: RegExp
-}
-
-type useSubmitDisabledRegisterProps = {
-    memberOne: string
-    memberTwo: string
-    setIsSubmitDisabled: React.Dispatch<React.SetStateAction<boolean>>
-    teamName: string
-    teamPattern: RegExp
-}
+import {
+    useSubmitDisabledLoginProps,
+    useSubmitDisabledRegisterProps,
+} from '../types/types'
 
 export const useSubmitDisabledLogin = ({
     confirmPassword,
