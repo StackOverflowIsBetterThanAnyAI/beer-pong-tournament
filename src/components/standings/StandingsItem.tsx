@@ -17,8 +17,9 @@ const StandingsItem = ({
                     if (
                         index >= (page - 1) * MAX_ITEMS_PER_PAGE &&
                         index < page * MAX_ITEMS_PER_PAGE
-                    )
+                    ) {
                         return item
+                    }
                 })
                 .map((i) => {
                     return (
