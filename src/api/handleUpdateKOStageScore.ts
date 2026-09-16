@@ -71,9 +71,10 @@ export const handleUpdateKOStageScore = async ({
             setKOStage,
             setTournamentWinner,
         })
-    } catch (_error) {
+    } catch (error) {
         setApiError('An error occurred while updating the Score.')
         setTimeout(() => setApiError(''), 4000)
+        console.log(error)
     } finally {
         setIsLoading(false)
     }

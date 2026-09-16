@@ -48,8 +48,9 @@ export const handleLoadRegisteredTeams = async ({
         const teams: RegisteredTeamsProps = await response.json()
         setRegisteredTeams(teams)
         setItemInStorage('registeredteams', teams)
-    } catch (_error) {
+    } catch (error) {
         setApiError('An error occurred while fetching the registered teams.')
+        console.log(error)
     } finally {
         setIsLoading(false)
     }

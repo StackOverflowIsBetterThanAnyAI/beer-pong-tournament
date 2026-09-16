@@ -84,7 +84,8 @@ export const handleLoadKOStage = async ({
                 setTournamentWinner(winner)
             }
         }
-    } catch (_error) {
+    } catch (error) {
         setApiError('An error occurred while loading the Knockout Stage.')
+        console.log(error)
     }
 }

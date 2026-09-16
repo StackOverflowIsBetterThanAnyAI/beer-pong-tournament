@@ -67,8 +67,9 @@ export const handleLoadSchedule = async ({
                 setIsGroupstageOver(false)
             }
         }
-    } catch (_error) {
+    } catch (error) {
         setApiError('An error occurred while loading the schedule.')
+        console.log(error)
     } finally {
         setIsLoading(false)
     }

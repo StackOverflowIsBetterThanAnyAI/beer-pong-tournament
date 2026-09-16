@@ -69,7 +69,8 @@ export const handleDeleteGroups = async ({
             setApiError,
             setKOStage,
         })
-    } catch (_error) {
+    } catch (error) {
         setApiError('An error occurred while deleting the current groups.')
+        console.log(error)
     }
 }

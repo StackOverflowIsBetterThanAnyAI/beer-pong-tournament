@@ -46,8 +46,9 @@ export const handleLogin = async ({
         const token: { access: string; refresh: string } = await response.json()
 
         handleAdmin({ setApiError, setIsAdmin, setIsLoggedIn, token })
-    } catch (_error) {
+    } catch (error) {
         setApiError('An error occurred while trying to login.')
+        console.log(error)
     } finally {
         setIsLoading(false)
     }

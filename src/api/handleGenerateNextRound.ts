@@ -61,9 +61,10 @@ export const handleGenerateNextRound = async ({
             setKOStage,
             setTournamentWinner,
         })
-    } catch (_error) {
+    } catch (error) {
         setApiError(
             'An error occurred while generating the next round of the Knockout Stage.'
         )
+        console.log(error)
     }
 }

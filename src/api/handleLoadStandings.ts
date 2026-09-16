@@ -53,8 +53,9 @@ export const handleLoadStandings = async ({
         const standings: StandingsProps = await response.json()
         setItemInStorage('standings', standings)
         setStandings(standings)
-    } catch (_error) {
+    } catch (error) {
         setApiError('An error occurred while fetching the current standings.')
+        console.log(error)
     } finally {
         setIsLoading(false)
     }

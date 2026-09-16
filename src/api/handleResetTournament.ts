@@ -59,9 +59,10 @@ export const handleResetTournament = async ({
         setItemInStorage('standings', [])
 
         window.location.href = '/'
-    } catch (_error) {
+    } catch (error) {
         setApiError('An error occurred while resetting the tournament.')
         setTimeout(() => setApiError(''), 4000)
+        console.log(error)
     } finally {
         setIsDisabled(false)
     }
