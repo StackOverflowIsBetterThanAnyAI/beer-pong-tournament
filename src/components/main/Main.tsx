@@ -64,12 +64,9 @@ const Main = () => {
     }
     const [tournamentWinner, setTournamentWinner] = contextTournamentWinner
 
-    const [accessToken, _setAccessToken] = useState<string>(
-        parsedStorageData?.access || ''
-    )
-    const [refreshToken, _setRefreshToken] = useState<string>(
-        parsedStorageData?.refresh || ''
-    )
+    const accessToken = parsedStorageData?.access || ''
+    const refreshToken = parsedStorageData?.refresh || ''
+    const isGroupstageOver = parsedStorageData?.isgroupstageover ?? false
 
     const [apiError, setApiError] = useState<string>('')
     const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -80,10 +77,6 @@ const Main = () => {
     const [lastKOMatch, setLastKOMatch] = useState<KOMatchProps | null>(null)
     const [upcomingKOMatch, setUpcomingKOMatch] = useState<KOMatchProps | null>(
         null
-    )
-
-    const [isGroupstageOver, _setIsGroupstageOver] = useState<boolean>(
-        parsedStorageData?.isgroupstageover ?? false
     )
 
     const anchorRef = useRef<HTMLAnchorElement>(null)
