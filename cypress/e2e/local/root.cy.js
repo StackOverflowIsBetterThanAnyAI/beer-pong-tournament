@@ -4,16 +4,6 @@ describe('root', () => {
     before(() => {
         cy.visit('/')
 
-        cy.request({
-            method: 'DELETE',
-            url: 'http://127.0.0.1:8000/api/v1/test_utils/__delete-cypress-test-user/',
-            failOnStatusCode: false,
-        }).then((response) => {
-            if (![200, 204].includes(response.status)) {
-                throw new Error(`Unexpected error: ${response.status}`)
-            }
-        })
-
         cy.get('[data-testid="login-user-input"]')
             .should('exist')
             .type('CypressTestUser')
@@ -74,17 +64,5 @@ describe('root', () => {
             'have.text',
             'Knockout Stage'
         )
-    })
-
-    after(() => {
-        cy.request({
-            method: 'DELETE',
-            url: 'http://127.0.0.1:8000/api/v1/test_utils/__delete-cypress-test-user/',
-            failOnStatusCode: false,
-        }).then((response) => {
-            if (![200, 204].includes(response.status)) {
-                throw new Error(`Unexpected error: ${response.status}`)
-            }
-        })
     })
 })

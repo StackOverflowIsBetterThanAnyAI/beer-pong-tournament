@@ -53,16 +53,6 @@ describe('login', () => {
             const parsed = JSON.parse(storage)
             expect(parsed.username).to.equal('CypressTestUser')
         })
-
-        cy.request({
-            method: 'DELETE',
-            url: 'http://127.0.0.1:8000/api/v1/test_utils/__delete-cypress-test-user/',
-            failOnStatusCode: false,
-        }).then((response) => {
-            if (![200, 204].includes(response.status)) {
-                throw new Error(`Unexpected error: ${response.status}`)
-            }
-        })
     })
 
     it('should initially display signup form', () => {
