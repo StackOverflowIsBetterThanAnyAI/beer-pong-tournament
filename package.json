@@ -37,7 +37,7 @@
         "vite": "^6.4.3"
     },
     "allowScripts": {
-        "cypress@15.20.1": true,
+        "cypress@15.21.1": true,
         "esbuild@0.25.2": true
     }
 }
