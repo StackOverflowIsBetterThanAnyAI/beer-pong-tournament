@@ -55,12 +55,9 @@ const RegisterTeam = () => {
     }
     const [_schedule, setSchedule] = contextSchedule
 
-    const [accessToken, _setAccessToken] = useState<string>(
-        parsedStorageData?.access || ''
-    )
-    const [refreshToken, _setRefreshToken] = useState<string>(
-        parsedStorageData?.refresh || ''
-    )
+    const accessToken = parsedStorageData?.access || ''
+    const refreshToken = parsedStorageData?.refresh || ''
+
     const [teamName, setTeamName] = useState<string>(
         parsedSessionData?.teamname || ''
     )

@@ -51,12 +51,8 @@ export const Teams = () => {
 
     const MAX_ITEMS_PER_PAGE = useItemsPerPage()
 
-    const [accessToken, _setAccessToken] = useState<string>(
-        parsedStorageData?.access || ''
-    )
-    const [refreshToken, _setRefreshToken] = useState<string>(
-        parsedStorageData?.refresh || ''
-    )
+    const accessToken = parsedStorageData?.access || ''
+    const refreshToken = parsedStorageData?.refresh || ''
 
     const [apiErrorLoad, setApiErrorLoad] = useState<string>('')
     const [apiErrorDelete, setApiErrorDelete] = useState<string>('')

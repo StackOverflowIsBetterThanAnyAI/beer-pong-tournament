@@ -20,12 +20,8 @@ const Standings = () => {
 
     const parsedStorageData = getStoredData()
 
-    const [accessToken, _setAccessToken] = useState<string>(
-        parsedStorageData?.access || ''
-    )
-    const [refreshToken, _setRefreshToken] = useState<string>(
-        parsedStorageData?.refresh || ''
-    )
+    const accessToken = parsedStorageData?.access || ''
+    const refreshToken = parsedStorageData?.refresh || ''
 
     const [standings, setStandings] = useState<StandingsProps>(
         parsedStorageData?.standings || []
