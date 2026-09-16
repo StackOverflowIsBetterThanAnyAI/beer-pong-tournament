@@ -1,27 +1,8 @@
 import { useState } from 'react'
 import { useFocusTrapPage } from '../../hooks/useFocusTrapPage'
-import {
-    KOStageProps,
-    RegisteredTeamsProps,
-    ScheduleProps,
-    StandingsProps,
-    TournamentGroupsProps,
-} from './../../types/types'
+import { PageNavigationProps } from './../../types/types'
 import { useFocusableItems } from '../../hooks/useFocusableItems'
-
-type PageNavigationProps = {
-    isMatch?: boolean
-    MAX_ITEMS_PER_PAGE: number
-    nextPage: () => void
-    page: number
-    previousPage: () => void
-    registeredTeams:
-        | KOStageProps
-        | RegisteredTeamsProps
-        | ScheduleProps
-        | StandingsProps
-        | TournamentGroupsProps
-}
+import PageNavigationButton from './PageNavigationButton'
 
 const PageNavigation = ({
     isMatch = false,
@@ -55,45 +36,20 @@ const PageNavigation = ({
     return (
         <div className="flex flex-col gap-2 w-full max-w-96 mt-4 mx-auto">
             <div className="bg-stone-300 grid min-[280px]:grid-cols-3 gap-y-1 w-full text-center m-auto py-1 rounded-lg">
-                <button
-                    className="previouspage text-normal bg-stone-300 outline outline-stone-500 disabled:outline-stone-400 disabled:bg-stone-400/20 disabled:text-stone-600 px-2 py-0.5 rounded-md
-                    hover:bg-stone-400/30 active:bg-stone-400/60"
-                    aria-label={`${
-                        page <= 1
-                            ? 'You are already at the first page.'
-                            : 'Go to the previous page'
-                    }`}
-                    onClick={previousPage}
-                    disabled={page <= 1}
-                    title={`${
-                        page <= 1
-                            ? 'You are already at the first page.'
-                            : 'Go to previous page'
-                    }`}
-                >
-                    Previous
-                </button>
+                <PageNavigationButton
+                    MAX_ITEMS_PER_PAGE={MAX_ITEMS_PER_PAGE}
+                    changePage={previousPage}
+                    page={page}
+                    registeredTeams={registeredTeams}
+                />
                 <span className="text-large">{page}</span>
-                <button
-                    className="nextpage text-normal bg-stone-300 outline outline-stone-500 disabled:outline-stone-400 disabled:bg-stone-400/20 disabled:text-stone-600 px-2 py-0.5 rounded-md
-                    hover:bg-stone-400/30 active:bg-stone-400/60"
-                    aria-label={`${
-                        page >= registeredTeams.length / MAX_ITEMS_PER_PAGE
-                            ? 'You are already at the last page.'
-                            : 'Go to the next page'
-                    }`}
-                    onClick={nextPage}
-                    disabled={
-                        page >= registeredTeams.length / MAX_ITEMS_PER_PAGE
-                    }
-                    title={`${
-                        page >= registeredTeams.length / MAX_ITEMS_PER_PAGE
-                            ? 'You are already at the last page.'
-                            : 'Go to next page'
-                    }`}
-                >
-                    Next
-                </button>
+                <PageNavigationButton
+                    MAX_ITEMS_PER_PAGE={MAX_ITEMS_PER_PAGE}
+                    changePage={nextPage}
+                    page={page}
+                    registeredTeams={registeredTeams}
+                    isNext
+                />
             </div>
             {focusableItems.length ? (
                 <button
