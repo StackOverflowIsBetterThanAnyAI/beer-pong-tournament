@@ -67,12 +67,8 @@ export const GroupsGenerator = () => {
     }
     const [_schedule, setSchedule] = contextSchedule
 
-    const [accessToken, _setAccessToken] = useState<string>(
-        parsedStorageData?.access || ''
-    )
-    const [refreshToken, _setRefreshToken] = useState<string>(
-        parsedStorageData?.refresh || ''
-    )
+    const accessToken = parsedStorageData?.access || ''
+    const refreshToken = parsedStorageData?.refresh || ''
 
     const [page, setPage] = useState<number>(parsedSessionData?.grouppage || 1)
 

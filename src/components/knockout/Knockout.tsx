@@ -57,12 +57,8 @@ const Knockout = () => {
     }
     const [tournamentWinner, setTournamentWinner] = contextTournamentWinner
 
-    const [accessToken, _setAccessToken] = useState<string>(
-        parsedStorageData?.access || ''
-    )
-    const [refreshToken, _setRefreshToken] = useState<string>(
-        parsedStorageData?.refresh || ''
-    )
+    const accessToken = parsedStorageData?.access || ''
+    const refreshToken = parsedStorageData?.refresh || ''
 
     const [page, setPage] = useState<number>(
         parsedSessionData?.kostagepage || 1
