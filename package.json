@@ -8,7 +8,8 @@
         "start": "vite",
         "host": "vite --host",
         "build": "tsc -b && vite build",
-        "lint": "eslint ."
+        "lint": "eslint .",
+        "format:check": "npx --yes prettier --check \"src/**/*.{js,jsx,ts,tsx,json,css,md}\""
     },
     "dependencies": {
         "@tailwindcss/vite": "^4.3.3",
