@@ -30,12 +30,8 @@ export const ScheduleItemScore = ({ i, index, x }: ScheduleItemScoreProps) => {
     }
     const [_schedule, setSchedule] = contextSchedule
 
-    const [accessToken, _setAccessToken] = useState<string>(
-        parsedStorageData?.access || ''
-    )
-    const [refreshToken, _setRefreshToken] = useState<string>(
-        parsedStorageData?.refresh || ''
-    )
+    const accessToken = parsedStorageData?.access || ''
+    const refreshToken = parsedStorageData?.refresh || ''
 
     const [scoreTeam1, setScoreTeam1] = useState<string | null>(null)
     const [scoreTeam2, setScoreTeam2] = useState<string | null>(null)

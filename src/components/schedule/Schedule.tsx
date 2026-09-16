@@ -27,12 +27,8 @@ const Schedule = () => {
     }
     const [schedule, setSchedule] = contextSchedule
 
-    const [accessToken, _setAccessToken] = useState<string>(
-        parsedStorageData?.access || ''
-    )
-    const [refreshToken, _setRefreshToken] = useState<string>(
-        parsedStorageData?.refresh || ''
-    )
+    const accessToken = parsedStorageData?.access || ''
+    const refreshToken = parsedStorageData?.refresh || ''
 
     const [apiError, setApiError] = useState<string>('')
     const [isLoading, setIsLoading] = useState<boolean>(false)
