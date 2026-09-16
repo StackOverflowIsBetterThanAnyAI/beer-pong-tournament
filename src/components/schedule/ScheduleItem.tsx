@@ -21,7 +21,7 @@ const ScheduleItem = ({
             'ScheduleItem must be used within a ContextSchedule.Provider'
         )
     }
-    const [schedule, _setSchedule] = contextSchedule
+    const [schedule] = contextSchedule
 
     const groupedSchedule = schedule.reduce(
         (total, cur) => {

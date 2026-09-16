@@ -16,7 +16,7 @@ const KnockoutMatchScore = ({ i, setKOStage }: KnockoutMatchScoreProps) => {
             'KnockoutMatchScore must be used within a ContextAdmin.Provider'
         )
     }
-    const [isAdmin, _setIsAdmin] = contextAdmin
+    const [isAdmin] = contextAdmin
 
     const contextTournamentWinner = useContext(ContextTournamentWinner)
     if (!contextTournamentWinner) {

@@ -17,7 +17,7 @@ const KnockoutChampion = () => {
             'GroupsGenerator must be used within a ContextAdmin.Provider'
         )
     }
-    const [isAdmin, _setIsAdmin] = contextAdmin
+    const [isAdmin] = contextAdmin
 
     const contextTournamentWinner = useContext(ContextTournamentWinner)
     if (!contextTournamentWinner) {
@@ -25,7 +25,7 @@ const KnockoutChampion = () => {
             'KnockoutMatchScore must be used within a ContextTournamentWinner.Provider'
         )
     }
-    const [tournamentWinner, _setTournamentWinner] = contextTournamentWinner
+    const [tournamentWinner] = contextTournamentWinner
 
     const accessToken = parsedStorageData?.access || ''
     const refreshToken = parsedStorageData?.refresh || ''

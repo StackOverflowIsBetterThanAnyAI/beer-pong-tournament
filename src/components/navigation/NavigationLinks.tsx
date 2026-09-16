@@ -17,7 +17,7 @@ const NavigationLinks = () => {
             'NavigationLinks must be used within a ContextIsLoggedIn.Provider'
         )
     }
-    const [isLoggedIn, _setIsLoggedIn] = contextIsLoggedIn
+    const [isLoggedIn] = contextIsLoggedIn
 
     const [isNavigationExpanded, setIsNavigationExpanded] = useState<
         boolean | undefined

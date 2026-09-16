@@ -33,7 +33,7 @@ export const GroupsGenerator = () => {
             'GroupsGenerator must be used within a ContextAdmin.Provider'
         )
     }
-    const [isAdmin, _setIsAdmin] = contextAdmin
+    const [isAdmin] = contextAdmin
 
     const contextGroups = useContext(ContextGroups)
     if (!contextGroups) {

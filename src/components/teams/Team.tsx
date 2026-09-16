@@ -7,7 +7,7 @@ const Team = ({ handleDelete, index, isLoading, item }: TeamProps) => {
     if (!contextAdmin) {
         throw new Error('Teams must be used within a ContextAdmin.Provider')
     }
-    const [isAdmin, _setIsAdmin] = contextAdmin
+    const [isAdmin] = contextAdmin
 
     return (
         <li

@@ -20,7 +20,7 @@ export const ScheduleItemScore = ({ i, index, x }: ScheduleItemScoreProps) => {
             'ScheduleItemScore must be used within a ContextAdmin.Provider'
         )
     }
-    const [isAdmin, _setIsAdmin] = contextAdmin
+    const [isAdmin] = contextAdmin
 
     const contextSchedule = useContext(ContextSchedule)
     if (!contextSchedule) {

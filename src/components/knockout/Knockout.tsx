@@ -25,13 +25,13 @@ const Knockout = () => {
     if (!contextAdmin) {
         throw new Error('Knockout must be used within a ContextAdmin.Provider')
     }
-    const [isAdmin, _setIsAdmin] = contextAdmin
+    const [isAdmin] = contextAdmin
 
     const contextGroups = useContext(ContextGroups)
     if (!contextGroups) {
         throw new Error('Knockout must be used within a ContextGroups.Provider')
     }
-    const [groups, _setGroups] = contextGroups
+    const [groups] = contextGroups
 
     const contextKOStage = useContext(ContextKOStage)
     if (!contextKOStage) {
