@@ -1,7 +1,70 @@
+import { HTMLInputAutoCompleteAttribute } from 'react'
 import { Location, NavigateFunction } from 'react-router-dom'
 
 export type ContextToastType = {
     showToast: (toast: ToastProps) => void
+}
+
+export type FormErrorProps = {
+    error: string
+}
+
+export type FormHeaderProps = {
+    header?: string
+    subHeader?: string
+}
+
+export type FormInputProps = {
+    autoComplete: HTMLInputAutoCompleteAttribute
+    error: string | boolean
+    id: string
+    label: string
+    maxLength: number
+    minLength: number
+    onInput: (e: React.ChangeEvent<HTMLInputElement>) => void
+    onPaste?: React.ClipboardEventHandler<HTMLInputElement>
+    onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void
+    placeholder: string
+    ref?: React.RefObject<HTMLInputElement | null>
+    testID?: string
+    title: string
+    type: string
+    value: string
+}
+
+export type FormInputPasswordProps = {
+    autoComplete: HTMLInputAutoCompleteAttribute
+    error: string | boolean
+    id: string
+    isDisabled?: boolean
+    isHidden?: boolean
+    label: string
+    maxLength: number
+    minLength: number
+    onInput: (e: React.ChangeEvent<HTMLInputElement>) => void
+    onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void
+    testID?: string
+    title: string
+    value: string
+}
+
+export type FormSubmitProps = {
+    handleClick: (e: React.MouseEvent<HTMLInputElement>) => void
+    isDisabled: boolean
+    isLoading: boolean
+    testID?: string
+    value: string
+}
+
+export type FormSwitchProps = {
+    isSigningUp: boolean
+    handleClick: (e: React.MouseEvent<HTMLButtonElement>) => void
+}
+
+export type GroupsProps = {
+    groups: TournamentGroupsProps
+    page: number
+    setPage: React.Dispatch<React.SetStateAction<number>>
 }
 
 export type RegisteredTeamProps = {
@@ -37,6 +100,28 @@ export type KOMatchProps = {
 }
 
 export type KOStageProps = KOMatchProps[]
+
+export type KnockoutMatchProps = {
+    koStage: KOStageProps
+    page: number
+    setKOStage: React.Dispatch<React.SetStateAction<KOStageProps>>
+    setPage: React.Dispatch<React.SetStateAction<number>>
+    tournamentWinner: string
+}
+
+export type KnockoutMatchButtonProps = {
+    handleClick: (id: number, score_team1: string, score_team2: string) => void
+    i: KOMatchProps
+    isDisabled: boolean
+    isLoading: boolean
+    scoreTeam1: string | null
+    scoreTeam2: string | null
+}
+
+export type KnockoutMatchScoreProps = {
+    i: KOMatchProps
+    setKOStage: React.Dispatch<React.SetStateAction<KOStageProps>>
+}
 
 export type MainMatchProps = {
     item: GameProps | KOMatchProps

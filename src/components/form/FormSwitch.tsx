@@ -1,7 +1,4 @@
-type FormSwitchProps = {
-    isSigningUp: boolean
-    handleClick: (e: React.MouseEvent<HTMLButtonElement>) => void
-}
+import { FormSwitchProps } from '../../types/types'
 
 const FormSwitch = ({ isSigningUp, handleClick }: FormSwitchProps) => {
     const loginStyle = isSigningUp

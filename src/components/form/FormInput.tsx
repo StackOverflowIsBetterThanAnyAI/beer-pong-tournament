@@ -1,22 +1,4 @@
-import { HTMLInputAutoCompleteAttribute } from 'react'
-
-type FormInputProps = {
-    autoComplete: HTMLInputAutoCompleteAttribute
-    error: string | boolean
-    id: string
-    label: string
-    maxLength: number
-    minLength: number
-    onInput: (e: React.ChangeEvent<HTMLInputElement>) => void
-    onPaste?: React.ClipboardEventHandler<HTMLInputElement>
-    onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void
-    placeholder: string
-    ref?: React.RefObject<HTMLInputElement | null>
-    testID?: string
-    title: string
-    type: string
-    value: string
-}
+import { FormInputProps } from '../../types/types'
 
 const FormInput = ({
     autoComplete,

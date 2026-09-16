@@ -1,21 +1,6 @@
-import { HTMLInputAutoCompleteAttribute, useContext } from 'react'
+import { useContext } from 'react'
+import { FormInputPasswordProps } from '../../types/types'
 import { ContextPasswordVisibility } from './../../context/ContextPasswordVisibility'
-
-type FormInputPasswordProps = {
-    autoComplete: HTMLInputAutoCompleteAttribute
-    error: string | boolean
-    id: string
-    isDisabled?: boolean
-    isHidden?: boolean
-    label: string
-    maxLength: number
-    minLength: number
-    onInput: (e: React.ChangeEvent<HTMLInputElement>) => void
-    onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void
-    testID?: string
-    title: string
-    value: string
-}
 
 const FormInputPassword = ({
     autoComplete,

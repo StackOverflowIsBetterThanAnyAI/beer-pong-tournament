@@ -1,8 +1,5 @@
 import { useEffect, useState } from 'react'
-
-type FormErrorProps = {
-    error: string
-}
+import { FormErrorProps } from '../../types/types'
 
 const FormErrorOpacity = ({ error }: FormErrorProps) => {
     const [opacity, setOpacity] = useState<string>('opacity-100')

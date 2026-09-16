@@ -1,7 +1,4 @@
-type FormHeaderProps = {
-    header?: string
-    subHeader?: string
-}
+import { FormHeaderProps } from '../../types/types'
 
 const FormHeader = ({ header, subHeader }: FormHeaderProps) => {
     const subHeaderElement = (() => {

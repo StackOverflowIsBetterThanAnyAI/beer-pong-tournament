@@ -1,16 +1,11 @@
 import { useContext, useState } from 'react'
 import FormError from '../form/FormError'
 import KnockoutMatchButton from './KnockoutMatchButton'
-import { KOMatchProps, KOStageProps } from '../../types/types'
+import { KnockoutMatchScoreProps } from '../../types/types'
 import { ContextAdmin } from '../../context/ContextAdmin'
 import { ContextTournamentWinner } from '../../context/ContextTournamentWinner'
 import { getStoredData } from '../../utils/getStoredData'
 import { handleUpdateKOStageScore } from '../../api/handleUpdateKOStageScore'
-
-type KnockoutMatchScoreProps = {
-    i: KOMatchProps
-    setKOStage: React.Dispatch<React.SetStateAction<KOStageProps>>
-}
 
 const KnockoutMatchScore = ({ i, setKOStage }: KnockoutMatchScoreProps) => {
     const parsedStorageData = getStoredData()
@@ -31,12 +26,8 @@ const KnockoutMatchScore = ({ i, setKOStage }: KnockoutMatchScoreProps) => {
     }
     const [_tournamentWinner, setTournamentWinner] = contextTournamentWinner
 
-    const [accessToken, _setAccessToken] = useState<string>(
-        parsedStorageData?.access || ''
-    )
-    const [refreshToken, _setRefreshToken] = useState<string>(
-        parsedStorageData?.refresh || ''
-    )
+    const accessToken = parsedStorageData?.access || ''
+    const refreshToken = parsedStorageData?.refresh || ''
 
     const [scoreTeam1, setScoreTeam1] = useState<string | null>(null)
     const [scoreTeam2, setScoreTeam2] = useState<string | null>(null)

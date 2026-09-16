@@ -1,6 +1,4 @@
-type FormErrorProps = {
-    error: string
-}
+import { FormErrorProps } from '../../types/types'
 
 const FormError = ({ error }: FormErrorProps) => {
     return (

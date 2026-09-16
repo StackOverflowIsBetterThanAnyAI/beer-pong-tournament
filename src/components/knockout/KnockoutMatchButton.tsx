@@ -1,14 +1,5 @@
 import { FetchLoading } from 'fetch-loading'
-import { KOMatchProps } from '../../types/types'
-
-type KnockoutMatchButtonProps = {
-    handleClick: (id: number, score_team1: string, score_team2: string) => void
-    i: KOMatchProps
-    isDisabled: boolean
-    isLoading: boolean
-    scoreTeam1: string | null
-    scoreTeam2: string | null
-}
+import { KnockoutMatchButtonProps } from '../../types/types'
 
 const KnockoutMatchButton = ({
     handleClick,

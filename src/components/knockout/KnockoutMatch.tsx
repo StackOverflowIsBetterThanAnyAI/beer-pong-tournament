@@ -3,18 +3,10 @@ import KnockoutChampion from './KnockoutChampion'
 import KnockoutLegend from './KnockoutLegend'
 import KnockoutMatchScore from './KnockoutMatchScore'
 import PageNavigation from '../page/PageNavigation'
-import { KOStageProps } from '../../types/types'
+import { KnockoutMatchProps } from '../../types/types'
 import { setItemInSessionStorage } from '../../utils/setItemInSessionStorage'
 import { useUpdatePage } from '../../hooks/useUpdatePage'
 import { useKOMatchesPerPage } from '../../hooks/useKOMatchesPerPage'
-
-type KnockoutMatchProps = {
-    koStage: KOStageProps
-    page: number
-    setKOStage: React.Dispatch<React.SetStateAction<KOStageProps>>
-    setPage: React.Dispatch<React.SetStateAction<number>>
-    tournamentWinner: string
-}
 
 const KnockoutMatch = ({
     koStage,

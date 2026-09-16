@@ -1,16 +1,10 @@
 import GroupsLegend from './GroupsLegend'
 import PageNavigation from '../page/PageNavigation'
-import { TournamentGroupsProps } from '../../types/types'
+import { GroupsProps } from '../../types/types'
 import { setItemInSessionStorage } from '../../utils/setItemInSessionStorage'
 import { useScreenWidth } from '../../hooks/useScreenWidth'
 import { useTeamsPerPage } from '../../hooks/useTeamsPerPage'
 import { useUpdatePage } from '../../hooks/useUpdatePage'
-
-type GroupsProps = {
-    groups: TournamentGroupsProps
-    page: number
-    setPage: React.Dispatch<React.SetStateAction<number>>
-}
 
 const Groups = ({ groups, page, setPage }: GroupsProps) => {
     const MAX_ITEMS_PER_PAGE = useTeamsPerPage()
