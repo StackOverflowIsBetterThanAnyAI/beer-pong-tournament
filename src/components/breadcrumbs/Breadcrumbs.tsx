@@ -22,7 +22,6 @@ const Breadcrumbs = () => {
             data-testid="breadcrumbs"
         >
             <Link
-                aria-label="Home"
                 className="text-small underline rounded-sm px-1 py-0.5
                 decoration-zinc-600/50 dark:decoration-zinc-300/50 text-zinc-600 dark:text-zinc-300 last:decoration-zinc-900/50 dark:last:decoration-zinc-100/50 last:text-zinc-900 dark:last:text-zinc-100"
                 to="/"
