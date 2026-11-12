@@ -9,19 +9,16 @@ const FormSubmit = ({
     value,
 }: FormSubmitProps) => {
     return isLoading ? (
-        <button
-            className="flex items-center justify-center w-32 sm:w-40 sm:h-9 self-center text-large bg-stone-200 outline outline-stone-500 text-stone-600 px-2 py-1 mb-1 sm:mb-4 mt-4 rounded-xl"
-            aria-label={`${value} disabled.`}
-            disabled={true}
-            title={`${value} disabled.`}
-        >
-            <FetchLoading theme="#44403c" />
-        </button>
+        <FetchLoading
+            theme="#44403c"
+            center
+            className="cursor-not-allowed w-40! sm:w-48! h-8! sm:h-9! bg-stone-200 outline outline-stone-500 px-8 py-0.5 mb-1 mx-auto sm:mb-4 mt-4 rounded-md"
+        />
     ) : (
         <input
             type="button"
             data-testid={testID}
-            className="w-32 sm:w-40 self-center text-large bg-stone-100 disabled:bg-stone-200 outline disabled:outline-0 outline-stone-500 disabled:text-stone-600 px-2 py-1 mb-1 sm:mb-4 mt-4 rounded-xl
+            className="w-40 sm:w-48 h-8 sm:h-9 mx-auto text-large bg-stone-100 disabled:bg-stone-200 outline disabled:outline-0 outline-stone-500 disabled:text-stone-600 px-8 py-0.5 mb-1 sm:mb-4 mt-4 rounded-md
             enabled:hover:bg-zinc-300 enabled:active:bg-zinc-400"
             aria-label={`${value}${isDisabled ? ' disabled.' : ''}`}
             onClick={handleClick}
