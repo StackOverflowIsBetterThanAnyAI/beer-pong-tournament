@@ -58,7 +58,7 @@ const ConfirmDialog = ({
             <div className="p-4 sm:p-6">
                 <h2
                     id={titleId}
-                    className="text-center font-semibold text-extra-large pb-2"
+                    className="text-center font-bold text-extra-large pb-2"
                 >
                     {title}
                 </h2>

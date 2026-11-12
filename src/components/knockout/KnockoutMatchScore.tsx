@@ -172,7 +172,7 @@ const KnockoutMatchScore = ({ i, setKOStage }: KnockoutMatchScoreProps) => {
                                 i.round === 'QF' || i.round === 'F'
                                     ? 'bg-red-400 outline-red-600!'
                                     : 'bg-stone-400/70 outline-stone-500!'
-                            } w-16 h-8 lg:h-9 text-center font-semibold rounded-md outline placeholder:font-normal placeholder:text-stone-800`}
+                            } w-16 h-8 lg:h-9 text-center font-bold rounded-md outline placeholder:font-normal placeholder:text-stone-800`}
                         />
                     ) : (
                         '-'
@@ -240,7 +240,7 @@ const KnockoutMatchScore = ({ i, setKOStage }: KnockoutMatchScoreProps) => {
                                 i.round === 'QF' || i.round === 'F'
                                     ? 'bg-red-400 outline-red-600!'
                                     : 'bg-stone-400/70 outline-stone-500!'
-                            } w-16 h-8 lg:h-9 text-center font-semibold rounded-md outline placeholder:font-normal placeholder:text-stone-800`}
+                            } w-16 h-8 lg:h-9 text-center font-bold rounded-md outline placeholder:font-normal placeholder:text-stone-800`}
                         />
                     ) : (
                         '-'

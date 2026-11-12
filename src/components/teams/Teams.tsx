@@ -126,7 +126,7 @@ export const Teams = () => {
             className="w-full max-w-7xl relative isolate bg-stone-300 text-stone-950 lg:rounded-lg p-3 sm:p-4 lg:p-6
             drop-shadow-stone-500 dark:drop-shadow-stone-900 drop-shadow-sm"
         >
-            <h1 className="heading-accent text-center font-semibold text-extra-large pt-2 pb-2">
+            <h1 className="heading-accent text-center font-bold text-extra-large pt-2 pb-2">
                 Registered Teams
             </h1>
             {isLoading && !registeredTeams.length ? (

@@ -42,7 +42,7 @@ const FormHeader = ({ header, subHeader }: FormHeaderProps) => {
     return (
         <>
             {header ? (
-                <h1 className="heading-accent text-center font-semibold text-extra-large pt-2 pb-2">
+                <h1 className="heading-accent text-center font-bold text-extra-large pt-2 pb-2">
                     {header}
                 </h1>
             ) : null}

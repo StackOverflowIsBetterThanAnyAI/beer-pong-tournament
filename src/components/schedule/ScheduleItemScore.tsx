@@ -196,7 +196,7 @@ export const ScheduleItemScore = ({ i, index, x }: ScheduleItemScoreProps) => {
                             value={scoreTeam1 ?? ''}
                             aria-label="Score between 0 and 10."
                             title="Score between 0 and 10."
-                            className={`page ${background} w-16 h-8 lg:h-9 text-center font-semibold rounded-md outline placeholder:font-normal placeholder:text-stone-800`}
+                            className={`page ${background} w-16 h-8 lg:h-9 text-center font-bold rounded-md outline placeholder:font-normal placeholder:text-stone-800`}
                         />
                     ) : (
                         '-'
@@ -254,7 +254,7 @@ export const ScheduleItemScore = ({ i, index, x }: ScheduleItemScoreProps) => {
                             value={scoreTeam2 ?? ''}
                             aria-label="Score between 0 and 10."
                             title="Score between 0 and 10."
-                            className={`page ${background} w-16 h-8 lg:h-9 text-center font-semibold rounded-md outline placeholder:font-normal placeholder:text-stone-800`}
+                            className={`page ${background} w-16 h-8 lg:h-9 text-center font-bold rounded-md outline placeholder:font-normal placeholder:text-stone-800`}
                         />
                     ) : (
                         '-'
