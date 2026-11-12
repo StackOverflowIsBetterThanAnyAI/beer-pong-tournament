@@ -176,6 +176,10 @@ export const ScheduleItemScore = ({ i, index, x }: ScheduleItemScoreProps) => {
                         <input
                             id={`input${i.team1}vs${i.team2}`}
                             inputMode="numeric"
+                            pattern="[0-9]*"
+                            autoComplete="off"
+                            enterKeyHint="done"
+                            placeholder="0-10"
                             type="text"
                             min={0}
                             max={10}
@@ -192,7 +196,7 @@ export const ScheduleItemScore = ({ i, index, x }: ScheduleItemScoreProps) => {
                             value={scoreTeam1 ?? ''}
                             aria-label="Score between 0 and 10."
                             title="Score between 0 and 10."
-                            className={`page ${background} w-16 pl-1 rounded-sm`}
+                            className={`page ${background} w-16 h-8 lg:h-9 text-center font-semibold rounded-md outline placeholder:font-normal placeholder:text-stone-800`}
                         />
                     ) : (
                         '-'
@@ -230,6 +234,10 @@ export const ScheduleItemScore = ({ i, index, x }: ScheduleItemScoreProps) => {
                         <input
                             id={`input${i.team2}vs${i.team1}`}
                             inputMode="numeric"
+                            pattern="[0-9]*"
+                            autoComplete="off"
+                            enterKeyHint="done"
+                            placeholder="0-10"
                             type="text"
                             min={0}
                             max={10}
@@ -246,7 +254,7 @@ export const ScheduleItemScore = ({ i, index, x }: ScheduleItemScoreProps) => {
                             value={scoreTeam2 ?? ''}
                             aria-label="Score between 0 and 10."
                             title="Score between 0 and 10."
-                            className={`page ${background} w-16 pl-1 rounded-sm`}
+                            className={`page ${background} w-16 h-8 lg:h-9 text-center font-semibold rounded-md outline placeholder:font-normal placeholder:text-stone-800`}
                         />
                     ) : (
                         '-'

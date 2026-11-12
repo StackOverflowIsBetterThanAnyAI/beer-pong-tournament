@@ -148,6 +148,10 @@ const KnockoutMatchScore = ({ i, setKOStage }: KnockoutMatchScoreProps) => {
                         <input
                             id={`input${i.team1}vs${i.team2}`}
                             inputMode="numeric"
+                            pattern="[0-9]*"
+                            autoComplete="off"
+                            enterKeyHint="done"
+                            placeholder="0-10"
                             type="text"
                             min={0}
                             max={10}
@@ -168,7 +172,7 @@ const KnockoutMatchScore = ({ i, setKOStage }: KnockoutMatchScoreProps) => {
                                 i.round === 'QF' || i.round === 'F'
                                     ? 'bg-red-400 outline-red-600!'
                                     : 'bg-stone-400/70 outline-stone-500!'
-                            } w-16 pl-1 rounded-sm`}
+                            } w-16 h-8 lg:h-9 text-center font-semibold rounded-md outline placeholder:font-normal placeholder:text-stone-800`}
                         />
                     ) : (
                         '-'
@@ -212,6 +216,10 @@ const KnockoutMatchScore = ({ i, setKOStage }: KnockoutMatchScoreProps) => {
                         <input
                             id={`input${i.team2}vs${i.team1}`}
                             inputMode="numeric"
+                            pattern="[0-9]*"
+                            autoComplete="off"
+                            enterKeyHint="done"
+                            placeholder="0-10"
                             type="text"
                             min={0}
                             max={10}
@@ -232,7 +240,7 @@ const KnockoutMatchScore = ({ i, setKOStage }: KnockoutMatchScoreProps) => {
                                 i.round === 'QF' || i.round === 'F'
                                     ? 'bg-red-400 outline-red-600!'
                                     : 'bg-stone-400/70 outline-stone-500!'
-                            } w-16 pl-1 rounded-sm`}
+                            } w-16 h-8 lg:h-9 text-center font-semibold rounded-md outline placeholder:font-normal placeholder:text-stone-800`}
                         />
                     ) : (
                         '-'
