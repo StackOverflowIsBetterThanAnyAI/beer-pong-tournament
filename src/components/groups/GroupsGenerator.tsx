@@ -1,5 +1,6 @@
 import { useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { FetchLoading } from 'fetch-loading'
+import ConfirmDialog from '../dialog/ConfirmDialog'
 import FormError from '../form/FormError'
 import FormErrorOpacity from '../form/FormErrorOpacity'
 import FormHeader from '../form/FormHeader'
@@ -78,6 +79,7 @@ export const GroupsGenerator = () => {
     const [apiErrorGenerate, setApiErrorGenerate] = useState<string>('')
     const [apiErrorLoad, setApiErrorLoad] = useState<string>('')
     const [isLoading, setIsLoading] = useState<boolean>(false)
+    const [isConfirmOpen, setIsConfirmOpen] = useState<boolean>(false)
 
     const startButtonRef = useRef<HTMLButtonElement>(null)
 
@@ -178,7 +180,11 @@ export const GroupsGenerator = () => {
                 <button
                     className="text-normal bg-stone-300 outline outline-stone-500 disabled:outline-stone-400 disabled:bg-stone-400/20 min-h-7 lg:min-h-8 w-fit
                         m-auto px-8 py-0.5 my-2 rounded-md not-disabled:hover:bg-stone-400/40 not-disabled:active:bg-stone-400/70"
-                    onClick={handleStartTournament}
+                    onClick={() =>
+                        groups.length
+                            ? setIsConfirmOpen(true)
+                            : handleStartTournament()
+                    }
                     aria-label={`${
                         isStartDisabled
                             ? 'Start Disabled. The amount of teams has to be divisible by 4, and must be at least 8, but cannot be 20.'
@@ -231,6 +237,19 @@ export const GroupsGenerator = () => {
                     )}
                 </div>
             )}
+            {isAdmin ? (
+                <ConfirmDialog
+                    confirmLabel="Restart"
+                    isOpen={isConfirmOpen}
+                    message="The groups will be drawn again. All matches, results and the knockout stage of the current tournament will be lost."
+                    onCancel={() => setIsConfirmOpen(false)}
+                    onConfirm={() => {
+                        setIsConfirmOpen(false)
+                        handleStartTournament()
+                    }}
+                    title="Restart Tournament?"
+                />
+            ) : null}
         </main>
     )
 }

@@ -1,5 +1,6 @@
 import { useContext, useRef, useState } from 'react'
 import { FetchLoading } from 'fetch-loading'
+import ConfirmDialog from '../dialog/ConfirmDialog'
 import FormHeader from '../form/FormHeader'
 import TeamsErrorOpacity from '../teams/TeamsErrorOpacity'
 import { ContextAdmin } from '../../context/ContextAdmin'
@@ -32,6 +33,7 @@ const KnockoutChampion = () => {
 
     const [apiError, setApiError] = useState<string>('')
     const [isDisabled, setIsDisabled] = useState<boolean>(false)
+    const [isConfirmOpen, setIsConfirmOpen] = useState<boolean>(false)
 
     const buttonRef = useRef<HTMLButtonElement>(null)
 
@@ -62,7 +64,7 @@ const KnockoutChampion = () => {
                         aria-label="Start new Tournament."
                         title="Start new Tournament."
                         disabled={isDisabled}
-                        onClick={handleClick}
+                        onClick={() => setIsConfirmOpen(true)}
                         ref={buttonRef}
                     >
                         {isDisabled ? (
@@ -72,6 +74,17 @@ const KnockoutChampion = () => {
                         )}
                     </button>
                     {apiError ? <TeamsErrorOpacity error={apiError} /> : null}
+                    <ConfirmDialog
+                        confirmLabel="Reset"
+                        isOpen={isConfirmOpen}
+                        message="All teams, groups, matches and results will be deleted permanently. This cannot be undone."
+                        onCancel={() => setIsConfirmOpen(false)}
+                        onConfirm={() => {
+                            setIsConfirmOpen(false)
+                            handleClick()
+                        }}
+                        title="Start New Tournament?"
+                    />
                 </>
             ) : null}
         </div>

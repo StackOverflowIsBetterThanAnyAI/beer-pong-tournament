@@ -1,6 +1,15 @@
 import { HTMLInputAutoCompleteAttribute } from 'react'
 import { Location, NavigateFunction } from 'react-router-dom'
 
+export type ConfirmDialogProps = {
+    confirmLabel: string
+    isOpen: boolean
+    message: string
+    onCancel: () => void
+    onConfirm: () => void
+    title: string
+}
+
 export type ContextToastType = {
     showToast: (toast: ToastProps) => void
 }

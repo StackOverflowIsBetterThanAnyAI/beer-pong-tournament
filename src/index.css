@@ -39,6 +39,15 @@ html {
     overflow-y: scroll;
 }
 
+html.scroll-locked {
+    overflow-y: hidden;
+    background-color: color-mix(
+        in oklab,
+        var(--color-stone-800),
+        var(--color-stone-950) 50%
+    );
+}
+
 input[type='checkbox'] {
     @apply appearance-none grid place-content-center w-4 h-4 bg-stone-100 rounded-sm;
 }

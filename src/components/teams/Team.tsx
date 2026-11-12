@@ -1,6 +1,8 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
+import ConfirmDialog from '../dialog/ConfirmDialog'
 import { TeamProps } from '../../types/types'
 import { ContextAdmin } from '../../context/ContextAdmin'
+import { ContextGroups } from '../../context/ContextGroups'
 
 const Team = ({ handleDelete, index, isLoading, item }: TeamProps) => {
     const contextAdmin = useContext(ContextAdmin)
@@ -8,6 +10,14 @@ const Team = ({ handleDelete, index, isLoading, item }: TeamProps) => {
         throw new Error('Teams must be used within a ContextAdmin.Provider')
     }
     const [isAdmin] = contextAdmin
+
+    const contextGroups = useContext(ContextGroups)
+    if (!contextGroups) {
+        throw new Error('Teams must be used within a ContextGroups.Provider')
+    }
+    const [groups] = contextGroups
+
+    const [isConfirmOpen, setIsConfirmOpen] = useState<boolean>(false)
 
     return (
         <li
@@ -34,20 +44,37 @@ const Team = ({ handleDelete, index, isLoading, item }: TeamProps) => {
                     </div>
                 </div>
                 {isAdmin ? (
-                    <button
-                        className={`page relative text-normal outline mt-2 lg:mt-2.5 py-0.5 rounded-md focus-visible:bg-stone-50 z-10 
+                    <>
+                        <button
+                            className={`page relative text-normal outline mt-2 lg:mt-2.5 py-0.5 rounded-md focus-visible:bg-stone-50 z-10 
                     ${
                         index % 2
                             ? 'bg-red-50 outline-red-400 active:bg-red-200 disabled:bg-red-100/80 animate-red-50-red-100'
                             : 'bg-stone-100/90 outline-stone-500 active:bg-stone-300 disabled:bg-stone-50/20 animate-stone-50-stone-300'
                     }`}
-                        onClick={() => handleDelete(item)}
-                        aria-label={`Delete ${item.name}`}
-                        title={`Delete ${item.name}`}
-                        disabled={isLoading}
-                    >
-                        Delete
-                    </button>
+                            onClick={() => setIsConfirmOpen(true)}
+                            aria-label={`Delete ${item.name}`}
+                            title={`Delete ${item.name}`}
+                            disabled={isLoading}
+                        >
+                            Delete
+                        </button>
+                        <ConfirmDialog
+                            confirmLabel="Delete"
+                            isOpen={isConfirmOpen}
+                            message={`Do you really want to delete ${item.name}?${
+                                groups.length
+                                    ? ' All groups, matches and results of the current tournament will be lost as well.'
+                                    : ''
+                            }`}
+                            onCancel={() => setIsConfirmOpen(false)}
+                            onConfirm={() => {
+                                setIsConfirmOpen(false)
+                                handleDelete(item)
+                            }}
+                            title="Delete Team?"
+                        />
+                    </>
                 ) : null}
             </div>
         </li>
