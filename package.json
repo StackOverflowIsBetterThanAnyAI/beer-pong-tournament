@@ -12,7 +12,7 @@
         "format:check": "npx --yes prettier --check \"src/**/*.{js,jsx,ts,tsx,json,css,md}\""
     },
     "dependencies": {
-        "@tailwindcss/vite": "^4.3.3",
+        "@tailwindcss/vite": "^4.3.5",
         "fetch-loading": "^0.2.0",
         "jwt-decode": "^4.0.0",
         "react": "^19.2.7",
