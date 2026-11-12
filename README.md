@@ -8,7 +8,7 @@
 -   A tournament consists of a group stage and knockout stage.
 -   Once a tournament has ended, it can either be restarted with the currently registered teams or restarted with completely reset progress.
 
-![Preview Image Beer Pong Tournament](https://github.com/user-attachments/assets/7e6f872c-5488-44ba-b164-7bde9d4fc4bf)
+![Preview Image Beer Pong Tournament](docs/preview.png)
 
 ## Backend 
 
