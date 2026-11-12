@@ -78,7 +78,7 @@ const StandingsItem = ({
                                                     sx === 0
                                                         ? 'pt-2 border-t-2'
                                                         : ''
-                                                } border-stone-600`}
+                                                } border-stone-400/70`}
                                             >
                                                 <tr
                                                     className={`flex max-[320px]:flex-col justify-between gap-y-1 w-full text-normal px-2 py-1 ${
