@@ -40,5 +40,10 @@
     "allowScripts": {
         "cypress@15.21.1": true,
         "esbuild@0.25.2": true
+    },
+    "overrides": {
+        "@typescript-eslint/typescript-estree": {
+            "minimatch": "^11.0.8"
+        }
     }
 }
