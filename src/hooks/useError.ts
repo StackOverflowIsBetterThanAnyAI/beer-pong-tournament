@@ -23,26 +23,19 @@ export const useErrorConfirmPassword = ({
 export const useErrorPassword = ({
     password,
     passwordPattern,
-    setConfirmPasswordDisabled,
     setErrorPassword,
 }: useErrorPasswordProps) => {
     useEffect(() => {
-        if (!password) {
-            setConfirmPasswordDisabled(true)
+        if (!password || passwordPattern.test(password)) {
             setErrorPassword('')
-        } else if (passwordPattern.test(password)) {
-            setConfirmPasswordDisabled(false)
-            setErrorPassword('')
+        } else if (/\s/.test(password)) {
+            setErrorPassword('The password must not contain any spaces!')
         } else if (password.length < 8) {
-            setConfirmPasswordDisabled(true)
             setErrorPassword('The password must contain at least 8 characters!')
+        } else {
+            setErrorPassword('The password must contain at most 25 characters!')
         }
-    }, [
-        password,
-        passwordPattern,
-        setConfirmPasswordDisabled,
-        setErrorPassword,
-    ])
+    }, [password, passwordPattern, setErrorPassword])
 }
 
 export const useErrorName = ({

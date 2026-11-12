@@ -15,7 +15,7 @@ import { setItemInSessionStorage } from '../../utils/setItemInSessionStorage'
 import { useAutoFocus } from '../../hooks/useAutoFocus'
 import { useContextToast } from '../../context/ContextToast'
 import { useErrorName, useErrorSameMember } from '../../hooks/useError'
-import { useSubmitDisabledRegister } from '../../hooks/useSubmitDisabled'
+import { isRegisterTeamFormValid } from '../../utils/isFormValid'
 import { useWindowScrollYState } from '../../hooks/useWindowScrollYState'
 
 const RegisterTeam = () => {
@@ -71,7 +71,7 @@ const RegisterTeam = () => {
 
     const [apiError, setApiError] = useState<string>('')
     const [isLoading, setIsLoading] = useState<boolean>(false)
-    const [isSubmitDisabled, setIsSubmitDisabled] = useState<boolean>(true)
+    const [isSubmitLocked, setIsSubmitLocked] = useState<boolean>(false)
 
     const [errorTeamName, setErrorTeamName] = useState<string>('')
     const [errorMemberOne, setErrorMemberOne] = useState<string>('')
@@ -82,13 +82,14 @@ const RegisterTeam = () => {
 
     useAutoFocus(teamNameRef)
 
-    useSubmitDisabledRegister({
-        memberOne,
-        memberTwo,
-        setIsSubmitDisabled,
-        teamName,
-        teamPattern,
-    })
+    const isSubmitDisabled =
+        isSubmitLocked ||
+        !isRegisterTeamFormValid({
+            memberOne,
+            memberTwo,
+            teamName,
+            teamPattern,
+        })
 
     useErrorName({
         setErrorName: setErrorTeamName,
@@ -119,21 +120,21 @@ const RegisterTeam = () => {
         setApiError('')
         setTeamName(e.target.value)
         setItemInSessionStorage('teamname', e.target.value)
-        setIsSubmitDisabled(false)
+        setIsSubmitLocked(false)
     }
 
     const handleMemberOneInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         setApiError('')
         setMemberOne(e.target.value)
         setItemInSessionStorage('memberone', e.target.value)
-        setIsSubmitDisabled(false)
+        setIsSubmitLocked(false)
     }
 
     const handleMemberTwoInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         setApiError('')
         setMemberTwo(e.target.value)
         setItemInSessionStorage('membertwo', e.target.value)
-        setIsSubmitDisabled(false)
+        setIsSubmitLocked(false)
     }
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -150,7 +151,7 @@ const RegisterTeam = () => {
         e.preventDefault()
         setApiError('')
         setIsLoading(true)
-        setIsSubmitDisabled(true)
+        setIsSubmitLocked(true)
 
         const registerTeamData = {
             name: teamName,
@@ -166,7 +167,7 @@ const RegisterTeam = () => {
             setApiError,
             setGroups,
             setIsLoading,
-            setIsSubmitDisabled,
+            setIsSubmitDisabled: setIsSubmitLocked,
             setKOStage,
             setRegisteredTeams,
             setSchedule,

@@ -73,7 +73,12 @@ export const GroupsGenerator = () => {
 
     const [page, setPage] = useState<number>(parsedSessionData?.grouppage || 1)
 
-    const [isStartDisabled, setIsStartDisabled] = useState<boolean>(true)
+    const isStartDisabled = !(
+        registeredTeams.length >= MIN_TEAMS &&
+        registeredTeams.length % TEAMS_PER_GROUP === 0 &&
+        registeredTeams.length <= MAX_TEAMS &&
+        registeredTeams.length !== 20
+    )
     const [isSubmitDisabled, setIsSubmitDisabled] = useState<boolean>(false)
 
     const [apiErrorGenerate, setApiErrorGenerate] = useState<string>('')
@@ -114,17 +119,6 @@ export const GroupsGenerator = () => {
     useEffect(() => {
         loadGroups()
     }, [loadGroups])
-
-    useEffect(() => {
-        setIsStartDisabled(
-            !(
-                registeredTeams.length >= MIN_TEAMS &&
-                registeredTeams.length % TEAMS_PER_GROUP === 0 &&
-                registeredTeams.length <= MAX_TEAMS &&
-                registeredTeams.length !== 20
-            )
-        )
-    }, [registeredTeams])
 
     useWindowScrollYState()
 

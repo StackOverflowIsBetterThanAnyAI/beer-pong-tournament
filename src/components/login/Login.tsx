@@ -21,7 +21,7 @@ import {
 } from '../../hooks/useError'
 import { useContextToast } from '../../context/ContextToast'
 import { useSessionExpired } from '../../hooks/useSessionExpired'
-import { useSubmitDisabledLogin } from '../../hooks/useSubmitDisabled'
+import { isLoginFormValid } from '../../utils/isFormValid'
 import { useWindowScrollYState } from '../../hooks/useWindowScrollYState'
 
 const Login = () => {
@@ -59,10 +59,8 @@ const Login = () => {
     const [password, setPassword] = useState<string>('')
     const [isPasswordHidden, setIsPasswordHidden] = useState<boolean>(true)
     const [confirmPassword, setConfirmPassword] = useState<string>('')
-    const [confirmPasswordDisabled, setConfirmPasswordDisabled] =
-        useState<boolean>(true)
     const [isLoading, setIsLoading] = useState<boolean>(false)
-    const [isSubmitDisabled, setIsSubmitDisabled] = useState<boolean>(true)
+    const [isSubmitLocked, setIsSubmitLocked] = useState<boolean>(false)
 
     const [errorConfirmPassword, setErrorConfirmPassword] = useState<string>('')
     const [errorPassword, setErrorPassword] = useState<string>('')
@@ -74,15 +72,17 @@ const Login = () => {
     useAutoFocus(userNameRef)
     useSessionExpired({ location, navigate, showToast })
 
-    useSubmitDisabledLogin({
-        confirmPassword,
-        isSigningUp,
-        password,
-        passwordPattern,
-        setIsSubmitDisabled,
-        userName,
-        userNamePattern,
-    })
+    const confirmPasswordDisabled = !passwordPattern.test(password)
+    const isSubmitDisabled =
+        isSubmitLocked ||
+        !isLoginFormValid({
+            confirmPassword,
+            isSigningUp,
+            password,
+            passwordPattern,
+            userName,
+            userNamePattern,
+        })
 
     useErrorName({
         setErrorName: setErrorUserName,
@@ -94,7 +94,6 @@ const Login = () => {
     useErrorPassword({
         password,
         passwordPattern,
-        setConfirmPasswordDisabled,
         setErrorPassword,
     })
 
@@ -108,6 +107,7 @@ const Login = () => {
 
     const handleUserNameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         setApiError('')
+        setIsSubmitLocked(false)
         setUserName(e.target.value)
         setItemInStorage('username', e.target.value)
     }
@@ -120,6 +120,7 @@ const Login = () => {
 
     const handlePasswordInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         setApiError('')
+        setIsSubmitLocked(false)
         setPassword(e.target.value)
         setConfirmPassword('')
     }
@@ -127,17 +128,18 @@ const Login = () => {
     const handleConfirmPasswordInput = (
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
+        setIsSubmitLocked(false)
         setConfirmPassword(e.target.value)
     }
 
     const handleSwitch = () => {
         setApiError('')
+        setIsSubmitLocked(false)
         setIsSigningUp((prev) => !prev)
         setPassword('')
         setConfirmPassword('')
         setItemInStorage('issigningup', !isSigningUp)
         setIsPasswordHidden(true)
-        setConfirmPasswordDisabled(true)
     }
 
     const handleClickAuthenticate = async (
@@ -148,7 +150,7 @@ const Login = () => {
         e.preventDefault()
         setApiError('')
         setIsLoading(true)
-        setIsSubmitDisabled(true)
+        setIsSubmitLocked(true)
 
         const userData = {
             username: userName,
@@ -161,7 +163,7 @@ const Login = () => {
                 setIsAdmin,
                 setIsLoading,
                 setIsLoggedIn,
-                setIsSubmitDisabled,
+                setIsSubmitDisabled: setIsSubmitLocked,
                 userData,
             })
         } else {

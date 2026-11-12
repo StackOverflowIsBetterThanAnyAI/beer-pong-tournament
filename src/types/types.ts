@@ -250,20 +250,18 @@ export type useUpdatePageProps = {
     setPage: React.Dispatch<React.SetStateAction<number>>
 }
 
-export type useSubmitDisabledLoginProps = {
+export type isLoginFormValidProps = {
     confirmPassword: string
     isSigningUp: boolean
     password: string
     passwordPattern: RegExp
-    setIsSubmitDisabled: React.Dispatch<React.SetStateAction<boolean>>
     userName: string
     userNamePattern: RegExp
 }
 
-export type useSubmitDisabledRegisterProps = {
+export type isRegisterTeamFormValidProps = {
     memberOne: string
     memberTwo: string
-    setIsSubmitDisabled: React.Dispatch<React.SetStateAction<boolean>>
     teamName: string
     teamPattern: RegExp
 }
@@ -305,7 +303,6 @@ export type useErrorConfirmPasswordProps = {
 export type useErrorPasswordProps = {
     password: string
     passwordPattern: RegExp
-    setConfirmPasswordDisabled: React.Dispatch<React.SetStateAction<boolean>>
     setErrorPassword: React.Dispatch<React.SetStateAction<string>>
 }
 

@@ -62,10 +62,14 @@ const KnockoutMatchScore = ({ i, setKOStage }: KnockoutMatchScoreProps) => {
         e: React.ChangeEvent<HTMLInputElement>,
         otherScore: string | null,
         setState: (value: React.SetStateAction<string | null>) => void,
-        setInputError: React.Dispatch<React.SetStateAction<string>>
+        setInputError: React.Dispatch<React.SetStateAction<string>>,
+        setOtherInputError: React.Dispatch<React.SetStateAction<string>>
     ) => {
         setApiError('')
         setInputError('')
+        setOtherInputError((prev) =>
+            prev.startsWith('Please use an integer') ? prev : ''
+        )
         const score = e.target.value.replace(/[^\d]/g, '')
         setState(score)
         setInputError(
@@ -152,7 +156,8 @@ const KnockoutMatchScore = ({ i, setKOStage }: KnockoutMatchScoreProps) => {
                                     e,
                                     scoreTeam2,
                                     setScoreTeam1,
-                                    setInputErrorTeam1
+                                    setInputErrorTeam1,
+                                    setInputErrorTeam2
                                 )
                             }
                             onKeyDown={(e) => handleKeyDown(e, i.id)}
@@ -215,7 +220,8 @@ const KnockoutMatchScore = ({ i, setKOStage }: KnockoutMatchScoreProps) => {
                                     e,
                                     scoreTeam1,
                                     setScoreTeam2,
-                                    setInputErrorTeam2
+                                    setInputErrorTeam2,
+                                    setInputErrorTeam1
                                 )
                             }
                             onKeyDown={(e) => handleKeyDown(e, i.id)}
