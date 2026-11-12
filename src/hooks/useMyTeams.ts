@@ -12,7 +12,7 @@ export const useMyTeams = () => {
     }
     const [registeredTeams] = contextRegisteredTeams
 
-    const userName = getStoredData()?.username.trim() || ''
+    const userName = getStoredData()?.username?.trim() || ''
 
     return useMemo(() => {
         const myTeams: RegisteredTeamProps[] = userName
