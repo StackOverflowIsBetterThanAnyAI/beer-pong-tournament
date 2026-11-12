@@ -1,140 +1,76 @@
-import { useContext, useEffect, useState } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { ROUTES } from '../../constants/constants'
-import { ContextIsLoggedIn } from '../../context/ContextLogin'
-import { getStoredSessionData } from '../../utils/getStoredSessionData'
 import { getValidHref } from '../../utils/getValidHref'
-import { setItemInSessionStorage } from '../../utils/setItemInSessionStorage'
 
-const NavigationLinks = () => {
-    const parsedSessionData = getStoredSessionData()
+type NavigationLinksProps = {
+    variant: 'desktop' | 'mobile'
+    onNavigate?: () => void
+}
 
-    const navigate = useNavigate()
-
-    const contextIsLoggedIn = useContext(ContextIsLoggedIn)
-    if (!contextIsLoggedIn) {
-        throw new Error(
-            'NavigationLinks must be used within a ContextIsLoggedIn.Provider'
+const formatRoute = (route: string) =>
+    route
+        .split('-')
+        .map(
+            (x) => x.substring(0, 1).toUpperCase() + x.substring(1).toLowerCase()
         )
-    }
-    const [isLoggedIn] = contextIsLoggedIn
+        .join(' ')
 
-    const [isNavigationExpanded, setIsNavigationExpanded] = useState<
-        boolean | undefined
-    >(parsedSessionData?.isnavigationexpanded ?? undefined)
-
-    const [isNavigationLinksHidden, setIsNavigationLinksHidden] = useState<
-        boolean | undefined
-    >(false)
-
-    useEffect(() => {
-        if (isLoggedIn === true && isNavigationExpanded === undefined) {
-            setIsNavigationExpanded(true)
-            setItemInSessionStorage('isnavigationexpanded', true)
-        }
-    }, [isLoggedIn, isNavigationExpanded])
-
-    useEffect(() => {
-        if (isNavigationExpanded) {
-            setIsNavigationLinksHidden(false)
-        } else {
-            const timeout = setTimeout(() => {
-                setIsNavigationLinksHidden(true)
-            }, 300)
-
-            return () => clearTimeout(timeout)
-        }
-    }, [isNavigationExpanded])
-
-    const handleClick = () => {
-        const navigationExpanded = !isNavigationExpanded
-        setIsNavigationExpanded(navigationExpanded)
-        setItemInSessionStorage('isnavigationexpanded', navigationExpanded)
-    }
+const NavigationLinks = ({ variant, onNavigate }: NavigationLinksProps) => {
+    const navigate = useNavigate()
 
     const handleKeyDown = (
         e: React.KeyboardEvent<HTMLAnchorElement>,
-        i: string
+        route: string
     ) => {
         if (e.key === ' ') {
             e.preventDefault()
-            navigate(i)
+            navigate(`/${getValidHref(route)}`)
+            onNavigate?.()
         }
     }
 
-    const routes = ROUTES.filter((item: string) => item !== 'home').map((i) => {
-        const formattedRoute = i
-            .split('-')
-            .map(
-                (x) =>
-                    x.substring(0, 1).toUpperCase() +
-                    x.substring(1).toLowerCase()
-            )
-            .join(' ')
-
-        return (
-            <li
-                key={i}
-                className={`
-                transition-all duration-300 ${
-                    isNavigationExpanded ? 'max-h-8' : 'max-h-0'
-                }`}
-            >
-                <Link
-                    onKeyDown={(e) => handleKeyDown(e, i)}
-                    to={`/${getValidHref(i)}`}
-                    className={`underline text-normal block w-full transition-[padding] duration-300 px-2 rounded-md hover:bg-red-300/50 active:bg-red-300
-                    focus-visible:bg-stone-100/50 focus-visible:outline-2 focus-visible:outline-red-400 ${
-                        isNavigationExpanded ? 'py-0.5' : 'py-0'
-                    }`}
-                    data-testid={`navigation-link-${i}`}
-                    aria-label={`Go to ${formattedRoute}`}
-                    title={formattedRoute}
-                >
-                    {formattedRoute}
-                </Link>
-            </li>
-        )
-    })
+    const isDesktop = variant === 'desktop'
 
     return (
-        <nav
-            className={`flex flex-col w-full max-w-7xl bg-red-200 text-stone-950 shadow-md shadow-stone-400/65 dark:shadow-stone-800/80 p-4 transition-[padding,gap] duration-300 ${
-                isNavigationExpanded ? 'pt-6 gap-1' : 'py-2 gap-0'
-            } lg:rounded-b-md`}
-            data-testid="navigation-links"
+        <ul
+            className={
+                isDesktop
+                    ? 'hidden lg:flex items-center gap-1'
+                    : 'flex flex-col gap-1'
+            }
+            aria-label="Main Navigation"
+            id={isDesktop ? undefined : 'main-navigation-list'}
+            data-testid={`navigation-links-${variant}`}
         >
-            {!isNavigationLinksHidden ? (
-                <ul
-                    className={`flex flex-col gap-1 transition-all duration-300 ${
-                        isNavigationExpanded
-                            ? 'opacity-100 max-h-80'
-                            : 'opacity-0 max-h-0'
-                    }`}
-                    aria-label="Main Navigation"
-                    id="main-navigation-list"
-                >
-                    {routes}
-                </ul>
-            ) : null}
-            <button
-                onClick={handleClick}
-                className={`animate-stone-50-red-200 max-w-96 w-full relative isolate bg-stone-50 outline outline-red-400/90 text-normal rounded-md m-auto px-2 py-0.5 lg:py-1 active:bg-red-200
-                transition-[margin] duration-300 ${
-                    isNavigationExpanded ? 'mt-2' : 'mt-0'
-                }`}
-                aria-label={`${
-                    isNavigationExpanded ? 'Close' : 'Open'
-                } Navigation Menu`}
-                title={`${
-                    isNavigationExpanded ? 'Close' : 'Open'
-                } Navigation Menu`}
-                aria-expanded={!!isNavigationExpanded}
-                aria-controls="main-navigation-list"
-            >
-                {isNavigationExpanded ? 'Close' : 'Open'} Navigation
-            </button>
-        </nav>
+            {ROUTES.filter((route) => route !== 'home').map((route) => {
+                const formattedRoute = formatRoute(route)
+
+                return (
+                    <li key={route}>
+                        <NavLink
+                            to={`/${getValidHref(route)}`}
+                            onClick={onNavigate}
+                            onKeyDown={(e) => handleKeyDown(e, route)}
+                            className={({ isActive }) =>
+                                `block whitespace-nowrap rounded-lg text-normal no-underline transition-colors duration-200
+                                focus-visible:outline-2 focus-visible:outline-red-400 ${
+                                    isDesktop ? 'px-3 py-2' : 'px-4 py-3'
+                                } ${
+                                    isActive
+                                        ? 'bg-red-200 text-stone-950 font-semibold dark:bg-red-300'
+                                        : 'hover:bg-stone-300 dark:hover:bg-stone-700 active:bg-stone-400/65 dark:active:bg-stone-600'
+                                }`
+                            }
+                            data-testid={`navigation-link-${route}`}
+                            aria-label={`Go to ${formattedRoute}`}
+                            title={formattedRoute}
+                        >
+                            {formattedRoute}
+                        </NavLink>
+                    </li>
+                )
+            })}
+        </ul>
     )
 }
 
