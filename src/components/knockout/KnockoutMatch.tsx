@@ -1,4 +1,5 @@
 import React from 'react'
+import KnockoutBracket from './KnockoutBracket'
 import KnockoutChampion from './KnockoutChampion'
 import KnockoutLegend from './KnockoutLegend'
 import KnockoutMatchScore from './KnockoutMatchScore'
@@ -48,6 +49,7 @@ const KnockoutMatch = ({
     return (
         <>
             {tournamentWinner && page === 1 ? <KnockoutChampion /> : null}
+            <KnockoutBracket koStage={koStage} />
             <ul
                 className="flex flex-col lg:grid lg:grid-cols-[repeat(2,minmax(384px,1fr))]
                 gap-4 lg:gap-5 max-w-96 w-full sm:w-2/3 lg:w-full sm:max-w-lg lg:max-w-4xl

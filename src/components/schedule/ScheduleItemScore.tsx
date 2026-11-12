@@ -169,7 +169,7 @@ export const ScheduleItemScore = ({ i, index, x }: ScheduleItemScoreProps) => {
                     </label>
                 )}
                 <span
-                    className={`m-1! ${
+                    className={`m-1! inline-flex items-center justify-center w-16 h-8 lg:h-9 ${
                         i.score_team1 === 10 ? 'font-bold' : ''
                     }`}
                 >
@@ -229,7 +229,7 @@ export const ScheduleItemScore = ({ i, index, x }: ScheduleItemScoreProps) => {
                     </label>
                 )}
                 <span
-                    className={`m-1! ${
+                    className={`m-1! inline-flex items-center justify-center w-16 h-8 lg:h-9 ${
                         i.score_team2 === 10 ? 'font-bold' : ''
                     }`}
                 >

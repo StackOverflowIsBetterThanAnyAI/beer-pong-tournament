@@ -110,6 +110,17 @@ export type KOMatchProps = {
 
 export type KOStageProps = KOMatchProps[]
 
+export type KnockoutBracketProps = {
+    koStage: KOStageProps
+}
+
+export type KnockoutBracketTeamProps = {
+    isMine: boolean
+    isWinner: boolean
+    name: string | null
+    score: number | null | undefined
+}
+
 export type KnockoutMatchProps = {
     koStage: KOStageProps
     page: number
