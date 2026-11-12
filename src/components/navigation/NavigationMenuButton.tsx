@@ -15,7 +15,7 @@ const NavigationMenuButton = ({
         <button
             ref={ref}
             onClick={onClick}
-            className="lg:hidden flex flex-col justify-center items-center gap-1.5 w-12 h-12 rounded-xl border-2 border-stone-400 dark:border-stone-500
+            className="lg:hidden flex flex-col justify-center items-center gap-1.5 w-12 h-12 rounded-xl border-2 border-stone-400 dark:border-stone-500 focus-visible:border-transparent
             hover:bg-stone-300 dark:hover:bg-stone-700 active:bg-stone-400/65 dark:active:bg-stone-600"
             aria-label={label}
             title={label}

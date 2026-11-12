@@ -96,6 +96,11 @@ main::after {
     @apply text-lg sm:text-xl lg:text-2xl;
 }
 
+.heading-accent::after {
+    @apply block w-12 h-1 mx-auto mt-2 rounded-full bg-red-500;
+    content: '';
+}
+
 /* Save Score / Delete Team red */
 
 .animate-red-50-red-100:focus-visible:not(:active)::before {
