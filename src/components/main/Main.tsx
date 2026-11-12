@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import { FetchLoading } from 'fetch-loading'
 import FormHeader from '../form/FormHeader'
 import KnockoutChampion from '../knockout/KnockoutChampion'
+import MainInviteQRCode from './MainInviteQRCode'
 import MainMatch from './MainMatch'
 import logoHero from './../../assets/logo_hero.webp'
 import { MAX_TEAMS } from '../../constants/constants'
@@ -318,6 +319,7 @@ const Main = () => {
                                     Register Team
                                 </Link>
                                 <div>Register now before it starts.</div>
+                                <MainInviteQRCode />
                             </>
                         ) : (
                             <div>
