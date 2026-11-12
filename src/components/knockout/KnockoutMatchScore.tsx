@@ -1,4 +1,5 @@
 import { useContext, useState } from 'react'
+import MyTeamBadge from '../myTeam/MyTeamBadge'
 import FormError from '../form/FormError'
 import KnockoutMatchButton from './KnockoutMatchButton'
 import { KnockoutMatchScoreProps } from '../../types/types'
@@ -128,6 +129,7 @@ const KnockoutMatchScore = ({ i, setKOStage }: KnockoutMatchScoreProps) => {
                         } text-ellipsis overflow-hidden max-w-full`}
                     >
                         {i.team1_name}
+                        <MyTeamBadge name={i.team1_name} />
                     </span>
                 ) : (
                     <label
@@ -135,6 +137,7 @@ const KnockoutMatchScore = ({ i, setKOStage }: KnockoutMatchScoreProps) => {
                         className="text-ellipsis overflow-hidden max-w-full"
                     >
                         {i.team1_name}
+                        <MyTeamBadge name={i.team1_name} />
                     </label>
                 )}
                 <span
@@ -196,6 +199,7 @@ const KnockoutMatchScore = ({ i, setKOStage }: KnockoutMatchScoreProps) => {
                         } text-ellipsis overflow-hidden max-w-full`}
                     >
                         {i.team2_name}
+                        <MyTeamBadge name={i.team2_name} />
                     </span>
                 ) : (
                     <label
@@ -203,6 +207,7 @@ const KnockoutMatchScore = ({ i, setKOStage }: KnockoutMatchScoreProps) => {
                         className="text-ellipsis overflow-hidden max-w-full"
                     >
                         {i.team2_name}
+                        <MyTeamBadge name={i.team2_name} />
                     </label>
                 )}
                 <span

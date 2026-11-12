@@ -1,4 +1,5 @@
 import { useContext, useState } from 'react'
+import MyTeamBadge from '../myTeam/MyTeamBadge'
 import ConfirmDialog from '../dialog/ConfirmDialog'
 import { TeamProps } from '../../types/types'
 import { ContextAdmin } from '../../context/ContextAdmin'
@@ -33,6 +34,7 @@ const Team = ({ handleDelete, index, isLoading, item }: TeamProps) => {
                 <div>
                     <div className="text-large font-bold text-ellipsis overflow-hidden lg:pb-1">
                         {item.name}
+                        <MyTeamBadge name={item.name} />
                     </div>
                     <div className="flex gap-x-2 flex-wrap justify-between">
                         <div className="text-normal text-ellipsis overflow-hidden">

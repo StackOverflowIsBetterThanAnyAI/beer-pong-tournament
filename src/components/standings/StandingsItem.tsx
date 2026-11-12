@@ -1,4 +1,5 @@
 import { StandingsItemProps } from '../../types/types'
+import MyTeamBadge from '../myTeam/MyTeamBadge'
 
 const StandingsItem = ({
     MAX_ITEMS_PER_PAGE,
@@ -115,6 +116,12 @@ const StandingsItem = ({
                                                                 title={s.team}
                                                             >
                                                                 {s.team}
+
+                                                                <MyTeamBadge
+                                                                    name={
+                                                                        s.team
+                                                                    }
+                                                                />
                                                             </span>
                                                         </div>
                                                     </td>

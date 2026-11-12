@@ -1,4 +1,5 @@
 import GroupsLegend from './GroupsLegend'
+import MyTeamBadge from '../myTeam/MyTeamBadge'
 import PageNavigation from '../page/PageNavigation'
 import { GroupsProps } from '../../types/types'
 import { setItemInSessionStorage } from '../../utils/setItemInSessionStorage'
@@ -101,6 +102,10 @@ const Groups = ({ groups, page, setPage }: GroupsProps) => {
                                                     <div className="flex flex-col">
                                                         <div className="font-bold text-ellipsis overflow-hidden">
                                                             {t.name}
+
+                                                            <MyTeamBadge
+                                                                name={t.name}
+                                                            />
                                                         </div>
                                                         <div className="flex flex-wrap gap-x-2 justify-between">
                                                             <div className="text-ellipsis overflow-hidden">

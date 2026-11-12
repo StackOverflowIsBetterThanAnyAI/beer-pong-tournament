@@ -1,10 +1,16 @@
+import MyTeamBadge from '../myTeam/MyTeamBadge'
 import { KOMatchProps, MainMatchProps } from '../../types/types'
 
-const MainMatch = ({ item }: MainMatchProps) => {
+const MainMatch = ({ item, label }: MainMatchProps) => {
+    const team1 =
+        (item as KOMatchProps).team1_name || (item as { team1: string }).team1
+    const team2 =
+        (item as KOMatchProps).team2_name || (item as { team2: string }).team2
+
     return (
         <li className="max-w-md w-full m-auto" role="menuitem">
             <h2 className="text-large font-bold pb-2 lg:pb-2.5">
-                {item.played ? 'Last ' : 'Upcoming '}Match:
+                {label ?? `${item.played ? 'Last' : 'Upcoming'} Match:`}
             </h2>
             <ul
                 className="flex flex-col gap-2 lg:gap-2.5 bg-stone-400/70 p-2 rounded-md"
@@ -23,8 +29,8 @@ const MainMatch = ({ item }: MainMatchProps) => {
                                     item.score_team1 === 10 ? 'font-bold' : ''
                                 } text-ellipsis overflow-hidden max-w-full`}
                             >
-                                {(item as KOMatchProps).team1_name ||
-                                    item.team1}
+                                {team1}
+                                <MyTeamBadge name={team1} />
                             </span>
                             <span
                                 className={`m-1! ${
@@ -47,8 +53,8 @@ const MainMatch = ({ item }: MainMatchProps) => {
                                     item.score_team2 === 10 ? 'font-bold' : ''
                                 } text-ellipsis overflow-hidden max-w-full`}
                             >
-                                {(item as KOMatchProps).team2_name ||
-                                    item.team2}
+                                {team2}
+                                <MyTeamBadge name={team2} />
                             </span>
                             <span
                                 className={`m-1! ${

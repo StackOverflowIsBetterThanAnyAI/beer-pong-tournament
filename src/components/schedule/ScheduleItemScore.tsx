@@ -1,4 +1,5 @@
 import { useContext, useState } from 'react'
+import MyTeamBadge from '../myTeam/MyTeamBadge'
 import { ScheduleItemScoreProps } from '../../types/types'
 import FormError from '../form/FormError'
 import FormErrorOpacity from '../form/FormErrorOpacity'
@@ -156,6 +157,7 @@ export const ScheduleItemScore = ({ i, index, x }: ScheduleItemScoreProps) => {
                         } text-ellipsis overflow-hidden max-w-full`}
                     >
                         {i.team1}
+                        <MyTeamBadge name={i.team1} />
                     </span>
                 ) : (
                     <label
@@ -163,6 +165,7 @@ export const ScheduleItemScore = ({ i, index, x }: ScheduleItemScoreProps) => {
                         className="text-ellipsis overflow-hidden max-w-full"
                     >
                         {i.team1}
+                        <MyTeamBadge name={i.team1} />
                     </label>
                 )}
                 <span
@@ -214,6 +217,7 @@ export const ScheduleItemScore = ({ i, index, x }: ScheduleItemScoreProps) => {
                         } text-ellipsis overflow-hidden max-w-full`}
                     >
                         {i.team2}
+                        <MyTeamBadge name={i.team2} />
                     </span>
                 ) : (
                     <label
@@ -221,6 +225,7 @@ export const ScheduleItemScore = ({ i, index, x }: ScheduleItemScoreProps) => {
                         className="text-ellipsis overflow-hidden max-w-full"
                     >
                         {i.team2}
+                        <MyTeamBadge name={i.team2} />
                     </label>
                 )}
                 <span

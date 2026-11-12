@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from 'react'
+import { useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { FetchLoading } from 'fetch-loading'
 import FormHeader from '../form/FormHeader'
@@ -18,6 +18,7 @@ import { handleLoadKOStage } from '../../api/handleLoadKOStage'
 import { handleLoadRegisteredTeams } from '../../api/handleLoadRegisteredTeams'
 import { handleLoadSchedule } from '../../api/handleLoadSchedule'
 import { useAutoFocus } from '../../hooks/useAutoFocus'
+import { useMyTeams } from '../../hooks/useMyTeams'
 import { useWindowScrollYState } from '../../hooks/useWindowScrollYState'
 
 const Main = () => {
@@ -160,6 +161,28 @@ const Main = () => {
         setTournamentWinner,
     ])
 
+    const { isMyTeam } = useMyTeams()
+
+    const myNextMatch = useMemo(
+        () =>
+            schedule.find(
+                (item) =>
+                    !item.played &&
+                    (isMyTeam(item.team1) || isMyTeam(item.team2))
+            ) ?? null,
+        [schedule, isMyTeam]
+    )
+
+    const myNextKOMatch = useMemo(
+        () =>
+            koStage.find(
+                (item) =>
+                    !item.played &&
+                    (isMyTeam(item.team1_name) || isMyTeam(item.team2_name))
+            ) ?? null,
+        [koStage, isMyTeam]
+    )
+
     useEffect(() => {
         const played = koStage.filter((item) => item.played)
         setLastKOMatch(played.length ? played[played.length - 1] : null)
@@ -212,6 +235,13 @@ const Main = () => {
                             {upcomingKOMatch ? (
                                 <MainMatch item={upcomingKOMatch} />
                             ) : null}
+                            {myNextKOMatch &&
+                            myNextKOMatch.id !== upcomingKOMatch?.id ? (
+                                <MainMatch
+                                    item={myNextKOMatch}
+                                    label="Your Next Match:"
+                                />
+                            ) : null}
                         </ul>
                         <Link
                             to="/knockout-stage"
@@ -244,6 +274,13 @@ const Main = () => {
                             {lastMatch ? <MainMatch item={lastMatch} /> : null}
                             {upcomingMatch ? (
                                 <MainMatch item={upcomingMatch} />
+                            ) : null}
+                            {myNextMatch &&
+                            myNextMatch.id !== upcomingMatch?.id ? (
+                                <MainMatch
+                                    item={myNextMatch}
+                                    label="Your Next Match:"
+                                />
                             ) : null}
                         </ul>
                         <Link

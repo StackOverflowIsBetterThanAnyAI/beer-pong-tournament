@@ -134,6 +134,7 @@ export type KnockoutMatchScoreProps = {
 
 export type MainMatchProps = {
     item: GameProps | KOMatchProps
+    label?: string
 }
 
 export type PageNavigationProps = {
