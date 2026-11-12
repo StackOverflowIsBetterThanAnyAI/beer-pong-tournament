@@ -162,7 +162,7 @@ export const GroupsGenerator = () => {
             drop-shadow-stone-500 dark:drop-shadow-stone-900 drop-shadow-sm"
         >
             <FormHeader header="Groups" />
-            {isLoading ? (
+            {isLoading && !registeredTeams.length ? (
                 <div className="flex justify-center h-6 sm:h-7">
                     <FetchLoading theme="#44403c" />
                 </div>

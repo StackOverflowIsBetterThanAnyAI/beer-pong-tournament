@@ -129,7 +129,7 @@ export const Teams = () => {
             <h1 className="text-center font-semibold text-extra-large pt-2 pb-1">
                 Registered Teams
             </h1>
-            {isLoading ? (
+            {isLoading && !registeredTeams.length ? (
                 <div className="flex justify-center pt-4 pb-2">
                     <FetchLoading theme="#44403c" />
                 </div>

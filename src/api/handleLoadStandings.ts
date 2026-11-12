@@ -22,8 +22,6 @@ export const handleLoadStandings = async ({
 }: handleLoadStandingsProps) => {
     setIsLoading(true)
     setApiError('')
-    setItemInStorage('standings', [])
-    setStandings([])
 
     try {
         const response = await fetch(

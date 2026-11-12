@@ -74,7 +74,7 @@ const Standings = () => {
                 header="Standings"
                 subHeader={`${standings.length ? 'standings' : ''}`}
             />
-            {isLoading ? (
+            {isLoading && !standings.length ? (
                 <div className="flex justify-center pt-4 pb-2">
                     <FetchLoading theme="#44403c" />
                 </div>

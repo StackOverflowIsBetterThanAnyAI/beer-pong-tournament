@@ -177,7 +177,10 @@ const Main = () => {
         >
             <div className="sm:flex-2/3 max-sm:m-auto">
                 <FormHeader header="Welcome to the Beer Pong Tournament!" />
-                {isLoading ? (
+                {isLoading &&
+                !tournamentWinner &&
+                !koStage.length &&
+                !groups.length ? (
                     <div className="flex justify-center pt-2 sm:pb-1 lg:pb-3">
                         <FetchLoading theme="#44403c" />
                     </div>

@@ -160,7 +160,7 @@ const Knockout = () => {
                     <FormErrorOpacity error={apiErrorGenerate} />
                 </div>
             ) : null}
-            {isLoading ? (
+            {isLoading && !koStage.length ? (
                 <div className="flex justify-center pt-6 pb-2">
                     <FetchLoading theme="#44403c" />
                 </div>
