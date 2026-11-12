@@ -11,7 +11,8 @@ const formatRoute = (route: string) =>
     route
         .split('-')
         .map(
-            (x) => x.substring(0, 1).toUpperCase() + x.substring(1).toLowerCase()
+            (x) =>
+                x.substring(0, 1).toUpperCase() + x.substring(1).toLowerCase()
         )
         .join(' ')
 
@@ -40,7 +41,9 @@ const NavigationLinks = ({ variant, onNavigate }: NavigationLinksProps) => {
             }
             aria-label="Main Navigation"
             id={isDesktop ? undefined : 'main-navigation-list'}
-            data-testid={`navigation-links-${variant}`}
+            data-testid={
+                isDesktop ? 'navigation-links' : 'navigation-menu-links'
+            }
         >
             {ROUTES.filter((route) => route !== 'home').map((route) => {
                 const formattedRoute = formatRoute(route)
@@ -61,7 +64,11 @@ const NavigationLinks = ({ variant, onNavigate }: NavigationLinksProps) => {
                                         : 'hover:bg-stone-300 dark:hover:bg-stone-700 active:bg-stone-400/65 dark:active:bg-stone-600'
                                 }`
                             }
-                            data-testid={`navigation-link-${route}`}
+                            data-testid={
+                                isDesktop
+                                    ? `navigation-link-${route}`
+                                    : `navigation-menu-link-${route}`
+                            }
                             aria-label={`Go to ${formattedRoute}`}
                             title={formattedRoute}
                         >
