@@ -2,6 +2,7 @@
 
 describe('deployed', () => {
     beforeEach(() => {
+        cy.viewport(1280, 800)
         cy.visit('https://beer-pong-tournament.onrender.com/')
     })
 
@@ -36,7 +37,7 @@ describe('deployed', () => {
             .should('exist')
             .should(
                 'have.text',
-                'Register TeamTeamsGroupsScheduleStandingsKnockout StageClose Navigation'
+                'Register TeamTeamsGroupsScheduleStandingsKnockout Stage'
             )
 
         cy.window().should((win) => {

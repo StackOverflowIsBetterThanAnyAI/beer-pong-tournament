@@ -2,6 +2,7 @@
 
 describe('local', () => {
     beforeEach(() => {
+        cy.viewport(1280, 800)
         cy.visit('/')
     })
 
@@ -36,7 +37,7 @@ describe('local', () => {
             .should('exist')
             .should(
                 'have.text',
-                'Register TeamTeamsGroupsScheduleStandingsKnockout StageClose Navigation'
+                'Register TeamTeamsGroupsScheduleStandingsKnockout Stage'
             )
 
         cy.window().should((win) => {
@@ -154,6 +155,56 @@ describe('local', () => {
             .click()
 
         cy.get('main').should('contain', 'Knockout Stage')
+    })
+
+    it('should navigate using the mobile navigation menu', () => {
+        cy.viewport('iphone-x')
+
+        cy.get('[data-testid="login-switch"]').click()
+
+        cy.get('[data-testid="login-user-input"]').type(
+            Cypress.env('ADMIN_USERNAME_LOCAL')
+        )
+
+        cy.get('[data-testid="login-password-input"]').type(
+            Cypress.env('ADMIN_PASSWORD_LOCAL')
+        )
+
+        cy.get('[data-testid="login-submit"]').click()
+
+        cy.get('[data-testid="navigation-links"]').should('not.be.visible')
+        cy.get('[data-testid="logout"]').should('not.be.visible')
+        cy.get('[data-testid="navigation-menu-links"]').should('not.be.visible')
+
+        cy.get('[data-testid="navigation-menu-button"]')
+            .should('have.attr', 'aria-expanded', 'false')
+            .click()
+
+        cy.get('[data-testid="navigation-menu-button"]').should(
+            'have.attr',
+            'aria-expanded',
+            'true'
+        )
+
+        cy.get('[data-testid="navigation-menu-links"]')
+            .should('be.visible')
+            .should(
+                'have.text',
+                'Register TeamTeamsGroupsScheduleStandingsKnockout Stage'
+            )
+
+        cy.get('[data-testid="logout-mobile"]').should('be.visible')
+
+        cy.get('[data-testid="navigation-menu-link-teams"]').click()
+
+        cy.get('main').should('contain', 'Registered Teams')
+
+        cy.get('[data-testid="navigation-menu-button"]').should(
+            'have.attr',
+            'aria-expanded',
+            'false'
+        )
+        cy.get('[data-testid="navigation-menu-links"]').should('not.be.visible')
     })
 
     it('should show 404 for unintended routes', () => {
