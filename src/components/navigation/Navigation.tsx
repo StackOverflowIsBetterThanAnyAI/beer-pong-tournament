@@ -86,7 +86,7 @@ const Navigation = () => {
                         {isLoggedIn ? (
                             <>
                                 <button
-                                    className="hidden sm:block text-large px-4 py-2 rounded-xl border-2 border-stone-400 dark:border-stone-500
+                                    className="hidden sm:block text-large px-4 py-2 rounded-xl border-2 border-stone-400 dark:border-stone-500 focus-visible:border-transparent
                                     hover:bg-stone-300 dark:hover:bg-stone-700 active:bg-stone-400/65 dark:active:bg-stone-600"
                                     data-testid="logout"
                                     title="Logout"
@@ -123,7 +123,7 @@ const Navigation = () => {
                                     onNavigate={() => setIsMenuOpen(false)}
                                 />
                                 <button
-                                    className="sm:hidden w-full mt-3 text-large px-4 py-2 rounded-xl border-2 border-stone-400 dark:border-stone-500
+                                    className="sm:hidden w-full mt-3 text-large px-4 py-2 rounded-xl border-2 border-stone-400 dark:border-stone-500 focus-visible:border-transparent
                                     hover:bg-stone-300 dark:hover:bg-stone-700 active:bg-stone-400/65 dark:active:bg-stone-600"
                                     data-testid="logout-mobile"
                                     title="Logout"
