@@ -179,7 +179,7 @@ const Login = () => {
 
     return (
         <main
-            className="flex justify-center w-full max-w-7xl relative isolate bg-stone-300 text-stone-950 lg:rounded-b-lg p-3 sm:p-4 lg:p-6 drop-shadow-stone-900 drop-shadow-sm"
+            className="flex justify-center w-full max-w-7xl relative isolate bg-stone-300 text-stone-800 lg:rounded-b-lg p-3 sm:p-4 lg:p-6 drop-shadow-stone-900 drop-shadow-sm"
             data-testid="login-main"
         >
             <div className="w-96">

@@ -60,7 +60,7 @@ const NavigationLinks = ({ variant, onNavigate }: NavigationLinksProps) => {
                                     isDesktop ? 'px-3 py-2' : 'px-4 py-3'
                                 } ${
                                     isActive
-                                        ? 'bg-red-200 text-stone-950 font-bold dark:bg-red-300'
+                                        ? 'bg-red-200 text-stone-800 font-bold dark:bg-red-300'
                                         : 'hover:bg-stone-300 dark:hover:bg-stone-700 active:bg-stone-400/65 dark:active:bg-stone-600'
                                 }`
                             }

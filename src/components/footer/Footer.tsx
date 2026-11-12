@@ -13,7 +13,7 @@ const Footer = () => {
 
     return (
         <footer
-            className="flex flex-col gap-y-2 w-full max-w-5xl text-pretty text-center text-small text-zinc-900 dark:text-zinc-100 pb-2 pt-6 px-4 mb-1 mt-auto"
+            className="flex flex-col gap-y-2 w-full max-w-5xl text-pretty text-center text-small text-stone-800 dark:text-zinc-100 pb-2 pt-6 px-4 mb-1 mt-auto"
             data-testid="footer"
         >
             <span>
@@ -36,7 +36,7 @@ const Footer = () => {
                     viewBox="0 0 24 24"
                     height={12}
                     fill="currentColor"
-                    className="text-zinc-900 dark:text-zinc-100"
+                    className="text-stone-800 dark:text-zinc-100"
                     aria-hidden="true"
                     focusable="false"
                 >

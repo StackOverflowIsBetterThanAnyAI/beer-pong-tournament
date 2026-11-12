@@ -72,7 +72,7 @@ const Navigation = () => {
             <nav
                 ref={navRef}
                 className={`sticky top-0 z-50 w-full
-                bg-stone-200 dark:bg-stone-800 text-zinc-900 dark:text-zinc-100 shadow-md shadow-stone-400/80 dark:shadow-stone-600/80
+                bg-stone-200 dark:bg-stone-800 text-stone-800 dark:text-zinc-100 shadow-md shadow-stone-400/80 dark:shadow-stone-600/80
                 transition-opacity duration-1000 ease-in-out ${
                     isMenuOpen ? 'opacity-100' : navOpacity
                 }`}

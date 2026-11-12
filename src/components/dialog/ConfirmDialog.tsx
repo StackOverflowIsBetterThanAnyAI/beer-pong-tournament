@@ -51,7 +51,7 @@ const ConfirmDialog = ({
             onClick={handleBackdropClick}
             aria-labelledby={titleId}
             aria-describedby={messageId}
-            className="m-auto w-[calc(100%-2rem)] max-w-md rounded-lg bg-stone-200 text-stone-950 p-0
+            className="m-auto w-[calc(100%-2rem)] max-w-md rounded-lg bg-stone-200 text-stone-800 p-0
             drop-shadow-stone-900 drop-shadow-sm backdrop:bg-stone-950/50"
             data-testid="confirm-dialog"
         >

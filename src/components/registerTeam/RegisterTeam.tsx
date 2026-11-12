@@ -177,7 +177,7 @@ const RegisterTeam = () => {
 
     return (
         <main
-            className="flex justify-center w-full max-w-7xl relative isolate bg-stone-300 text-stone-950 lg:rounded-lg p-3 sm:p-4 lg:p-6 mx-auto
+            className="flex justify-center w-full max-w-7xl relative isolate bg-stone-300 text-stone-800 lg:rounded-lg p-3 sm:p-4 lg:p-6 mx-auto
             drop-shadow-stone-500 dark:drop-shadow-stone-900 drop-shadow-sm"
         >
             <div className="w-96">

@@ -23,7 +23,7 @@ const Breadcrumbs = () => {
         >
             <Link
                 className="text-small underline rounded-sm px-1 py-0.5
-                decoration-zinc-600/50 dark:decoration-zinc-300/50 text-zinc-600 dark:text-zinc-300 last:decoration-zinc-900/50 dark:last:decoration-zinc-100/50 last:text-zinc-900 dark:last:text-zinc-100"
+                decoration-zinc-600/50 dark:decoration-zinc-300/50 text-zinc-600 dark:text-zinc-300 last:decoration-stone-800/50 dark:last:decoration-zinc-100/50 last:text-stone-800 dark:last:text-zinc-100"
                 to="/"
                 onKeyDown={handleKeyDownHome}
                 title="Home"
@@ -69,7 +69,7 @@ const Breadcrumbs = () => {
                                 &gt;
                             </div>
                             <Link
-                                className="text-small underline decoration-zinc-900/50 dark:decoration-zinc-100/50 text-zinc-900 dark:text-zinc-100 rounded-sm px-1 py-0.5"
+                                className="text-small underline decoration-stone-800/50 dark:decoration-zinc-100/50 text-stone-800 dark:text-zinc-100 rounded-sm px-1 py-0.5"
                                 to={route}
                                 onKeyDown={handleKeyDown}
                                 title={formattedItem}
