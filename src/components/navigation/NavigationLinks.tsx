@@ -52,7 +52,7 @@ const NavigationLinks = ({ variant, onNavigate }: NavigationLinksProps) => {
                             onClick={onNavigate}
                             onKeyDown={(e) => handleKeyDown(e, route)}
                             className={({ isActive }) =>
-                                `block whitespace-nowrap rounded-lg text-normal no-underline transition-colors duration-200
+                                `block whitespace-nowrap rounded-lg text-normal no-underline transition-[background-color,color] duration-200
                                 focus-visible:outline-2 focus-visible:outline-red-400 ${
                                     isDesktop ? 'px-3 py-2' : 'px-4 py-3'
                                 } ${
